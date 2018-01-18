@@ -91,7 +91,7 @@ let utils = require(__dirname + '/modules/utils.js')(bot, config);
  *
  */
 let login_status = "";
-let twofa_status = "";
+let twofa_status = 1;
 let like_status = "";
 let pin_status = "";
 
