@@ -91,7 +91,7 @@ let utils = require(__dirname + '/modules/utils.js')(bot, config);
  *
  */
 let login_status = "";
-let twofa_status = "";
+let twofa_status = 1;
 let like_status = "";
 let pin_status = "";
 
@@ -126,21 +126,25 @@ async function start_likemode_classic(bot, config, utils) {
     let likemode_classic = require(__dirname + '/modules/likemode_classic.js')(bot, config, utils);
     utils.logger("[INFO]", "likemode", "classic");
     let today = "";
+    let cache_hashtag = [];
     let t1, t2, sec;
     do {
         today = new Date();
         t1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
-        utils.logger("[INFO]", "like", "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
+        utils.logger("[INFO]", "likemode", "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
+        utils.logger("[INFO]", "likemode", "cache array size "+cache_hashtag.length);
+        
+        if(cache_hashtag.length <= 0)
         likemode_classic.like_open_hashtagpage();
         utils.sleep(utils.random_interval(4, 8));
-        await likemode_classic.like_get_urlpic();
+        cache_hashtag = await likemode_classic.like_get_urlpic(cache_hashtag);
         utils.sleep(utils.random_interval(4, 8));
         like_status = await likemode_classic.like_click_heart();
         today = new Date();
         t2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
         sec = Math.abs((t1.getTime() - t2.getTime()) / 1000);
         utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (90 - sec) + "-" + (90 - sec + 15));
-        if (sec < 90)
+        if (sec < 90 && like_status == 1)
             utils.sleep(utils.random_interval(90 - sec, (90 - sec + 15)));
     } while (true);
 }
@@ -306,7 +310,7 @@ if (login_status == 1) {
     } 
     utils.sleep(utils.random_interval(4, 8));
     utils.logger("[INFO]", "twofa", "status " + twofa_status);
-    if (twofa_status == 1) {
+    if (twofa_status >= 1) {
         switch_mode(bot, config, utils);
     }
 }

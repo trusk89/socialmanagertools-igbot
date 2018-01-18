@@ -32,6 +32,7 @@ class Likemode_classic {
         this.utils.logger("[INFO]", "like", "current hashtag " + hashtag_tag);
         this.bot.url('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
         this.utils.sleep(this.utils.random_interval(4, 8));
+        this.utils.screenshot(this.bot, "like", "last_hashtag");
     }
 
     /**
@@ -45,25 +46,41 @@ class Likemode_classic {
      * @changelog:  0.1 initial release
      *
      */
-    async like_get_urlpic() {
+    async like_get_urlpic(cache_hashtag) {
         this.utils.logger("[INFO]", "like", "like_get_urlpic");
         let self = this;
         let photo_url = "";
-        this.bot.scroll(0, 2500);
-        this.utils.sleep(this.utils.random_interval(10, 15));
-        this.utils.screenshot(this.bot, "like", "last_hashtag");
-
-        try {
-            let attr = await this.bot.getAttribute('article a', 'href');
-            if (self.config.debug == true)
-                self.utils.logger("[DEBUG]", "like", "array photos " + attr);
-            photo_url = attr[Math.floor(Math.random() * attr.length)];
-            self.utils.logger("[INFO]", "like", "current photo url " + photo_url);
+        if (cache_hashtag.length <= 0) {
+            this.bot.scroll(0, 10000);
+            this.utils.sleep(this.utils.random_interval(10, 15));
+            try {
+                let cache_hashtag_tmp = await this.bot.getAttribute('article a', 'href');
+                cache_hashtag = [];
+                if (self.config.debug == true)
+                    self.utils.logger("[DEBUG]", "like", "array photos " + cache_hashtag_tmp);
+                for (let i = 0; i < cache_hashtag_tmp.length; i++)
+                    if (i > 9)
+                        cache_hashtag.push(cache_hashtag_tmp[i]); //remove popular array elements
+                do {
+                    photo_url = cache_hashtag.pop();
+                } while (typeof photo_url === "undefined" && cache_hashtag.length > 0);
+                self.utils.logger("[INFO]", "like", "current photo url " + photo_url);
+                this.utils.sleep(this.utils.random_interval(4, 8));
+                self.bot.url(photo_url);
+            } catch (err) {
+                self.utils.logger("[ERROR]", "like", "like_get_urlpic error" + err);
+                self.utils.screenshot(self.bot, "like", "like_get_urlpic_error");
+            }
+        } else {
+            do {
+                photo_url = cache_hashtag.pop();
+            } while (typeof photo_url === "undefined" && cache_hashtag.length > 0);
+            self.utils.logger("[INFO]", "like", "current photo url from cache " + photo_url);
+            this.utils.sleep(this.utils.random_interval(4, 8));
             self.bot.url(photo_url);
-        } catch (err) {
-            self.utils.logger("[ERROR]", "like", "like_get_urlpic error" + err);
-            self.utils.screenshot(self.bot, "like", "like_get_urlpic_error");
         }
+        this.utils.sleep(this.utils.random_interval(4, 8));
+        return cache_hashtag;
     }
 
     /**
