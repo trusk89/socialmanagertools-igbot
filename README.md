@@ -62,6 +62,11 @@ If you received sms or email pin edit `loginpin.txt` and insert it on first line
 #### Check if work:
 See logs: `cat ./logs/debug.log` or png images in ./logs/screenshot
 
+# Bugs:
+Bug: `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
+
+Solution: Logout from your instagram app, and login again. Reboot bot and retry...
+
 # TODO
 Features:
 * likemode_superlike - select random hashtag from config list and like 3 random photo of same user | 850-950 like/day.
