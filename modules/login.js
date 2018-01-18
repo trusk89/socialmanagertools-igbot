@@ -109,21 +109,6 @@ class Login {
         this.utils.sleep(this.utils.random_interval(4, 8));
         return status;
     }
-
-    /**
-     * Return bot with cookie
-     * =====================
-     * Bot session
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
-     */
-    get_bot() {
-        return this.bot;
-    }
 }
 
 module.exports = (bot, config, utils) => { return new Login(bot, config, utils); };

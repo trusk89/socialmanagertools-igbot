@@ -1,4 +1,4 @@
-# v0.3.0 BETA (January 16, 2018)
+# v0.3.0 (January 18, 2018)
 
 * Refactor: moved to async wait
 * Refactor: add pm2 and forever to npm run
@@ -6,7 +6,8 @@
 * Fix: get url picture selector
 * Fix: <3 selector
 * Fix: screen server resolution
-* Bug: 2FA not work but work 2FA-security location error flow
+* Fix: 2FA-security location
+* Fix: 2FA-security enabled
 
 
 # v0.2.1 (January 15, 2018)

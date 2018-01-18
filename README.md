@@ -1,7 +1,7 @@
 # InstagramBot.js
 [![License](https://img.shields.io/badge/license-GLPv3-brightgreen.svg)]()
 [![powered by webdriverio](https://img.shields.io/badge/powered%20by-webdriverio-46aef7.svg)](https://github.com/webdriverio/webdriverio)
-[![Version](https://img.shields.io/badge/version-v0.3%20BETA-lightgrey.svg)](https://github.com/ptkdev/instagram-bot.js/releases)
+[![Version](https://img.shields.io/badge/version-v0.3-lightgrey.svg)](https://github.com/ptkdev/instagram-bot.js/releases)
 [![Slack Chat](https://img.shields.io/badge/chat%20on-Slack-orange.svg)](https://slack.ptkdev.io)
 [![Paypale Donate](https://img.shields.io/badge/donate-PayPal-red.svg)](https://paypal.me/ptkdev)
 
@@ -9,11 +9,12 @@
 
 # Features
 * [✓] Login
-* [✓] 2FA
+* [✓] 2FA (bad location)
+* [✓] 2FA (sms pin enabled)
 * [✓] Multi-Session
 * [✓] Errors manager (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
-* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time | 750-900 like/day. Limit is 1000/day for ig. This is safe mode.
+* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time | 850-950 like/day. Limit is 1000/day for ig. This is safe mode.
 
 # Setup - Debian Server
 ### Install bot dependencies:
@@ -45,9 +46,11 @@ If you not have a desktop environment (example: run bot on server) run:
 1. `pm2 logs`
 2. If last line is `INFO - Selenium Server is up and running` selenium work great.
 
-BUG: if you received `Unable to access jarfile` edit `sh` files in `bin folder` and add full path of binary, example:
+BUG 1: if you received `Unable to access jarfile` edit `sh` files in `bin folder` and add full path of binary, example:
 
 `java -Dwebdriver.chrome.driver="/home/your_name/instagram-bot.js/bin/chromedriver" -jar /home/your_name/instagram-bot.js/bin/selenium-server-standalone.jar`
+
+BUG 2: selenium generate big log file. Use `pm2 logrotate` or run with `-o /dev/null`
 
 ## Run Bot
 1. Copy root file `config.js.tpl` to `config.js`, fill it properly.
@@ -61,7 +64,7 @@ See logs: `cat ./logs/debug.log` or png images in ./logs/screenshot
 
 # TODO
 Features:
-* likemode_superlike - select random hashtag from config list and like 3 random photo of same user | 750-900 like/day.
+* likemode_superlike - select random hashtag from config list and like 3 random photo of same user | 850-950 like/day.
 * fdfmode_defollowall - defollow all your following (not defollow users in whitelist) | 90 defollow/hour.
 * fdfmode_classic - follow user from random hashtag and defollow after 1h | 300 follow-defollow/day.
 * Add total like/day in config.js 

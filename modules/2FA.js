@@ -94,19 +94,21 @@ class Twofa {
      * @changelog:  0.1 initial release
      *
      */
-    readpin() {
+    readpin(input) {
         this.utils.logger("[INFO]", "twofa", "readpin");
         const fs = require('fs');
         let self = this;
-        try {
-            let pin = fs.readFileSync(__dirname + "/../loginpin.txt").toString();
-            self.utils.logger("[INFO]", "twofa", pin);
-            self.bot.setValue('input[name="security_code"]', pin);
-            self.utils.screenshot(self.bot, "twofa", "readpin");
-        } catch (err) {
-            self.utils.logger("[INFO]", "twofa", "err" + err);
-        }
-
+        fs.readFile(__dirname + "/../loginpin.txt", function(err, data) {
+            if (err) {
+                self.utils.logger("[INFO]", "twofa", "err" + err);
+            } else {
+                let pin = data.toString();
+                self.utils.logger("[INFO]", "twofa", pin);
+                self.bot.setValue('input[name="'+input+'"]', pin);
+                self.utils.screenshot(self.bot, "twofa", "readpin");
+            }
+        });
+        this.utils.sleep(this.utils.random_interval(4, 8));
     }
 
     /**
@@ -136,15 +138,15 @@ class Twofa {
      * @changelog:  0.1 initial release
      *
      */
-    async submitverify() {
+    async submitverify(input) {
         let self = this;
         let status = "";
         let attr = "";
         try {
-            attr = await this.bot.getAttribute('input[name="security_code"]', 'value');
+            attr = await this.bot.getAttribute('input[name="'+input+'"]', 'value');
             self.utils.logger("[ERROR]", "twofa", "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
             self.utils.screenshot(self.bot, "twofa", "submitverify_error");
-            status = 0;
+            status = -1;
         } catch (err) {
             self.utils.logger("[INFO]", "twofa", "pin is ok");
             self.utils.screenshot(self.bot, "twofa", "submitverify_ok");
@@ -156,7 +158,7 @@ class Twofa {
                 attr = await this.bot.getAttribute('input[name="username"]', 'value');
                 self.utils.logger("[ERROR]", "twofa", "instagram error... auto logout... restart bot...");
                 self.utils.screenshot(self.bot, "twofa", "submitverify_error2");
-                status = 0;
+                status = -1;
             } catch (err) {
                 self.utils.logger("[INFO]", "twofa", "instagram no have a crash");
                 self.utils.screenshot(self.bot, "twofa", "submitverify_ok2");
@@ -167,20 +169,6 @@ class Twofa {
         return status;
     }
 
-    /**
-     * Return bot with cookie
-     * =====================
-     * Bot session
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
-     */
-    get_bot() {
-        return this.bot;
-    }
 }
 
 

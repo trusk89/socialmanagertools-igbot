@@ -51,7 +51,6 @@ const options = {
         port: config.selenium_port
     }
 };
-
 /**
  * Init
  * =====================
@@ -139,11 +138,39 @@ async function start_likemode_classic(bot, config, utils) {
         like_status = await likemode_classic.like_click_heart();
         today = new Date();
         t2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
-        sec = Math.abs((t1.getTime() - t2.getTime())/ 1000);
-        utils.logger("[INFO]", "likemode", "seconds of loop "+sec+"... for miss ban bot wait "+(90 - sec)+"-"+(90 - sec + 15));
-        if(sec < 90)
-        utils.sleep(utils.random_interval(90 - sec, (90 - sec + 15)));
+        sec = Math.abs((t1.getTime() - t2.getTime()) / 1000);
+        utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (90 - sec) + "-" + (90 - sec + 15));
+        if (sec < 90)
+            utils.sleep(utils.random_interval(90 - sec, (90 - sec + 15)));
     } while (true);
+}
+
+/**
+ * 2FA Location Flow (check if work)
+ * =====================
+ * /modules/2FA.js
+ * 
+ * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+ * @license:    This code and contributions have 'GNU General Public License v3'
+ * @version:    0.1
+ * @changelog:  0.1 initial release
+ *
+ */
+async function start_twofa_location_check() {
+    utils.logger("[INFO]", "twofa", "instagram request pin (bad location)?");
+    try {
+        let attr = await bot.getAttribute('#choice_1', 'value');
+        if (config.debug == true)
+            utils.logger("[DEBUG]", "twofa", "attr = " + attr);
+        utils.logger("[INFO]", "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
+        utils.screenshot(bot, "twofa", "check_pin_request");
+        pin_status = 1;
+    } catch (err) {
+        if (config.debug == true)
+            utils.logger("[DEBUG]", "twofa", err);
+        utils.logger("[INFO]", "twofa", "no, try second verify");
+        pin_status = 0;
+    }
 }
 
 /**
@@ -158,26 +185,51 @@ async function start_likemode_classic(bot, config, utils) {
  *
  */
 async function start_twofa_check() {
-    utils.logger("[INFO]", "twofa", "instagram request pin?");
+    utils.logger("[INFO]", "twofa", "instagram request pin (2fa enabled)?");
     try {
-        let attr = await bot.getAttribute('#choice_1', 'value');
+        let attr = await bot.getAttribute('input[name="verificationCode"]', 'value');
         if (config.debug == true)
             utils.logger("[DEBUG]", "twofa", "attr = " + attr);
         utils.logger("[INFO]", "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
         utils.screenshot(bot, "twofa", "check_pin_request");
-        pin_status = 1;
+        pin_status = 2;
     } catch (err) {
         if (config.debug == true)
             utils.logger("[DEBUG]", "twofa", err);
         utils.logger("[INFO]", "twofa", "no, bot is at work (started)... Wait...");
         utils.logger("[INFO]", "twofa", "starting current mode");
         utils.screenshot(bot, "twofa", "check_nopin");
+        utils.sleep(utils.random_interval(4, 8));
         pin_status = 0;
     }
 }
 
 /**
- * 2FA Flow
+ * 2FA (Bad location) Flow
+ * =====================
+ * /modules/2FA.js
+ * 
+ * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+ * @license:    This code and contributions have 'GNU General Public License v3'
+ * @version:    0.1
+ * @changelog:  0.1 initial release
+ *
+ */
+async function start_twofa_location() {
+    let twofa = require(__dirname + '/modules/2FA.js')(bot, config, utils);
+    utils.logger("[INFO]", "twofa (location)", "loading...");
+    twofa.sendpin();
+    utils.sleep(utils.random_interval(120, 180));
+    twofa.readpin("security_code");
+    utils.sleep(utils.random_interval(4, 8));
+    twofa.submit();
+    utils.sleep(utils.random_interval(4, 8));
+    twofa_status = await twofa.submitverify("security_code");
+    utils.sleep(utils.random_interval(4, 8));
+}
+
+/**
+ * 2FA (Enabled) Flow
  * =====================
  * /modules/2FA.js
  * 
@@ -189,16 +241,15 @@ async function start_twofa_check() {
  */
 async function start_twofa() {
     let twofa = require(__dirname + '/modules/2FA.js')(bot, config, utils);
-    utils.logger("[INFO]", "twofa", "loading...");
-    twofa.sendpin();
-    utils.sleep(utils.random_interval(170, 180));
-    twofa.readpin();
+    utils.logger("[INFO]", "twofa (enabled)", "loading...");
+    utils.logger("[WARNING]", "twofa", "please insert pin in loginpin.txt and wait 2-3 minutes... (tic... tac... tic... tac... tic...)");
+    utils.sleep(utils.random_interval(120, 180));
+    twofa.readpin("verificationCode");
     utils.sleep(utils.random_interval(4, 8));
     twofa.submit();
     utils.sleep(utils.random_interval(4, 8));
-    twofa_status = await twofa.submitverify();
+    twofa_status = await twofa.submitverify("verificationCode");
     utils.sleep(utils.random_interval(4, 8));
-    bot = twofa.get_bot();
 }
 
 /**
@@ -225,7 +276,7 @@ async function start_login() {
     utils.sleep(utils.random_interval(4, 8));
     login_status = await login.submitverify();
     utils.logger("[INFO]", "login", "login_status is " + login_status);
-    bot = login.get_bot();
+    utils.sleep(utils.random_interval(4, 8));
 }
 
 
@@ -242,15 +293,20 @@ async function start_login() {
 start_login();
 utils.sleep(utils.random_interval(4, 8));
 if (login_status == 1) {
-    start_twofa_check();
+    start_twofa_location_check();
+    utils.sleep(utils.random_interval(4, 8));
+    if (pin_status == 0){
+        start_twofa_check();
+    }
     utils.sleep(utils.random_interval(4, 8));
     if (pin_status == 1) {
-        utils.sleep(utils.random_interval(4, 8));
+        start_twofa_location();
+    } else if (pin_status == 2) {
         start_twofa();
-        if (twofa_status == 1) {
-            switch_mode(bot, config, utils);
-        }
-    } else {
+    } 
+    utils.sleep(utils.random_interval(4, 8));
+    utils.logger("[INFO]", "twofa", "status " + twofa_status);
+    if (twofa_status == 1) {
         switch_mode(bot, config, utils);
     }
 }
