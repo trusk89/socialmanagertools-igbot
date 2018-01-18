@@ -1,3 +1,9 @@
+# v0.3.1 (January 18, 2018)
+
+* Fix: 110% cpu usage
+* Fix: flow without pin
+
+
 # v0.3.0 (January 18, 2018)
 
 * Refactor: moved to async wait
