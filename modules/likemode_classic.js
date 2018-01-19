@@ -68,6 +68,7 @@ class Likemode_classic {
                 this.utils.sleep(this.utils.random_interval(4, 8));
                 self.bot.url(photo_url);
             } catch (err) {
+                cache_hashtag = [];
                 self.utils.logger("[ERROR]", "like", "like_get_urlpic error" + err);
                 self.utils.screenshot(self.bot, "like", "like_get_urlpic_error");
             }
