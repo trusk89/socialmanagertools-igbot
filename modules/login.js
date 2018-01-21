@@ -27,9 +27,9 @@ class Login {
      * @changelog:  0.1 initial release
      *
      */
-    open_loginpage() {
+    async open_loginpage() {
         this.utils.logger("[INFO]", "login", "open_loginpage");
-        this.bot.url('https://www.instagram.com/accounts/login/');
+        await this.bot.url('https://www.instagram.com/accounts/login/');
     }
 
     /**
@@ -43,8 +43,8 @@ class Login {
      * @changelog:  0.1 initial release
      *
      */
-    set_username() {
-        this.bot.setValue('input[name="username"]', this.config.instagram_username);
+    async set_username() {
+        await this.bot.setValue('input[name="username"]', this.config.instagram_username);
         this.utils.logger("[INFO]", "login", "set_username");
     }
 
@@ -59,8 +59,8 @@ class Login {
      * @changelog:  0.1 initial release
      *
      */
-    set_password() {
-        this.bot.setValue('input[name="password"]', this.config.instagram_password);
+    async set_password() {
+        await this.bot.setValue('input[name="password"]', this.config.instagram_password);
         this.utils.logger("[INFO]", "login", "set_password");
     }
 
@@ -75,10 +75,10 @@ class Login {
      * @changelog:  0.1 initial release
      *
      */
-    submit() {
+    async submit() {
         this.utils.logger("[INFO]", "login", "submit");
-        this.utils.screenshot(this.bot, "login", "submit");
-        this.bot.click('form button');
+        await this.utils.screenshot("login", "submit");
+        await this.bot.click('form button');
     }
 
     /**
@@ -100,14 +100,41 @@ class Login {
             let text = await this.bot.getText('#slfErrorAlert');
             status = 0;
             self.utils.logger("[ERROR]", "login", text + " (restart bot and retry...)");
-            self.utils.screenshot(self.bot, "login", "checkerrors_error");
+            await self.utils.screenshot("login", "checkerrors_error");
         } catch (err) {
             status = 1;
             self.utils.logger("[INFO]", "login", "password is correct");
-            self.utils.screenshot(self.bot, "login", "checkerrors");
+            await self.utils.screenshot("login", "checkerrors");
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
         return status;
+    }
+
+    /**
+     * Login Flow
+     * =====================
+     * /modules/likemode_login.js
+     * 
+     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @license:    This code and contributions have 'GNU General Public License v3'
+     * @version:    0.1
+     * @changelog:  0.1 initial release
+     *
+     */
+    async start(login_status) {
+        this.utils.logger("[INFO]", "login", "loading...");
+        await this.open_loginpage();
+        this.utils.sleep(this.utils.random_interval(4, 8));
+        await this.set_username();
+        this.utils.sleep(this.utils.random_interval(4, 8));
+        await this.set_password();
+        this.utils.sleep(this.utils.random_interval(4, 8));
+        await this.submit();
+        this.utils.sleep(this.utils.random_interval(4, 8));
+        login_status = await this.submitverify();
+        this.utils.logger("[INFO]", "login", "login_status is " + login_status);
+        this.utils.sleep(this.utils.random_interval(4, 8));
+        return login_status;
     }
 }
 

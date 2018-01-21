@@ -27,12 +27,12 @@ class Likemode_classic {
      * @changelog:  0.1 initial release
      *
      */
-    like_open_hashtagpage() {
+    async like_open_hashtagpage() {
         let hashtag_tag = this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
         this.utils.logger("[INFO]", "like", "current hashtag " + hashtag_tag);
-        this.bot.url('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
+        await this.bot.url('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
         this.utils.sleep(this.utils.random_interval(4, 8));
-        this.utils.screenshot(this.bot, "like", "last_hashtag");
+        await this.utils.screenshot("like", "last_hashtag");
     }
 
     /**
@@ -50,35 +50,32 @@ class Likemode_classic {
         this.utils.logger("[INFO]", "like", "like_get_urlpic");
         let self = this;
         let photo_url = "";
+        if(cache_hashtag.length < 9) //remove popular photos
+            cache_hashtag = [];
         if (cache_hashtag.length <= 0) {
-            this.bot.scroll(0, 10000);
-            this.utils.sleep(this.utils.random_interval(10, 15));
             try {
-                let cache_hashtag_tmp = await this.bot.getAttribute('article a', 'href');
-                cache_hashtag = [];
-                if (self.config.debug == true)
-                    self.utils.logger("[DEBUG]", "like", "array photos " + cache_hashtag_tmp);
-                for (let i = 0; i < cache_hashtag_tmp.length; i++)
-                    if (i > 9)
-                        cache_hashtag.push(cache_hashtag_tmp[i]); //remove popular array elements
+                cache_hashtag = await this.bot.getAttribute('article a', 'href');
+                this.utils.sleep(this.utils.random_interval(10, 15));
+                if (this.config.debug == true)
+                    this.utils.logger("[DEBUG]", "like", "array photos " + cache_hashtag);
                 do {
                     photo_url = cache_hashtag.pop();
                 } while (typeof photo_url === "undefined" && cache_hashtag.length > 0);
-                self.utils.logger("[INFO]", "like", "current photo url " + photo_url);
+                this.utils.logger("[INFO]", "like", "current photo url " + photo_url);
                 this.utils.sleep(this.utils.random_interval(4, 8));
-                self.bot.url(photo_url);
+                await this.bot.url(photo_url);
             } catch (err) {
                 cache_hashtag = [];
                 self.utils.logger("[ERROR]", "like", "like_get_urlpic error" + err);
-                self.utils.screenshot(self.bot, "like", "like_get_urlpic_error");
+                await self.utils.screenshot("like", "like_get_urlpic_error");
             }
         } else {
             do {
                 photo_url = cache_hashtag.pop();
             } while (typeof photo_url === "undefined" && cache_hashtag.length > 0);
-            self.utils.logger("[INFO]", "like", "current photo url from cache " + photo_url);
+            this.utils.logger("[INFO]", "like", "current photo url from cache " + photo_url);
             this.utils.sleep(this.utils.random_interval(4, 8));
-            self.bot.url(photo_url);
+            await this.bot.url(photo_url);
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
         return cache_hashtag;
@@ -103,7 +100,7 @@ class Likemode_classic {
         try {
             text = await this.bot.getText('.coreSpriteHeartOpen');
             if (text == "Like") {
-                self.bot.click("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
+                await self.bot.click("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
                 status = 1;
             } else {
                 self.utils.logger("[INFO]", "like", "bot like this photo in before loop, use hashtag with more new photos");
@@ -115,7 +112,7 @@ class Likemode_classic {
             self.utils.logger("[INFO]", "like", "bot like this photo in before loop, use hashtag with more new photos");
             status = 0;
         }
-        this.utils.screenshot(this.bot, "like", "last_like");
+        await this.utils.screenshot("like", "last_like");
         this.utils.sleep(this.utils.random_interval(4, 8));
         if (status == 1) {
             try {
@@ -133,8 +130,46 @@ class Likemode_classic {
             self.utils.logger("[WARNING]", "like", "You like this previously, change hashtag ig have few photos");
         }
         this.utils.sleep(this.utils.random_interval(2, 5));
-        this.utils.screenshot(this.bot, "like", "last_like_after");
+        await this.utils.screenshot("like", "last_like_after");
         return status;
+    }
+
+    /**
+     * LikemodeClassic Flow
+     * =====================
+     * /modules/likemode_classic.js
+     * 
+     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @license:    This code and contributions have 'GNU General Public License v3'
+     * @version:    0.1
+     * @changelog:  0.1 initial release
+     *
+     */
+    async start() {
+        this.utils.logger("[INFO]", "likemode", "classic");
+        let today = "";
+        let like_status;
+        let cache_hashtag = [];
+        let t1, t2, sec;
+        do {
+            today = new Date();
+            t1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
+            this.utils.logger("[INFO]", "likemode", "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
+            this.utils.logger("[INFO]", "likemode", "cache array size " + cache_hashtag.length);
+
+            if (cache_hashtag.length <= 0)
+                await this.like_open_hashtagpage();
+            this.utils.sleep(this.utils.random_interval(4, 8));
+            cache_hashtag = await this.like_get_urlpic(cache_hashtag);
+            this.utils.sleep(this.utils.random_interval(4, 8));
+            like_status = await this.like_click_heart();
+            today = new Date();
+            t2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
+            sec = Math.abs((t1.getTime() - t2.getTime()) / 1000);
+            this.utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (90 - sec) + "-" + (90 - sec + 15));
+            if (sec < 90 && like_status == 1)
+                this.utils.sleep(this.utils.random_interval(90 - sec, (90 - sec + 15)));
+        } while (true);
     }
 
 }

@@ -1,3 +1,11 @@
+# v0.4.0 (January 21, 2018)
+
+* Refactor: async wait v2
+* Refactor: bot.js without function flow
+* Fix: clear array if # not have photos
+* Fix: java heap size error (now is max 2gb)
+
+
 # v0.3.1 (January 18, 2018)
 
 * Fix: 110% cpu usage

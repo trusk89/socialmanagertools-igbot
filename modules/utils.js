@@ -41,8 +41,8 @@ class Utils {
      * @changelog:  0.1 initial release
      *
      */
-    screenshot(bot, func, name) {
-        bot.saveScreenshot('./logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.png');
+    async screenshot(func, name) {
+        await this.bot.saveScreenshot('./logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.png');
     }
 
     /**

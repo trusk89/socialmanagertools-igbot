@@ -21,7 +21,7 @@ module.exports = {
     // --disable-gpu - if you not have good gpu on server
     // --no-sandbox  - if you run bot with root command (without on server bot not work)
     "selenium_chrome_path": "/opt/google/chrome/google-chrome",
-    "selenium_chrome_options": ['headless','disable-gpu', 'no-sandbox', 'window-size=1920x1080'],
+    "selenium_chrome_options": ['--headless',--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
     "selenium_host": "localhost",
     "selenium_port": 4444
 };
