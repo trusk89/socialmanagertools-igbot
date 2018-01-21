@@ -4,6 +4,7 @@
 * Refactor: bot.js without function flow
 * Fix: clear array if # not have photos
 * Fix: java heap size error (now is max 2gb)
+* Fix: errors 2FA location 
 
 
 # v0.3.1 (January 18, 2018)

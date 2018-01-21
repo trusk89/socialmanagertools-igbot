@@ -1,10 +1,10 @@
 /**
- * Instagramawait bot.js
+ * InstagramBot.js
  * =====================
  * Instagram Bot made with love and nodejs
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
- * @file:       await bot.js
+ * @file:       bot.js
  * @version:    0.4
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
@@ -19,8 +19,8 @@
  *              You should have received a copy of the GNU General Public License
  *              along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link        Homepage:     https://instagram-await bot.js.ptkdev.io
- *              GitHub Repo:  https://github.com/ptkdev/instagram-await bot.js
+ * @link        Homepage:     https://instagram-bot.js.ptkdev.io
+ *              GitHub Repo:  https://github.com/ptkdev/instagram-bot.js
  */
 
 /**
