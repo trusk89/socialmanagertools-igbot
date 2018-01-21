@@ -178,7 +178,7 @@ class Twofa {
     async start_twofa_location_check(pin_status) {
         this.utils.logger("[INFO]", "twofa", "instagram request pin (bad location)?");
         try {
-            let attr = await await bot.getAttribute('#choice_1', 'value');
+            let attr = await this.bot.getAttribute('#choice_1', 'value');
             if (this.config.debug == true)
                 this.utils.logger("[DEBUG]", "twofa", "attr = " + attr);
             this.utils.logger("[INFO]", "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
@@ -209,7 +209,7 @@ class Twofa {
         this.utils.logger("[INFO]", "twofa", "instagram request pin (2fa enabled)?");
         let self = this;
         try {
-            let attr = await await this.bot.getAttribute('input[name="verificationCode"]', 'value');
+            let attr = await this.bot.getAttribute('input[name="verificationCode"]', 'value');
             if (this.config.debug == true)
                 this.utils.logger("[DEBUG]", "twofa", "attr = " + attr);
             this.utils.logger("[INFO]", "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
