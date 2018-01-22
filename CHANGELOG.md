@@ -1,4 +1,4 @@
-# v0.4.1 (January 22, 2018)
+# v0.4.1 (January 23, 2018)
 
 * Feature: like/day in config (max and min)
 * Feature: method pin
