@@ -15,6 +15,7 @@ class Utils {
         this.bot = bot;
         this.config = config;
     }
+    
     /**
      * Logger
      * =====================

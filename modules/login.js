@@ -16,6 +16,7 @@ class Login {
         this.config = config;
         this.utils = utils;
     }
+    
     /**
      * Open login page
      * =====================
@@ -94,17 +95,16 @@ class Login {
      */
     async submitverify() {
         this.utils.logger("[INFO]", "login", "checkerrors");
-        let self = this;
         let status = null;
         try {
             let text = await this.bot.getText('#slfErrorAlert');
             status = 0;
-            self.utils.logger("[ERROR]", "login", text + " (restart bot and retry...)");
-            await self.utils.screenshot("login", "checkerrors_error");
+            this.utils.logger("[ERROR]", "login", text + " (restart bot and retry...)");
+            await this.utils.screenshot("login", "checkerrors_error");
         } catch (err) {
             status = 1;
-            self.utils.logger("[INFO]", "login", "password is correct");
-            await self.utils.screenshot("login", "checkerrors");
+            this.utils.logger("[INFO]", "login", "password is correct");
+            await this.utils.screenshot("login", "checkerrors");
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
         return status;

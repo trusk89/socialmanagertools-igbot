@@ -18,7 +18,7 @@ class Twofa {
     }
 
     /**
-     * Login PIN: tweet
+     * Login PIN: request pin
      * =====================
      * Press submit button
      *
@@ -77,10 +77,11 @@ class Twofa {
      *
      */
     async sendpin() {
-        this.choice_sms();
+        if(this.config.instagram_pin == "sms")
+        await this.choice_sms();
         this.utils.sleep(this.utils.random_interval(4, 8));
         this.requestpin();
-        this.utils.sleep(this.utils.random_interval(4, 8));
+        await this.utils.sleep(this.utils.random_interval(4, 8));
     }
 
     /**
@@ -97,11 +98,10 @@ class Twofa {
     async readpin(input) {
         this.utils.logger("[INFO]", "twofa", "readpin");
         const fs = require('fs');
-        let self = this;
         let data = fs.readFileSync(__dirname + "/../loginpin.txt", "utf8");
         let pin = data.toString();
-        await self.bot.setValue('input[name="' + input + '"]', pin);
-        await self.utils.screenshot("twofa", "readpin");
+        await this.bot.setValue('input[name="' + input + '"]', pin);
+        await this.utils.screenshot("twofa", "readpin");
         this.utils.sleep(this.utils.random_interval(4, 8));
     }
 
@@ -133,36 +133,35 @@ class Twofa {
      *
      */
     async submitverify(input) {
-        let self = this;
         let status = "";
         let attr = "";
         try {
             attr = await this.bot.getAttribute('input[name="' + input + '"]', 'value');
-            self.utils.logger("[ERROR]", "twofa", "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
-            await self.utils.screenshot("twofa", "submitverify_error");
+            this.utils.logger("[ERROR]", "twofa", "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
+            await this.utils.screenshot("twofa", "submitverify_error");
             status = -1;
         } catch (err) {
-            self.utils.logger("[INFO]", "twofa", "pin is ok");
-            await self.utils.screenshot("twofa", "submitverify_ok");
+            this.utils.logger("[INFO]", "twofa", "pin is ok");
+            await this.utils.screenshot("twofa", "submitverify_ok");
             status = 1;
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
         if (status == 1) {
             try {
                 attr = await this.bot.getAttribute('input[name="username"]', 'value');
-                self.utils.logger("[ERROR]", "twofa", "instagram error... auto logout... restart bot...");
-                await self.utils.screenshot("twofa", "submitverify_error2");
+                this.utils.logger("[ERROR]", "twofa", "instagram error... auto logout... restart bot...");
+                await this.utils.screenshot("twofa", "submitverify_error2");
                 status = -1;
             } catch (err) {
-                self.utils.logger("[INFO]", "twofa", "instagram no have a crash");
-                await self.utils.screenshot("twofa", "submitverify_ok2");
+                this.utils.logger("[INFO]", "twofa", "instagram no have a crash");
+                await this.utils.screenshot("twofa", "submitverify_ok2");
                 status = 1;
             }
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
+
         return status;
     }
-
 
     /**
      * 2FA Location Flow (check if work)
@@ -207,7 +206,6 @@ class Twofa {
      */
     async start_twofa_check(pin_status) {
         this.utils.logger("[INFO]", "twofa", "instagram request pin (2fa enabled)?");
-        let self = this;
         try {
             let attr = await this.bot.getAttribute('input[name="verificationCode"]', 'value');
             if (this.config.debug == true)

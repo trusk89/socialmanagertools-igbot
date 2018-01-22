@@ -1,7 +1,7 @@
 # InstagramBot.js
 [![License](https://img.shields.io/badge/license-GLPv3-brightgreen.svg)]()
 [![powered by webdriverio](https://img.shields.io/badge/powered%20by-webdriverio-46aef7.svg)](https://github.com/webdriverio/webdriverio)
-[![Version](https://img.shields.io/badge/version-v0.4-lightgrey.svg)](https://github.com/ptkdev/instagram-bot.js/releases)
+[![Version](https://img.shields.io/badge/version-v0.4.1-lightgrey.svg)](https://github.com/ptkdev/instagram-bot.js/releases)
 [![Slack Chat](https://img.shields.io/badge/chat%20on-Slack-orange.svg)](https://slack.ptkdev.io)
 [![Paypale Donate](https://img.shields.io/badge/donate-PayPal-red.svg)](https://paypal.me/ptkdev)
 
@@ -14,11 +14,18 @@
 * [✓] Multi-Session
 * [✓] Errors manager (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
-* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time | 850-950 like/day. Limit is 1000/day for ig. This is safe mode.
+* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time | 700-850 like/day. Limit is 1000/day for ig. This is safe mode.
 
 # Setup - Debian Server
 ### Install bot dependencies:
 1. `sudo apt-get install default-jre build-essential xvfb libssl-dev curl wget git chromium xauth`
+
+### Install Node on Debian
+1. `curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh `
+2. `sudo bash nodesource_setup.sh`
+3. `rm nodesource_setup.sh`
+4. `sudo apt-get install nodejs`
+5. Run `npm install` in `instagram-bot.js` folder
 
 ### Install google chrome v63
 1. `sudo dpkg -i ./bin/google-chrome-stable_current_amd64.deb`
@@ -27,13 +34,6 @@
 If you need lastest version of chrome update binary files in bin folder:
 1. `/bin/chromedriver` [Download](https://sites.google.com/a/chromium.org/chromedriver/)
 2. `/bin/selenium-server-standalone.jar` [Download](http://www.seleniumhq.org/download/)
-
-### Install Node and bot dependencies
-1. `curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh `
-2. `sudo bash nodesource_setup.sh`
-3. `rm nodesource_setup.sh`
-4. `sudo apt-get install nodejs`
-5. `npm install`
 
 ## Run Selenium
 If you have desktop environment (example: gnome) run:
@@ -69,12 +69,12 @@ Solution: Logout from your instagram app, and login again. Reboot bot and retry.
 
 # TODO
 Features:
-* likemode_superlike - select random hashtag from config list and like 3 random photo of same user | 850-950 like/day.
+* likemode_superlike - select random hashtag from config list and like 3 random photo of same user | 700-850 like/day.
 * fdfmode_defollowall - defollow all your following (not defollow users in whitelist) | 90 defollow/hour.
 * fdfmode_classic - follow user from random hashtag and defollow after 1h | 300 follow-defollow/day.
 * Add total like/day in config.js 
 
-Nice have:
+Nice to have:
 * docker container
 
 # Social Manager Tools

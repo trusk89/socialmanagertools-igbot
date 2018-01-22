@@ -16,6 +16,7 @@ class Likemode_classic {
         this.config = config;
         this.utils = utils;
     }
+    
     /**
      * likemode_classic: Open Hashtag
      * =====================
@@ -48,7 +49,6 @@ class Likemode_classic {
      */
     async like_get_urlpic(cache_hashtag) {
         this.utils.logger("[INFO]", "like", "like_get_urlpic");
-        let self = this;
         let photo_url = "";
         if(cache_hashtag.length < 9) //remove popular photos
             cache_hashtag = [];
@@ -60,19 +60,19 @@ class Likemode_classic {
                     this.utils.logger("[DEBUG]", "like", "array photos " + cache_hashtag);
                 do {
                     photo_url = cache_hashtag.pop();
-                } while (typeof photo_url === "undefined" && cache_hashtag.length > 0);
+                } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
                 this.utils.logger("[INFO]", "like", "current photo url " + photo_url);
                 this.utils.sleep(this.utils.random_interval(4, 8));
                 await this.bot.url(photo_url);
             } catch (err) {
                 cache_hashtag = [];
-                self.utils.logger("[ERROR]", "like", "like_get_urlpic error" + err);
-                await self.utils.screenshot("like", "like_get_urlpic_error");
+                this.utils.logger("[ERROR]", "like", "like_get_urlpic error" + err);
+                await this.utils.screenshot("like", "like_get_urlpic_error");
             }
         } else {
             do {
                 photo_url = cache_hashtag.pop();
-            } while (typeof photo_url === "undefined" && cache_hashtag.length > 0);
+            } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
             this.utils.logger("[INFO]", "like", "current photo url from cache " + photo_url);
             this.utils.sleep(this.utils.random_interval(4, 8));
             await this.bot.url(photo_url);
@@ -93,23 +93,22 @@ class Likemode_classic {
      *
      */
     async like_click_heart() {
-        let self = this;
         let status = "";
         let text = "";
-        self.utils.logger("[INFO]", "like", "try heart like");
+        this.utils.logger("[INFO]", "like", "try heart like");
         try {
             text = await this.bot.getText('.coreSpriteHeartOpen');
             if (text == "Like") {
-                await self.bot.click("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
+                await this.bot.click("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
                 status = 1;
             } else {
-                self.utils.logger("[INFO]", "like", "bot like this photo in before loop, use hashtag with more new photos");
+                this.utils.logger("[INFO]", "like", "bot like this photo in before loop, use hashtag with more new photos");
                 status = 0;
             }
         } catch (err) {
-            if (self.config.debug == true)
-                self.utils.logger("[DEBUG]", "like", err);
-            self.utils.logger("[INFO]", "like", "bot like this photo in before loop, use hashtag with more new photos");
+            if (this.config.debug == true)
+                this.utils.logger("[DEBUG]", "like", err);
+            this.utils.logger("[INFO]", "like", "bot like this photo in before loop, use hashtag with more new photos");
             status = 0;
         }
         await this.utils.screenshot("like", "last_like");
@@ -117,20 +116,21 @@ class Likemode_classic {
         if (status == 1) {
             try {
                 text = await this.bot.getText('.coreSpriteHeartOpen');
-                self.utils.logger("[WARNING]", "like", "</3");
-                self.utils.logger("[WARNING]", "like", "error bot :( not like photo, go to next");
-                self.utils.logger("[WARNING]", "like", "You are in soft ban, stop bot 24h... If this message appear all time stop bot for 24h...");
+                this.utils.logger("[WARNING]", "like", "</3");
+                this.utils.logger("[WARNING]", "like", "error bot :( not like photo, go to next");
+                this.utils.logger("[WARNING]", "like", "You are in soft ban, stop bot 24h... If this message appear all time stop bot for 24h...");
                 status = 0;
             } catch (err) {
-                self.utils.logger("[INFO]", "like", "<3");
+                this.utils.logger("[INFO]", "like", "<3");
                 status = 1;
             }
         } else {
-            self.utils.logger("[WARNING]", "like", "</3");
-            self.utils.logger("[WARNING]", "like", "You like this previously, change hashtag ig have few photos");
+            this.utils.logger("[WARNING]", "like", "</3");
+            this.utils.logger("[WARNING]", "like", "You like this previously, change hashtag ig have few photos");
         }
         this.utils.sleep(this.utils.random_interval(2, 5));
         await this.utils.screenshot("like", "last_like_after");
+
         return status;
     }
 
@@ -150,7 +150,9 @@ class Likemode_classic {
         let today = "";
         let like_status;
         let cache_hashtag = [];
-        let t1, t2, sec;
+        let t1, t2, sec, sec_min, sec_max;
+        sec_min = parseInt(86400 / this.config.bot_likeday_max);
+        sec_max = parseInt(86400 / this.config.bot_likeday_min);
         do {
             today = new Date();
             t1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
@@ -166,9 +168,9 @@ class Likemode_classic {
             today = new Date();
             t2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
             sec = Math.abs((t1.getTime() - t2.getTime()) / 1000);
-            this.utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (90 - sec) + "-" + (90 - sec + 15));
-            if (sec < 90 && like_status == 1)
-                this.utils.sleep(this.utils.random_interval(90 - sec, (90 - sec + 15)));
+            this.utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (sec_min - sec) + "-" + (sec_max - sec));
+            if (sec < sec_min && like_status == 1)
+                this.utils.sleep(this.utils.random_interval(sec_min - sec, sec_max - sec));
         } while (true);
     }
 

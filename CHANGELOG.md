@@ -1,3 +1,11 @@
+# v0.4.1 (January 22, 2018)
+
+* Feature: like/day in config (max and min)
+* Feature: method pin
+* Refactor: removed self (useless)
+* Fix: missing apos in config
+
+
 # v0.4.0 (January 21, 2018)
 
 * Refactor: async wait v2

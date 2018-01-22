@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.4
+ * @version:    0.4.1
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -49,19 +49,20 @@ const options_webdriverio = {
         chromeOptions: { args: config.selenium_chrome_options }
     }
 };
-/**
- * Init
- * =====================
- * Get username, password and hashtag of bot from /config.js
- * If not exist rename config.js.tmpl to config.js and change strings
- *
- * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
- * @license:    This code and contributions have 'GNU General Public License v3'
- * @version:    0.1
- * @changelog:  0.1 initial release
- *
- */
+
 (async() => {
+    /**
+     * Init
+     * =====================
+     * Get username, password and hashtag of bot from /config.js
+     * If not exist rename config.js.tmpl to config.js and change strings
+     *
+     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @license:    This code and contributions have 'GNU General Public License v3'
+     * @version:    0.1
+     * @changelog:  0.1 initial release
+     *
+     */
     let client = webdriverio.remote(options_webdriverio);
     var bot = client.init();
 
@@ -81,6 +82,7 @@ const options_webdriverio = {
     let login = require(__dirname + '/modules/login.js')(bot, config, utils);
     let twofa = require(__dirname + '/modules/2FA.js')(bot, config, utils);
     let likemode_classic = require(__dirname + '/modules/likemode_classic.js')(bot, config, utils);
+
     /**
      * Start Bot (init vars)
      * =====================
