@@ -1,4 +1,4 @@
-# v0.4.2 (January 24, 2018)
+# v0.4.2 (January 25, 2018)
 
 * Refactor: moved to selenium npm package
 
