@@ -31,9 +31,9 @@
 1. `sudo dpkg -i ./bin/google-chrome-stable_current_amd64.deb`
 2. `sudo apt-get install -y -f`
 
-If you need lastest version of chrome update binary files in bin folder:
-1. `/bin/chromedriver` [Download](https://sites.google.com/a/chromium.org/chromedriver/)
-2. `/bin/selenium-server-standalone.jar` [Download](http://www.seleniumhq.org/download/)
+### Install pm2, [selenium](http://www.seleniumhq.org/download/) and [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/) compatibile with google-chrome v63
+1. `sudo npm install -g pm2 selenium-standalone`
+1. `sudo selenium-standalone install --version=3.8.1 --baseURL=https://selenium-release.storage.googleapis.com --drivers.chrome.version=2.35 --drivers.chrome.baseURL=https://chromedriver.storage.googleapis.com`
 
 ## Run Selenium
 If you have desktop environment (example: gnome) run:
@@ -43,14 +43,10 @@ If you not have a desktop environment (example: run bot on server) run:
 1. `npm run start-selenium-server`
 
 #### Check if work, run:
-1. `pm2 logs`
+1. `pm2 log bin/run-selenium-server` or `pm2 log bin/run-selenium-desktop`
 2. If last line is `INFO - Selenium Server is up and running` selenium work great.
 
-BUG 1: if you received `Unable to access jarfile` edit `sh` files in `bin folder` and add full path of binary, example:
-
-`java -Dwebdriver.chrome.driver="/home/your_name/instagram-bot.js/bin/chromedriver" -jar /home/your_name/instagram-bot.js/bin/selenium-server-standalone.jar`
-
-BUG 2: selenium generate big log file. Use `pm2 logrotate` or run with `-o /dev/null`
+NOTE: selenium generate big log file. Use `pm2 logrotate` or run with `-o /dev/null`
 
 ## Run Bot
 1. Copy root file `config.js.tpl` to `config.js`, fill it properly.
@@ -65,7 +61,7 @@ See logs: `cat ./logs/debug.log` or png images in ./logs/screenshot
 # Bugs:
 Bug: `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
 
-Solution: Logout from your instagram app, and login again. Reboot bot and retry...
+Solution: Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
 
 # TODO
 Features:

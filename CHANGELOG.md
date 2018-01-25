@@ -1,3 +1,8 @@
+# v0.4.2 (January 24, 2018)
+
+* Refactor: moved to selenium npm package
+
+
 # v0.4.1 (January 23, 2018)
 
 * Feature: like/day in config (max and min)

@@ -111,6 +111,9 @@ class Likemode_classic {
             this.utils.logger("[INFO]", "like", "bot like this photo in before loop, use hashtag with more new photos");
             status = 0;
         }
+        this.utils.sleep(this.utils.random_interval(4, 8));
+        this.bot.refresh();
+        this.utils.sleep(this.utils.random_interval(4, 8));
         await this.utils.screenshot("like", "last_like");
         this.utils.sleep(this.utils.random_interval(4, 8));
         if (status == 1) {
@@ -118,7 +121,7 @@ class Likemode_classic {
                 text = await this.bot.getText('.coreSpriteHeartOpen');
                 this.utils.logger("[WARNING]", "like", "</3");
                 this.utils.logger("[WARNING]", "like", "error bot :( not like photo, go to next");
-                this.utils.logger("[WARNING]", "like", "You are in soft ban, stop bot 24h... If this message appear all time stop bot for 24h...");
+                this.utils.logger("[WARNING]", "like", "You are in soft ban... If this message appear all time stop bot for 24h...");
                 status = 0;
             } catch (err) {
                 this.utils.logger("[INFO]", "like", "<3");
@@ -168,9 +171,12 @@ class Likemode_classic {
             today = new Date();
             t2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
             sec = Math.abs((t1.getTime() - t2.getTime()) / 1000);
-            this.utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (sec_min - sec) + "-" + (sec_max - sec));
-            if (sec < sec_min && like_status == 1)
+            if (sec < sec_min && like_status == 1){
+                this.utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (sec_min - sec) + "-" + (sec_max - sec));
                 this.utils.sleep(this.utils.random_interval(sec_min - sec, sec_max - sec));
+            }else{
+                cache_hashtag = [];
+            }
         } while (true);
     }
 

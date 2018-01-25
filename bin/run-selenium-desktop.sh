@@ -1,2 +1,2 @@
 #!/bin/sh
-java -Xms512m -Xmx2048m -Dwebdriver.chrome.driver="./bin/chromedriver" -jar ./bin/selenium-server-standalone.jar
+selenium-standalone start -Xms512m -Xmx2048m --version=3.8.1 --drivers.chrome.version=2.35

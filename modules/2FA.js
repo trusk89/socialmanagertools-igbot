@@ -189,7 +189,7 @@ class Twofa {
             this.utils.logger("[INFO]", "twofa", "no, try second verify");
             pin_status = 0;
         }
-
+        this.utils.sleep(this.utils.random_interval(4, 8));
         return pin_status;
     }
 
@@ -219,10 +219,9 @@ class Twofa {
             this.utils.logger("[INFO]", "twofa", "no, bot is at work (started)... Wait...");
             this.utils.logger("[INFO]", "twofa", "starting current mode");
             await this.utils.screenshot("twofa", "check_nopin");
-            this.utils.sleep(this.utils.random_interval(4, 8));
             pin_status = 0;
         }
-
+        this.utils.sleep(this.utils.random_interval(4, 8));
         return pin_status;
     }
 
