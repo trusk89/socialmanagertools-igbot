@@ -74,7 +74,7 @@ Nice to have:
 * docker container
 
 # Social Manager Tools
-Available:
+Available: 
 - [InstagramBot.js](https://github.com/social-manager-tools/instagram-bot.js)
 
 Coming soon:
