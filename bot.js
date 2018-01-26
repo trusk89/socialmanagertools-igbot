@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.4.1
+ * @version:    0.5.0
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -30,25 +30,15 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
- * @version:    0.2
- * @link:       http://webdriver.io/
+ * @version:    0.5
+ * @link:       https://github.com/GoogleChrome/puppeteer
  * @changelog:  0.1 initial release
  *              0.2 refactor: removed useless vars
  *
  */
-const webdriverio = require('webdriverio');
+const puppeteer = require('puppeteer');
 const path = require('path');
 const config = require(__dirname + '/config');
-
-const options_webdriverio = {
-    host: config.selenium_host,
-    port: config.selenium_port,
-    binary: config.selenium_chrome_path,
-    desiredCapabilities: {
-        browserName: config.selenium_browser,
-        chromeOptions: { args: config.selenium_chrome_options }
-    }
-};
 
 (async() => {
     /**
@@ -63,8 +53,8 @@ const options_webdriverio = {
      * @changelog:  0.1 initial release
      *
      */
-    let client = webdriverio.remote(options_webdriverio);
-    var bot = client.init();
+    const browser = await puppeteer.launch({headless: config.chrome_headless, args: config.chrome_options});
+    const bot = await browser.newPage();
 
     /**
      * Import libs
@@ -125,22 +115,27 @@ const options_webdriverio = {
      *
      */
     login_status = await login.start(login_status);
+    
     if (login_status == 1) {
-        pin_status = await twofa.start_twofa_location_check(pin_status);
+        pin_status = await twofa.start_twofa_location_check();
+
         if (pin_status == 0) {
-            pin_status = await twofa.start_twofa_check(pin_status);
+            pin_status = await twofa.start_twofa_check();
         }
+
         if (pin_status == 1) {
-            twofa_status = await twofa.start_twofa_location(twofa_status);
+            twofa_status = await twofa.start_twofa_location();
         } else if (pin_status == 2) {
-            twofa_status = await twofa.start(twofa_status);
+            twofa_status = await twofa.start();
         }
+
         utils.logger("[INFO]", "twofa", "status " + twofa_status);
+
         if (twofa_status >= 1) {
             await switch_mode(bot, config, utils, likemode_classic);
         }
     }
 
-    bot.end();
+    bot.close();
 
 })();

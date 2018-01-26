@@ -1,6 +1,6 @@
 {
   "name": "InstagramBot.js",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Instagram Bot made with love and nodejs",
   "main": "bot.js",
   "scripts": {
@@ -8,13 +8,9 @@
     "start-forever": "forever -o ./logs/debug.log -e ./logs/errors.log start bot.js",
     "start-pm2": "pm2 -o ./logs/debug.log -e ./logs/errors.log start bot.js",
     "start-pm2-nolog": "pm2 -o /dev/null -e ./logs/errors.log start bot.js ",
-    "start-selenium-desktop": "pm2 start bin/run-selenium-desktop.sh",
-    "start-selenium-server": "pm2 start bin/run-selenium-server.sh",
     "stop": "killall node",
     "stop-forever": "forever stop bot.js",
     "stop-pm2": "pm2 stop bot.js",
-    "stop-selenium-desktop": "pm2 stop bin/run-selenium-desktop.sh",
-    "stop-selenium-server": "pm2 stop bin/run-selenium-server.sh"
   },
   "repository": {
     "type": "git",
@@ -35,13 +31,11 @@
   },
   "homepage": "https://instagram-bot.js.ptkdev.io",
   "dependencies": {
-    "pm2": "^2.7.2",
-    "forever": "^0.15.0",
     "path": "^0.12.7",
     "system-sleep": "^1.3.6",
-    "webdriverio": "^4.10.1"
+    "puppeteer": "^1.0.0"
   },
   "engines": {
-    "node": ">=8.1.3"
+    "node": ">=7.6.0"
   }
 }

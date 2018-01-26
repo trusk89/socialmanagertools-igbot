@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
- * @version:    0.2
+ * @version:    0.5
  * @changelog:  0.1 initial release
  *              0.2 new pattern
  *
@@ -15,7 +15,7 @@ class Utils {
         this.bot = bot;
         this.config = config;
     }
-    
+
     /**
      * Logger
      * =====================
@@ -43,7 +43,7 @@ class Utils {
      *
      */
     async screenshot(func, name) {
-        await this.bot.saveScreenshot('./logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.png');
+        await this.bot.screenshot({ path: './logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.jpg' });
     }
 
     /**

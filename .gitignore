@@ -41,6 +41,7 @@ proguard/
 ######################
 logs/*.log
 logs/screenshot/*.png
+logs/screenshot/*.jpg
 *.log
 *.sql
 *.sqlite

@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
- * @version:    0.2
+ * @version:    0.5
  * @changelog:  0.1 initial release
  *              0.2 new pattern
  *
@@ -15,8 +15,13 @@ class Login {
         this.bot = bot;
         this.config = config;
         this.utils = utils;
+        this.status = {
+            OK: 1,
+            ERROR: 0,
+            CURRENT: null,
+        };
     }
-    
+
     /**
      * Open login page
      * =====================
@@ -30,7 +35,8 @@ class Login {
      */
     async open_loginpage() {
         this.utils.logger("[INFO]", "login", "open_loginpage");
-        await this.bot.url('https://www.instagram.com/accounts/login/');
+
+        await this.bot.goto('https://www.instagram.com/accounts/login/');
     }
 
     /**
@@ -45,8 +51,10 @@ class Login {
      *
      */
     async set_username() {
-        await this.bot.setValue('input[name="username"]', this.config.instagram_username);
         this.utils.logger("[INFO]", "login", "set_username");
+
+        await this.bot.waitForSelector('input[name="username"]');
+        await this.bot.type('input[name="username"]', this.config.instagram_username, { delay: 100 });
     }
 
     /**
@@ -61,8 +69,10 @@ class Login {
      *
      */
     async set_password() {
-        await this.bot.setValue('input[name="password"]', this.config.instagram_password);
         this.utils.logger("[INFO]", "login", "set_password");
+
+        await this.bot.waitForSelector('input[name="password"]');
+        await this.bot.type('input[name="password"]', this.config.instagram_password, { delay: 100 });
     }
 
     /**
@@ -76,10 +86,14 @@ class Login {
      * @changelog:  0.1 initial release
      *
      */
-    async submit() {
+    async submitform() {
         this.utils.logger("[INFO]", "login", "submit");
+
+        await this.bot.waitForSelector('form button');
+        let button = await this.bot.$('form button');
+        await button.click();
+
         await this.utils.screenshot("login", "submit");
-        await this.bot.click('form button');
     }
 
     /**
@@ -95,25 +109,38 @@ class Login {
      */
     async submitverify() {
         this.utils.logger("[INFO]", "login", "checkerrors");
-        let status = null;
+
+        let text = "";
+
         try {
-            let text = await this.bot.getText('#slfErrorAlert');
-            status = 0;
-            this.utils.logger("[ERROR]", "login", text + " (restart bot and retry...)");
-            await this.utils.screenshot("login", "checkerrors_error");
+            text = await this.bot.$('#slfErrorAlert');
+            if (text != null)
+                this.status.CURRENT = this.status.ERROR;
+            else
+                this.status.CURRENT = this.status.OK;
         } catch (err) {
-            status = 1;
+            this.status.CURRENT = this.status.OK;
+        }
+
+        if (this.status.CURRENT == this.status.ERROR) {
+            let html_response = await this.bot.evaluate(body => body.innerHTML, text);
+            await text.dispose();
+
+            this.utils.logger("[ERROR]", "login", "Error: " + html_response + " (restart bot and retry...)");
+            await this.utils.screenshot("login", "checkerrors_error");
+        } else {
             this.utils.logger("[INFO]", "login", "password is correct");
             await this.utils.screenshot("login", "checkerrors");
         }
+
         this.utils.sleep(this.utils.random_interval(4, 8));
-        return status;
+
+        return this.status.CURRENT;
     }
 
     /**
      * Login Flow
      * =====================
-     * /modules/likemode_login.js
      * 
      * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
@@ -123,17 +150,28 @@ class Login {
      */
     async start(login_status) {
         this.utils.logger("[INFO]", "login", "loading...");
+
         await this.open_loginpage();
+
         this.utils.sleep(this.utils.random_interval(4, 8));
+
         await this.set_username();
+
         this.utils.sleep(this.utils.random_interval(4, 8));
+
         await this.set_password();
+
         this.utils.sleep(this.utils.random_interval(4, 8));
-        await this.submit();
+
+        await this.submitform();
+
         this.utils.sleep(this.utils.random_interval(4, 8));
+
         login_status = await this.submitverify();
         this.utils.logger("[INFO]", "login", "login_status is " + login_status);
+
         this.utils.sleep(this.utils.random_interval(4, 8));
+
         return login_status;
     }
 }

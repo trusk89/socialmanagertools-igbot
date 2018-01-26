@@ -1,5 +1,5 @@
 module.exports = {
-    // Node Configs
+    // InstagramBot.js Configs
     "debug": true,
 
     // BOT Configs
@@ -14,17 +14,11 @@ module.exports = {
     // Instagram Account
     "instagram_username": "ptkdev", //without @
     "instagram_password": "password",
-    "instagram_pin": "sms", //method to receive pin (email or sms)
     "instagram_hashtag": ['muraleshunter','like4like','follow4follow'], //without #
+    "instagram_pin": "sms", //method to receive pin (email or sms)
     "instagram_userwhitelist": [''], //without @
 
-    // Selenium Configs
-    "selenium_browser": "chrome",
-    // --headless    - hide chrome (mandatory on server without gnome or other DE). 
-    // --disable-gpu - if you not have good gpu on server
-    // --no-sandbox  - if you run bot with root command (without on server bot not work)
-    "selenium_chrome_path": "/opt/google/chrome/google-chrome",
-    "selenium_chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
-    "selenium_host": "localhost",
-    "selenium_port": 4444
+    // Puppeteer configs
+    "chrome_headless" : false,
+    "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
 };
