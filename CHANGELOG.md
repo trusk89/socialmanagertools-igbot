@@ -1,3 +1,7 @@
+# v0.5.1 (January 26, 2018)
+* Fix: package.json syntax error
+
+
 # v0.5.0 (January 26, 2018)
 * New logo! Thanks to @maXfer75 and @TaniK72 on twitter.
 * Bye bye webdriverio and selenium: moved to official google library "puppeteer". Better ram usage, better stability and no java required. Dropped firefox, ie and opera support (only chrome). Added multiplatform support (mac, windows, linux). INFO: The webdriverio old version of bot (0.4.2) is available on branch "webdriverio".

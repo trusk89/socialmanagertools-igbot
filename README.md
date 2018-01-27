@@ -4,7 +4,7 @@
 
 <p align="center"><a href="#" alt="License"><img src="https://img.shields.io/badge/license-GLPv3-brightgreen.svg"></a>
 <a href="https://github.com/GoogleChrome/puppeteer" alt="powered by puppeteer"><img src="https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg"></a>
-<a href="https://github.com/ptkdev/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.5-lightgrey.svg"></a>
+<a href="https://github.com/ptkdev/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.5.1-lightgrey.svg"></a>
 <a href="https://slack.ptkdev.io" alt="Slack Chat"><img src="https://img.shields.io/badge/chat%20on-Slack-orange.svg"></a>
 <a href="https://paypal.me/ptkdev" alt="Paypale Donate"><img src="https://img.shields.io/badge/donate-PayPal-red.svg"></a>
 
