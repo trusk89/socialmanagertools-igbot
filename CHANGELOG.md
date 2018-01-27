@@ -1,4 +1,4 @@
-# v0.5.1 (January 26, 2018)
+# v0.5.1 (January 27, 2018)
 * Fix: package.json syntax error
 
 
