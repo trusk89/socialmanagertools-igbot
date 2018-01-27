@@ -48,6 +48,9 @@ Features:
 Nice to have:
 * docker container
 
+# Sorry for snake_case
+I love snake_case syntax sorry for this :sob: not hate me.
+
 <p align="center"><a href="https://github.com/social-manager-tools" alt="Screenshot"><img src="https://ptkdev.it/img/bot/social-manager-tools.png"></a></p>
 <p align="center"><h1 align="center">Social Manager Tools</h1></p>
 
