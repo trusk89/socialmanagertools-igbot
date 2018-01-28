@@ -2,7 +2,7 @@
 
 Replace the values below with your own:
 
-- **Theme Version:** v1.0.0
+- **Bot Version:** v0.5.2
 - **Operating System:** Ubuntu 14.04
 - **Browser:** Google Chrome 64
 
