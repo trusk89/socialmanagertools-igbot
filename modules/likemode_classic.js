@@ -117,8 +117,7 @@ class Likemode_classic {
         this.utils.logger("[INFO]", "like", "try heart like");
 
         let status = "";
-        let heart = "",
-            html_text = "";
+        let heart = "";
 
         try {
             heart = await this.bot.$('.coreSpriteHeartOpen');
