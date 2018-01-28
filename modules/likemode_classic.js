@@ -117,20 +117,17 @@ class Likemode_classic {
         this.utils.logger("[INFO]", "like", "try heart like");
 
         let status = "";
-        let heart = "",
-            html_text = "";
+        let heart = "";
 
         try {
             heart = await this.bot.$('.coreSpriteHeartOpen');
             if (heart != null) {
                 this.status.CURRENT = this.status.OK;
-                html_text = await this.bot.evaluate(body => body.innerHTML, heart);
-                await heart.dispose();
             } else {
                 this.status.CURRENT = this.status.ERROR;
             }
 
-            if (html_text == "Like" && this.status.CURRENT == this.status.OK) {
+            if (this.status.CURRENT == this.status.OK) {
                 await this.bot.waitForSelector('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
                 let button = await this.bot.$('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
                 await button.click();
