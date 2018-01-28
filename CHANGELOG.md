@@ -1,3 +1,7 @@
+# v0.5.2 (January 28, 2018)
+* Fix [#3]: Like doesn't work if the language is not in English
+
+
 # v0.5.1 (January 27, 2018)
 * Fix: package.json syntax error
 
