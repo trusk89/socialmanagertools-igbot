@@ -123,7 +123,6 @@ class Likemode_classic {
             heart = await this.bot.$('.coreSpriteHeartOpen');
             if (heart != null) {
                 this.status.CURRENT = this.status.OK;
-                await heart.dispose();
             } else {
                 this.status.CURRENT = this.status.ERROR;
             }
