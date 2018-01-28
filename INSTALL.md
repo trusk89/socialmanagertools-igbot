@@ -21,6 +21,3 @@ If you received sms or email pin edit `loginpin.txt` and insert it on first line
 
 #### Check if work:
 See logs: `cat ./logs/debug.log` or png images in ./logs/screenshot
-
-* Bug: `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
-- Solution: Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
