@@ -22,9 +22,12 @@
 * [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time | 700-850 like/day. Limit is 1000/day for ig. This is safe mode.
 
 # Fast setup
-1. Run `npm install` in `instagram-bot.js` folder.
-2. Copy root file `config.js.tpl` to `config.js`, fill it properly.
-3. Start the bot via `node bot.js`
+1. Download [stable version](https://github.com/ptkdev/instagram-bot.js/releases) and extract it.
+2. Download [Node.js](https://nodejs.org/it/) and install it. Required node >= 7.6
+3. Run `npm install` in `instagram-bot.js` folder.
+4. Copy root file `config.js.tpl` to `config.js`, fill it properly.
+5. Start the bot via `node bot.js`
+6. If work add star ★ at this project. 
 
 For advanced configuration see [INSTALL.md](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md).
 
