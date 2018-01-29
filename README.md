@@ -10,6 +10,9 @@
 
 <p align="center"><a href="https://instagram-bot.js.ptkdev.io" alt="Screenshot"><img src="https://ptkdev.it/img/bot/ptkdev-instagram-bot.gif"></a></p>
 
+# What does he do
+This bot helps you increase the engagement of your Instagram profile through different social algorithms. Increase the likes on your photos and followers.
+
 # Features
 * [✓] Easy to use
 * [✓] Login
