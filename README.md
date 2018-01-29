@@ -23,11 +23,11 @@
 
 # Fast setup
 1. Download [stable version](https://github.com/ptkdev/instagram-bot.js/releases) and extract it.
-2. Download [Node.js](https://nodejs.org/it/) and install it. Required node >= 7.6
+2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js` folder.
 4. Copy root file `config.js.tpl` to `config.js`, fill it properly.
 5. Start the bot via `node bot.js`
-6. If work add star ★ at this project. 
+6. If work add star :star: at this project :heart:
 
 For advanced configuration see [INSTALL.md](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md).
 
