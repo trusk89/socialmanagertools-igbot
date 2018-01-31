@@ -22,7 +22,7 @@ This bot helps you increase the engagement of your Instagram profile through dif
 * [✓] Multi-Platform
 * [✓] Errors manager (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
-* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time | 700-850 like/day. Limit is 1000/day for ig. This is safe mode.
+* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time.  Limit is 400-600/day for ig (in 2018). This is safe mode.
 
 # Fast setup
 1. Download [stable version](https://github.com/ptkdev/instagram-bot.js/releases) and extract it.
