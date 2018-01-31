@@ -34,8 +34,11 @@ This bot helps you increase the engagement of your Instagram profile through dif
 
 For advanced configuration see [INSTALL.md](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md).
 
-#### Pin
+#### 2FA: SMS Pin
 If you received sms or email pin edit `loginpin.txt` and insert it on first line. Wait 3 minutes...
+
+#### Tips: Hide browser
+Edit `config.js` and switch `chrome_headless` option to `true`.
 
 #### Check if work:
 See images in ./logs/screenshot or disable `chrome_headless` flag.
