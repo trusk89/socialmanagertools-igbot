@@ -41,8 +41,9 @@ If you received sms or email pin edit `loginpin.txt` and insert it on first line
 See images in ./logs/screenshot or disable `chrome_headless` flag.
 
 # Bugs
-* Bug: `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
-- Solution: Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
+* Error: `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
+* Why happen? Instagram desktop is in overcapacity. Happen at 12-14 and 19-21 all days. 
+* Solution: Login in other time or Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
 
 # TODO
 Features:
