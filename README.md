@@ -10,6 +10,9 @@
 
 <p align="center"><a href="https://instagram-bot.js.ptkdev.io" alt="Screenshot"><img src="https://ptkdev.it/img/bot/ptkdev-instagram-bot.gif"></a></p>
 
+# What does he do
+This bot helps you increase the engagement of your Instagram profile through different social algorithms. Increase the likes on your photos and followers.
+
 # Features
 * [✓] Easy to use
 * [✓] Login
@@ -19,12 +22,15 @@
 * [✓] Multi-Platform (Windows 10, Mac OSX, Linux)
 * [✓] Errors manager (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
-* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time | 700-850 like/day. Limit is 1000/day for ig. This is safe mode.
+* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo (of last 20), and repeat this all time.  Limit is 400-600/day for ig (in 2018). This is safe mode.
 
 # Fast setup
-1. Run `npm install` in `instagram-bot.js` folder.
-2. Copy root file `config.js.tpl` to `config.js`, fill it properly.
-3. Start the bot via `node bot.js`
+1. Download [stable version](https://github.com/ptkdev/instagram-bot.js/releases) and extract it.
+2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
+3. Run `npm install` in `instagram-bot.js` folder.
+4. Copy root file `config.js.tpl` to `config.js`, fill it properly.
+5. Start the bot via `node bot.js`
+6. If work add star :star: at this project :heart:
 
 For advanced configuration see [INSTALL.md](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md).
 
@@ -35,8 +41,9 @@ If you received sms or email pin edit `loginpin.txt` and insert it on first line
 See images in ./logs/screenshot or disable `chrome_headless` flag.
 
 # Bugs
-* Bug: `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
-- Solution: Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
+* Error: `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
+* Why happen? Instagram desktop is in overcapacity. Happen at 12-14 and 19-21 all days. 
+* Solution: Login in other time or Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
 
 # TODO
 Features:
