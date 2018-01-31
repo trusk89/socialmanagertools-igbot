@@ -1,13 +1,14 @@
 /**
  * Two Factor Authentication (2FA) Flow
  * =====================
- * Bot flow of instagram pin request at login
+ * Flow for pin request after login
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
  * @version:    0.5
  * @changelog:  0.1 initial release
- *              0.2 new pattern
+ *              0.2 new pattern with webdriverio
+ *              0.5 new pattern with puppeteer
  *
  */
 class Twofa {

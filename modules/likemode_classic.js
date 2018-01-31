@@ -1,13 +1,14 @@
 /**
  * MODE: likemode_classic
  * =====================
- * Select random hashtag from config list and like 1 random photo (of last 20) | 750-900 like/day.
+ * Select random hashtag from config list and like 1 random photo (of last 20) | 400-600 like/day.
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
  * @version:    0.5
  * @changelog:  0.1 initial release
- *              0.2 new pattern
+ *              0.2 new pattern with webdriverio
+ *              0.5 new pattern with puppeteer
  *
  */
 class Likemode_classic {
@@ -47,7 +48,7 @@ class Likemode_classic {
     /**
      * likemode_classic: Open Photo
      * =====================
-     * Open url of photo
+     * Open url of photo and cache urls from hashtag page in array
      *
      * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
@@ -78,6 +79,9 @@ class Likemode_classic {
                 } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
 
                 this.utils.logger("[INFO]", "like", "current photo url " + photo_url);
+                if(typeof photo_url === "undefined")
+                    this.utils.logger("[WARNING]", "like", "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
+
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
                 await this.bot.goto(photo_url);
@@ -105,7 +109,7 @@ class Likemode_classic {
     /**
      * likemode_classic: Love me
      * =====================
-     * Click on heart
+     * Click on heart and verify if instagram not (soft) ban you
      *
      * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
@@ -220,7 +224,6 @@ class Likemode_classic {
             this.utils.sleep(this.utils.random_interval(4, 8));
 
             like_status = await this.like_click_heart();
-
 
             today = new Date();
             t2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());

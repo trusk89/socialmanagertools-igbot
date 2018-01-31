@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.5.0
+ * @version:    0.5.3
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
  * @link:       https://github.com/GoogleChrome/puppeteer
  * @changelog:  0.1 initial release
  *              0.2 refactor: removed useless vars
+ *              0.5 refactor: moved to puppeteer
  *
  */
 const puppeteer = require('puppeteer');
@@ -51,6 +52,7 @@ const config = require(__dirname + '/config');
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
+     *              0.5 refactor: moved to puppeteer
      *
      */
     const browser = await puppeteer.launch({headless: config.chrome_headless, args: config.chrome_options});
@@ -59,7 +61,7 @@ const config = require(__dirname + '/config');
     /**
      * Import libs
      * =====================
-     * Flow and utilty modules
+     * Modules of bot from folder ./modules
      *
      * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
@@ -74,8 +76,11 @@ const config = require(__dirname + '/config');
     let likemode_classic = require(__dirname + '/modules/likemode_classic.js')(bot, config, utils);
 
     /**
-     * Start Bot (init vars)
+     * Bot variables
      * =====================
+     * Status var if login is correct, 2FA is correct and bot start good.
+     * 1 = OK
+     * 0 = KO
      *
      * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
@@ -91,7 +96,7 @@ const config = require(__dirname + '/config');
     /**
      * Switch Mode
      * =====================
-     * Switch mode from config.js
+     * Switch social algorithms, change algorithm from config.js
      * 
      * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
@@ -107,6 +112,7 @@ const config = require(__dirname + '/config');
     /**
      * Start Bot (flow) 
      * =====================
+     * Login --> 2FA (bad location) --> 2FA (sms pin) --> social algorithm from config.js
      *
      * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'

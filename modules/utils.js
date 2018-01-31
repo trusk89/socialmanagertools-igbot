@@ -8,6 +8,7 @@
  * @version:    0.5
  * @changelog:  0.1 initial release
  *              0.2 new pattern
+ *              0.3 new sleep system
  *
  */
 class Utils {

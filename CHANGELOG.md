@@ -1,3 +1,11 @@
+# v0.5.3 (January 31, 2018)
+* Update documentation (comments in code)
+* Warning: update max like value in `config.js.tpl` instagram in 2018 decrease like/day now max is 600 not 1000
+* Feature: warning log message if hashtag dosn't have photos
+* Feature: ISSUE template for bug reports
+* Bugs: bot dosn't work on Raspberry Pi because rasbian have chromium v60 (mininium version required is v63 and node v7.6)
+
+
 # v0.5.2 (January 28, 2018)
 * Fix [[#3](https://github.com/ptkdev/instagram-bot.js/issues/3)]: Like doesn't work if the language is not in English
 
