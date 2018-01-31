@@ -1,6 +1,6 @@
 # v0.5.3 (January 31, 2018)
 * Update documentation (comments in code)
-* Warning: update max like value in `config.js.tpl` instagram in 2018 decrease like/day now max is 600 not 1000
+* Warning: update max like value in `config.js.tpl` instagram in 2018 descreased like/day now max is 600 not 1000
 * Feature: warning log message if hashtag dosn't have photos
 * Feature: ISSUE template for bug reports
 * Bugs: bot dosn't work on Raspberry Pi because rasbian have chromium v60 (mininium version required is v63 and node v7.6)
