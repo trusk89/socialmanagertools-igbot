@@ -239,9 +239,9 @@ class Likemode_realistic {
                     cache_hashtag = [];
 
                 if (cache_hashtag.length <= 0 && like_status != 3) {
-                    this.utils.logger("[INFO]", "likemode", "finish fast like, bot sleep " + config.bot_fastlike_min + "-" + config.bot_fastlike_max + " minutes");
+                    this.utils.logger("[INFO]", "likemode", "finish fast like, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
                     cache_hashtag = [];
-                    this.utils.sleep(this.utils.random_interval(60 * config.bot_fastlike_min, 60 * config.bot_fastlike_max));
+                    this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
                 }
             } else {
                 this.utils.logger("[INFO]", "likemode", "is night, bot sleep");
