@@ -174,8 +174,9 @@ class Likemode_classic {
 
                 if (this.status.CURRENT == this.status.ERROR) {
                     this.utils.logger("[WARNING]", "like", "</3");
-                    this.utils.logger("[WARNING]", "like", "error bot :( not like photo, go to next");
+                    this.utils.logger("[WARNING]", "like", "error bot :( not like photo, now bot sleep 1-2h");
                     this.utils.logger("[WARNING]", "like", "You are in possible soft ban... If this message appear all time stop bot for 24h...");
+                    this.utils.sleep(this.utils.random_interval(3600, 3600*2));
                 } else if (this.status.CURRENT == this.status.OK) {
                     this.utils.logger("[INFO]", "like", "<3");
                 }
