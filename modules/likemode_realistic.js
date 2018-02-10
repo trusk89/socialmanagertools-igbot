@@ -1,7 +1,7 @@
 /**
- * MODE: likemode_classic
+ * MODE: likemode_realistic
  * =====================
- * Select random hashtag from config list and like 1 random photo (of last 20) | 400-600 like/day.
+ * Select random hashtag from config list, like fast 10-12 photo and sleep 15-20min. Sleep at night | 400-600 like/day.
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
@@ -11,7 +11,7 @@
  *              0.5 new pattern with puppeteer
  *
  */
-class Likemode_classic {
+class Likemode_realistic {
     constructor(bot, config, utils) {
         this.bot = bot;
         this.config = config;
@@ -24,7 +24,7 @@ class Likemode_classic {
     }
 
     /**
-     * likemode_classic: Open Hashtag
+     * likemode_realistic: Open Hashtag
      * =====================
      * Get random hashtag from array and open page
      *
@@ -37,7 +37,6 @@ class Likemode_classic {
     async like_open_hashtagpage() {
         let hashtag_tag = this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
         this.utils.logger("[INFO]", "like", "current hashtag " + hashtag_tag);
-
         try {
             await this.bot.goto('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
         } catch (err) {
@@ -50,7 +49,7 @@ class Likemode_classic {
     }
 
     /**
-     * likemode_classic: Open Photo
+     * likemode_realistic: Open Photo
      * =====================
      * Open url of photo and cache urls from hashtag page in array
      *
@@ -113,7 +112,7 @@ class Likemode_classic {
     }
 
     /**
-     * likemode_classic: Love me
+     * likemode_realistic: Love me
      * =====================
      * Click on heart and verify if instagram not (soft) ban you
      *
@@ -174,8 +173,9 @@ class Likemode_classic {
 
                 if (this.status.CURRENT == this.status.ERROR) {
                     this.utils.logger("[WARNING]", "like", "</3");
-                    this.utils.logger("[WARNING]", "like", "error bot :( not like photo, go to next");
+                    this.utils.logger("[WARNING]", "like", "error bot :( not like photo, now bot sleep 5-10min");
                     this.utils.logger("[WARNING]", "like", "You are in possible soft ban... If this message appear all time stop bot for 24h...");
+                    this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.status.CURRENT == this.status.OK) {
                     this.utils.logger("[INFO]", "like", "<3");
                 }
@@ -187,6 +187,7 @@ class Likemode_classic {
         } else {
             this.utils.logger("[WARNING]", "like", "</3");
             this.utils.logger("[WARNING]", "like", "You like this previously, change hashtag ig have few photos");
+            this.status.CURRENT = 3;
         }
 
         this.utils.sleep(this.utils.random_interval(2, 5));
@@ -207,7 +208,7 @@ class Likemode_classic {
      *
      */
     async start() {
-        this.utils.logger("[INFO]", "likemode", "classic");
+        this.utils.logger("[INFO]", "likemode", "realistic");
 
         let today = "";
         let like_status;
@@ -218,34 +219,37 @@ class Likemode_classic {
 
         do {
             today = new Date();
-            t1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
-            this.utils.logger("[INFO]", "likemode", "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
-            this.utils.logger("[INFO]", "likemode", "cache array size " + cache_hashtag.length);
-            if (cache_hashtag.length <= 0)
-                await this.like_open_hashtagpage();
+            this.utils.logger("[INFO]", "likemode", "time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes())));
+            if (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes()) >= (this.config.bot_sleep_night).replace(":", "")) {
+                t1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
+                this.utils.logger("[INFO]", "likemode", "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
+                this.utils.logger("[INFO]", "likemode", "cache array size " + cache_hashtag.length);
+                if (cache_hashtag.length <= 0)
+                    await this.like_open_hashtagpage();
 
-            this.utils.sleep(this.utils.random_interval(4, 8));
+                this.utils.sleep(this.utils.random_interval(4, 8));
 
-            cache_hashtag = await this.like_get_urlpic(cache_hashtag);
-            this.utils.sleep(this.utils.random_interval(4, 8));
+                cache_hashtag = await this.like_get_urlpic(cache_hashtag);
 
-            like_status = await this.like_click_heart();
+                this.utils.sleep(this.utils.random_interval(4, 8));
 
-            if (cache_hashtag.length < 9) //remove popular photos
-                cache_hashtag = [];
+                like_status = await this.like_click_heart();
 
-            today = new Date();
-            t2 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
-            sec = Math.abs((t1.getTime() - t2.getTime()) / 1000);
-            if (sec < sec_min && like_status >= 1) {
-                this.utils.logger("[INFO]", "likemode", "seconds of loop " + sec + "... for miss ban bot wait " + (sec_min - sec) + "-" + (sec_max - sec));
-                this.utils.sleep(this.utils.random_interval(sec_min - sec, sec_max - sec));
+                if (cache_hashtag.length < 9 || like_status == 3) //remove popular photos
+                    cache_hashtag = [];
+
+                if (cache_hashtag.length <= 0 && like_status != 3) {
+                    this.utils.logger("[INFO]", "likemode", "finish fast like, bot sleep " + config.bot_fastlike_min + "-" + config.bot_fastlike_max + " minutes");
+                    cache_hashtag = [];
+                    this.utils.sleep(this.utils.random_interval(60 * config.bot_fastlike_min, 60 * config.bot_fastlike_max));
+                }
             } else {
-                cache_hashtag = [];
+                this.utils.logger("[INFO]", "likemode", "is night, bot sleep");
+                this.utils.sleep(this.utils.random_interval(60 * 4, 60 * 5));
             }
         } while (true);
     }
 
 }
 
-module.exports = (bot, config, utils) => { return new Likemode_classic(bot, config, utils); };
+module.exports = (bot, config, utils) => { return new Likemode_realistic(bot, config, utils); };

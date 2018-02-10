@@ -3,7 +3,7 @@
  * =====================
  * Logger and other functions...
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+ * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
  * @version:    0.5
  * @changelog:  0.1 initial release
@@ -22,7 +22,7 @@ class Utils {
      * =====================
      * Better than console.log() 
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -37,14 +37,19 @@ class Utils {
      * =====================
      * Save screenshot from chrome
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
      *
      */
     async screenshot(func, name) {
-        await this.bot.screenshot({ path: './logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.jpg' });
+        try{
+            await this.bot.screenshot({ path: './logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.jpg' });
+        } catch (err) {
+            this.logger("[WARNING]", "screenshot", "error "+ err);
+        }
+        
     }
 
     /**
@@ -52,7 +57,7 @@ class Utils {
      * =====================
      * Random number between two numbers
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -67,7 +72,7 @@ class Utils {
      * =====================
      * Zzz
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release

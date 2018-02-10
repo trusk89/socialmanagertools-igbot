@@ -1,3 +1,12 @@
+# v0.6.0 (February 10, 2018)
+* Feature: likemode_realistic. Update `config.js` from `config.js.tpl`
+* Feature: Docker available (Thanks [@julianxhokaxhiu](https://github.com/julianxhokaxhiu/))
+* Fix: error promise crash after 34-35h no-stop. 
+* Fix: package name not support "dot" in name in last npm version
+* Refactor: change my email address
+* News: Available in Social Manager Tools the [Telegram Bot](https://github.com/social-manager-tools/wordpress-telegram-bot.js) for any blog Wordpress.
+
+
 # v0.5.3 (January 31, 2018)
 * Update documentation (comments in code)
 * Warning: update max like value in `config.js.tpl` instagram in 2018 descreased like/day now max is 600 not 1000

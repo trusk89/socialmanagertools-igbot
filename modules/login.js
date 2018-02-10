@@ -3,7 +3,7 @@
  * =====================
  * Open browser, set user/pass and try login
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+ * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
  * @version:    0.5
  * @changelog:  0.1 initial release
@@ -28,7 +28,7 @@ class Login {
      * =====================
      * Browser start
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -45,7 +45,7 @@ class Login {
      * =====================
      * Set username
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -63,7 +63,7 @@ class Login {
      * =====================
      * Set password
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -81,7 +81,7 @@ class Login {
      * =====================
      * Press submit button
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -102,7 +102,7 @@ class Login {
      * =====================
      * Bad password or similar
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -143,7 +143,7 @@ class Login {
      * Login Flow
      * =====================
      * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release

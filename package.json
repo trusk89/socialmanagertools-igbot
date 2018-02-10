@@ -1,6 +1,6 @@
 {
-  "name": "InstagramBot.js",
-  "version": "0.5.3",
+  "name": "InstagramBot",
+  "version": "0.6.0",
   "description": "Instagram Bot made with love and nodejs",
   "main": "bot.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "selenium",
     "webdriverio"
   ],
-  "author": "Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)",
+  "author": "Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/ptkdev/instagram-bot.js/issues"

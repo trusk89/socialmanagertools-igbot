@@ -3,7 +3,7 @@
  * =====================
  * Flow for pin request after login
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+ * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
  * @version:    0.5
  * @changelog:  0.1 initial release
@@ -30,7 +30,7 @@ class Twofa {
      * =====================
      * Press submit button
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -48,7 +48,7 @@ class Twofa {
      * =====================
      * Press on email choice
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -66,7 +66,7 @@ class Twofa {
      * =====================
      * Press on email sms
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -84,7 +84,7 @@ class Twofa {
      * =====================
      * Set default pin receiver method
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -106,7 +106,7 @@ class Twofa {
      * =====================
      * Open loginpin.txt and insert in security-code input
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -131,7 +131,7 @@ class Twofa {
      * =====================
      * Open loginpin.txt and insert in security-code input
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -154,7 +154,7 @@ class Twofa {
      * =====================
      * Check if submit not have errors
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -213,7 +213,7 @@ class Twofa {
      * 2FA Location Flow (check if work)
      * =====================
      * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -251,7 +251,7 @@ class Twofa {
      * 2FA Flow (check if work)
      * =====================
      * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -292,7 +292,7 @@ class Twofa {
      * 2FA (Bad location) Flow
      * =====================
      * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -324,7 +324,7 @@ class Twofa {
      * 2FA (Enabled) Flow
      * =====================
      * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release

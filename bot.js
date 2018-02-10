@@ -3,7 +3,7 @@
  * =====================
  * Instagram Bot made with love and nodejs
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+ * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @file:       bot.js
  * @version:    0.5.3
  *
@@ -28,7 +28,7 @@
  * =====================
  * Open source library
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+ * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
  * @version:    0.5
  * @link:       https://github.com/GoogleChrome/puppeteer
@@ -48,7 +48,7 @@ const config = require(__dirname + '/config');
      * Get username, password and hashtag of bot from /config.js
      * If not exist rename config.js.tmpl to config.js and change strings
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -63,17 +63,19 @@ const config = require(__dirname + '/config');
      * =====================
      * Modules of bot from folder ./modules
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.2
      * @changelog:  0.1 initial release
      *              0.2 refactor: removed eval() and added require.
+     *              0.4 added: likemode_realistic
      *
      */
     let utils = require(__dirname + '/modules/utils.js')(bot, config);
     let login = require(__dirname + '/modules/login.js')(bot, config, utils);
     let twofa = require(__dirname + '/modules/2FA.js')(bot, config, utils);
     let likemode_classic = require(__dirname + '/modules/likemode_classic.js')(bot, config, utils);
+    let likemode_realistic = require(__dirname + '/modules/likemode_realistic.js')(bot, config, utils);
 
     /**
      * Bot variables
@@ -82,7 +84,7 @@ const config = require(__dirname + '/config');
      * 1 = OK
      * 0 = KO
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -98,15 +100,17 @@ const config = require(__dirname + '/config');
      * =====================
      * Switch social algorithms, change algorithm from config.js
      * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
      *
      */
-    async function switch_mode(bot, config, utils, likemode_classic) {
+    async function switch_mode(bot, config, utils, likemode_classic, likemode_realistic) {
         if (config.bot_mode == "likemode_classic")
             await likemode_classic.start(bot, config, utils);
+        else if (config.bot_mode == "likemode_realistic")
+            await likemode_realistic.start(bot, config, utils);
     }
 
     /**
@@ -114,7 +118,7 @@ const config = require(__dirname + '/config');
      * =====================
      * Login --> 2FA (bad location) --> 2FA (sms pin) --> social algorithm from config.js
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <info@ptkdev.it> (https://ptkdev.it)
+     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
      * @license:    This code and contributions have 'GNU General Public License v3'
      * @version:    0.1
      * @changelog:  0.1 initial release
@@ -138,7 +142,7 @@ const config = require(__dirname + '/config');
         utils.logger("[INFO]", "twofa", "status " + twofa_status);
 
         if (twofa_status >= 1) {
-            await switch_mode(bot, config, utils, likemode_classic);
+            await switch_mode(bot, config, utils, likemode_classic, likemode_realistic);
         }
     }
 
