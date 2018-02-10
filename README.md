@@ -60,7 +60,7 @@ like in this example:
 ```sh
 $ docker run \
     --restart=always \
-    --name=wordpress-telegram-bot \
+    --name=instagram-bot \
     -d \
     -v /path/to/config.js:/app/config.js \
     social-manager-tools/instagram-bot &>/dev/null
