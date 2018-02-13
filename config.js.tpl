@@ -13,7 +13,7 @@ module.exports = {
     "bot_likeday_max": 600, //in 2018 limit instagram is descreased to 400-600/day :(
     "bot_sleep_night": "7:00", //sleep from 00:00 to 7:00 am, work only in likemode_realistic
     "bot_fastlike_min": "15", //min minutes of sleep after like 10-12 photo, work only in likemode_realistic
-    "bot_fastlike_min": "20", //max minutes of sleep after like 10-12 photo, work only in likemode_realistic
+    "bot_fastlike_max": "20", //max minutes of sleep after like 10-12 photo, work only in likemode_realistic
 
     // Instagram Account
     "instagram_username": "ptkdev", //without @
