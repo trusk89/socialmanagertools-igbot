@@ -1,5 +1,5 @@
 {
-  "name": "InstagramBot",
+  "name": "instagrambotjs",
   "version": "0.6.0",
   "description": "Instagram Bot made with love and nodejs",
   "main": "bot.js",
