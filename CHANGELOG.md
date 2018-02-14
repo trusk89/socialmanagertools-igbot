@@ -1,3 +1,8 @@
+# v0.6.1 (February 14, 2018)
+* `config.js.tpl` misprint, please rename one of `bot_fastlike_min` to `bot_fastlike_max`
+* likemode_realist: fixbug, now is stable. If you need more like without soft ban set `bot_fastlike_min` 12 and `bot_fastlike_max` to 16 in `config.js`
+
+
 # v0.6.0 (February 10, 2018)
 * Feature: likemode_realistic. Update `config.js` from `config.js.tpl`
 * Feature: Docker available (Thanks [@julianxhokaxhiu](https://github.com/julianxhokaxhiu/))

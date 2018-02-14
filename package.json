@@ -1,7 +1,7 @@
 {
   "name": "instagrambotjs",
-  "version": "0.6.0",
-  "description": "Instagram Bot made with love and nodejs",
+  "version": "0.6.1",
+  "description": "instagram bot made with love and nodejs",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
