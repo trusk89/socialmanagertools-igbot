@@ -20,7 +20,7 @@ This bot helps you increase the engagement of your Instagram profile through dif
 * [✓] 2FA (bad location)
 * [✓] 2FA (sms pin enabled)
 * [✓] Multi-Session
-* [✓] Multi-Platform (Windows 10, Mac OSX, Linux, [Raspberry PI 3](https://github.com/ptkdev/instagram-bot.js/edit/master/INSTALL.md))
+* [✓] Multi-Platform (Windows 10, Mac OSX, Linux, [Raspberry PI 3](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md))
 * [✓] Errors manager (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
 * [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo and repeat this all time.
