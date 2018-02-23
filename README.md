@@ -33,6 +33,7 @@ This bot helps you increase the engagement of your Instagram profile through dif
 4. Copy root file `config.js.tpl` to `config.js`, fill it properly.
 5. Start the bot via `node bot.js`
 6. If work add star :star: at this project :heart:
+7. If you want help me with <b><a href="https://paypal.me/ptkdev">little donation</a></b> as you like for development of new features and fix.
 
 For advanced configuration see [INSTALL.md](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md).
 
