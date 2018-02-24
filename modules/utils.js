@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
- * @version:    0.5
+ * @version:    0.6.2
  * @changelog:  0.1 initial release
  *              0.2 new pattern
  *              0.3 new sleep system
@@ -22,11 +22,6 @@ class Utils {
      * =====================
      * Better than console.log() 
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     logger(type, func, text) {
         console.log(type + " " + func + ": " + text);
@@ -36,11 +31,6 @@ class Utils {
      * Screenshot
      * =====================
      * Save screenshot from chrome
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async screenshot(func, name) {
@@ -57,11 +47,6 @@ class Utils {
      * =====================
      * Random number between two numbers
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     random_interval(min, max) {
         return (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
@@ -71,11 +56,6 @@ class Utils {
      * Sleep
      * =====================
      * Zzz
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     sleep(sec) {

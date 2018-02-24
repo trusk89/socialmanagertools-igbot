@@ -5,11 +5,9 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
- * @version:    0.5
+ * @version:    0.1
  * @changelog:  0.1 initial release
- *              0.2 new pattern with webdriverio
- *              0.5 new pattern with puppeteer
- *
+ * 
  */
 class Likemode_realistic {
     constructor(bot, config, utils) {
@@ -27,11 +25,6 @@ class Likemode_realistic {
      * likemode_realistic: Open Hashtag
      * =====================
      * Get random hashtag from array and open page
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async like_open_hashtagpage() {
@@ -52,11 +45,6 @@ class Likemode_realistic {
      * likemode_realistic: Open Photo
      * =====================
      * Open url of photo and cache urls from hashtag page in array
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async like_get_urlpic(cache_hashtag) {
@@ -115,11 +103,6 @@ class Likemode_realistic {
      * likemode_realistic: Love me
      * =====================
      * Click on heart and verify if instagram not (soft) ban you
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async like_click_heart() {
@@ -200,11 +183,6 @@ class Likemode_realistic {
     /**
      * LikemodeClassic Flow
      * =====================
-     * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async start() {

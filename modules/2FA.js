@@ -30,11 +30,6 @@ class Twofa {
      * =====================
      * Press submit button
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     async requestpin() {
         this.utils.logger("[WARNING]", "twofa", "please insert pin in loginpin.txt and wait 2-3 minutes... (tic... tac... tic... tac... tic...)");
@@ -47,11 +42,6 @@ class Twofa {
      * Login PIN: Choice Email
      * =====================
      * Press on email choice
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async choice_email() {
@@ -66,11 +56,6 @@ class Twofa {
      * =====================
      * Press on email sms
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     async choice_sms() {
         this.utils.logger("[INFO]", "twofa", "try switch to phone sms (if possible)");
@@ -83,11 +68,6 @@ class Twofa {
      * Login PIN: Switch for SMS or Email pin
      * =====================
      * Set default pin receiver method
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async sendpin() {
@@ -105,11 +85,6 @@ class Twofa {
      * Login PIN: Read pint
      * =====================
      * Open loginpin.txt and insert in security-code input
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async readpin(input) {
@@ -131,11 +106,6 @@ class Twofa {
      * =====================
      * Open loginpin.txt and insert in security-code input
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     async submitform() {
         this.utils.logger("[INFO]", "twofa", "submit");
@@ -153,11 +123,6 @@ class Twofa {
      * Login PIN: check errors
      * =====================
      * Check if submit not have errors
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async submitverify(selector) {
@@ -212,11 +177,6 @@ class Twofa {
     /**
      * 2FA Location Flow (check if work)
      * =====================
-     * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async start_twofa_location_check() {
@@ -250,11 +210,6 @@ class Twofa {
     /**
      * 2FA Flow (check if work)
      * =====================
-     * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async start_twofa_check() {
@@ -291,11 +246,6 @@ class Twofa {
     /**
      * 2FA (Bad location) Flow
      * =====================
-     * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async start_twofa_location() {
@@ -323,11 +273,6 @@ class Twofa {
     /**
      * 2FA (Enabled) Flow
      * =====================
-     * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async start() {

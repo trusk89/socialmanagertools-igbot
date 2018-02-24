@@ -1,15 +1,15 @@
-<p align="center"><a href="https://instagram-bot.js.ptkdev.io" alt="Screenshot"><img src="https://ptkdev.it/img/bot/instagram-bot.js.png"></a></p>
+<p align="center"><a href="https://instagrambotjs.ptkdev.io" alt="Screenshot"><img src="https://ptkdev.it/img/bot/instagram-bot.js.png"></a></p>
 
 <p align="center"><h1 align="center">InstagramBot.js</h1></p>
 
 <p align="center"><a href="#" alt="License"><img src="https://img.shields.io/badge/license-GLPv3-brightgreen.svg"></a>
 <a href="https://github.com/GoogleChrome/puppeteer" alt="powered by puppeteer"><img src="https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg"></a>
-<a href="https://github.com/ptkdev/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.6.1-lightgrey.svg"></a>
+<a href="https://github.com/social-manager-tools/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.6.2-lightgrey.svg"></a>
 <a href="https://slack.ptkdev.io" alt="Slack Chat"><img src="https://img.shields.io/badge/chat%20on-Slack-orange.svg"></a>
 <a href="https://paypal.me/ptkdev" alt="Paypale Donate"><img src="https://img.shields.io/badge/donate-PayPal-red.svg"></a>
 <a href="mailto:support@ptkdev.io" alt="Support: support@ptkdev.io"><img src="https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg"></a></p>
 
-<p align="center"><a href="https://instagram-bot.js.ptkdev.io" alt="Screenshot"><img src="https://ptkdev.it/img/bot/ptkdev-instagram-bot.gif"></a></p>
+<p align="center"><a href="https://instagrambotjs.ptkdev.io" alt="Screenshot"><img src="https://ptkdev.it/img/bot/ptkdev-instagram-bot.gif"></a></p>
 
 # What does he do
 This bot helps you increase the engagement of your Instagram profile through different social algorithms. Increase the likes on your photos and followers.
@@ -20,14 +20,14 @@ This bot helps you increase the engagement of your Instagram profile through dif
 * [✓] 2FA (bad location)
 * [✓] 2FA (sms pin enabled)
 * [✓] Multi-Session
-* [✓] Multi-Platform (Windows 10, Mac OSX, Linux, [Raspberry PI 3](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md))
+* [✓] Multi-Platform (Windows 10, Mac OSX, Linux, [Raspberry PI 3](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md))
 * [✓] Errors manager (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
 * [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo and repeat this all time.
 * [✓] Like Mode Realistic: bot select random hashtag from config list and like fast 10-12 photos, sleep 15-20min and repeat this all time. Sleep at night.
 
 # Fast setup
-1. Download [stable bot version](https://github.com/ptkdev/instagram-bot.js/releases) and extract it.
+1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js` folder.
 4. Copy root file `config.js.tpl` to `config.js`, fill it properly.
@@ -35,7 +35,7 @@ This bot helps you increase the engagement of your Instagram profile through dif
 6. If work add star :star: at this project :heart:
 7. If you want help me with <b><a href="https://paypal.me/ptkdev">little donation</a></b> as you like for development of new features and fix.
 
-For advanced configuration see [INSTALL.md](https://github.com/ptkdev/instagram-bot.js/blob/master/INSTALL.md).
+For advanced configuration see [INSTALL.md](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md).
 
 #### 2FA: SMS Pin
 If you received sms or email pin edit `loginpin.txt` and insert it on first line. Wait 3 minutes...

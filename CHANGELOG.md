@@ -1,3 +1,10 @@
+# v0.6.2 (TODO, 2018)
+* Feature: [Raspberry PI 3 Support](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md)
+* Feature: likemode_superlike
+* Feature: fdfmode_classic
+* Refactor: removed useless comments
+
+
 # v0.6.1 (February 14, 2018)
 * `config.js.tpl` misprint, please rename one of `bot_fastlike_min` to `bot_fastlike_max`
 * likemode_realist: fixbug, now is stable. If you need more like without soft ban set `bot_fastlike_min` 12 and `bot_fastlike_max` to 16 in `config.js`

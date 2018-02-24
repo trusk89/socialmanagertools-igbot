@@ -28,11 +28,6 @@ class Likemode_classic {
      * =====================
      * Get random hashtag from array and open page
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     async like_open_hashtagpage() {
         let hashtag_tag = this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
@@ -53,11 +48,6 @@ class Likemode_classic {
      * likemode_classic: Open Photo
      * =====================
      * Open url of photo and cache urls from hashtag page in array
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async like_get_urlpic(cache_hashtag) {
@@ -116,11 +106,6 @@ class Likemode_classic {
      * likemode_classic: Love me
      * =====================
      * Click on heart and verify if instagram not (soft) ban you
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async like_click_heart() {
@@ -200,11 +185,6 @@ class Likemode_classic {
     /**
      * LikemodeClassic Flow
      * =====================
-     * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async start() {

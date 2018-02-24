@@ -28,11 +28,6 @@ class Login {
      * =====================
      * Browser start
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     async open_loginpage() {
         this.utils.logger("[INFO]", "login", "open_loginpage");
@@ -44,11 +39,6 @@ class Login {
      * Compile input
      * =====================
      * Set username
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async set_username() {
@@ -63,11 +53,6 @@ class Login {
      * =====================
      * Set password
      *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
-     *
      */
     async set_password() {
         this.utils.logger("[INFO]", "login", "set_password");
@@ -80,11 +65,6 @@ class Login {
      * Login
      * =====================
      * Press submit button
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async submitform() {
@@ -101,11 +81,6 @@ class Login {
      * Login check errors
      * =====================
      * Bad password or similar
-     *
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async submitverify() {
@@ -142,11 +117,6 @@ class Login {
     /**
      * Login Flow
      * =====================
-     * 
-     * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
-     * @license:    This code and contributions have 'GNU General Public License v3'
-     * @version:    0.1
-     * @changelog:  0.1 initial release
      *
      */
     async start(login_status) {
