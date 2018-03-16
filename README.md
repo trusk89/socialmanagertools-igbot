@@ -27,7 +27,7 @@ This bot helps you increase the engagement of your Instagram profile through dif
 * [✓] Like Mode Realistic: bot select random hashtag from config list and like fast 10-12 photos, sleep 15-20min and repeat this all time. Sleep at night.
 
 # Fast setup
-1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
+1. Download [stable bot version](https://github.com/ptkdev/instagram-bot.js/releases) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js` folder.
 4. Copy root file `config.js.tpl` to `config.js`, fill it properly.
