@@ -1,17 +1,16 @@
 const LOG = require('../modules/logger/types');
 
 /**
- * MODE: likemode_realistic
+ * MODE: commentmode_classic
  * =====================
- * Select random hashtag from config list, like fast 10-12 photo and sleep 15-20min. Sleep at night | 400-600 like/day.
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
+ * @author:     Ilua Chubarov [@agoalofalife] <agoalofalife@gmail.com>
  * @license:    This code and contributions have 'GNU General Public License v3'
  * @version:    0.1
  * @changelog:  0.1 initial release
- * 
+ *
  */
-class Likemode_realistic {
+class CommentMode_classic{
     constructor(bot, config, utils) {
         this.bot = bot;
         this.config = config;
@@ -24,33 +23,41 @@ class Likemode_realistic {
     }
 
     /**
-     * likemode_realistic: Open Hashtag
+     * Get random comment from config file
+     * @return string
+     */
+    getRandomComment(){
+        let comments = this.config.comment_mode.comments;
+         return comments[Math.floor(Math.random()*comments.length)];
+    }
+    /**
+     * commentmode_classic: Open Hashtag
      * =====================
      * Get random hashtag from array and open page
      *
      */
     async like_open_hashtagpage() {
         let hashtag_tag = this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
-        this.utils.logger(LOG.INFO, "like", "current hashtag " + hashtag_tag);
+        this.utils.logger(LOG.INFO, "comment", "current hashtag " + hashtag_tag);
         try {
             await this.bot.goto('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
         } catch (err) {
-            this.utils.logger(LOG.ERROR, "like", "goto " + err);
+            this.utils.logger(LOG.ERROR, "comment", "goto " + err);
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        await this.utils.screenshot("like", "last_hashtag");
+        await this.utils.screenshot("comment", "last_hashtag");
     }
 
     /**
-     * likemode_realistic: Open Photo
+     * commentmode_classic: Open Photo
      * =====================
      * Open url of photo and cache urls from hashtag page in array
      *
      */
     async like_get_urlpic(cache_hashtag) {
-        this.utils.logger(LOG.INFO, "like", "like_get_urlpic");
+        this.utils.logger(LOG.INFO, "comment", "like_get_urlpic");
 
         let photo_url = "";
 
@@ -63,36 +70,36 @@ class Likemode_realistic {
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
                 if (this.config.debug == true)
-                    this.utils.logger(LOG.DEBUG, "like", "array photos " + cache_hashtag);
+                    this.utils.logger(LOG.DEBUG, "comment", "array photos " + cache_hashtag);
                 do {
                     photo_url = cache_hashtag.pop();
                 } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
 
-                this.utils.logger(LOG.INFO, "like", "current photo url " + photo_url);
+                this.utils.logger(LOG.INFO, "comment", "current photo url " + photo_url);
                 if (typeof photo_url === "undefined")
-                    this.utils.logger(LOG.WARNING, "like", "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
+                    this.utils.logger(LOG.WARNING, "comment", "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
                 await this.bot.goto(photo_url);
             } catch (err) {
                 cache_hashtag = [];
-                this.utils.logger(LOG.ERROR, "like", "like_get_urlpic error" + err);
-                await this.utils.screenshot("like", "like_get_urlpic_error");
+                this.utils.logger(LOG.ERROR, "comment", "like_get_urlpic error" + err);
+                await this.utils.screenshot("comment", "like_get_urlpic_error");
             }
         } else {
             do {
                 photo_url = cache_hashtag.pop();
             } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
 
-            this.utils.logger(LOG.INFO, "like", "current photo url from cache " + photo_url);
+            this.utils.logger(LOG.INFO, "comment", "current photo url from cache " + photo_url);
 
             this.utils.sleep(this.utils.random_interval(4, 8));
 
             try {
                 await this.bot.goto(photo_url);
             } catch (err) {
-                this.utils.logger(LOG.ERROR, "like", "goto " + err);
+                this.utils.logger(LOG.ERROR, "comment", "goto " + err);
             }
         }
 
@@ -102,37 +109,39 @@ class Likemode_realistic {
     }
 
     /**
-     * likemode_realistic: Love me
+     * commentmode_classic: Love me
      * =====================
-     * Click on heart and verify if instagram not (soft) ban you
+     * leave a comment under the photo
      *
      */
-    async like_click_heart() {
-        this.utils.logger(LOG.INFO, "like", "try heart like");
+    async comment() {
+        this.utils.logger(LOG.INFO, "comment", "try leave comment");
 
-        let status = "";
-        let heart = "";
-
+        let texterea = "";
+        let commentAreaElem = 'main article:nth-child(1) section:nth-child(5) form textarea';
+        let nickUnderPhoto = `main article:nth-child(1) div:nth-child(3) div:nth-child(3) ul li a[title="${this.config.instagram_username}"]`;
         try {
-            heart = await this.bot.$('.coreSpriteHeartOpen');
-            if (heart != null) {
+            texterea = await this.bot.$(commentAreaElem);
+            if (texterea != null) {
                 this.status.CURRENT = this.status.OK;
             } else {
                 this.status.CURRENT = this.status.ERROR;
             }
 
-            if (this.status.CURRENT == this.status.OK) {
-                await this.bot.waitForSelector('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
-                let button = await this.bot.$('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
+            if (this.status.CURRENT === this.status.OK) {
+                await this.bot.waitForSelector(commentAreaElem);
+                let button = await this.bot.$(commentAreaElem);
                 await button.click();
+                await this.bot.type(commentAreaElem, this.getRandomComment(), { delay: 100 });
+                await button.press('Enter');
             } else {
-                this.utils.logger(LOG.INFO, "like", "bot like this photo in before loop, use hashtag with more new photos");
+                this.utils.logger(LOG.INFO, "comment", "bot is unable to comment on this photo");
                 this.status.CURRENT = this.status.ERROR;
             }
         } catch (err) {
-            if (this.config.debug == true)
-                this.utils.logger(LOG.DEBUG, "like", err);
-            this.utils.logger(LOG.INFO, "like", "bot like this photo in before loop, use hashtag with more new photos");
+            if (this.config.debug === true)
+                this.utils.logger(LOG.DEBUG, "comment", err);
+            this.utils.logger(LOG.INFO, "comment", "bot is unable to comment on this photo");
             this.status.CURRENT = this.status.ERROR;
         }
 
@@ -142,53 +151,53 @@ class Likemode_realistic {
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        await this.utils.screenshot("like", "last_like");
+        await this.utils.screenshot("comment", "last_comment");
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        if (this.status.CURRENT == this.status.OK) {
+        if (this.status.CURRENT === this.status.OK) {
             try {
-                heart = await this.bot.$('.coreSpriteHeartOpen');
+                texterea = await this.bot.$(nickUnderPhoto);
 
-                if (heart == null) {
+                if (texterea != null) {
                     this.status.CURRENT = this.status.OK;
                 } else {
                     this.status.CURRENT = this.status.ERROR;
                 }
 
                 if (this.status.CURRENT == this.status.ERROR) {
-                    this.utils.logger(LOG.WARNING, "like", "</3");
-                    this.utils.logger(LOG.WARNING, "like", "error bot :( not like photo, now bot sleep 5-10min");
-                    this.utils.logger(LOG.WARNING, "like", "You are in possible soft ban... If this message appear all time stop bot for 24h...");
+                    this.utils.logger(LOG.WARNING, "comment", "</3");
+                    this.utils.logger(LOG.WARNING, "comment", "error bot :( not comment under photo, now bot sleep 5-10min");
+                    this.utils.logger(LOG.WARNING, "comment", "You are in possible soft ban... If this message appear all time stop bot for 24h...");
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.status.CURRENT == this.status.OK) {
-                    this.utils.logger(LOG.INFO, "like", "<3");
+                    this.utils.logger(LOG.INFO, "comment", "<3");
                 }
             } catch (err) {
                 if (this.config.debug == true)
-                    this.utils.logger(LOG.DEBUG, "like", err);
+                    this.utils.logger(LOG.DEBUG, "comment", err);
                 this.status.CURRENT = this.status.ERROR;
             }
         } else {
-            this.utils.logger(LOG.WARNING, "like", "</3");
-            this.utils.logger(LOG.WARNING, "like", "You like this previously, change hashtag ig have few photos");
+            this.utils.logger(LOG.WARNING, "comment", "</3");
+            this.utils.logger(LOG.WARNING, "comment", "You like this previously, change hashtag ig have few photos");
             this.status.CURRENT = 3;
         }
 
         this.utils.sleep(this.utils.random_interval(2, 5));
 
-        await this.utils.screenshot("like", "last_like_after");
+        await this.utils.screenshot("comment", "last_comment_after");
 
         return this.status.CURRENT;
     }
 
     /**
-     * LikemodeClassic Flow
+     * CommentModeClassic Flow
      * =====================
      *
      */
     async start() {
-        this.utils.logger(LOG.INFO, "likemode", "realistic");
+        this.utils.logger(LOG.INFO, "commentmode", "classic");
 
         let today = "";
         let like_status;
@@ -199,11 +208,15 @@ class Likemode_realistic {
 
         do {
             today = new Date();
-            this.utils.logger(LOG.INFO, "likemode", "time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes())));
-            if (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes()) >= (this.config.bot_sleep_night).replace(":", "")) {
+            let hour = today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '');
+            let minutes = today.getMinutes();
+
+            this.utils.logger(LOG.INFO, "comment_mode", `time night: ${hour}:${minutes}`);
+
+            if (parseInt(hour + minutes) >= (this.config.bot_sleep_night).replace(":", "")) {
                 t1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
-                this.utils.logger(LOG.INFO, "likemode", "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
-                this.utils.logger(LOG.INFO, "likemode", "cache array size " + cache_hashtag.length);
+                this.utils.logger(LOG.INFO, "comment_mode", "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
+                this.utils.logger(LOG.INFO, "comment_mode", "cache array size " + cache_hashtag.length);
                 if (cache_hashtag.length <= 0)
                     await this.like_open_hashtagpage();
 
@@ -213,23 +226,22 @@ class Likemode_realistic {
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
-                like_status = await this.like_click_heart();
+                like_status = await this.comment();
 
                 if (cache_hashtag.length < 9 || like_status == 3) //remove popular photos
                     cache_hashtag = [];
 
                 if (cache_hashtag.length <= 0 && like_status != 3) {
-                    this.utils.logger(LOG.INFO, "likemode", "finish fast like, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
+                    this.utils.logger(LOG.INFO, "comment_mode", "finish fast comment, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
                     cache_hashtag = [];
                     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
                 }
             } else {
-                this.utils.logger("[INFO]", "likemode", "is night, bot sleep");
+                this.utils.logger(LOG.INFO, "comment_mode", "is night, bot sleep");
                 this.utils.sleep(this.utils.random_interval(60 * 4, 60 * 5));
             }
         } while (true);
     }
-
 }
 
-module.exports = (bot, config, utils) => { return new Likemode_realistic(bot, config, utils); };
+module.exports = (bot, config, utils) => { return new CommentMode_classic(bot, config, utils); };

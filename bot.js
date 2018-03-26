@@ -44,7 +44,11 @@ const LOG = require('./modules/logger/types');
      * If not exist rename config.js.tmpl to config.js and change strings
      *
      */
-    const browser = await puppeteer.launch({headless: config.chrome_headless, args: config.chrome_options});
+    const browser = await puppeteer.launch({
+        headless: config.chrome_headless,
+        args: config.chrome_options,
+        executablePath: config.executablePath
+    });
     const bot = await browser.newPage();
 
     /**
@@ -61,6 +65,7 @@ const LOG = require('./modules/logger/types');
     let likemode_superlike  = require(__dirname + '/modules/likemode_superlike.js')(bot, config, utils);
     let fdfmode_classic     = require(__dirname + '/modules/fdfmode_classic.js')(bot, config, utils);
     let fdfmode_defollowall = require(__dirname + '/modules/fdfmode_defollowall.js')(bot, config, utils);
+    let comment_mode        = require(__dirname + '/modules/commentmode_classic.js')(bot, config, utils);
 
     /**
      * Bot variables
@@ -92,6 +97,8 @@ const LOG = require('./modules/logger/types');
             await fdfmode_classic.start(bot, config, utils);
         else if (config.bot_mode == "fdfmode_defollowall")
             await fdfmode_defollowall.start(bot, config, utils);
+        else if (config.bot_mode == "comment_mode")
+            await comment_mode.start();
     }
 
     /**
