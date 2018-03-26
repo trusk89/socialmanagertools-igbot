@@ -119,7 +119,7 @@ class CommentMode_classic{
 
         let texterea = "";
         let commentAreaElem = 'main article:nth-child(1) section:nth-child(5) form textarea';
-
+        let nickUnderPhoto = `main article:nth-child(1) div:nth-child(3) div:nth-child(3) ul li a[title="${this.config.instagram_username}"]`;
         try {
             texterea = await this.bot.$(commentAreaElem);
             if (texterea != null) {
@@ -135,13 +135,13 @@ class CommentMode_classic{
                 await this.bot.type(commentAreaElem, this.getRandomComment(), { delay: 100 });
                 await button.press('Enter');
             } else {
-                this.utils.logger(LOG.INFO, "comment", "bot like this photo in before loop, use hashtag with more new photos");
+                this.utils.logger(LOG.INFO, "comment", "bot is unable to comment on this photo");
                 this.status.CURRENT = this.status.ERROR;
             }
         } catch (err) {
             if (this.config.debug === true)
                 this.utils.logger(LOG.DEBUG, "comment", err);
-            this.utils.logger(LOG.INFO, "comment", "bot like this photo in before loop, use hashtag with more new photos");
+            this.utils.logger(LOG.INFO, "comment", "bot is unable to comment on this photo");
             this.status.CURRENT = this.status.ERROR;
         }
 
@@ -157,7 +157,7 @@ class CommentMode_classic{
 
         if (this.status.CURRENT === this.status.OK) {
             try {
-                texterea = await this.bot.$(commentAreaElem);
+                texterea = await this.bot.$(nickUnderPhoto);
 
                 if (texterea == null) {
                     this.status.CURRENT = this.status.OK;
@@ -167,7 +167,7 @@ class CommentMode_classic{
 
                 if (this.status.CURRENT == this.status.ERROR) {
                     this.utils.logger(LOG.WARNING, "comment", "</3");
-                    this.utils.logger(LOG.WARNING, "comment", "error bot :( not like photo, now bot sleep 5-10min");
+                    this.utils.logger(LOG.WARNING, "comment", "error bot :( not comment under photo, now bot sleep 5-10min");
                     this.utils.logger(LOG.WARNING, "comment", "You are in possible soft ban... If this message appear all time stop bot for 24h...");
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.status.CURRENT == this.status.OK) {
