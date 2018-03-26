@@ -159,7 +159,7 @@ class CommentMode_classic{
             try {
                 texterea = await this.bot.$(nickUnderPhoto);
 
-                if (texterea == null) {
+                if (texterea != null) {
                     this.status.CURRENT = this.status.OK;
                 } else {
                     this.status.CURRENT = this.status.ERROR;
@@ -208,7 +208,7 @@ class CommentMode_classic{
 
         do {
             today = new Date();
-            let hour = parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : ''));
+            let hour = today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '');
             let minutes = today.getMinutes();
 
             this.utils.logger(LOG.INFO, "comment_mode", `time night: ${hour}:${minutes}`);
