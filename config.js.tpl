@@ -27,4 +27,9 @@ module.exports = {
     // Puppeteer configs
     "chrome_headless" : false,
     "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
+    "comment_mode":{
+        "comments":[
+
+        ]
+    }
 };
