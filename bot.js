@@ -34,6 +34,7 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
 const config = require(__dirname + '/config');
+const LOG = require('./modules/logger/types');
 
 (async() => {
     /**
@@ -114,7 +115,7 @@ const config = require(__dirname + '/config');
             twofa_status = await twofa.start();
         }
 
-        utils.logger("[INFO]", "twofa", "status " + twofa_status);
+        utils.logger(LOG.INFO, "twofa", "status " + twofa_status);
 
         if (twofa_status >= 1) {
             await switch_mode(bot, config, utils, likemode_classic, likemode_realistic);
