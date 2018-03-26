@@ -1,3 +1,5 @@
+const LOG = require('../modules/logger/types');
+
 /**
  * Login Flow
  * =====================
@@ -30,7 +32,7 @@ class Login {
      *
      */
     async open_loginpage() {
-        this.utils.logger("[INFO]", "login", "open_loginpage");
+        this.utils.logger(LOG.INFO, "login", "open_loginpage");
 
         await this.bot.goto('https://www.instagram.com/accounts/login/');
     }
@@ -42,7 +44,7 @@ class Login {
      *
      */
     async set_username() {
-        this.utils.logger("[INFO]", "login", "set_username");
+        this.utils.logger(LOG.INFO, "login", "set_username");
 
         await this.bot.waitForSelector('input[name="username"]');
         await this.bot.type('input[name="username"]', this.config.instagram_username, { delay: 100 });
@@ -55,7 +57,7 @@ class Login {
      *
      */
     async set_password() {
-        this.utils.logger("[INFO]", "login", "set_password");
+        this.utils.logger(LOG.INFO, "login", "set_password");
 
         await this.bot.waitForSelector('input[name="password"]');
         await this.bot.type('input[name="password"]', this.config.instagram_password, { delay: 100 });
@@ -68,7 +70,7 @@ class Login {
      *
      */
     async submitform() {
-        this.utils.logger("[INFO]", "login", "submit");
+        this.utils.logger(LOG.INFO, "login", "submit");
 
         await this.bot.waitForSelector('form button');
         let button = await this.bot.$('form button');
@@ -84,7 +86,7 @@ class Login {
      *
      */
     async submitverify() {
-        this.utils.logger("[INFO]", "login", "checkerrors");
+        this.utils.logger(LOG.INFO, "login", "checkerrors");
 
         let text = "";
 
@@ -102,10 +104,10 @@ class Login {
             let html_response = await this.bot.evaluate(body => body.innerHTML, text);
             await text.dispose();
 
-            this.utils.logger("[ERROR]", "login", "Error: " + html_response + " (restart bot and retry...)");
+            this.utils.logger(LOG.ERROR, "login", "Error: " + html_response + " (restart bot and retry...)");
             await this.utils.screenshot("login", "checkerrors_error");
         } else {
-            this.utils.logger("[INFO]", "login", "password is correct");
+            this.utils.logger(LOG.INFO, "login", "password is correct");
             await this.utils.screenshot("login", "checkerrors");
         }
 
@@ -120,7 +122,7 @@ class Login {
      *
      */
     async start(login_status) {
-        this.utils.logger("[INFO]", "login", "loading...");
+        this.utils.logger(LOG.INFO, "login", "loading...");
 
         await this.open_loginpage();
 
@@ -139,7 +141,7 @@ class Login {
         this.utils.sleep(this.utils.random_interval(4, 8));
 
         login_status = await this.submitverify();
-        this.utils.logger("[INFO]", "login", "login_status is " + login_status);
+        this.utils.logger(LOG.INFO, "login", "login_status is " + login_status);
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 

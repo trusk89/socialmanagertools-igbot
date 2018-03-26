@@ -1,3 +1,5 @@
+const LOG = require('../modules/logger/types');
+
 /**
  * Two Factor Authentication (2FA) Flow
  * =====================
@@ -32,7 +34,7 @@ class Twofa {
      *
      */
     async requestpin() {
-        this.utils.logger("[WARNING]", "twofa", "please insert pin in loginpin.txt and wait 2-3 minutes... (tic... tac... tic... tac... tic...)");
+        this.utils.logger(LOG.WARNING, "twofa", "please insert pin in loginpin.txt and wait 2-3 minutes... (tic... tac... tic... tac... tic...)");
 
         let button = await this.bot.$('form button');
         await button.click();
@@ -45,7 +47,7 @@ class Twofa {
      *
      */
     async choice_email() {
-        this.utils.logger("[INFO]", "twofa", "try switch to phone email");
+        this.utils.logger(LOG.INFO, "twofa", "try switch to phone email");
 
         let radio = await this.bot.$('section form label[for="choice_1"]');
         await radio.click();
@@ -58,7 +60,7 @@ class Twofa {
      *
      */
     async choice_sms() {
-        this.utils.logger("[INFO]", "twofa", "try switch to phone sms (if possible)");
+        this.utils.logger(LOG.INFO, "twofa", "try switch to phone sms (if possible)");
 
         let radio = await this.bot.$('section form label[for="choice_0"]');
         await radio.click();
@@ -88,7 +90,7 @@ class Twofa {
      *
      */
     async readpin(input) {
-        this.utils.logger("[INFO]", "twofa", "readpin");
+        this.utils.logger(LOG.INFO, "twofa", "readpin");
 
         const fs = require('fs');
         let data = fs.readFileSync(__dirname + "/../loginpin.txt", "utf8");
@@ -108,14 +110,14 @@ class Twofa {
      *
      */
     async submitform() {
-        this.utils.logger("[INFO]", "twofa", "submit");
+        this.utils.logger(LOG.INFO, "twofa", "submit");
         try {
             await this.bot.waitForSelector('form button');
             let button = await this.bot.$('form button');
             await button.click();
         } catch (err) {
             if (this.config.debug == true)
-                this.utils.logger("[DEBUG]", "twofa", err);
+                this.utils.logger(LOG.DEBUG, "twofa", err);
         }
     }
 
@@ -140,10 +142,10 @@ class Twofa {
         }
 
         if (this.status.CURRENT == this.status.STOP_BOT) {
-            this.utils.logger("[ERROR]", "twofa", "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
+            this.utils.logger(LOG.ERROR, "twofa", "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
             await this.utils.screenshot("twofa", "submitverify_error");
         } else if (this.status.CURRENT == this.status.OK) {
-            this.utils.logger("[INFO]", "twofa", "pin is ok");
+            this.utils.logger(LOG.INFO, "twofa", "pin is ok");
             await this.utils.screenshot("twofa", "submitverify_ok");
         }
 
@@ -161,10 +163,10 @@ class Twofa {
             }
 
             if (this.status.CURRENT == this.status.STOP_BOT) {
-                this.utils.logger("[ERROR]", "twofa", "instagram error... auto logout... restart bot...");
+                this.utils.logger(LOG.ERROR, "twofa", "instagram error... auto logout... restart bot...");
                 await this.utils.screenshot("twofa", "submitverify_error2");
             } else if (this.status.CURRENT == this.status.OK) {
-                this.utils.logger("[INFO]", "twofa", "instagram no have a crash");
+                this.utils.logger(LOG.ERROR, "twofa", "instagram no have a crash");
                 await this.utils.screenshot("twofa", "submitverify_ok2");
             }
         }
@@ -180,7 +182,7 @@ class Twofa {
      *
      */
     async start_twofa_location_check() {
-        this.utils.logger("[INFO]", "twofa", "instagram request pin (bad location)?");
+        this.utils.logger(LOG.INFO, "twofa", "instagram request pin (bad location)?");
 
         try {
             let attr = await this.bot.$('#choice_1');
@@ -194,15 +196,15 @@ class Twofa {
         }
 
         if (this.status.CURRENT == this.status.OK) {
-            this.utils.logger("[INFO]", "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
+            this.utils.logger(LOG.INFO, "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
             await this.utils.screenshot("twofa", "check_pin_request");
         } else {
-            this.utils.logger("[INFO]", "twofa", "no, try second verify");
+            this.utils.logger(LOG.INFO, "twofa", "no, try second verify");
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        this.utils.logger("[INFO]", "twofa", "status: " + this.status.CURRENT);
+        this.utils.logger(LOG.INFO, "twofa", "status: " + this.status.CURRENT);
 
         return this.status.CURRENT;
     }
@@ -213,7 +215,7 @@ class Twofa {
      *
      */
     async start_twofa_check() {
-        this.utils.logger("[INFO]", "twofa", "instagram request pin (2fa enabled)?");
+        this.utils.logger(LOG.INFO, "twofa", "instagram request pin (2fa enabled)?");
 
         try {
             let attr = await this.bot.$('input[name="verificationCode"]');
@@ -227,18 +229,18 @@ class Twofa {
         }
 
         if (this.status.CURRENT == this.status.OK_NEXT_VERIFY) {
-            this.utils.logger("[INFO]", "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
+            this.utils.logger(LOG.INFO, "twofa", "yes, instagram require security pin... You can not pass!1!111! (cit.)");
             await this.utils.screenshot("twofa", "check_pin_request");
 
         } else {
-            this.utils.logger("[INFO]", "twofa", "no, bot is at work (started)... Wait...");
-            this.utils.logger("[INFO]", "twofa", "starting current mode");
+            this.utils.logger(LOG.INFO, "twofa", "no, bot is at work (started)... Wait...");
+            this.utils.logger(LOG.INFO, "twofa", "starting current mode");
             await this.utils.screenshot("twofa", "check_nopin");
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        this.utils.logger("[INFO]", "twofa", "status: " + this.status.CURRENT);
+        this.utils.logger(LOG.INFO, "twofa", "status: " + this.status.CURRENT);
 
         return this.status.CURRENT;
     }
@@ -249,7 +251,7 @@ class Twofa {
      *
      */
     async start_twofa_location() {
-        this.utils.logger("[INFO]", "twofa (location)", "loading...");
+        this.utils.logger(LOG.INFO, "twofa (location)", "loading...");
 
         await this.sendpin();
 
@@ -276,9 +278,9 @@ class Twofa {
      *
      */
     async start() {
-        this.utils.logger("[INFO]", "twofa (enabled)", "loading...");
+        this.utils.logger(LOG.INFO, "twofa (enabled)", "loading...");
 
-        this.utils.logger("[WARNING]", "twofa", "please insert pin in loginpin.txt and wait 2-3 minutes... (tic... tac... tic... tac... tic...)");
+        this.utils.logger(LOG.WARNING, "twofa", "please insert pin in loginpin.txt and wait 2-3 minutes... (tic... tac... tic... tac... tic...)");
         this.utils.sleep(this.utils.random_interval(120, 180));
         await this.readpin("verificationCode");
         this.utils.sleep(this.utils.random_interval(4, 8));

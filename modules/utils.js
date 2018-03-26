@@ -1,3 +1,5 @@
+const LOG = require('../modules/logger/types');
+
 /**
  * Utils
  * =====================
@@ -37,7 +39,7 @@ class Utils {
         try{
             await this.bot.screenshot({ path: './logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.jpg' });
         } catch (err) {
-            this.logger("[WARNING]", "screenshot", "error "+ err);
+            this.logger(LOG.WARNING, "screenshot", "error "+ err);
         }
         
     }
