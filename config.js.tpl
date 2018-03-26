@@ -28,6 +28,8 @@ module.exports = {
     // Puppeteer configs
     "chrome_headless" : false,
     "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
+    // example for Mac OS : '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+    "executablePath":''
     "comment_mode":{
         "comments":[
 

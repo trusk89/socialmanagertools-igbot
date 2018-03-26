@@ -44,8 +44,10 @@ const LOG = require('./modules/logger/types');
      * If not exist rename config.js.tmpl to config.js and change strings
      *
      */
-    const browser = await puppeteer.launch({headless: config.chrome_headless, args: config.chrome_options,
-        executablePath: '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+    const browser = await puppeteer.launch({
+        headless: config.chrome_headless,
+        args: config.chrome_options,
+        executablePath: config.executablePath
     });
     const bot = await browser.newPage();
 
