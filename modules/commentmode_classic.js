@@ -33,14 +33,22 @@ class CommentMode_classic extends ManagerState{
         let comments = this.config.comment_mode.comments;
          return comments[Math.floor(Math.random()*comments.length)];
     }
+
+    /**
+     * Get random hash tag from config file
+     * @return {string}
+     */
+    getRandomHashTag(){
+        return this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
+    }
     /**
      * commentmode_classic: Open Hashtag
      * =====================
      * Get random hashtag from array and open page
      *
      */
-    async like_open_hashtagpage() {
-        let hashtag_tag = this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
+    async openPage() {
+        let hashtag_tag = this.getRandomHashTag();
         this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashtag_tag);
 
         try {
@@ -73,8 +81,9 @@ class CommentMode_classic extends ManagerState{
 
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
-                if (this.config.debug === true)
+                if (this.utils.isDebug())
                     this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + cache_hashtag);
+
                 do {
                     photo_url = cache_hashtag.pop();
                 } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
@@ -144,7 +153,7 @@ class CommentMode_classic extends ManagerState{
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } catch (err) {
-            if (this.config.debug === true)
+            if (this.utils.isDebug())
                 this.utils.logger(LOG.DEBUG, LOG_NAME, err);
             this.utils.logger(LOG.INFO, LOG_NAME, "bot is unable to comment on this photo");
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
@@ -179,7 +188,7 @@ class CommentMode_classic extends ManagerState{
                     this.utils.logger(LOG.INFO, LOG_NAME, "<3");
                 }
             } catch (err) {
-                if (this.config.debug === true)
+                if (this.utils.isDebug())
                     this.utils.logger(LOG.DEBUG, LOG_NAME, err);
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);;
             }
@@ -220,7 +229,7 @@ class CommentMode_classic extends ManagerState{
                 this.utils.logger(LOG.INFO, LOG_MODE, "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
                 this.utils.logger(LOG.INFO, LOG_MODE, "cache array size " + cache_hashtag.length);
                 if (cache_hashtag.length <= 0)
-                    await this.like_open_hashtagpage();
+                    await this.openPage();
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 

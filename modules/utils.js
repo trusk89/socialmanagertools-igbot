@@ -65,6 +65,13 @@ class Utils {
         sleep(sec);
     }
 
+    /**
+     * Check is debug
+     * @return {boolean}
+     */
+    isDebug(){
+        return this.config.debug === true;
+    }
 }
 
 module.exports = (bot, config, utils) => { return new Utils(bot, config, utils); };
