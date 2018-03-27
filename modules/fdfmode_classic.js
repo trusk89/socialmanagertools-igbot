@@ -114,7 +114,7 @@ class Fdfmode_classic {
 
         let status = "";
         let heart = "";
-
+        let selectorHeart = 'main article:nth-child(1) section:nth-child(1) a:nth-child(1)';
         try {
             heart = await this.bot.$('.coreSpriteHeartOpen');
             if (heart != null) {
@@ -123,16 +123,16 @@ class Fdfmode_classic {
                 this.status.CURRENT = this.status.ERROR;
             }
 
-            if (this.status.CURRENT == this.status.OK) {
-                await this.bot.waitForSelector('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
-                let button = await this.bot.$('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
+            if (this.status.CURRENT === this.status.OK) {
+                await this.bot.waitForSelector(selectorHeart);
+                let button = await this.bot.$(selectorHeart);
                 await button.click();
             } else {
                 this.utils.logger(LOG.INFO, LOG_NAME, "bot like this photo in before loop, use hashtag with more new photos");
                 this.status.CURRENT = this.status.ERROR;
             }
         } catch (err) {
-            if (this.config.debug == true)
+            if (this.config.debug === true)
                 this.utils.logger(LOG.DEBUG, LOG_NAME, err);
             this.utils.logger(LOG.INFO, LOG_NAME, "bot like this photo in before loop, use hashtag with more new photos");
             this.status.CURRENT = this.status.ERROR;
