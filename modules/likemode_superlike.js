@@ -1,4 +1,5 @@
 const LOG = require('../modules/logger/types');
+const LOG_NAME = 'like';
 
 /**
  * MODE: likemode_superlike
@@ -31,16 +32,16 @@ class Likemode_superlike {
      */
     async like_open_hashtagpage() {
         let hashtag_tag = this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
-        this.utils.logger(LOG.INFO, "like", "current hashtag " + hashtag_tag);
+        this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashtag_tag);
         try {
             await this.bot.goto('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
         } catch (err) {
-            this.utils.logger(LOG.ERROR, "like", "goto " + err);
+            this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        await this.utils.screenshot("like", "last_hashtag");
+        await this.utils.screenshot(LOG_NAME, "last_hashtag");
     }
 
     /**
@@ -50,7 +51,7 @@ class Likemode_superlike {
      *
      */
     async like_get_urlpic(cache_hashtag) {
-        this.utils.logger(LOG.INFO, "like", "like_get_urlpic");
+        this.utils.logger(LOG.INFO, LOG_NAME, "like_get_urlpic");
 
         let photo_url = "";
 
@@ -63,36 +64,36 @@ class Likemode_superlike {
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
                 if (this.config.debug == true)
-                    this.utils.logger(LOG.DEBUG, "like", "array photos " + cache_hashtag);
+                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + cache_hashtag);
                 do {
                     photo_url = cache_hashtag.pop();
                 } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
 
-                this.utils.logger(LOG.INFO, "like", "current photo url " + photo_url);
+                this.utils.logger(LOG.INFO, LOG_NAME, "current photo url " + photo_url);
                 if (typeof photo_url === "undefined")
-                    this.utils.logger(LOG.WARNING, "like", "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
                 await this.bot.goto(photo_url);
             } catch (err) {
                 cache_hashtag = [];
-                this.utils.logger(LOG.ERROR, "like", "like_get_urlpic error" + err);
-                await this.utils.screenshot("like", "like_get_urlpic_error");
+                this.utils.logger(LOG.ERROR, LOG_NAME, "like_get_urlpic error" + err);
+                await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
             }
         } else {
             do {
                 photo_url = cache_hashtag.pop();
             } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
 
-            this.utils.logger(LOG.INFO, "like", "current photo url from cache " + photo_url);
+            this.utils.logger(LOG.INFO, LOG_NAME, "current photo url from cache " + photo_url);
 
             this.utils.sleep(this.utils.random_interval(4, 8));
 
             try {
                 await this.bot.goto(photo_url);
             } catch (err) {
-                this.utils.logger(LOG.ERROR, "like", "goto " + err);
+                this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
             }
         }
 
@@ -108,7 +109,7 @@ class Likemode_superlike {
      *
      */
     async like_click_heart() {
-        this.utils.logger(LOG.INFO, "like", "try heart like");
+        this.utils.logger(LOG.INFO, LOG_NAME, "try heart like");
 
         let status = "";
         let heart = "";
@@ -126,13 +127,13 @@ class Likemode_superlike {
                 let button = await this.bot.$('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
                 await button.click();
             } else {
-                this.utils.logger(LOG.INFO, "like", "bot like this photo in before loop, use hashtag with more new photos");
+                this.utils.logger(LOG.INFO, LOG_NAME, "bot like this photo in before loop, use hashtag with more new photos");
                 this.status.CURRENT = this.status.ERROR;
             }
         } catch (err) {
             if (this.config.debug == true)
-                this.utils.logger(LOG.DEBUG, "like", err);
-            this.utils.logger(LOG.INFO, "like", "bot like this photo in before loop, use hashtag with more new photos");
+                this.utils.logger(LOG.DEBUG, LOG_NAME, err);
+            this.utils.logger(LOG.INFO, LOG_NAME, "bot like this photo in before loop, use hashtag with more new photos");
             this.status.CURRENT = this.status.ERROR;
         }
 
@@ -142,7 +143,7 @@ class Likemode_superlike {
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        await this.utils.screenshot("like", "last_like");
+        await this.utils.screenshot(LOG_NAME, "last_like");
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
@@ -157,27 +158,27 @@ class Likemode_superlike {
                 }
 
                 if (this.status.CURRENT == this.status.ERROR) {
-                    this.utils.logger(LOG.WARNING, "like", "</3");
-                    this.utils.logger(LOG.WARNING, "like", "error bot :( not like photo, now bot sleep 5-10min");
-                    this.utils.logger(LOG.WARNING, "like", "You are in possible soft ban... If this message appear all time stop bot for 24h...");
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "error bot :( not like photo, now bot sleep 5-10min");
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "You are in possible soft ban... If this message appear all time stop bot for 24h...");
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.status.CURRENT == this.status.OK) {
-                    this.utils.logger(LOG.INFO, "like", "<3");
+                    this.utils.logger(LOG.INFO, LOG_NAME, "<3");
                 }
             } catch (err) {
                 if (this.config.debug == true)
-                    this.utils.logger(LOG.DEBUG, "like", err);
+                    this.utils.logger(LOG.DEBUG, LOG_NAME, err);
                 this.status.CURRENT = this.status.ERROR;
             }
         } else {
-            this.utils.logger(LOG.WARNING, "like", "</3");
-            this.utils.logger(LOG.WARNING, "like", "You like this previously, change hashtag ig have few photos");
+            this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
+            this.utils.logger(LOG.WARNING, LOG_NAME, "You like this previously, change hashtag ig have few photos");
             this.status.CURRENT = 3;
         }
 
         this.utils.sleep(this.utils.random_interval(2, 5));
 
-        await this.utils.screenshot("like", "last_like_after");
+        await this.utils.screenshot(LOG_NAME, "last_like_after");
 
         return this.status.CURRENT;
     }
