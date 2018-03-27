@@ -23,6 +23,8 @@ class CommentMode_classic extends ManagerState{
         this.bot = bot;
         this.config = config;
         this.utils = utils;
+
+        this.cacheHashTags = [];
     }
 
     /**
@@ -35,24 +37,17 @@ class CommentMode_classic extends ManagerState{
     }
 
     /**
-     * Get random hash tag from config file
-     * @return {string}
-     */
-    getRandomHashTag(){
-        return this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
-    }
-    /**
      * commentmode_classic: Open Hashtag
      * =====================
      * Get random hashtag from array and open page
      *
      */
     async openPage() {
-        let hashtag_tag = this.getRandomHashTag();
-        this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashtag_tag);
+        let hashTag = this.utils.getRandomHashTag();
+        this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashTag);
 
         try {
-            await this.bot.goto('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
+            await this.bot.goto('https://www.instagram.com/explore/tags/' + hashTag + '/');
         } catch (err) {
             this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
         }
@@ -68,25 +63,25 @@ class CommentMode_classic extends ManagerState{
      * Open url of photo and cache urls from hashtag page in array
      *
      */
-    async like_get_urlpic(cache_hashtag) {
+    async like_get_urlpic() {
         this.utils.logger(LOG.INFO, LOG_NAME, "like_get_urlpic");
 
         let photo_url = "";
 
-        if (cache_hashtag.length <= 0) {
+        if (this.cacheHashTags.length <= 0) {
             try {
-                cache_hashtag = await this.bot.$$eval('article a', hrefs => hrefs.map((a) => {
+                this.cacheHashTags = await this.bot.$$eval('article a', hrefs => hrefs.map((a) => {
                     return a.href;
                 }));
 
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
                 if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + cache_hashtag);
+                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cacheHashTags);
 
                 do {
-                    photo_url = cache_hashtag.pop();
-                } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
+                    photo_url = this.cacheHashTags.pop();
+                } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cacheHashTags.length > 0);
 
                 this.utils.logger(LOG.INFO, LOG_NAME, "current photo url " + photo_url);
                 if (typeof photo_url === "undefined")
@@ -96,14 +91,14 @@ class CommentMode_classic extends ManagerState{
 
                 await this.bot.goto(photo_url);
             } catch (err) {
-                cache_hashtag = [];
+                this.cacheHashTags = [];
                 this.utils.logger(LOG.ERROR, LOG_NAME, "like_get_urlpic error" + err);
                 await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
             }
         } else {
             do {
-                photo_url = cache_hashtag.pop();
-            } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && cache_hashtag.length > 0);
+                photo_url = this.cacheHashTags.pop();
+            } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cacheHashTags.length > 0);
 
             this.utils.logger(LOG.INFO, LOG_NAME, "current photo url from cache " + photo_url);
 
@@ -117,8 +112,42 @@ class CommentMode_classic extends ManagerState{
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
+    }
 
-        return cache_hashtag;
+    /**
+     * Check exist element under photo
+     * @return {Promise<void>}
+     */
+    async checkLeaveComment(){
+        let nickUnderPhoto = `main article:nth-child(1) div:nth-child(3) div:nth-child(3) ul li a[title="${this.config.instagram_username}"]`;
+        if (this.isOk()) {
+            try {
+                let nick = await this.bot.$(nickUnderPhoto);
+
+                if (nick !== null) {
+                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
+                } else {
+                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+                }
+
+                if (this.isError()) {
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "error bot :( not comment under photo, now bot sleep 5-10min");
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "You are in possible soft ban... If this message appear all time stop bot for 24h...");
+                    this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
+                } else if (this.isOk()) {
+                    this.utils.logger(LOG.INFO, LOG_NAME, "<3");
+                }
+            } catch (err) {
+                if (this.utils.isDebug())
+                    this.utils.logger(LOG.DEBUG, LOG_NAME, err);
+                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+            }
+        } else {
+            this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
+            this.utils.logger(LOG.WARNING, LOG_NAME, "You like this previously, change hashtag ig have few photos");
+            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.READY);
+        }
     }
 
     /**
@@ -130,13 +159,12 @@ class CommentMode_classic extends ManagerState{
     async comment() {
         this.utils.logger(LOG.INFO, LOG_NAME, "try leave comment");
 
-        let texterea = '';
+        let textarea = '';
         let commentAreaElem = 'main article:nth-child(1) section:nth-child(5) form textarea';
-        let nickUnderPhoto = `main article:nth-child(1) div:nth-child(3) div:nth-child(3) ul li a[title="${this.config.instagram_username}"]`;
 
         try {
-            texterea = await this.bot.$(commentAreaElem);
-            if (texterea !== null) {
+            textarea = await this.bot.$(commentAreaElem);
+            if (textarea !== null) {
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
             } else {
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
@@ -168,35 +196,7 @@ class CommentMode_classic extends ManagerState{
         await this.utils.screenshot(LOG_NAME, "last_comment");
 
         this.utils.sleep(this.utils.random_interval(4, 8));
-
-        if (this.isOk()) {
-            try {
-                texterea = await this.bot.$(nickUnderPhoto);
-
-                if (texterea != null) {
-                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
-                } else {
-                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
-                }
-
-                if (this.isError()) {
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "error bot :( not comment under photo, now bot sleep 5-10min");
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "You are in possible soft ban... If this message appear all time stop bot for 24h...");
-                    this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
-                } else if (this.isOk()) {
-                    this.utils.logger(LOG.INFO, LOG_NAME, "<3");
-                }
-            } catch (err) {
-                if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, err);
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);;
-            }
-        } else {
-            this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
-            this.utils.logger(LOG.WARNING, LOG_NAME, "You like this previously, change hashtag ig have few photos");
-            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.READY);
-        }
+        await this.checkLeaveComment();
 
         this.utils.sleep(this.utils.random_interval(2, 5));
         await this.utils.screenshot(LOG_NAME, "last_comment_after");
@@ -211,11 +211,6 @@ class CommentMode_classic extends ManagerState{
         this.utils.logger(LOG.INFO, LOG_MODE, "classic");
 
         let today = "";
-        let like_status;
-        let cache_hashtag = [];
-        let t1, t2, sec, sec_min, sec_max;
-        sec_min = parseInt(86400 / this.config.bot_likeday_max);
-        sec_max = parseInt(86400 / this.config.bot_likeday_min);
 
         do {
             today = new Date();
@@ -225,26 +220,26 @@ class CommentMode_classic extends ManagerState{
             this.utils.logger(LOG.INFO, LOG_MODE, `time night: ${hour}:${minutes}`);
 
             if (parseInt(hour + minutes) >= (this.config.bot_sleep_night).replace(":", "")) {
-                t1 = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds());
                 this.utils.logger(LOG.INFO, LOG_MODE, "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
-                this.utils.logger(LOG.INFO, LOG_MODE, "cache array size " + cache_hashtag.length);
-                if (cache_hashtag.length <= 0)
+                this.utils.logger(LOG.INFO, LOG_MODE, "cache array size " + this.cacheHashTags.length);
+
+                if (this.cacheHashTags.length <= 0)
                     await this.openPage();
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
-                cache_hashtag = await this.like_get_urlpic(cache_hashtag);
+                await this.like_get_urlpic();
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
                 await this.comment();
 
-                if (cache_hashtag.length < 9 || this.isReady()) //remove popular photos
-                    cache_hashtag = [];
+                if (this.cacheHashTags.length < 9 || this.isReady()) //remove popular photos
+                    this.cacheHashTags = [];
 
-                if (cache_hashtag.length <= 0 && this.isReady()) {
+                if (this.cacheHashTags.length <= 0 && this.isReady()) {
                     this.utils.logger(LOG.INFO, LOG_MODE, "finish fast comment, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
-                    cache_hashtag = [];
+                    this.cacheHashTags = [];
                     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
                 }
             } else {

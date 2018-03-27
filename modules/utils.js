@@ -72,6 +72,14 @@ class Utils {
     isDebug(){
         return this.config.debug === true;
     }
+
+    /**
+     * Get random hash tag from config file
+     * @return {string}
+     */
+    getRandomHashTag(){
+        return this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
+    }
 }
 
 module.exports = (bot, config, utils) => { return new Utils(bot, config, utils); };
