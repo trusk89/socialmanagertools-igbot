@@ -37,6 +37,18 @@ class CommentMode_classic extends ManagerState{
     }
 
     /**
+     * Get photo url from cache
+     * @return {string} url
+     */
+    getPhotoUrl(){
+        let photo_url = "";
+        do {
+            photo_url = this.cacheHashTags.pop();
+        } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cacheHashTags.length > 0);
+        return photo_url;
+    }
+
+    /**
      * commentmode_classic: Open Hashtag
      * =====================
      * Get random hashtag from array and open page
@@ -79,9 +91,7 @@ class CommentMode_classic extends ManagerState{
                 if (this.utils.isDebug())
                     this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cacheHashTags);
 
-                do {
-                    photo_url = this.cacheHashTags.pop();
-                } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cacheHashTags.length > 0);
+                photo_url = this.getPhotoUrl();
 
                 this.utils.logger(LOG.INFO, LOG_NAME, "current photo url " + photo_url);
                 if (typeof photo_url === "undefined")
@@ -96,9 +106,7 @@ class CommentMode_classic extends ManagerState{
                 await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
             }
         } else {
-            do {
-                photo_url = this.cacheHashTags.pop();
-            } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cacheHashTags.length > 0);
+            photo_url = this.getPhotoUrl();
 
             this.utils.logger(LOG.INFO, LOG_NAME, "current photo url from cache " + photo_url);
 
@@ -210,10 +218,8 @@ class CommentMode_classic extends ManagerState{
     async start() {
         this.utils.logger(LOG.INFO, LOG_MODE, "classic");
 
-        let today = "";
-
         do {
-            today = new Date();
+            let today = new Date();
             let hour = today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '');
             let minutes = today.getMinutes();
 
