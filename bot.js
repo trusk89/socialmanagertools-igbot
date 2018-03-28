@@ -80,7 +80,7 @@ const LOG = require('./modules/logger/types');
      * Switch social algorithms, change algorithm from config.js
      *
      */
-    async function switch_mode(bot, config, utils) {
+    async function switch_mode() {
         let strategy = routes[config.bot_mode];
         if (strategy !== undefined) {
             await strategy(bot, config, utils).start();
@@ -113,7 +113,7 @@ const LOG = require('./modules/logger/types');
         utils.logger(LOG.INFO, "twofa", "status " + twofa_status);
 
         if (twofa_status >= 1) {
-            await switch_mode(bot, config, utils);
+            await switch_mode();
         }
     }
     bot.close();
