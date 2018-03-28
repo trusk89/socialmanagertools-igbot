@@ -85,18 +85,18 @@ const LOG = require('./modules/logger/types');
      * Switch social algorithms, change algorithm from config.js
      *
      */
-    async function switch_mode(bot, config, utils, likemode_classic, likemode_realistic) {
-        if (config.bot_mode == "likemode_classic")
+    async function switch_mode(bot, config, utils) {
+        if (config.bot_mode === "likemode_classic")
             await likemode_classic.start(bot, config, utils);
-        else if (config.bot_mode == "likemode_realistic")
+        else if (config.bot_mode === "likemode_realistic")
             await likemode_realistic.start(bot, config, utils);
-        else if (config.bot_mode == "likemode_superlike")
+        else if (config.bot_mode === "likemode_superlike")
             await likemode_superlike.start(bot, config, utils);
-        else if (config.bot_mode == "fdfmode_classic")
+        else if (config.bot_mode === "fdfmode_classic")
             await fdfmode_classic.start(bot, config, utils);
-        else if (config.bot_mode == "fdfmode_defollowall")
+        else if (config.bot_mode === "fdfmode_defollowall")
             await fdfmode_defollowall.start(bot, config, utils);
-        else if (config.bot_mode == "comment_mode")
+        else if (config.bot_mode === "comment_mode")
             await comment_mode.start();
     }
 
@@ -108,26 +108,24 @@ const LOG = require('./modules/logger/types');
      */
     login_status = await login.start(login_status);
     
-    if (login_status == 1) {
+    if (login_status === 1) {
         pin_status = await twofa.start_twofa_location_check();
 
-        if (pin_status == 0) {
+        if (pin_status === 0) {
             pin_status = await twofa.start_twofa_check();
         }
 
-        if (pin_status == 1) {
+        if (pin_status === 1) {
             twofa_status = await twofa.start_twofa_location();
-        } else if (pin_status == 2) {
+        } else if (pin_status === 2) {
             twofa_status = await twofa.start();
         }
 
         utils.logger(LOG.INFO, "twofa", "status " + twofa_status);
 
         if (twofa_status >= 1) {
-            await switch_mode(bot, config, utils, likemode_classic, likemode_realistic);
+            await switch_mode(bot, config, utils);
         }
     }
-
     bot.close();
-
 })();
