@@ -1,6 +1,6 @@
 {
   "name": "instagrambotjs",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "instagram bot made with love and nodejs",
   "main": "bot.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "ptkdev",
     "instagram",
     "instagram-bot",
+    "puppeteer",
     "selenium",
     "webdriverio"
   ],
@@ -29,9 +30,8 @@
   "bugs": {
     "url": "https://github.com/social-manager-tools/instagram-bot.js/issues"
   },
-  "homepage": "https://instagrambotjs.ptkdev.io",
+  "homepage": "https://instagram.bot.ptkdev.io",
   "dependencies": {
-    "path": "^0.12.7",
     "system-sleep": "^1.3.6",
     "puppeteer": "^1.0.0"
   },

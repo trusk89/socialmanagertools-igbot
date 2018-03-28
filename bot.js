@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.6.2
+ * @version:    0.6.0
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  *              You should have received a copy of the GNU General Public License
  *              along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link        Homepage:     https://instagrambotjs.ptkdev.io
+ * @link        Homepage:     https://instagram.bot.ptkdev.io
  *              GitHub Repo:  https://github.com/social-manager-tools/instagram-bot.js
  */
 
