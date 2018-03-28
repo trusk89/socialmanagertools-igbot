@@ -100,9 +100,8 @@ const LOG = require('./modules/logger/types');
     if (login_status === 1) {
         pin_status = await twofa.start_twofa_location_check();
 
-        if (pin_status === 0) {
+        if (pin_status === 0)
             pin_status = await twofa.start_twofa_check();
-        }
 
         if (pin_status === 1) {
             twofa_status = await twofa.start_twofa_location();
@@ -112,9 +111,9 @@ const LOG = require('./modules/logger/types');
 
         utils.logger(LOG.INFO, "twofa", "status " + twofa_status);
 
-        if (twofa_status >= 1) {
+        if (twofa_status >= 1)
             await switch_mode();
-        }
+
     }
     bot.close();
 })();
