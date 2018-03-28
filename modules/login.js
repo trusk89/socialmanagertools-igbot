@@ -93,7 +93,7 @@ class Login {
 
         try {
             text = await this.bot.$('#slfErrorAlert');
-            if (text != null)
+            if (text !== null)
                 this.status.CURRENT = this.status.ERROR;
             else
                 this.status.CURRENT = this.status.OK;
@@ -101,7 +101,7 @@ class Login {
             this.status.CURRENT = this.status.OK;
         }
 
-        if (this.status.CURRENT == this.status.ERROR) {
+        if (this.status.CURRENT === this.status.ERROR) {
             let html_response = await this.bot.evaluate(body => body.innerHTML, text);
             await text.dispose();
 

@@ -74,7 +74,7 @@ class Twofa {
      *
      */
     async sendpin() {
-        if (this.config.instagram_pin == "sms")
+        if (this.config.instagram_pin === "sms")
             await this.choice_sms();
 
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -142,17 +142,17 @@ class Twofa {
             this.status.CURRENT = this.status.OK;
         }
 
-        if (this.status.CURRENT == this.status.STOP_BOT) {
+        if (this.status.CURRENT === this.status.STOP_BOT) {
             this.utils.logger(LOG.ERROR, LOG_NAME, "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
             await this.utils.screenshot(LOG_NAME, "submitverify_error");
-        } else if (this.status.CURRENT == this.status.OK) {
+        } else if (this.status.CURRENT === this.status.OK) {
             this.utils.logger(LOG.INFO, LOG_NAME, "pin is ok");
             await this.utils.screenshot(LOG_NAME, "submitverify_ok");
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        if (this.status.CURRENT == this.status.OK) {
+        if (this.status.CURRENT === this.status.OK) {
             try {
                 attr = await this.bot.$('input[name="username"]');
                 if (attr != null)
@@ -163,10 +163,10 @@ class Twofa {
                 this.status.CURRENT = this.status.STOP_BOT;
             }
 
-            if (this.status.CURRENT == this.status.STOP_BOT) {
+            if (this.status.CURRENT === this.status.STOP_BOT) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "instagram error... auto logout... restart bot...");
                 await this.utils.screenshot(LOG_NAME, "submitverify_error2");
-            } else if (this.status.CURRENT == this.status.OK) {
+            } else if (this.status.CURRENT === this.status.OK) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "instagram no have a crash");
                 await this.utils.screenshot(LOG_NAME, "submitverify_ok2");
             }
@@ -188,7 +188,7 @@ class Twofa {
         try {
             let attr = await this.bot.$('#choice_1');
 
-            if (attr != null)
+            if (attr !== null)
                 this.status.CURRENT = this.status.OK;
             else
                 this.status.CURRENT = this.status.ERROR;
@@ -196,7 +196,7 @@ class Twofa {
             this.status.CURRENT = this.status.ERROR;
         }
 
-        if (this.status.CURRENT == this.status.OK) {
+        if (this.status.CURRENT === this.status.OK) {
             this.utils.logger(LOG.INFO, LOG_NAME, "yes, instagram require security pin... You can not pass!1!111! (cit.)");
             await this.utils.screenshot(LOG_NAME, "check_pin_request");
         } else {
@@ -221,7 +221,7 @@ class Twofa {
         try {
             let attr = await this.bot.$('input[name="verificationCode"]');
 
-            if (attr != null)
+            if (attr !== null)
                 this.status.CURRENT = this.status.OK_NEXT_VERIFY;
             else
                 this.status.CURRENT = this.status.ERROR;
@@ -229,7 +229,7 @@ class Twofa {
             this.status.CURRENT = this.status.ERROR;
         }
 
-        if (this.status.CURRENT == this.status.OK_NEXT_VERIFY) {
+        if (this.status.CURRENT === this.status.OK_NEXT_VERIFY) {
             this.utils.logger(LOG.INFO, LOG_NAME, "yes, instagram require security pin... You can not pass!1!111! (cit.)");
             await this.utils.screenshot(LOG_NAME, "check_pin_request");
 
