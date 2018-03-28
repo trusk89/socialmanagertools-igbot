@@ -32,7 +32,6 @@
  * 
  */
 const puppeteer = require('puppeteer');
-const path = require('path');
 const config = require(__dirname + '/config');
 const LOG = require('./modules/logger/types');
 
