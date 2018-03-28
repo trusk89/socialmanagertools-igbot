@@ -77,7 +77,7 @@ class Utils {
      * Get random hash tag from config file
      * @return {string}
      */
-    getRandomHashTag(){
+    get_random_hash_tag(){
         return this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
     }
 }

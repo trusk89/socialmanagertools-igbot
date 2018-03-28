@@ -3,7 +3,7 @@ const LOG = require('../modules/logger/types');
 const LOG_NAME = 'comment';
 const LOG_MODE = 'comment_mode';
 
-const ManagerState = require('../modules/base/state').ManagerState;
+const Manager_state = require('../modules/base/state').Manager_state;
 const STATE = require('../modules/base/state').STATE;
 const STATE_EVENTS = require('../modules/base/state').EVENTS;
 
@@ -17,7 +17,7 @@ const STATE_EVENTS = require('../modules/base/state').EVENTS;
  * @changelog:  0.1 initial release
  *
  */
-class CommentMode_classic extends ManagerState{
+class CommentMode_classic extends Manager_state{
     constructor(bot, config, utils) {
         super();
 
@@ -25,14 +25,14 @@ class CommentMode_classic extends ManagerState{
         this.config = config;
         this.utils = utils;
 
-        this.cacheHashTags = [];
+        this.cache_hash_tags = [];
     }
 
     /**
      * Get random comment from config file
      * @return string
      */
-    getRandomComment(){
+    get_random_comment(){
         let comments = this.config.comment_mode.comments;
          return comments[Math.floor(Math.random()*comments.length)];
     }
@@ -44,8 +44,8 @@ class CommentMode_classic extends ManagerState{
     getPhotoUrl(){
         let photo_url = "";
         do {
-            photo_url = this.cacheHashTags.pop();
-        } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cacheHashTags.length > 0);
+            photo_url = this.cache_hash_tags.pop();
+        } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cache_hash_tags.length > 0);
         return photo_url;
     }
 
@@ -56,7 +56,7 @@ class CommentMode_classic extends ManagerState{
      *
      */
     async openPage() {
-        let hashTag = this.utils.getRandomHashTag();
+        let hashTag = this.utils.get_random_hash_tag();
         this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashTag);
 
         try {
@@ -81,16 +81,16 @@ class CommentMode_classic extends ManagerState{
 
         let photo_url = "";
 
-        if (this.cacheHashTags.length <= 0) {
+        if (this.cache_hash_tags.length <= 0) {
             try {
-                this.cacheHashTags = await this.bot.$$eval('article a', hrefs => hrefs.map((a) => {
+                this.cache_hash_tags = await this.bot.$$eval('article a', hrefs => hrefs.map((a) => {
                     return a.href;
                 }));
 
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
                 if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cacheHashTags);
+                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cache_hash_tags);
 
                 photo_url = this.getPhotoUrl();
 
@@ -102,7 +102,7 @@ class CommentMode_classic extends ManagerState{
 
                 await this.bot.goto(photo_url);
             } catch (err) {
-                this.cacheHashTags = [];
+                this.cache_hash_tags = [];
                 this.utils.logger(LOG.ERROR, LOG_NAME, "like_get_urlpic error" + err);
                 await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
             }
@@ -181,7 +181,7 @@ class CommentMode_classic extends ManagerState{
                 await this.bot.waitForSelector(commentAreaElem);
                 let button = await this.bot.$(commentAreaElem);
                 await button.click();
-                await this.bot.type(commentAreaElem, this.getRandomComment(), { delay: 100 });
+                await this.bot.type(commentAreaElem, this.get_random_comment(), { delay: 100 });
                 await button.press('Enter');
             } else {
                 this.utils.logger(LOG.INFO, LOG_NAME, "bot is unable to comment on this photo");
@@ -226,9 +226,9 @@ class CommentMode_classic extends ManagerState{
 
             if (parseInt(hour + minutes) >= (this.config.bot_sleep_night).replace(":", "")) {
                 this.utils.logger(LOG.INFO, LOG_MODE, "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
-                this.utils.logger(LOG.INFO, LOG_MODE, "cache array size " + this.cacheHashTags.length);
+                this.utils.logger(LOG.INFO, LOG_MODE, "cache array size " + this.cache_hash_tags.length);
 
-                if (this.cacheHashTags.length <= 0)
+                if (this.cache_hash_tags.length <= 0)
                     await this.openPage();
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
@@ -239,12 +239,12 @@ class CommentMode_classic extends ManagerState{
 
                 await this.comment();
 
-                if (this.cacheHashTags.length < 9 || this.isReady()) //remove popular photos
-                    this.cacheHashTags = [];
+                if (this.cache_hash_tags.length < 9 || this.isReady()) //remove popular photos
+                    this.cache_hash_tags = [];
 
-                if (this.cacheHashTags.length <= 0 && this.isNotReady()) {
+                if (this.cache_hash_tags.length <= 0 && this.isNotReady()) {
                     this.utils.logger(LOG.INFO, LOG_MODE, "finish fast comment, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
-                    this.cacheHashTags = [];
+                    this.cache_hash_tags = [];
                     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
                 }
             } else {
