@@ -51,6 +51,13 @@ class ManagerState extends EventEmitter{
     }
 
     /**
+     * Check is not ready status
+     * @return {boolean}
+     */
+    isNotReady(){
+        return this._status !== STATE.READY;
+    }
+    /**
      * Check is 'ok' status
      * @return {boolean}
      */

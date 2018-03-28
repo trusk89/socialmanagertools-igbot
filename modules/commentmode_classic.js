@@ -2,6 +2,7 @@
 const LOG = require('../modules/logger/types');
 const LOG_NAME = 'comment';
 const LOG_MODE = 'comment_mode';
+
 const ManagerState = require('../modules/base/state').ManagerState;
 const STATE = require('../modules/base/state').STATE;
 const STATE_EVENTS = require('../modules/base/state').EVENTS;
@@ -166,12 +167,10 @@ class CommentMode_classic extends ManagerState{
      */
     async comment() {
         this.utils.logger(LOG.INFO, LOG_NAME, "try leave comment");
-
-        let textarea = '';
         let commentAreaElem = 'main article:nth-child(1) section:nth-child(5) form textarea';
 
         try {
-            textarea = await this.bot.$(commentAreaElem);
+            let textarea = await this.bot.$(commentAreaElem);
             if (textarea !== null) {
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
             } else {
@@ -243,7 +242,7 @@ class CommentMode_classic extends ManagerState{
                 if (this.cacheHashTags.length < 9 || this.isReady()) //remove popular photos
                     this.cacheHashTags = [];
 
-                if (this.cacheHashTags.length <= 0 && this.isReady()) {
+                if (this.cacheHashTags.length <= 0 && this.isNotReady()) {
                     this.utils.logger(LOG.INFO, LOG_MODE, "finish fast comment, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
                     this.cacheHashTags = [];
                     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
