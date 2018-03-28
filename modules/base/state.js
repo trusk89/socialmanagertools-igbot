@@ -18,7 +18,7 @@ const EVENTS = {
  *
  * @type {module.State}
  */
-class ManagerState extends EventEmitter{
+class Manager_state extends EventEmitter{
     constructor(params) {
         super(params);
         this._status = STATE.START;
@@ -51,6 +51,13 @@ class ManagerState extends EventEmitter{
     }
 
     /**
+     * Check is not ready status
+     * @return {boolean}
+     */
+    isNotReady(){
+        return this._status !== STATE.READY;
+    }
+    /**
      * Check is 'ok' status
      * @return {boolean}
      */
@@ -76,5 +83,5 @@ class ManagerState extends EventEmitter{
 module.exports = {
   STATE:STATE,
   EVENTS:EVENTS,
-  ManagerState:ManagerState
+  Manager_state:Manager_state
 };
