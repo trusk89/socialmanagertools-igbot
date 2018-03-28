@@ -56,15 +56,10 @@ const LOG = require('./modules/logger/types');
      * Modules of bot from folder ./modules
      *
      */
+    const routes = require('./routes/strategies');
     let utils = require(__dirname + '/modules/utils.js')(bot, config);
     let login = require(__dirname + '/modules/login.js')(bot, config, utils);
     let twofa = require(__dirname + '/modules/2FA.js')(bot, config, utils);
-    let likemode_classic    = require(__dirname + '/modules/likemode_classic.js')(bot, config, utils);
-    let likemode_realistic  = require(__dirname + '/modules/likemode_realistic.js')(bot, config, utils);
-    let likemode_superlike  = require(__dirname + '/modules/likemode_superlike.js')(bot, config, utils);
-    let fdfmode_classic     = require(__dirname + '/modules/fdfmode_classic.js')(bot, config, utils);
-    let fdfmode_defollowall = require(__dirname + '/modules/fdfmode_defollowall.js')(bot, config, utils);
-    let comment_mode        = require(__dirname + '/modules/commentmode_classic.js')(bot, config, utils);
 
     /**
      * Bot variables
@@ -86,18 +81,12 @@ const LOG = require('./modules/logger/types');
      *
      */
     async function switch_mode(bot, config, utils) {
-        if (config.bot_mode === "likemode_classic")
-            await likemode_classic.start(bot, config, utils);
-        else if (config.bot_mode === "likemode_realistic")
-            await likemode_realistic.start(bot, config, utils);
-        else if (config.bot_mode === "likemode_superlike")
-            await likemode_superlike.start(bot, config, utils);
-        else if (config.bot_mode === "fdfmode_classic")
-            await fdfmode_classic.start(bot, config, utils);
-        else if (config.bot_mode === "fdfmode_defollowall")
-            await fdfmode_defollowall.start(bot, config, utils);
-        else if (config.bot_mode === "comment_mode")
-            await comment_mode.start();
+        let strategy = routes[config.bot_mode];
+        if (strategy !== undefined) {
+            await strategy(bot, config, utils).start();
+        } else {
+            utils.logger(LOG.ERROR, "switch_mode", `mode ${strategy} not exist!`);
+        }
     }
 
     /**
