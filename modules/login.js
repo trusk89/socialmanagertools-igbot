@@ -120,7 +120,7 @@ class Login extends Manager_state{
      * =====================
      *
      */
-    async start(login_status) {
+    async start() {
         this.utils.logger(LOG.INFO, LOG_NAME, "loading...");
 
         await this.open_loginpage();
@@ -139,12 +139,10 @@ class Login extends Manager_state{
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        login_status = await this.submitverify();
-        this.utils.logger(LOG.INFO, LOG_NAME, "login_status is " + login_status);
+        await this.submitverify();
+        this.utils.logger(LOG.INFO, LOG_NAME, "login_status is " + this.getStatus());
 
         this.utils.sleep(this.utils.random_interval(4, 8));
-
-        return login_status;
     }
 }
 
