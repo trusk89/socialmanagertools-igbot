@@ -32,7 +32,7 @@
  * 
  */
 const puppeteer = require('puppeteer');
-const config = require(__dirname + '/config');
+const config = require('config');
 const LOG = require('./modules/logger/types');
 
 (async() => {
@@ -57,9 +57,9 @@ const LOG = require('./modules/logger/types');
      *
      */
     const routes = require('./routes/strategies');
-    let utils = require(__dirname + '/modules/utils.js')(bot, config);
-    let login = require(__dirname + '/modules/login.js')(bot, config, utils);
-    let twofa = require(__dirname + '/modules/2FA.js')(bot, config, utils);
+    let utils = require('./modules/utils')(bot, config);
+    let login = require('./modules/login.js')(bot, config, utils);
+    let twofa = require('./modules/2FA.js')(bot, config, utils);
 
     /**
      * Bot variables
@@ -71,7 +71,6 @@ const LOG = require('./modules/logger/types');
      */
     let login_status = "";
     let twofa_status = 1;
-    let like_status = "";
     let pin_status = "";
 
     /**
