@@ -9,6 +9,8 @@ const STATE = {
     OK: 1,
     ERROR: 0,
     READY: 3,
+    STOP_BOT: -1,
+    OK_NEXT_VERIFY:2,
     START:null
 };
 const EVENTS = {
@@ -70,6 +72,22 @@ class Manager_state extends EventEmitter{
      */
     isError(){
         return this._status === STATE.ERROR;
+    }
+
+    /**
+     * Check is 'stop bot' status
+     * @return {boolean}
+     */
+    isStopBot(){
+        return this._status === STATE.STOP_BOT;
+    }
+
+    /**
+     * Check is 'ok next verify' status
+     * @return {boolean}
+     */
+    isOkNextVerify(){
+        return this._status === STATE.OK_NEXT_VERIFY;
     }
     /**
      * Check is 'start' status

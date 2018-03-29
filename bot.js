@@ -97,20 +97,19 @@ const LOG = require('./modules/logger/types');
     await login.start(login_status);
 
     if (login.isOk()) {
-        pin_status = await twofa.start_twofa_location_check();
+        await twofa.start_twofa_location_check();
 
-        if (pin_status === 0)
-            pin_status = await twofa.start_twofa_check();
-
-        if (pin_status === 1) {
-            twofa_status = await twofa.start_twofa_location();
-        } else if (pin_status === 2) {
-            twofa_status = await twofa.start();
+        if (twofa.isError())
+            await twofa.start_twofa_check();
+        if (twofa.isOk()) {
+            await twofa.start_twofa_location();
+        } else if (twofa.isOkNextVerify()) {
+            await twofa.start();
         }
 
         utils.logger(LOG.INFO, "twofa", "status " + twofa_status);
 
-        if (twofa_status >= 1)
+        if (twofa.isOk() || twofa.isOkNextVerify())
             await switch_mode();
 
     }
