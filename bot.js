@@ -95,9 +95,9 @@ const LOG = require('./modules/logger/types');
      * Login --> 2FA (bad location) --> 2FA (sms pin) --> social algorithm from config.js
      *
      */
-    login_status = await login.start(login_status);
-    
-    if (login_status === 1) {
+    await login.start(login_status);
+
+    if (login.isOk()) {
         pin_status = await twofa.start_twofa_location_check();
 
         if (pin_status === 0)
