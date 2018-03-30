@@ -1,4 +1,6 @@
 const LOG = require('../modules/logger/types');
+const colors = require('colors');
+const MAP_COLORS = require('./logger/types').MAP_COLORS;
 
 /**
  * Utils
@@ -26,7 +28,8 @@ class Utils {
      *
      */
     logger(type, func, text) {
-        console.log(type + " " + func + ": " + text);
+        let color = MAP_COLORS[type];
+        console.log(`${type} ${func}: ${text}`[color]);
     }
 
     /**

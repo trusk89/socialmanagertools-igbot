@@ -31,9 +31,10 @@
   },
   "homepage": "https://instagrambotjs.ptkdev.io",
   "dependencies": {
+    "colors": "^1.2.1",
     "path": "^0.12.7",
-    "system-sleep": "^1.3.6",
-    "puppeteer": "^1.0.0"
+    "puppeteer": "^1.0.0",
+    "system-sleep": "^1.3.6"
   },
   "engines": {
     "node": ">=7.6.0"
