@@ -2,6 +2,12 @@ module.exports = {
     // InstagramBot.js Configs
     "debug": true,
 
+    // Instagram Account
+    "instagram_username": "ptkdev", // without @
+    "instagram_password": "password",
+    "instagram_hashtag": ['muraleshunter','like4like','follow4follow'], //without #
+    "instagram_pin": "sms", //method to receive pin (email or sms)
+
     // BOT Configs
     // [WORK] likemode_classic    - select random hashtag from config list and like 1 random photo (of last 20) | 400-600 like/day.
     // [WORK] likemode_realistic  - select random hashtag from config list, like fast 10-12 photo and sleep 15-20min. Sleep at night 
@@ -17,22 +23,15 @@ module.exports = {
     "bot_fastlike_max": "20",   // max minutes of sleep after like 10-12 photo, work only in likemode_realistic
     "bot_followday": 300,       // follow-defollow user/day, work only in fdfmode_classic
     "bot_userwhitelist": [''],  // usernames without @ | don't defollow this users on follow-defollow mode, work only in all fdfmode_*
-
-    // Instagram Account
-    "instagram_username": "ptkdev", // without @
-    "instagram_password": "password",
-    "instagram_hashtag": ['muraleshunter','like4like','follow4follow'], //without #
-    "instagram_pin": "sms", //method to receive pin (email or sms)
-    
-
-    // Puppeteer configs
-    "chrome_headless" : false,
-    "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
-    // example for Mac OS : '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-    "executablePath":''
     "comment_mode":{
         "comments":[
 
         ]
     }
+    
+    // Puppeteer configs
+    "chrome_headless" : false,
+    "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
+    "executablePath": "" // example for Mac OS: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+
 };

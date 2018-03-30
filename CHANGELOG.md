@@ -1,8 +1,8 @@
-# v0.6.2 (TODO, 2018)
+# v0.7.0 (TBD, 2018)
 * Feature: [Raspberry PI 3 Support](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md)
-* Feature: likemode_superlike
-* Feature: fdfmode_classic
-* Refactor: removed useless comments
+* Feature: fdfmode_classic     - follow user from random hashtag and defollow after 1h | 30 follow-defollow/hour.
+* Feature: commentmode_classic - select random comment and random hashtag and write comment under photo.
+* Refactor: removed useless comments, refactor switch, logger and constants.
 
 
 # v0.6.1 (February 14, 2018)
