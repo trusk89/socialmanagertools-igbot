@@ -1,6 +1,10 @@
 const LOG = require('../modules/logger/types');
 const LOG_NAME = 'twofa';
 
+const Manager_state = require('../modules/base/state').Manager_state;
+const STATE = require('../modules/base/state').STATE;
+const STATE_EVENTS = require('../modules/base/state').EVENTS;
+
 /**
  * Two Factor Authentication (2FA) Flow
  * =====================
@@ -14,18 +18,14 @@ const LOG_NAME = 'twofa';
  *              0.5 new pattern with puppeteer
  *
  */
-class Twofa {
+class Twofa extends Manager_state{
     constructor(bot, config, utils) {
+        super();
         this.bot = bot;
         this.config = config;
         this.utils = utils;
-        this.status = {
-            OK: 1,
-            OK_NEXT_VERIFY: 2,
-            ERROR: 0,
-            STOP_BOT: -1,
-            CURRENT: null,
-        };
+        // start status
+        this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
     }
 
     /**
@@ -117,7 +117,7 @@ class Twofa {
             let button = await this.bot.$('form button');
             await button.click();
         } catch (err) {
-            if (this.config.debug == true)
+            if (this.utils.isDebug())
                 this.utils.logger(LOG.DEBUG, LOG_NAME, err);
         }
     }
@@ -129,121 +129,49 @@ class Twofa {
      *
      */
     async submitverify(selector) {
-        let status = "";
         let attr = "";
 
         try {
             attr = await this.bot.$('input[name="' + selector + '"]');
             if (attr != null)
-                this.status.CURRENT = this.status.STOP_BOT;
+                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.STOP_BOT);
             else
-                this.status.CURRENT = this.status.OK;
+                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
         } catch (err) {
-            this.status.CURRENT = this.status.OK;
+            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
         }
 
-        if (this.status.CURRENT === this.status.STOP_BOT) {
+        if (this.isStopBot()) {
             this.utils.logger(LOG.ERROR, LOG_NAME, "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
             await this.utils.screenshot(LOG_NAME, "submitverify_error");
-        } else if (this.status.CURRENT === this.status.OK) {
+        } else if (this.isOk()) {
             this.utils.logger(LOG.INFO, LOG_NAME, "pin is ok");
             await this.utils.screenshot(LOG_NAME, "submitverify_ok");
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        if (this.status.CURRENT === this.status.OK) {
+        if (this.isOk()) {
             try {
                 attr = await this.bot.$('input[name="username"]');
-                if (attr != null)
-                    this.status.CURRENT = this.status.STOP_BOT;
+                if (attr !== null)
+                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.STOP_BOT);
                 else
-                    this.status.CURRENT = this.status.OK;
+                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
             } catch (err) {
-                this.status.CURRENT = this.status.STOP_BOT;
+                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.STOP_BOT);
             }
 
-            if (this.status.CURRENT === this.status.STOP_BOT) {
+            if (this.isStopBot()) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "instagram error... auto logout... restart bot...");
                 await this.utils.screenshot(LOG_NAME, "submitverify_error2");
-            } else if (this.status.CURRENT === this.status.OK) {
+            } else if (this.isOk()) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "instagram no have a crash");
                 await this.utils.screenshot(LOG_NAME, "submitverify_ok2");
             }
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
-
-        return this.status.CURRENT;
-    }
-
-    /**
-     * 2FA Location Flow (check if work)
-     * =====================
-     *
-     */
-    async start_twofa_location_check() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "instagram request pin (bad location)?");
-
-        try {
-            let attr = await this.bot.$('#choice_1');
-
-            if (attr !== null)
-                this.status.CURRENT = this.status.OK;
-            else
-                this.status.CURRENT = this.status.ERROR;
-        } catch (err) {
-            this.status.CURRENT = this.status.ERROR;
-        }
-
-        if (this.status.CURRENT === this.status.OK) {
-            this.utils.logger(LOG.INFO, LOG_NAME, "yes, instagram require security pin... You can not pass!1!111! (cit.)");
-            await this.utils.screenshot(LOG_NAME, "check_pin_request");
-        } else {
-            this.utils.logger(LOG.INFO, LOG_NAME, "no, try second verify");
-        }
-
-        this.utils.sleep(this.utils.random_interval(4, 8));
-
-        this.utils.logger(LOG.INFO, LOG_NAME, "status: " + this.status.CURRENT);
-
-        return this.status.CURRENT;
-    }
-
-    /**
-     * 2FA Flow (check if work)
-     * =====================
-     *
-     */
-    async start_twofa_check() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "instagram request pin (2fa enabled)?");
-
-        try {
-            let attr = await this.bot.$('input[name="verificationCode"]');
-
-            if (attr !== null)
-                this.status.CURRENT = this.status.OK_NEXT_VERIFY;
-            else
-                this.status.CURRENT = this.status.ERROR;
-        } catch (err) {
-            this.status.CURRENT = this.status.ERROR;
-        }
-
-        if (this.status.CURRENT === this.status.OK_NEXT_VERIFY) {
-            this.utils.logger(LOG.INFO, LOG_NAME, "yes, instagram require security pin... You can not pass!1!111! (cit.)");
-            await this.utils.screenshot(LOG_NAME, "check_pin_request");
-
-        } else {
-            this.utils.logger(LOG.INFO, LOG_NAME, "no, bot is at work (started)... Wait...");
-            this.utils.logger(LOG.INFO, LOG_NAME, "starting current mode");
-            await this.utils.screenshot(LOG_NAME, "check_nopin");
-        }
-
-        this.utils.sleep(this.utils.random_interval(4, 8));
-
-        this.utils.logger(LOG.INFO, LOG_NAME, "status: " + this.status.CURRENT);
-
-        return this.status.CURRENT;
     }
 
     /**
@@ -266,11 +194,9 @@ class Twofa {
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        let status = await this.submitverify("security_code");
+        await this.submitverify("security_code");
 
         this.utils.sleep(this.utils.random_interval(4, 8));
-
-        return status;
     }
 
     /**
@@ -287,10 +213,8 @@ class Twofa {
         this.utils.sleep(this.utils.random_interval(4, 8));
         await this.submitform();
         this.utils.sleep(this.utils.random_interval(4, 8));
-        let status = await this.submitverify("verificationCode");
+        await this.submitverify("verificationCode");
         this.utils.sleep(this.utils.random_interval(4, 8));
-
-        return status;
     }
 
 }
