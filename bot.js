@@ -32,7 +32,7 @@
  * 
  */
 const puppeteer = require('puppeteer');
-const config = require(__dirname + '/config');
+const config = require('./config');
 const LOG = require('./modules/logger/types');
 
 (async() => {
@@ -57,22 +57,10 @@ const LOG = require('./modules/logger/types');
      *
      */
     const routes = require('./routes/strategies');
-    let utils = require(__dirname + '/modules/utils.js')(bot, config);
-    let login = require(__dirname + '/modules/login.js')(bot, config, utils);
-    let twofa = require(__dirname + '/modules/2FA.js')(bot, config, utils);
-
-    /**
-     * Bot variables
-     * =====================
-     * Status var if login is correct, 2FA is correct and bot start good.
-     * 1 = OK
-     * 0 = KO
-     *
-     */
-    let login_status = "";
-    let twofa_status = 1;
-    let like_status = "";
-    let pin_status = "";
+    let utils = require('./modules/utils')(bot, config);
+    let login = require('./modules/login.js')(bot, config, utils);
+    let twofa = require('./modules/2FA.js')(bot, config, utils);
+    let twofa_pin = require('./modules/Pin2FA.js')(bot, config, utils);
 
     /**
      * Switch Mode
@@ -95,23 +83,23 @@ const LOG = require('./modules/logger/types');
      * Login --> 2FA (bad location) --> 2FA (sms pin) --> social algorithm from config.js
      *
      */
-    login_status = await login.start(login_status);
-    
-    if (login_status === 1) {
-        pin_status = await twofa.start_twofa_location_check();
+    await login.start();
 
-        if (pin_status === 0)
-            pin_status = await twofa.start_twofa_check();
+    if (login.isOk()) {
+        await twofa_pin.start_twofa_location_check();
 
-        if (pin_status === 1) {
-            twofa_status = await twofa.start_twofa_location();
-        } else if (pin_status === 2) {
-            twofa_status = await twofa.start();
+        if (twofa_pin.isError())
+           await twofa_pin.start_twofa_check();
+
+        if (twofa_pin.isOk()) {
+            await twofa.start_twofa_location();
+        } else if (twofa_pin.isOkNextVerify()) {
+           await twofa.start();
         }
 
-        utils.logger(LOG.INFO, "twofa", "status " + twofa_status);
+        utils.logger(LOG.INFO, "twofa", "status " + twofa.getStatus());
 
-        if (twofa_status >= 1)
+        if (twofa.isOk() || twofa.isOkNextVerify())
             await switch_mode();
 
     }

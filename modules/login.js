@@ -1,6 +1,10 @@
 const LOG = require('../modules/logger/types');
 const LOG_NAME = 'login';
 
+const Manager_state = require('./base/state').Manager_state;
+const STATE = require('./base/state').STATE;
+const STATE_EVENTS = require('./base/state').EVENTS;
+
 /**
  * Login Flow
  * =====================
@@ -14,16 +18,12 @@ const LOG_NAME = 'login';
  *              0.5 new pattern with puppeteer
  *
  */
-class Login {
+class Login extends Manager_state{
     constructor(bot, config, utils) {
+        super();
         this.bot = bot;
         this.config = config;
         this.utils = utils;
-        this.status = {
-            OK: 1,
-            ERROR: 0,
-            CURRENT: null,
-        };
     }
 
     /**
@@ -94,14 +94,14 @@ class Login {
         try {
             text = await this.bot.$('#slfErrorAlert');
             if (text !== null)
-                this.status.CURRENT = this.status.ERROR;
+                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             else
-                this.status.CURRENT = this.status.OK;
+                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
         } catch (err) {
-            this.status.CURRENT = this.status.OK;
+            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
         }
 
-        if (this.status.CURRENT === this.status.ERROR) {
+        if (this.isError()) {
             let html_response = await this.bot.evaluate(body => body.innerHTML, text);
             await text.dispose();
 
@@ -113,8 +113,6 @@ class Login {
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
-
-        return this.status.CURRENT;
     }
 
     /**
@@ -122,7 +120,7 @@ class Login {
      * =====================
      *
      */
-    async start(login_status) {
+    async start() {
         this.utils.logger(LOG.INFO, LOG_NAME, "loading...");
 
         await this.open_loginpage();
@@ -141,12 +139,10 @@ class Login {
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        login_status = await this.submitverify();
-        this.utils.logger(LOG.INFO, LOG_NAME, "login_status is " + login_status);
+        await this.submitverify();
+        this.utils.logger(LOG.INFO, LOG_NAME, "login_status is " + this.getStatus());
 
         this.utils.sleep(this.utils.random_interval(4, 8));
-
-        return login_status;
     }
 }
 
