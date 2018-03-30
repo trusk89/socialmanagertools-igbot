@@ -28,6 +28,18 @@ class Fdfmode_classic extends Manager_state{
     }
 
     /**
+     * Get photo url from cache
+     * @return {string} url
+     */
+    getPhotoUrl(){
+        let photo_url = "";
+        do {
+            photo_url = this.cache_hash_tags.pop();
+        } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cache_hash_tags.length > 0);
+        return photo_url;
+    }
+
+    /**
      * fdfmode_classic: Open Hashtag
      * =====================
      * Get random hashtag from array and open page
@@ -68,9 +80,8 @@ class Fdfmode_classic extends Manager_state{
 
                 if (this.utils.isDebug())
                     this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cache_hash_tags);
-                do {
-                    photo_url = this.cache_hash_tags.pop();
-                } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cache_hash_tags.length > 0);
+
+                photo_url = this.getPhotoUrl();
 
                 this.utils.logger(LOG.INFO, LOG_NAME, "current photo url " + photo_url);
                 if (typeof photo_url === "undefined")
@@ -85,12 +96,8 @@ class Fdfmode_classic extends Manager_state{
                 await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
             }
         } else {
-            do {
-                photo_url = this.cache_hash_tags.pop();
-            } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cache_hash_tags.length > 0);
-
+            photo_url = this.getPhotoUrl();
             this.utils.logger(LOG.INFO, LOG_NAME, "current photo url from cache " + photo_url);
-
             this.utils.sleep(this.utils.random_interval(4, 8));
 
             try {
