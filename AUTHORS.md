@@ -11,6 +11,7 @@
 [![https://github.com/agoalofalife](https://avatars3.githubusercontent.com/u/15719824?s=150&v=4)](https://github.com/agoalofalife)
 
 `Developer - March 25, 2018`
+* Twitter: [https://twitter.com/agoalofalife1](https://twitter.com/agoalofalife1)
 * GitHub: [https://github.com/agoalofalife](https://github.com/agoalofalife)
 
 
