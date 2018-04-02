@@ -1,7 +1,7 @@
 module.exports = {
     // InstagramBot.js Configs
     "debug": true,
-
+    "login":true,
     // Instagram Account
     "instagram_username": "ptkdev", // without @
     "instagram_password": "password",
@@ -10,7 +10,8 @@ module.exports = {
 
     // BOT Configs
     // [WORK] likemode_classic    - select random hashtag from config list and like 1 random photo (of last 20) | 400-600 like/day.
-    // [WORK] likemode_realistic  - select random hashtag from config list, like fast 10-12 photo and sleep 15-20min. Sleep at night 
+    // [WORK] likemode_realistic  - select random hashtag from config list, like fast 10-12 photo and sleep 15-20min. Sleep at night
+    // [WORK] likemode_competitor_users - select account, select random followers, like 10-12 photo and sleep 15-20min.
     // [TEST] likemode_superlike  - select random hashtag from config list and like 3 random photo of same user | 400-600 like/day.
     // [TEST] fdfmode_classic     - follow user from random hashtag and defollow after 1h | 300 follow-defollow/day.
     // [TEST] comment_mode        - leave a comment under the photo via hashtag.
@@ -27,8 +28,10 @@ module.exports = {
         "comments":[
 
         ]
-    }
-    
+    },
+    "likemode_competitor_users:{
+        'account':'', // without @
+    },
     // Puppeteer configs
     "chrome_headless" : false,
     "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
