@@ -58,6 +58,24 @@ class Utils {
     }
 
     /**
+     * Get random number between two numbers
+     * @param min
+     * @param max
+     * @return {number}
+     */
+    random_number(min, max){
+        return (Math.floor(Math.random() * (20 - 10 + 1)) + 10);
+    }
+
+    /**
+     * Mix array element
+     * @param arr
+     * @return array
+     */
+    mix_array(arr){
+        return arr.sort(function(){ return 0.5-Math.random() });
+    }
+    /**
      * Sleep
      * =====================
      * Zzz
