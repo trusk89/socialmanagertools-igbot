@@ -90,9 +90,41 @@ class Likemode_competitor_users extends Manager_state{
         this.cache_hash_tags = this.utils.mix_array(this.cache_hash_tags).splice(0, 20);
     }
 
+    /**
+     * Open page follower
+     * @return {Promise<void>}
+     */
+    async open_follower_account(){
+        let follower_url = '';
+        if (this.cache_hash_tags.length <= 0) {
+            follower_url = this.getFollowerUrl();
+
+            this.utils.logger(LOG.INFO, LOG_NAME, "current follower url " + follower_url);
+            if (typeof follower_url === "undefined")
+                this.utils.logger(LOG.WARNING, LOG_NAME, "error follower url.");
+
+            this.utils.sleep(this.utils.random_interval(4, 8));
+            await this.bot.goto(follower_url);
+        } else {
+            follower_url = this.getFollowerUrl();
+            this.utils.logger(LOG.INFO, LOG_NAME, "current url from cache " + follower_url);
+            this.utils.sleep(this.utils.random_interval(4, 8));
+
+            try {
+                await this.bot.goto(follower_url);
+            } catch (err) {
+                this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
+            }
+        }
+        this.utils.sleep(this.utils.random_interval(4, 8));
+    }
+
+    /**
+     *
+     * @return {Promise<void>}
+     */
     async get_followers(){
         this.utils.logger(LOG.INFO, LOG_NAME, "get followers");
-        let follower_url = '';
 
         if (this.cache_hash_tags.length <= 0) {
             let selector_followers_count = 'main article:nth-child(1) header section ul li:nth-child(2) a';
@@ -115,34 +147,12 @@ class Likemode_competitor_users extends Manager_state{
                 if (this.utils.isDebug())
                     this.utils.logger(LOG.DEBUG, LOG_NAME, "array followers " + this.cache_hash_tags);
 
-                follower_url = this.getFollowerUrl();
-
-                console.log(this.cache_hash_tags)
-
-                this.utils.logger(LOG.INFO, LOG_NAME, "current follower url " + follower_url);
-                if (typeof follower_url === "undefined")
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "error follower url.");
-
-                this.utils.sleep(this.utils.random_interval(4, 8));
-                await this.bot.goto(follower_url);
             } catch (err) {
                 this.cache_hash_tags = [];
                 this.utils.logger(LOG.ERROR, LOG_NAME, "get url followers error" + err);
                 await this.utils.screenshot(LOG_NAME, "get_url_followers_error");
             }
-        } else {
-            follower_url = this.getFollowerUrl();
-            this.utils.logger(LOG.INFO, LOG_NAME, "current url from cache " + follower_url);
-            this.utils.sleep(this.utils.random_interval(4, 8));
-
-            try {
-                await this.bot.goto(follower_url);
-            } catch (err) {
-                this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
-            }
         }
-
-        this.utils.sleep(this.utils.random_interval(4, 8));
     }
 
     /**
@@ -255,6 +265,7 @@ class Likemode_competitor_users extends Manager_state{
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
                 await this.get_followers();
+                await this.open_follower_account();
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
