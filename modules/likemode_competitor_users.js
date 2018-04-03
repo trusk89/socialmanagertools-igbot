@@ -9,7 +9,7 @@ const STATE_EVENTS = require('../modules/base/state').EVENTS;
 /**
  * MODE: Likemode_competitor_users
  * =====================
- * Select account, select random followers, like 10-12 photo and sleep 15-20min.
+ * Select account, get random 20 followers, like 20 photo and sleep 15-20min.
  *
  * @author:     Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
  * @license:    This code and contributions have 'GNU General Public License v3'
@@ -52,38 +52,47 @@ class Likemode_competitor_users extends Manager_state{
      * Get photo url from cache
      * @return {string} url
      */
-    getPhotoUrl(){
-        let photo_url = "";
+    getFollowerUrl(){
+        let follower_url = "";
         do {
-            photo_url = this.cache_hash_tags.pop();
-        } while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cache_hash_tags.length > 0);
-        return photo_url;
+            follower_url = this.cache_hash_tags.pop();
+        } while ((typeof follower_url === "undefined" || follower_url.indexOf("www.instagram.com") === -1) && this.cache_hash_tags.length > 0);
+        return follower_url;
     }
 
     /**
-     * likemode_realistic: Open Hashtag
-     * =====================
-     * Get random hashtag from array and open page
-     *
+     * Scroll followers
+     * @return {Promise<Promise<*>|Promise<Object>|*|XPathResult>}
      */
-    async like_open_hashtagpage() {
-        let hashtag_tag = this.utils.get_random_hash_tag();
-        this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashtag_tag);
-        try {
-            await this.bot.goto('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
-        } catch (err) {
-            this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
-        }
-
-        this.utils.sleep(this.utils.random_interval(4, 8));
-
-        await this.utils.screenshot(LOG_NAME, "last_hashtag");
+    async scroll_followers(){
+        this.utils.logger(LOG.INFO, LOG_NAME, "scroll action");
+        await this.bot.waitForSelector('div[role="dialog"] div div div ~ div');
+            return this.bot.evaluate(() => {
+                return new Promise((resolve, reject) => {
+                  let counter = 15;
+                    let timer = setInterval(() => {
+                        document.querySelector('div[role="dialog"] div div div ~ div').scrollBy(0, 5000);
+                        if  (counter <= 0) {
+                            clearInterval(timer);
+                            resolve();
+                        } else {
+                            counter--;
+                        }
+                    }, 5000);
+                })
+            });
     }
 
-    async get_followes(){
-        this.utils.logger(LOG.INFO, LOG_NAME, "get followers");
+    /**
+     * Mix array url followers and get 20 url
+     */
+    get_random_follower_url(){
+        this.cache_hash_tags = this.utils.mix_array(this.cache_hash_tags).splice(0, 20);
+    }
 
-        let photo_url = "";
+    async get_followers(){
+        this.utils.logger(LOG.INFO, LOG_NAME, "get followers");
+        let follower_url = '';
 
         if (this.cache_hash_tags.length <= 0) {
             let selector_followers_count = 'main article:nth-child(1) header section ul li:nth-child(2) a';
@@ -91,92 +100,43 @@ class Likemode_competitor_users extends Manager_state{
             let area_count_followers = await this.bot.$(selector_followers_count);
             await area_count_followers.click();
 
-            await this.bot.mouse().move();
-            // const elementHandle = await this.bot.$('div[role="dialog"] div div div ul');
-            // elementHandle.tap();
-            // try {
-            //     this.cache_hash_tags = await this.bot.$$eval('article a', hrefs => hrefs.map((a) => {
-            //         return a.href;
-            //     }));
-            //
-            //     this.utils.sleep(this.utils.random_interval(10, 15));
-            //
-            //     if (this.utils.isDebug())
-            //         this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cache_hash_tags);
-            //
-            //     photo_url = this.getPhotoUrl();
-            //
-            //     this.utils.logger(LOG.INFO, LOG_NAME, "current photo url " + photo_url);
-            //     if (typeof photo_url === "undefined")
-            //         this.utils.logger(LOG.WARNING, LOG_NAME, "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
-            //
-            //     this.utils.sleep(this.utils.random_interval(4, 8));
-            //
-            //     await this.bot.goto(photo_url);
-            // } catch (err) {
-            //     this.cache_hash_tags = [];
-            //     this.utils.logger(LOG.ERROR, LOG_NAME, "like_get_urlpic error" + err);
-            //     await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
-            // }
-        } else {
-            // photo_url = this.getPhotoUrl();
-            //
-            // this.utils.logger(LOG.INFO, LOG_NAME, "current photo url from cache " + photo_url);
-            // this.utils.sleep(this.utils.random_interval(4, 8));
-            //
-            // try {
-            //     await this.bot.goto(photo_url);
-            // } catch (err) {
-            //     this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
-            // }
-        }
+            // scroll
+            await this.scroll_followers(this.bot);
 
-        this.utils.sleep(this.utils.random_interval(4, 8));
-    }
-    /**
-     * likemode_realistic: Open Photo
-     * =====================
-     * Open url of photo and cache urls from hashtag page in array
-     *
-     */
-    async like_get_urlpic() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "like_get_urlpic");
-
-        let photo_url = "";
-
-        if (this.cache_hash_tags.length <= 0) {
             try {
-                this.cache_hash_tags = await this.bot.$$eval('article a', hrefs => hrefs.map((a) => {
+                this.cache_hash_tags = await this.bot.$$eval('div[role="dialog"] div div div ul li div div a', hrefs => hrefs.map((a) => {
                     return a.href;
                 }));
+
+                this.get_random_follower_url();
 
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
                 if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cache_hash_tags);
+                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array followers " + this.cache_hash_tags);
 
-                photo_url = this.getPhotoUrl();
+                follower_url = this.getFollowerUrl();
 
-                this.utils.logger(LOG.INFO, LOG_NAME, "current photo url " + photo_url);
-                if (typeof photo_url === "undefined")
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
+                console.log(this.cache_hash_tags)
+
+                this.utils.logger(LOG.INFO, LOG_NAME, "current follower url " + follower_url);
+                if (typeof follower_url === "undefined")
+                    this.utils.logger(LOG.WARNING, LOG_NAME, "error follower url.");
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
-
-                await this.bot.goto(photo_url);
+                await this.bot.goto(follower_url);
             } catch (err) {
                 this.cache_hash_tags = [];
-                this.utils.logger(LOG.ERROR, LOG_NAME, "like_get_urlpic error" + err);
-                await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
+                this.utils.logger(LOG.ERROR, LOG_NAME, "get url followers error" + err);
+                await this.utils.screenshot(LOG_NAME, "get_url_followers_error");
             }
         } else {
-            photo_url = this.getPhotoUrl();
-
-            this.utils.logger(LOG.INFO, LOG_NAME, "current photo url from cache " + photo_url);
+            follower_url = this.getFollowerUrl();
+            this.utils.logger(LOG.INFO, LOG_NAME, "current url from cache " + follower_url);
             this.utils.sleep(this.utils.random_interval(4, 8));
 
             try {
-                await this.bot.goto(photo_url);
+                await this.bot.goto(follower_url);
             } catch (err) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
             }
@@ -186,15 +146,24 @@ class Likemode_competitor_users extends Manager_state{
     }
 
     /**
-     * likemode_realistic: Love me
+     * likemode_competitor_users:
      * =====================
      * Click on heart and verify if instagram not (soft) ban you
      *
      */
     async like_click_heart() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "try heart like");
+        this.utils.logger(LOG.INFO, LOG_NAME, "try heart like random photo from account");
 
         let heart = "";
+        let photos = await this.bot.$$eval('article>div div div div a', hrefs => hrefs.map((a) => {
+            return a.href;
+        }));
+        if  (photos.length === 0) {
+            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+            return;
+        }
+        let photo_url = this.utils.mix_array(photos).splice(0, 1).shift();
+        await this.bot.goto(photo_url);
 
         try {
             heart = await this.bot.$('.coreSpriteHeartOpen');
@@ -205,8 +174,8 @@ class Likemode_competitor_users extends Manager_state{
             }
 
             if (this.isOk()) {
-                await this.bot.waitForSelector('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
-                let button = await this.bot.$('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
+                await this.bot.waitForSelector('.coreSpriteHeartOpen');
+                let button = await this.bot.$('.coreSpriteHeartOpen');
                 await button.click();
             } else {
                 this.utils.logger(LOG.INFO, LOG_NAME, "bot like this photo in before loop, use hashtag with more new photos");
@@ -285,20 +254,20 @@ class Likemode_competitor_users extends Manager_state{
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
-                await this.get_followes();
+                await this.get_followers();
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
-                // await this.like_click_heart();
+                await this.like_click_heart();
 
-                // if (this.cache_hash_tags.length < 9 || this.isReady()) //remove popular photos
-                //     this.cache_hash_tags = [];
-                //
-                // if (this.cache_hash_tags.length <= 0 && this.isNotReady()) {
-                //     this.utils.logger(LOG.INFO, lOG_MODE, "finish fast like, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
-                //     this.cache_hash_tags = [];
-                //     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
-                // }
+                if (this.cache_hash_tags.length < 9 || this.isReady()) //remove popular photos
+                    this.cache_hash_tags = [];
+
+                if (this.cache_hash_tags.length <= 0 && this.isNotReady()) {
+                    this.utils.logger(LOG.INFO, lOG_MODE, "finish fast like, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
+                    this.cache_hash_tags = [];
+                    this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
+                }
             } else {
                 this.utils.logger(LOG.INFO, lOG_MODE, "is night, bot sleep");
                 this.utils.sleep(this.utils.random_interval(60 * 4, 60 * 5));
