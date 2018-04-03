@@ -34,6 +34,11 @@ much detail as possible.
 2. ...
 3. ...
 
+### config.js (remember to remove password)
+```
+
+```
+
 ### Screenshots (Optional)
 
 If the error is graphical in nature it is helpful to provide a screenshot. 
