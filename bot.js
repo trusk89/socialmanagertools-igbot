@@ -43,11 +43,18 @@ const LOG = require('./modules/logger/types');
      * If not exist rename config.js.tmpl to config.js and change strings
      *
      */
-    const browser = await puppeteer.launch({
-        headless: config.chrome_headless,
-        args: config.chrome_options,
-        executablePath: config.executablePath
-    });
+    if(config.executablePath === "" || config.executablePath === false){
+        const browser = await puppeteer.launch({
+            headless: config.chrome_headless,
+            args: config.chrome_options
+        });
+    }else{
+        const browser = await puppeteer.launch({
+            headless: config.chrome_headless,
+            args: config.chrome_options,
+            executablePath: config.executablePath
+        });
+    }
     const bot = await browser.newPage();
 
     /**
