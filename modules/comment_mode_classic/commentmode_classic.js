@@ -1,11 +1,11 @@
 // Export
-const LOG = require('../modules/logger/types');
+const LOG = require('../logger/types');
 const LOG_NAME = 'comment';
 const LOG_MODE = 'comment_mode';
 
-const Manager_state = require('../modules/base/state').Manager_state;
-const STATE = require('../modules/base/state').STATE;
-const STATE_EVENTS = require('../modules/base/state').EVENTS;
+const Manager_state = require('../base/state').Manager_state;
+const STATE = require('../base/state').STATE;
+const STATE_EVENTS = require('../base/state').EVENTS;
 
 /**
  * MODE: commentmode_classic
@@ -32,9 +32,15 @@ class CommentMode_classic extends Manager_state{
      * Get random comment from config file
      * @return string
      */
-    get_random_comment(){
-        let comments = this.config.comment_mode.comments;
-         return comments[Math.floor(Math.random()*comments.length)];
+    get_comment(){
+        this.utils.logger(LOG.INFO, LOG_NAME, `type source comments is ${this.config.comment_mode.comments.type}`);
+        switch (this.config.comment_mode.comments.type){
+            case 'array':
+                return require('./comment_sources/array')().get_random_comment();
+            default:
+                this.utils.logger(LOG.ERROR, LOG_NAME, 'source comments not found');
+                return '';
+        }
     }
 
     /**
@@ -181,7 +187,7 @@ class CommentMode_classic extends Manager_state{
                 await this.bot.waitForSelector(commentAreaElem);
                 let button = await this.bot.$(commentAreaElem);
                 await button.click();
-                await this.bot.type(commentAreaElem, this.get_random_comment(), { delay: 100 });
+                await this.bot.type(commentAreaElem, this.get_comment(), { delay: 100 });
                 await button.press('Enter');
             } else {
                 this.utils.logger(LOG.INFO, LOG_NAME, "bot is unable to comment on this photo");

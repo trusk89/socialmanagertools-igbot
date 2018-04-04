@@ -25,9 +25,10 @@ module.exports = {
     "bot_followday": 300,       // follow-defollow user/day, work only in fdfmode_classic
     "bot_userwhitelist": [''],  // usernames without @ | don't defollow this users on follow-defollow mode, work only in all fdfmode_*
     "comment_mode":{
-        "comments":[
-
-        ]
+        "comments":{
+           "type":"array",
+           "source":[],
+          }
     },
     "likemode_competitor_users:{
         'account':'', // without @
