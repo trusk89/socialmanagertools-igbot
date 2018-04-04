@@ -1,11 +1,14 @@
 // Export
-const LOG = require('../logger/types');
+const LOG_TYPES = require('../logger/types');
 const LOG_NAME = 'comment';
 const LOG_MODE = 'comment_mode';
 
 const Manager_state = require('../base/state').Manager_state;
 const STATE = require('../base/state').STATE;
 const STATE_EVENTS = require('../base/state').EVENTS;
+
+
+const Log = require('./../logger/Log');
 
 /**
  * MODE: commentmode_classic
@@ -26,6 +29,7 @@ class CommentMode_classic extends Manager_state{
         this.utils = utils;
 
         this.cache_hash_tags = [];
+        this.log_comment = new Log('comment');
     }
 
     /**
@@ -33,12 +37,12 @@ class CommentMode_classic extends Manager_state{
      * @return string
      */
     get_comment(){
-        this.utils.logger(LOG.INFO, LOG_NAME, `type source comments is ${this.config.comment_mode.comments.type}`);
+        this.utils.logger(LOG_TYPES.INFO, LOG_NAME, `type source comments is ${this.config.comment_mode.comments.type}`);
         switch (this.config.comment_mode.comments.type){
             case 'array':
                 return require('./comment_sources/array')().get_random_comment();
             default:
-                this.utils.logger(LOG.ERROR, LOG_NAME, 'source comments not found');
+                this.utils.logger(LOG_TYPES.ERROR, LOG_NAME, 'source comments not found');
                 return '';
         }
     }
@@ -63,12 +67,12 @@ class CommentMode_classic extends Manager_state{
      */
     async openPage() {
         let hashTag = this.utils.get_random_hash_tag();
-        this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashTag);
+        this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "current hashtag " + hashTag);
 
         try {
             await this.bot.goto('https://www.instagram.com/explore/tags/' + hashTag + '/');
         } catch (err) {
-            this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
+            this.utils.logger(LOG_TYPES.ERROR, LOG_NAME, "goto " + err);
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -83,7 +87,7 @@ class CommentMode_classic extends Manager_state{
      *
      */
     async like_get_urlpic() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "like_get_urlpic");
+        this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "like_get_urlpic");
 
         let photo_url = "";
 
@@ -96,33 +100,33 @@ class CommentMode_classic extends Manager_state{
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
                 if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array photos " + this.cache_hash_tags);
+                    this.utils.logger(LOG_TYPES.DEBUG, LOG_NAME, "array photos " + this.cache_hash_tags);
 
                 photo_url = this.getPhotoUrl();
 
-                this.utils.logger(LOG.INFO, LOG_NAME, "current photo url " + photo_url);
+                this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "current photo url " + photo_url);
                 if (typeof photo_url === "undefined")
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
+                    this.utils.logger(LOG_TYPES.WARNING, LOG_NAME, "check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
                 await this.bot.goto(photo_url);
             } catch (err) {
                 this.cache_hash_tags = [];
-                this.utils.logger(LOG.ERROR, LOG_NAME, "like_get_urlpic error" + err);
+                this.utils.logger(LOG_TYPES.ERROR, LOG_NAME, "like_get_urlpic error" + err);
                 await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
             }
         } else {
             photo_url = this.getPhotoUrl();
 
-            this.utils.logger(LOG.INFO, LOG_NAME, "current photo url from cache " + photo_url);
+            this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "current photo url from cache " + photo_url);
 
             this.utils.sleep(this.utils.random_interval(4, 8));
 
             try {
                 await this.bot.goto(photo_url);
             } catch (err) {
-                this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
+                this.utils.logger(LOG_TYPES.ERROR, LOG_NAME, "goto " + err);
             }
         }
 
@@ -146,21 +150,21 @@ class CommentMode_classic extends Manager_state{
                 }
 
                 if (this.isError()) {
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "error bot :( not comment under photo, now bot sleep 5-10min");
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "You are in possible soft ban... If this message appear all time stop bot for 24h...");
+                    this.utils.logger(LOG_TYPES.WARNING, LOG_NAME, "</3");
+                    this.utils.logger(LOG_TYPES.WARNING, LOG_NAME, "error bot :( not comment under photo, now bot sleep 5-10min");
+                    this.utils.logger(LOG_TYPES.WARNING, LOG_NAME, "You are in possible soft ban... If this message appear all time stop bot for 24h...");
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.isOk()) {
-                    this.utils.logger(LOG.INFO, LOG_NAME, "<3");
+                    this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "<3");
                 }
             } catch (err) {
                 if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, err);
+                    this.utils.logger(LOG_TYPES.DEBUG, LOG_NAME, err);
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } else {
-            this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
-            this.utils.logger(LOG.WARNING, LOG_NAME, "You like this previously, change hashtag ig have few photos");
+            this.utils.logger(LOG_TYPES.WARNING, LOG_NAME, "</3");
+            this.utils.logger(LOG_TYPES.WARNING, LOG_NAME, "You like this previously, change hashtag ig have few photos");
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.READY);
         }
     }
@@ -172,7 +176,7 @@ class CommentMode_classic extends Manager_state{
      *
      */
     async comment() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "try leave comment");
+        this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "try leave comment");
         let commentAreaElem = 'main article:nth-child(1) section:nth-child(5) form textarea';
 
         try {
@@ -190,13 +194,13 @@ class CommentMode_classic extends Manager_state{
                 await this.bot.type(commentAreaElem, this.get_comment(), { delay: 100 });
                 await button.press('Enter');
             } else {
-                this.utils.logger(LOG.INFO, LOG_NAME, "bot is unable to comment on this photo");
+                this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "bot is unable to comment on this photo");
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } catch (err) {
             if (this.utils.isDebug())
-                this.utils.logger(LOG.DEBUG, LOG_NAME, err);
-            this.utils.logger(LOG.INFO, LOG_NAME, "bot is unable to comment on this photo");
+                this.utils.logger(LOG_TYPES.DEBUG, LOG_NAME, err);
+            this.utils.logger(LOG_TYPES.INFO, LOG_NAME, "bot is unable to comment on this photo");
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
         }
 
@@ -221,18 +225,18 @@ class CommentMode_classic extends Manager_state{
      *
      */
     async start() {
-        this.utils.logger(LOG.INFO, LOG_MODE, "classic");
+        this.utils.logger(LOG_TYPES.INFO, LOG_MODE, "classic");
 
         do {
             let today = new Date();
             let hour = today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '');
             let minutes = today.getMinutes();
 
-            this.utils.logger(LOG.INFO, LOG_MODE, `time night: ${hour}:${minutes}`);
+            this.utils.logger(LOG_TYPES.INFO, LOG_MODE, `time night: ${hour}:${minutes}`);
 
             if (parseInt(hour + minutes) >= (this.config.bot_sleep_night).replace(":", "")) {
-                this.utils.logger(LOG.INFO, LOG_MODE, "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
-                this.utils.logger(LOG.INFO, LOG_MODE, "cache array size " + this.cache_hash_tags.length);
+                this.utils.logger(LOG_TYPES.INFO, LOG_MODE, "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
+                this.utils.logger(LOG_TYPES.INFO, LOG_MODE, "cache array size " + this.cache_hash_tags.length);
 
                 if (this.cache_hash_tags.length <= 0)
                     await this.openPage();
@@ -249,12 +253,12 @@ class CommentMode_classic extends Manager_state{
                     this.cache_hash_tags = [];
 
                 if (this.cache_hash_tags.length <= 0 && this.isNotReady()) {
-                    this.utils.logger(LOG.INFO, LOG_MODE, "finish fast comment, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
+                    this.utils.logger(LOG_TYPES.INFO, LOG_MODE, "finish fast comment, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
                     this.cache_hash_tags = [];
                     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
                 }
             } else {
-                this.utils.logger(LOG.INFO, LOG_MODE, "is night, bot sleep");
+                this.utils.logger(LOG_TYPES.INFO, LOG_MODE, "is night, bot sleep");
                 this.utils.sleep(this.utils.random_interval(60 * 4, 60 * 5));
             }
         } while (true);

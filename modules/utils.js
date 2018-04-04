@@ -27,7 +27,7 @@ class Utils {
      * Better than console.log() 
      * TODO So is very simple
      * TODO Plan:
-     * TODO - Add various sources of output logs (example in out console, slack, others messenger, file remote server ans others...)
+     * TODO - Add various sources of output logs (example in out console, syslog ,slack, others messenger, file remote server ans others...)
      * TODO - Save in cache, passed in function 'type' and 'func'. Function return object Log.
      */
     logger(type, func, text) {
