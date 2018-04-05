@@ -7,7 +7,6 @@ const STATE_EVENTS = require('../base/state').EVENTS;
 
 // log
 const Log = require('./../logger/Log');
-const ConsoleChannel = require('./../logger/channels/console');
 
 /**
  * MODE: commentmode_classic

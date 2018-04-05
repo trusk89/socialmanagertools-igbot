@@ -3,7 +3,7 @@ const MAP_COLORS = require('./../types').MAP_COLORS;
 /**
  * Log in channel is console
  */
-module.exports = class Console{
+class Console{
     /**
      * Run is log in output console
      * @param type
@@ -15,3 +15,5 @@ module.exports = class Console{
         console.log(`${type} ${func}: ${message}`[color]);
     }
 };
+
+module.exports = () => { return new Console(); };

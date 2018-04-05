@@ -11,8 +11,13 @@ const config = require('./../../config');
 module.exports = class Log{
     constructor(func){
         this.func = func;
+
         let Channel = routes_log[config.log.driver];
-        this.setChannel(new Channel());
+        if (Channel !== undefined) {
+            this.setChannel(Channel());
+        } else {
+            console.error('channel log not found');
+        }
     }
 
     /**
