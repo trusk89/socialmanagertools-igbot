@@ -17,9 +17,9 @@ class Base_actions{
      */
     after(){};
 
-    run(param){
+    run(){
         this.before().call(this.context);
-        this.action(param);
+        this.action().call(this.context);
         this.after().call(this.context);
     }
 }

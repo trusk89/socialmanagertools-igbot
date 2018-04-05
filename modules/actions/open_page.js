@@ -4,25 +4,26 @@ const Base_actions = require('./base/base');
  * Action open page in instagram
  */
 class Open_page extends Base_actions{
-    constructor(){
+    constructor(param){
         super();
+        this.param = param;
     }
 
     before(){
-        let hashTag = this.utils.get_random_hash_tag();
-        this.log.info(`current hashtag ${hashTag}`);
+        this.log.info(`current hashtag ${this.param.hashTag}`);
     }
     async after(){
         this.utils.sleep(this.utils.random_interval(4, 8));
-        await this.utils.screenshot(LOG_NAME, "last_hashtag");
     }
 
-    async action(param){
+    async action(){
         try {
-            await this.bot.goto(param.url);
+            await this.bot.goto(this.param.url);
         } catch (err) {
             this.log.error(`goto ${err}`);
         }
         await this.after();
     }
 }
+
+module.exports = (param) => { return new Open_page(param); };

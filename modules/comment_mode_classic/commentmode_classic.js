@@ -27,7 +27,7 @@ class CommentMode_classic extends Manager_state{
         this.utils = utils;
 
         this.cache_hash_tags = [];
-        this.log = new Log('comment');
+        this.log = new Log(LOG_NAME);
     }
 
     /**
