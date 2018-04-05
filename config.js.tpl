@@ -38,7 +38,7 @@ module.exports = {
     "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
     "executablePath": "" // example for Mac OS: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
     "log":{
-        "driver":"console",
+        "drivers":["console"],
         "channels":{
         "console": ''
         }

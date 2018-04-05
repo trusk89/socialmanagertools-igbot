@@ -11,13 +11,16 @@ const config = require('./../../config');
 module.exports = class Log{
     constructor(func){
         this.func = func;
+        this.channels = [];
 
-        let Channel = routes_log[config.log.driver];
-        if (Channel !== undefined) {
-            this.setChannel(Channel());
-        } else {
-            console.error('channel log not found');
-        }
+        config.log.drivers.forEach((driver) => {
+            let Channel = routes_log[config.log.drivers];
+            if (Channel !== undefined) {
+                this.setChannel(Channel());
+            } else {
+                console.error('channel log not found');
+            }
+        });
     }
 
     /**
@@ -25,20 +28,31 @@ module.exports = class Log{
      * @param interfaceChannel
      */
     setChannel(interfaceChannel){
-        this.channel = interfaceChannel;
+        this.channels.push(interfaceChannel);
     }
 
+    /**
+     * Helper function
+     *
+     * @param type
+     * @param message
+     */
+    channelsLog(type,message){
+        this.channels.forEach((channel) => {
+            channel.log(type, this.func, message);
+        });
+    }
     info(message){
-        this.channel.log(TYPES_LOG.INFO, this.func, message);
+        this.channelsLog(TYPES_LOG.INFO, message);
     }
     warning(message){
-        this.channel.log(TYPES_LOG.WARNING, this.func, message);
+        this.channelsLog(TYPES_LOG.WARNING, message);
     }
     error(message){
-        this.channel.log(TYPES_LOG.ERROR, this.func, message);
+        this.channelsLog(TYPES_LOG.ERROR, message);
     }
     debug(message){
-        this.channel.log(TYPES_LOG.DEBUG, this.func, message);
+        this.channelsLog(TYPES_LOG.DEBUG, message);
     }
 };
 
