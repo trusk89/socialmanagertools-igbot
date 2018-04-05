@@ -1,4 +1,3 @@
-const LOG = require('../modules/logger/types');
 const LOG_NAME = 'login';
 
 const Manager_state = require('./base/state').Manager_state;
