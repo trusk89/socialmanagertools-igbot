@@ -10,7 +10,7 @@ class Open_page extends Base_actions{
 
     before(){
         let hashTag = this.utils.get_random_hash_tag();
-        this.utils.logger(LOG.INFO, LOG_NAME, "current hashtag " + hashTag);
+        this.log.info(`current hashtag ${hashTag}`);
     }
     async after(){
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -21,7 +21,7 @@ class Open_page extends Base_actions{
         try {
             await this.bot.goto(param.url);
         } catch (err) {
-            this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
+            this.log.error(`goto ${err}`);
         }
         await this.after();
     }
