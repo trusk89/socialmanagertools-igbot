@@ -11,10 +11,10 @@
 
 <p align="center"><a href="https://instagram.bot.ptkdev.io" alt="Screenshot"><img src="https://ptkdev.it/img/bot/ptkdev-instagram-bot.gif"></a></p>
 
-# What does he do
+## What does it do
 This bot helps you increase the engagement of your Instagram profile through different social algorithms. Increase the likes on your photos and followers.
 
-# Features
+## Features
 * [✓] Easy to use
 * [✓] Login
 * [✓] 2FA (bad location)
@@ -30,7 +30,7 @@ This bot helps you increase the engagement of your Instagram profile through dif
 * [✘] Follow/Defollow Classic: follow user from random hashtag and defollow after 1h.
 * [✘] Defollow All: defollow all your following (ignore users in whitelist).
 
-# Fast setup (CLI Version)
+## Fast setup (CLI Version)
 1. Download [stable bot version](https://github.com/ptkdev/instagram-bot.js/releases) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js` folder.
@@ -50,11 +50,11 @@ Edit `config.js` and switch `chrome_headless` option to `true`.
 #### Check if work:
 See images in ./logs/screenshot or disable `chrome_headless` flag.
 
-# Desktop setup (GUI Version)
+## Desktop setup (GUI Version)
 1. Download <a href="https://socialmanagertools.ptkdev.io/">Social Manager Tools GUI</a> (Note: is alpha version).
 2. Run application.
 
-# Docker setup
+## Docker setup
 
 If you prefer to run this using Docker, an official container is available from the [Docker Hub](https://hub.docker.com/u/ptkdev/).
 
@@ -70,18 +70,18 @@ $ docker run \
     social-manager-tools/instagram-bot &>/dev/null
 ```
 
-# Roadmap
+## Roadmap
 See full roadmap (open task, todo and bugs) in [project page](https://github.com/social-manager-tools/instagram-bot.js/projects?query=is%3Aopen+sort%3Aname-asc).
 * ### [v0.7.0](https://github.com/social-manager-tools/instagram-bot.js/projects/1)
 * ### [v0.8.0](https://github.com/social-manager-tools/instagram-bot.js/projects/2)
 * ### [v0.9.0](https://github.com/social-manager-tools/instagram-bot.js/projects/3)
 
-# Bugs
+## Bugs
 * `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
 * Why happen? Instagram desktop is in overcapacity. Happen at 12-14 and 19-21 all days. 
 * Solution: Login in other time or Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
 
-# Sorry for snake_case
+## Sorry for snake_case
 I love snake_case syntax sorry for this :sob: don't hate me.
 
 <p align="center"><a href="https://github.com/social-manager-tools" alt="Screenshot"><img src="https://socialmanagertools.ptkdev.io/img/socialmanagertools_logo.png"></a></p>
