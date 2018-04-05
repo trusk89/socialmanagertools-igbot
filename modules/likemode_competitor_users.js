@@ -6,6 +6,9 @@ const Manager_state = require('../modules/base/state').Manager_state;
 const STATE = require('../modules/base/state').STATE;
 const STATE_EVENTS = require('../modules/base/state').EVENTS;
 
+// log
+const Log = require('./logger/Log');
+
 /**
  * MODE: Likemode_competitor_users
  * =====================
@@ -28,6 +31,7 @@ class Likemode_competitor_users extends Manager_state{
         this.url_instagram = 'https://www.instagram.com/';
         this.account_url = `${this.url_instagram}${this.account}`;
         this.cache_hash_tags = [];
+        this.log = new Log(LOG_NAME);
     }
 
     /**
@@ -35,12 +39,12 @@ class Likemode_competitor_users extends Manager_state{
      * @return {Promise<void>}
      */
     async open_account_page(){
-        this.utils.logger(LOG.INFO, LOG_NAME, `current account ${this.account}`);
+        this.log.info(`current account ${this.account}`);
 
         try {
             await this.bot.goto(this.account_url);
         } catch (err) {
-            this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
+            this.log.error(`goto ${err}`);
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -65,7 +69,8 @@ class Likemode_competitor_users extends Manager_state{
      * @return {Promise<Promise<*>|Promise<Object>|*|XPathResult>}
      */
     async scroll_followers(){
-        this.utils.logger(LOG.INFO, LOG_NAME, "scroll action");
+        this.log.info('scroll action');
+
         await this.bot.waitForSelector('div[role="dialog"] div div div ~ div');
             return this.bot.evaluate(() => {
                 return new Promise((resolve, reject) => {
@@ -99,21 +104,21 @@ class Likemode_competitor_users extends Manager_state{
         if (this.cache_hash_tags.length <= 0) {
             follower_url = this.getFollowerUrl();
 
-            this.utils.logger(LOG.INFO, LOG_NAME, "current follower url " + follower_url);
+            this.log.info(`current follower url ${follower_url}`);
             if (typeof follower_url === "undefined")
-                this.utils.logger(LOG.WARNING, LOG_NAME, "error follower url.");
+                this.log.warning('error follower url.');
 
             this.utils.sleep(this.utils.random_interval(4, 8));
             await this.bot.goto(follower_url);
         } else {
             follower_url = this.getFollowerUrl();
-            this.utils.logger(LOG.INFO, LOG_NAME, "current url from cache " + follower_url);
+            this.log.info(`current url from cache ${follower_url}`);
             this.utils.sleep(this.utils.random_interval(4, 8));
 
             try {
                 await this.bot.goto(follower_url);
             } catch (err) {
-                this.utils.logger(LOG.ERROR, LOG_NAME, "goto " + err);
+                this.log.error(`goto ${err}`);
             }
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -124,7 +129,7 @@ class Likemode_competitor_users extends Manager_state{
      * @return {Promise<void>}
      */
     async get_followers(){
-        this.utils.logger(LOG.INFO, LOG_NAME, "get followers");
+        this.log.info('get followers');
 
         if (this.cache_hash_tags.length <= 0) {
             let selector_followers_count = 'main article:nth-child(1) header section ul li:nth-child(2) a';
@@ -145,11 +150,11 @@ class Likemode_competitor_users extends Manager_state{
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
                 if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, "array followers " + this.cache_hash_tags);
+                    this.log.debug(`array followers ${this.cache_hash_tags}`);
 
             } catch (err) {
                 this.cache_hash_tags = [];
-                this.utils.logger(LOG.ERROR, LOG_NAME, "get url followers error" + err);
+                this.log.error(`get url followers error ${err}`);
                 await this.utils.screenshot(LOG_NAME, "get_url_followers_error");
             }
         }
@@ -162,7 +167,7 @@ class Likemode_competitor_users extends Manager_state{
      *
      */
     async like_click_heart() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "try heart like random photo from account");
+        this.log.info(`try heart like random photo from account`);
 
         let heart = "";
         let photos = await this.bot.$$eval('article>div div div div a', hrefs => hrefs.map((a) => {
@@ -188,13 +193,13 @@ class Likemode_competitor_users extends Manager_state{
                 let button = await this.bot.$('.coreSpriteHeartOpen');
                 await button.click();
             } else {
-                this.utils.logger(LOG.INFO, LOG_NAME, "bot like this photo in before loop, use hashtag with more new photos");
+                this.log.info(`bot like this photo in before loop, use hashtag with more new photos`);
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } catch (err) {
             if (this.utils.isDebug())
-                this.utils.logger(LOG.DEBUG, LOG_NAME, err);
-            this.utils.logger(LOG.INFO, LOG_NAME, "bot like this photo in before loop, use hashtag with more new photos");
+                this.log.debug(err);
+            this.log.info('bot like this photo in before loop, use hashtag with more new photos');
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
         }
 
@@ -219,21 +224,21 @@ class Likemode_competitor_users extends Manager_state{
                 }
 
                 if (this.isError()) {
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "error bot :( not like photo, now bot sleep 5-10min");
-                    this.utils.logger(LOG.WARNING, LOG_NAME, "You are in possible soft ban... If this message appear all time stop bot for 24h...");
+                    this.log.warning('</3');
+                    this.log.warning('error bot :( not like photo, now bot sleep 5-10min');
+                    this.log.warning('You are in possible soft ban... If this message appear all time stop bot for 24h...');
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.isOk()) {
-                    this.utils.logger(LOG.INFO, LOG_NAME, "<3");
+                    this.log.info('<3');
                 }
             } catch (err) {
                 if (this.utils.isDebug())
-                    this.utils.logger(LOG.DEBUG, LOG_NAME, err);
+                    this.log.debug(err);
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } else {
-            this.utils.logger(LOG.WARNING, LOG_NAME, "</3");
-            this.utils.logger(LOG.WARNING, LOG_NAME, "You like this previously, change hashtag ig have few photos");
+            this.log.warning('</3');
+            this.log.warning('You like this previously, change hashtag ig have few photos');
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.READY);
         }
 
@@ -247,17 +252,18 @@ class Likemode_competitor_users extends Manager_state{
      *
      */
     async start() {
-        this.utils.logger(LOG.INFO, lOG_MODE, "competitor_users");
+        this.log.info('competitor_users');
 
         let today = "";
 
         do {
             today = new Date();
-            this.utils.logger(LOG.INFO, lOG_MODE, "time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes())));
+            this.log.info("time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes())));
+
             if (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes()) >= (this.config.bot_sleep_night).replace(":", "")) {
 
-                this.utils.logger(LOG.INFO, lOG_MODE, "loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
-                this.utils.logger(LOG.INFO, lOG_MODE, "cache array size " + this.cache_hash_tags.length);
+                this.log.info("loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
+                this.log.info("cache array size " + this.cache_hash_tags.length);
 
                 if (this.cache_hash_tags.length <= 0)
                     await this.open_account_page();
@@ -275,12 +281,12 @@ class Likemode_competitor_users extends Manager_state{
                     this.cache_hash_tags = [];
 
                 if (this.cache_hash_tags.length <= 0 && this.isNotReady()) {
-                    this.utils.logger(LOG.INFO, lOG_MODE, "finish fast like, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
+                    this.log.info("finish fast like, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
                     this.cache_hash_tags = [];
                     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
                 }
             } else {
-                this.utils.logger(LOG.INFO, lOG_MODE, "is night, bot sleep");
+                this.log.info('is night, bot sleep');
                 this.utils.sleep(this.utils.random_interval(60 * 4, 60 * 5));
             }
         } while (true);

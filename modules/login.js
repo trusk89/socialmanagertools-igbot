@@ -1,9 +1,11 @@
-const LOG = require('../modules/logger/types');
 const LOG_NAME = 'login';
 
 const Manager_state = require('./base/state').Manager_state;
 const STATE = require('./base/state').STATE;
 const STATE_EVENTS = require('./base/state').EVENTS;
+
+// log
+const Log = require('./logger/Log');
 
 /**
  * Login Flow
@@ -24,6 +26,8 @@ class Login extends Manager_state{
         this.bot = bot;
         this.config = config;
         this.utils = utils;
+
+        this.log = new Log(LOG_NAME);
     }
 
     /**
@@ -33,7 +37,7 @@ class Login extends Manager_state{
      *
      */
     async open_loginpage() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "open_loginpage");
+        this.log.info('open_loginpage');
 
         await this.bot.goto('https://www.instagram.com/accounts/login/');
     }
@@ -45,8 +49,7 @@ class Login extends Manager_state{
      *
      */
     async set_username() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "set_username");
-
+        this.log.info('set_username');
         await this.bot.waitForSelector('input[name="username"]');
         await this.bot.type('input[name="username"]', this.config.instagram_username, { delay: 100 });
     }
@@ -58,8 +61,7 @@ class Login extends Manager_state{
      *
      */
     async set_password() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "set_password");
-
+        this.log.info('set_password');
         await this.bot.waitForSelector('input[name="password"]');
         await this.bot.type('input[name="password"]', this.config.instagram_password, { delay: 100 });
     }
@@ -71,8 +73,7 @@ class Login extends Manager_state{
      *
      */
     async submitform() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "submit");
-
+        this.log.info('submit');
         await this.bot.waitForSelector('form button');
         let button = await this.bot.$('form button');
         await button.click();
@@ -87,7 +88,7 @@ class Login extends Manager_state{
      *
      */
     async submitverify() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "checkerrors");
+        this.log.info('checkerrors');
 
         let text = "";
 
@@ -105,10 +106,10 @@ class Login extends Manager_state{
             let html_response = await this.bot.evaluate(body => body.innerHTML, text);
             await text.dispose();
 
-            this.utils.logger(LOG.ERROR, LOG_NAME, "Error: " + html_response + " (restart bot and retry...)");
+            this.log.error("Error: " + html_response + " (restart bot and retry...)");
             await this.utils.screenshot(LOG_NAME, "checkerrors_error");
         } else {
-            this.utils.logger(LOG.INFO, LOG_NAME, "password is correct");
+            this.log.info('password is correct');
             await this.utils.screenshot(LOG_NAME, "checkerrors");
         }
 
@@ -121,7 +122,7 @@ class Login extends Manager_state{
      *
      */
     async start() {
-        this.utils.logger(LOG.INFO, LOG_NAME, "loading...");
+        this.log.info('loading...');
 
         await this.open_loginpage();
 
@@ -140,7 +141,7 @@ class Login extends Manager_state{
         this.utils.sleep(this.utils.random_interval(4, 8));
 
         await this.submitverify();
-        this.utils.logger(LOG.INFO, LOG_NAME, "login_status is " + this.getStatus());
+        this.log.info("login_status is " + this.getStatus());
 
         this.utils.sleep(this.utils.random_interval(4, 8));
     }
