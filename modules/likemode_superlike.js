@@ -1,7 +1,5 @@
 //Export
-const LOG = require('../modules/logger/types');
 const LOG_NAME = 'like';
-const LOG_MODE = 'likemode';
 
 const Manager_state = require('../modules/base/state').Manager_state;
 const STATE = require('../modules/base/state').STATE;
