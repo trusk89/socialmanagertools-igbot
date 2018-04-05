@@ -14,7 +14,7 @@ module.exports = class Log{
         this.channels = [];
 
         config.log.drivers.forEach((driver) => {
-            let Channel = routes_log[config.log.drivers];
+            let Channel = routes_log[driver];
             if (Channel !== undefined) {
                 this.setChannel(Channel());
             } else {

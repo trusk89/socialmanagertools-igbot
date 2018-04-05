@@ -1,11 +1,11 @@
-const LOG_NAME = 'like';
+const LOG_NAME = 'like_realistic';
 
 const Manager_state = require('../modules/base/state').Manager_state;
 const STATE = require('../modules/base/state').STATE;
 const STATE_EVENTS = require('../modules/base/state').EVENTS;
 
 // log
-const Log = require('./../logger/Log');
+const Log = require('./logger/Log');
 
 /**
  * MODE: likemode_realistic
