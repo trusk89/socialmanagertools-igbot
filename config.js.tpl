@@ -30,20 +30,20 @@ module.exports = {
            "source":[],
           }
     },
-    "likemode_competitor_users:{
+    "likemode_competitor_users":{
         'account':'', // without @
     },
     // Puppeteer configs
     "chrome_headless" : false,
     "chrome_options": ['--disable-gpu', '--no-sandbox', '--window-size=1920x1080'],
-    "executablePath": "" // example for Mac OS: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+    "executablePath": "", // example for Mac OS: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
     "log":{
         "drivers":["console"], // slack
         "channels":{
         "console": '',
         "slack":{
         "webhook":''
-        }
+                 }
         }
         }
 };

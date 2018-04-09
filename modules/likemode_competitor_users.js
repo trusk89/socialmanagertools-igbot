@@ -1,6 +1,4 @@
-const LOG = require('../modules/logger/types');
 const LOG_NAME = 'like';
-const lOG_MODE = 'likemode_competitor_users';
 
 const Manager_state = require('../modules/base/state').Manager_state;
 const STATE = require('../modules/base/state').STATE;
