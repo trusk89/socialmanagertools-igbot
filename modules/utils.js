@@ -32,7 +32,7 @@ class Utils {
      */
     logger(type, func, text) {
         let color = MAP_COLORS[type];
-        console.log(`${type} ${func}: ${text}`[color]);
+        console.log(`${type} ${func}: ${text}` [color]);
     }
 
     /**
@@ -42,12 +42,12 @@ class Utils {
      *
      */
     async screenshot(func, name) {
-        try{
+        try {
             await this.bot.screenshot({ path: './logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.jpg' });
         } catch (err) {
-            this.logger(LOG.WARNING, "screenshot", "error "+ err);
+            this.logger(LOG.WARNING, "screenshot", "error " + err);
         }
-        
+
     }
 
     /**
@@ -66,7 +66,7 @@ class Utils {
      * @param max
      * @return {number}
      */
-    random_number(min, max){
+    random_number(min, max) {
         return (Math.floor(Math.random() * (20 - 10 + 1)) + 10);
     }
 
@@ -75,8 +75,8 @@ class Utils {
      * @param arr
      * @return array
      */
-    mix_array(arr){
-        return arr.sort(function(){ return 0.5-Math.random() });
+    mix_array(arr) {
+        return arr.sort(function() { return 0.5 - Math.random() });
     }
     /**
      * Sleep
@@ -93,7 +93,7 @@ class Utils {
      * Check is debug
      * @return {boolean}
      */
-    isDebug(){
+    isDebug() {
         return this.config.debug === true;
     }
 
@@ -101,7 +101,7 @@ class Utils {
      * Get random hash tag from config file
      * @return {string}
      */
-    get_random_hash_tag(){
+    get_random_hash_tag() {
         return this.config.instagram_hashtag[Math.floor(Math.random() * this.config.instagram_hashtag.length)];
     }
 }

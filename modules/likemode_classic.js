@@ -133,7 +133,7 @@ class Likemode_classic extends Manager_state{
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
 
-            if (this.isOk()) {
+            if (this.is_ok()) {
                 await this.bot.waitForSelector('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
                 let button = await this.bot.$('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
                 await button.click();
@@ -158,7 +158,7 @@ class Likemode_classic extends Manager_state{
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        if (this.isOk()) {
+        if (this.is_ok()) {
             try {
                 heart = await this.bot.$('.coreSpriteHeartOpen');
 
@@ -173,7 +173,7 @@ class Likemode_classic extends Manager_state{
                     this.log.warning('error bot :( not like photo, now bot sleep 1-2h');
                     this.log.warning('You are in possible soft ban... If this message appear all time stop bot for 24h...');
                     this.utils.sleep(this.utils.random_interval(3600, 3600*2));
-                } else if (this.isOk()) {
+                } else if (this.is_ok()) {
                     this.log.info('</3');
                 }
             } catch (err) {

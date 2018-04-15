@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.6.0
+ * @version:    0.7.0
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -31,11 +31,14 @@
  * @link: https://github.com/GoogleChrome/puppeteer
  * 
  */
+var bot = null;
 const puppeteer = require('puppeteer');
 const config = require('./config');
 const LOG = require('./modules/logger/types');
 
-(async() => {
+async function start(bot, puppeteer, config, LOG) {
+    let browser = null;
+
     /**
      * Init
      * =====================
@@ -43,19 +46,19 @@ const LOG = require('./modules/logger/types');
      * If not exist rename config.js.tmpl to config.js and change strings
      *
      */
-    if(config.executablePath === "" || config.executablePath === false){
-        const browser = await puppeteer.launch({
+    if (config.executablePath === "" || config.executablePath === false) {
+        browser = await puppeteer.launch({
             headless: config.chrome_headless,
             args: config.chrome_options
         });
-    }else{
-        const browser = await puppeteer.launch({
+    } else {
+        browser = await puppeteer.launch({
             headless: config.chrome_headless,
             args: config.chrome_options,
             executablePath: config.executablePath
         });
     }
-    const bot = await browser.newPage();
+    bot = await browser.newPage();
 
     /**
      * Import libs
@@ -63,7 +66,7 @@ const LOG = require('./modules/logger/types');
      * Modules of bot from folder ./modules
      *
      */
-    const routes = require('./routes/strategies');
+    let routes = require('./routes/strategies');
     let utils = require('./modules/utils')(bot, config);
     let login = require('./modules/login.js')(bot, config, utils);
     let twofa = require('./modules/2FA.js')(bot, config, utils);
@@ -92,23 +95,31 @@ const LOG = require('./modules/logger/types');
      */
     await login.start();
 
-    if (login.isOk()) {
+    if (login.is_ok()) {
         await twofa_pin.start_twofa_location_check();
 
-        if (twofa_pin.isError())
-           await twofa_pin.start_twofa_check();
+        if (twofa_pin.isError()) {
+            await twofa_pin.start_twofa_check();
+        }
 
-        if (twofa_pin.isOk()) {
+        if (twofa_pin.is_ok()) {
             await twofa.start_twofa_location();
-        } else if (twofa_pin.isOkNextVerify()) {
-           await twofa.start();
+        } else if (twofa_pin.is_ok_nextverify()) {
+            await twofa.start();
         }
 
         utils.logger(LOG.INFO, "twofa", "status " + twofa.getStatus());
 
-        if (twofa.isOk() || twofa.isOkNextVerify())
+        if (twofa.is_ok() || twofa.is_ok_nextverify()) {
             await switch_mode();
+        }
 
     }
-    bot.close();
-})();
+
+}
+
+async function stop() {
+    await bot.close();
+}
+
+start(bot, puppeteer, config, LOG);

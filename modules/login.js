@@ -20,7 +20,7 @@ const Log = require('./logger/Log');
  *              0.5 new pattern with puppeteer
  *
  */
-class Login extends Manager_state{
+class Login extends Manager_state {
     constructor(bot, config, utils) {
         super();
         this.bot = bot;

@@ -18,7 +18,7 @@ const STATE_EVENTS = require('../modules/base/state').EVENTS;
  *              0.5 new pattern with puppeteer
  *
  */
-class Twofa extends Manager_state{
+class Twofa extends Manager_state {
     constructor(bot, config, utils) {
         super();
         this.bot = bot;
@@ -144,14 +144,14 @@ class Twofa extends Manager_state{
         if (this.isStopBot()) {
             this.utils.logger(LOG.ERROR, LOG_NAME, "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
             await this.utils.screenshot(LOG_NAME, "submitverify_error");
-        } else if (this.isOk()) {
+        } else if (this.is_ok()) {
             this.utils.logger(LOG.INFO, LOG_NAME, "pin is ok");
             await this.utils.screenshot(LOG_NAME, "submitverify_ok");
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        if (this.isOk()) {
+        if (this.is_ok()) {
             try {
                 attr = await this.bot.$('input[name="username"]');
                 if (attr !== null)
@@ -165,7 +165,7 @@ class Twofa extends Manager_state{
             if (this.isStopBot()) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "instagram error... auto logout... restart bot...");
                 await this.utils.screenshot(LOG_NAME, "submitverify_error2");
-            } else if (this.isOk()) {
+            } else if (this.is_ok()) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "instagram no have a crash");
                 await this.utils.screenshot(LOG_NAME, "submitverify_ok2");
             }

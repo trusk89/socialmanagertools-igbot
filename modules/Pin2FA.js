@@ -34,7 +34,7 @@ class TwofaPin extends Manager_state {
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
         }
 
-        if (this.isOk()) {
+        if (this.is_ok()) {
             this.log.info('yes, instagram require security pin... You can not pass!!! (cit.)');
             await this.utils.screenshot(LOG_NAME, "check_pin_request");
         } else {
@@ -65,7 +65,7 @@ class TwofaPin extends Manager_state {
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
         }
 
-        if (this.isOkNextVerify()) {
+        if (this.is_ok_nextverify()) {
             this.log.info('yes, instagram require security pin... You can not pass!1!111! (cit.)');
             await this.utils.screenshot(LOG_NAME, "check_pin_request");
 

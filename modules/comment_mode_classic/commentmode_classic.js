@@ -18,7 +18,7 @@ const Log = require('./../logger/Log');
  * @changelog:  0.1 initial release
  *
  */
-class CommentMode_classic extends Manager_state{
+class CommentMode_classic extends Manager_state {
     constructor(bot, config, utils) {
         super();
 
@@ -34,9 +34,9 @@ class CommentMode_classic extends Manager_state{
      * Get random comment from config file
      * @return string
      */
-    get_comment(){
+    get_comment() {
         this.log.info(`type source comments is ${this.config.comment_mode.comments.type}`);
-        switch (this.config.comment_mode.comments.type){
+        switch (this.config.comment_mode.comments.type) {
             case 'array':
                 return require('./comment_sources/array')().get_random_comment();
             default:
@@ -49,7 +49,7 @@ class CommentMode_classic extends Manager_state{
      * Get photo url from cache
      * @return {string} url
      */
-    getPhotoUrl(){
+    getPhotoUrl() {
         let photo_url = "";
         do {
             photo_url = this.cache_hash_tags.pop();
@@ -99,7 +99,7 @@ class CommentMode_classic extends Manager_state{
 
                 if (this.utils.isDebug())
                     this.log.debug(`array photos ${this.cache_hash_tags}`);
-                    photo_url = this.getPhotoUrl();
+                photo_url = this.getPhotoUrl();
 
                 this.log.info(`current photo url ${photo_url}`);
                 if (typeof photo_url === "undefined")
@@ -133,9 +133,9 @@ class CommentMode_classic extends Manager_state{
      * Check exist element under photo
      * @return {Promise<void>}
      */
-    async checkLeaveComment(){
+    async checkLeaveComment() {
         let nickUnderPhoto = `main article:nth-child(1) div:nth-child(3) div:nth-child(3) ul li a[title="${this.config.instagram_username}"]`;
-        if (this.isOk()) {
+        if (this.is_ok()) {
             try {
                 let nick = await this.bot.$(nickUnderPhoto);
 
@@ -150,7 +150,7 @@ class CommentMode_classic extends Manager_state{
                     this.log.warning('error bot :( not comment under photo, now bot sleep 5-10min');
                     this.log.warning('You are in possible soft ban... If this message appear all time stop bot for 24h...');
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
-                } else if (this.isOk()) {
+                } else if (this.is_ok()) {
                     this.log.info('</3');
                 }
             } catch (err) {
@@ -183,7 +183,7 @@ class CommentMode_classic extends Manager_state{
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
 
-            if (this.isOk()) {
+            if (this.is_ok()) {
                 await this.bot.waitForSelector(commentAreaElem);
                 let button = await this.bot.$(commentAreaElem);
                 await button.click();

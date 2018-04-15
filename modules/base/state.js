@@ -10,17 +10,17 @@ const STATE = {
     ERROR: 0,
     READY: 3,
     STOP_BOT: -1,
-    OK_NEXT_VERIFY:2,
-    START:null
+    OK_NEXT_VERIFY: 2,
+    START: null
 };
 const EVENTS = {
-    CHANGE_STATUS:'change_status'
+    CHANGE_STATUS: 'change_status'
 };
 /**
  *
  * @type {module.State}
  */
-class Manager_state extends EventEmitter{
+class Manager_state extends EventEmitter {
     constructor(params) {
         super(params);
         this._status = STATE.START;
@@ -30,7 +30,7 @@ class Manager_state extends EventEmitter{
     /**
      * register handle events in EE
      */
-    registerHandler(){
+    registerHandler() {
         this.on(EVENTS.CHANGE_STATUS, (status) => {
             this._status = status;
         });
@@ -40,7 +40,7 @@ class Manager_state extends EventEmitter{
      * Get current status
      * @return STATE
      */
-    getStatus(){
+    getStatus() {
         return this._status;
     }
 
@@ -48,7 +48,7 @@ class Manager_state extends EventEmitter{
      * Check is ready status
      * @return {boolean}
      */
-    isReady(){
+    isReady() {
         return this._status === STATE.READY;
     }
 
@@ -56,21 +56,21 @@ class Manager_state extends EventEmitter{
      * Check is not ready status
      * @return {boolean}
      */
-    isNotReady(){
+    isNotReady() {
         return this._status !== STATE.READY;
     }
     /**
      * Check is 'ok' status
      * @return {boolean}
      */
-    isOk(){
+    is_ok() {
         return this._status === STATE.OK;
     }
     /**
      * Check is 'error' status
      * @return {boolean}
      */
-    isError(){
+    isError() {
         return this._status === STATE.ERROR;
     }
 
@@ -78,7 +78,7 @@ class Manager_state extends EventEmitter{
      * Check is 'stop bot' status
      * @return {boolean}
      */
-    isStopBot(){
+    isStopBot() {
         return this._status === STATE.STOP_BOT;
     }
 
@@ -86,20 +86,20 @@ class Manager_state extends EventEmitter{
      * Check is 'ok next verify' status
      * @return {boolean}
      */
-    isOkNextVerify(){
+    is_ok_nextverify() {
         return this._status === STATE.OK_NEXT_VERIFY;
     }
     /**
      * Check is 'start' status
      * @return {boolean}
      */
-    isStart(){
+    isStart() {
         return this._status === STATE.START;
     }
 }
 
 module.exports = {
-  STATE:STATE,
-  EVENTS:EVENTS,
-  Manager_state:Manager_state
+    STATE: STATE,
+    EVENTS: EVENTS,
+    Manager_state: Manager_state
 };
