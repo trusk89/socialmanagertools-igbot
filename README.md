@@ -56,7 +56,7 @@ See images in ./logs/screenshot or disable `chrome_headless` flag.
 
 ## Docker setup
 
-If you prefer to run this using Docker, an official container is available from the [Docker Hub](https://hub.docker.com/u/ptkdev/).
+If you prefer to run this using Docker, an official container is available from the [Docker Hub](https://hub.docker.com/r/socialmanagertools/instagram-bot.js).
 
 In order to run it, copy the `config.js.tpl` file, configure it as you prefer, then use it through volume mapping,
 like in this example:
@@ -67,7 +67,7 @@ $ docker run \
     --name=instagram-bot \
     -d \
     -v /path/to/config.js:/app/config.js \
-    social-manager-tools/instagram-bot &>/dev/null
+    socialmanagertools/instagram-bot.js &>/dev/null
 ```
 
 ## Roadmap
