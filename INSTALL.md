@@ -21,7 +21,7 @@ sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 
 #### 4. Use raspbian chromium, not the node_modules version
 - Edit `bot.js` at line ~59 and add chrome path:
-- `const browser = await puppeteer.launch({executablePath: '/usr/bin/chromium-browser', headless: config.chrome_headless, args: config.chrome_options});`
+- `const browser = await puppeteer.launch({executable_path: '/usr/bin/chromium-browser', headless: config.chrome_headless, args: config.chrome_options});`
 
 #### 5. If you have problem with libc dependieces you need update raspbian to testing:
 - Edit `sudo vi /etc/apt/source.list` and switch `stretch` to `testing`

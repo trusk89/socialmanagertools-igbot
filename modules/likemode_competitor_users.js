@@ -1,11 +1,11 @@
-const LOG_NAME = 'like';
+const LOG_NAME = "like";
 
-const Manager_state = require('../modules/base/state').Manager_state;
-const STATE = require('../modules/base/state').STATE;
-const STATE_EVENTS = require('../modules/base/state').EVENTS;
+const Manager_state = require("../modules/base/state").Manager_state;
+const STATE = require("../modules/base/state").STATE;
+const STATE_EVENTS = require("../modules/base/state").EVENTS;
 
 // log
-const Log = require('./logger/Log');
+const Log = require("./logger/Log");
 
 /**
  * MODE: Likemode_competitor_users
@@ -26,7 +26,7 @@ class Likemode_competitor_users extends Manager_state{
         this.utils = utils;
 
         this.account = this.config.likemode_competitor_users.account;
-        this.url_instagram = 'https://www.instagram.com/';
+        this.url_instagram = "https://www.instagram.com/";
         this.account_url = `${this.url_instagram}${this.account}`;
         this.cache_hash_tags = [];
         this.log = new Log(LOG_NAME);
@@ -54,7 +54,7 @@ class Likemode_competitor_users extends Manager_state{
      * Get photo url from cache
      * @return {string} url
      */
-    getFollowerUrl(){
+    get_follower_url(){
         let follower_url = "";
         do {
             follower_url = this.cache_hash_tags.pop();
@@ -67,23 +67,23 @@ class Likemode_competitor_users extends Manager_state{
      * @return {Promise<Promise<*>|Promise<Object>|*|XPathResult>}
      */
     async scroll_followers(){
-        this.log.info('scroll action');
+        this.log.info("scroll action");
 
-        await this.bot.waitForSelector('div[role="dialog"] div div div ~ div');
-            return this.bot.evaluate(() => {
-                return new Promise((resolve, reject) => {
-                  let counter = 15;
-                    let timer = setInterval(() => {
-                        document.querySelector('div[role="dialog"] div div div ~ div').scrollBy(0, 5000);
-                        if  (counter <= 0) {
-                            clearInterval(timer);
-                            resolve();
-                        } else {
-                            counter--;
-                        }
-                    }, 5000);
-                })
+        await this.bot.waitForSelector("div[role=\"dialog\"] div div div ~ div");
+        return this.bot.evaluate(() => {
+            return new Promise((resolve) => {
+                let counter = 15;
+                let timer = setInterval(() => {
+                    document.querySelector("div[role=\"dialog\"] div div div ~ div").scrollBy(0, 5000);
+                    if  (counter <= 0) {
+                        clearInterval(timer);
+                        resolve();
+                    } else {
+                        counter--;
+                    }
+                }, 5000);
             });
+        });
     }
 
     /**
@@ -98,18 +98,18 @@ class Likemode_competitor_users extends Manager_state{
      * @return {Promise<void>}
      */
     async open_follower_account(){
-        let follower_url = '';
+        let follower_url = "";
         if (this.cache_hash_tags.length <= 0) {
-            follower_url = this.getFollowerUrl();
+            follower_url = this.get_follower_url();
 
             this.log.info(`current follower url ${follower_url}`);
             if (typeof follower_url === "undefined")
-                this.log.warning('error follower url.');
+                this.log.warning("error follower url.");
 
             this.utils.sleep(this.utils.random_interval(4, 8));
             await this.bot.goto(follower_url);
         } else {
-            follower_url = this.getFollowerUrl();
+            follower_url = this.get_follower_url();
             this.log.info(`current url from cache ${follower_url}`);
             this.utils.sleep(this.utils.random_interval(4, 8));
 
@@ -127,10 +127,10 @@ class Likemode_competitor_users extends Manager_state{
      * @return {Promise<void>}
      */
     async get_followers(){
-        this.log.info('get followers');
+        this.log.info("get followers");
 
         if (this.cache_hash_tags.length <= 0) {
-            let selector_followers_count = 'main article:nth-child(1) header section ul li:nth-child(2) a';
+            let selector_followers_count = "main article:nth-child(1) header section ul li:nth-child(2) a";
             await this.bot.waitForSelector(selector_followers_count);
             let area_count_followers = await this.bot.$(selector_followers_count);
             await area_count_followers.click();
@@ -139,7 +139,7 @@ class Likemode_competitor_users extends Manager_state{
             await this.scroll_followers(this.bot);
 
             try {
-                this.cache_hash_tags = await this.bot.$$eval('div[role="dialog"] div div div ul li div div a', hrefs => hrefs.map((a) => {
+                this.cache_hash_tags = await this.bot.$$eval("div[role=\"dialog\"] div div div ul li div div a", hrefs => hrefs.map((a) => {
                     return a.href;
                 }));
 
@@ -147,7 +147,7 @@ class Likemode_competitor_users extends Manager_state{
 
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
-                if (this.utils.isDebug())
+                if (this.utils.is_debug())
                     this.log.debug(`array followers ${this.cache_hash_tags}`);
 
             } catch (err) {
@@ -165,10 +165,10 @@ class Likemode_competitor_users extends Manager_state{
      *
      */
     async like_click_heart() {
-        this.log.info(`try heart like random photo from account`);
+        this.log.info("try heart like random photo from account");
 
         let heart = "";
-        let photos = await this.bot.$$eval('article>div div div div a', hrefs => hrefs.map((a) => {
+        let photos = await this.bot.$$eval("article>div div div div a", hrefs => hrefs.map((a) => {
             return a.href;
         }));
         if  (photos.length === 0) {
@@ -179,7 +179,7 @@ class Likemode_competitor_users extends Manager_state{
         await this.bot.goto(photo_url);
 
         try {
-            heart = await this.bot.$('.coreSpriteHeartOpen');
+            heart = await this.bot.$(".coreSpriteHeartOpen");
             if (heart !== null) {
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
             } else {
@@ -187,17 +187,17 @@ class Likemode_competitor_users extends Manager_state{
             }
 
             if (this.is_ok()) {
-                await this.bot.waitForSelector('.coreSpriteHeartOpen');
-                let button = await this.bot.$('.coreSpriteHeartOpen');
+                await this.bot.waitForSelector(".coreSpriteHeartOpen");
+                let button = await this.bot.$(".coreSpriteHeartOpen");
                 await button.click();
             } else {
-                this.log.info(`bot like this photo in before loop, use hashtag with more new photos`);
+                this.log.info("bot like this photo in before loop, use hashtag with more new photos");
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } catch (err) {
-            if (this.utils.isDebug())
+            if (this.utils.is_debug())
                 this.log.debug(err);
-            this.log.info('bot like this photo in before loop, use hashtag with more new photos');
+            this.log.info("bot like this photo in before loop, use hashtag with more new photos");
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
         }
 
@@ -213,7 +213,7 @@ class Likemode_competitor_users extends Manager_state{
 
         if (this.is_ok()) {
             try {
-                heart = await this.bot.$('.coreSpriteHeartOpen');
+                heart = await this.bot.$(".coreSpriteHeartOpen");
 
                 if (heart === null) {
                     this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
@@ -221,22 +221,22 @@ class Likemode_competitor_users extends Manager_state{
                     this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
                 }
 
-                if (this.isError()) {
-                    this.log.warning('</3');
-                    this.log.warning('error bot :( not like photo, now bot sleep 5-10min');
-                    this.log.warning('You are in possible soft ban... If this message appear all time stop bot for 24h...');
+                if (this.is_error()) {
+                    this.log.warning("</3");
+                    this.log.warning("error bot :( not like photo, now bot sleep 5-10min");
+                    this.log.warning("You are in possible soft ban... If this message appear all time stop bot for 24h...");
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.is_ok()) {
-                    this.log.info('<3');
+                    this.log.info("<3");
                 }
             } catch (err) {
-                if (this.utils.isDebug())
+                if (this.utils.is_debug())
                     this.log.debug(err);
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } else {
-            this.log.warning('</3');
-            this.log.warning('You like this previously, change hashtag ig have few photos');
+            this.log.warning("</3");
+            this.log.warning("You like this previously, change hashtag ig have few photos");
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.READY);
         }
 
@@ -250,15 +250,15 @@ class Likemode_competitor_users extends Manager_state{
      *
      */
     async start() {
-        this.log.info('competitor_users');
+        this.log.info("competitor_users");
 
         let today = "";
 
         do {
             today = new Date();
-            this.log.info("time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes())));
+            this.log.info("time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? "0" : "") + today.getMinutes())));
 
-            if (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes()) >= (this.config.bot_sleep_night).replace(":", "")) {
+            if (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? "0" : "") + today.getMinutes()) >= (this.config.bot_sleep_night).replace(":", "")) {
 
                 this.log.info("loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
                 this.log.info("cache array size " + this.cache_hash_tags.length);
@@ -275,16 +275,16 @@ class Likemode_competitor_users extends Manager_state{
 
                 await this.like_click_heart();
 
-                if (this.cache_hash_tags.length < 9 || this.isReady()) //remove popular photos
+                if (this.cache_hash_tags.length < 9 || this.is_ready()) //remove popular photos
                     this.cache_hash_tags = [];
 
-                if (this.cache_hash_tags.length <= 0 && this.isNotReady()) {
+                if (this.cache_hash_tags.length <= 0 && this.is_not_ready()) {
                     this.log.info("finish fast like, bot sleep " + this.config.bot_fastlike_min + "-" + this.config.bot_fastlike_max + " minutes");
                     this.cache_hash_tags = [];
                     this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));
                 }
             } else {
-                this.log.info('is night, bot sleep');
+                this.log.info("is night, bot sleep");
                 this.utils.sleep(this.utils.random_interval(60 * 4, 60 * 5));
             }
         } while (true);

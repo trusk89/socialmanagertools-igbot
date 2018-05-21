@@ -1,11 +1,11 @@
-const LOG_NAME = 'login';
+const LOG_NAME = "login";
 
-const Manager_state = require('./base/state').Manager_state;
-const STATE = require('./base/state').STATE;
-const STATE_EVENTS = require('./base/state').EVENTS;
+const Manager_state = require("./base/state").Manager_state;
+const STATE = require("./base/state").STATE;
+const STATE_EVENTS = require("./base/state").EVENTS;
 
 // log
-const Log = require('./logger/Log');
+const Log = require("./logger/Log");
 
 /**
  * Login Flow
@@ -37,9 +37,9 @@ class Login extends Manager_state {
      *
      */
     async open_loginpage() {
-        this.log.info('open_loginpage');
+        this.log.info("open_loginpage");
 
-        await this.bot.goto('https://www.instagram.com/accounts/login/');
+        await this.bot.goto("https://www.instagram.com/accounts/login/");
     }
 
     /**
@@ -49,9 +49,9 @@ class Login extends Manager_state {
      *
      */
     async set_username() {
-        this.log.info('set_username');
-        await this.bot.waitForSelector('input[name="username"]');
-        await this.bot.type('input[name="username"]', this.config.instagram_username, { delay: 100 });
+        this.log.info("set_username");
+        await this.bot.waitForSelector("input[name=\"username\"]");
+        await this.bot.type("input[name=\"username\"]", this.config.instagram_username, { delay: 100 });
     }
 
     /**
@@ -61,9 +61,9 @@ class Login extends Manager_state {
      *
      */
     async set_password() {
-        this.log.info('set_password');
-        await this.bot.waitForSelector('input[name="password"]');
-        await this.bot.type('input[name="password"]', this.config.instagram_password, { delay: 100 });
+        this.log.info("set_password");
+        await this.bot.waitForSelector("input[name=\"password\"]");
+        await this.bot.type("input[name=\"password\"]", this.config.instagram_password, { delay: 100 });
     }
 
     /**
@@ -73,9 +73,9 @@ class Login extends Manager_state {
      *
      */
     async submitform() {
-        this.log.info('submit');
-        await this.bot.waitForSelector('form button');
-        let button = await this.bot.$('form button');
+        this.log.info("submit");
+        await this.bot.waitForSelector("form button");
+        let button = await this.bot.$("form button");
         await button.click();
 
         await this.utils.screenshot(LOG_NAME, "submit");
@@ -88,12 +88,12 @@ class Login extends Manager_state {
      *
      */
     async submitverify() {
-        this.log.info('checkerrors');
+        this.log.info("checkerrors");
 
         let text = "";
 
         try {
-            text = await this.bot.$('#slfErrorAlert');
+            text = await this.bot.$("#slfErrorAlert");
             if (text !== null)
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             else
@@ -102,14 +102,14 @@ class Login extends Manager_state {
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
         }
 
-        if (this.isError()) {
+        if (this.is_error()) {
             let html_response = await this.bot.evaluate(body => body.innerHTML, text);
             await text.dispose();
 
             this.log.error("Error: " + html_response + " (restart bot and retry...)");
             await this.utils.screenshot(LOG_NAME, "checkerrors_error");
         } else {
-            this.log.info('password is correct');
+            this.log.info("password is correct");
             await this.utils.screenshot(LOG_NAME, "checkerrors");
         }
 
@@ -122,7 +122,7 @@ class Login extends Manager_state {
      *
      */
     async start() {
-        this.log.info('loading...');
+        this.log.info("loading...");
 
         await this.open_loginpage();
 
@@ -141,7 +141,7 @@ class Login extends Manager_state {
         this.utils.sleep(this.utils.random_interval(4, 8));
 
         await this.submitverify();
-        this.log.info("login_status is " + this.getStatus());
+        this.log.info("login_status is " + this.get_status());
 
         this.utils.sleep(this.utils.random_interval(4, 8));
     }

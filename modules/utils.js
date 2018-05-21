@@ -1,6 +1,6 @@
-const LOG = require('../modules/logger/types');
-const colors = require('colors');
-const MAP_COLORS = require('./logger/types').MAP_COLORS;
+const LOG = require("../modules/logger/types");
+require("colors");
+const MAP_COLORS = require("./logger/types").MAP_COLORS;
 
 /**
  * Utils
@@ -43,7 +43,7 @@ class Utils {
      */
     async screenshot(func, name) {
         try {
-            await this.bot.screenshot({ path: './logs/screenshot/' + this.config.instagram_username + '_' + func + '_' + name + '.jpg' });
+            await this.bot.screenshot({ path: "./logs/screenshot/" + this.config.instagram_username + "_" + func + "_" + name + ".jpg" });
         } catch (err) {
             this.logger(LOG.WARNING, "screenshot", "error " + err);
         }
@@ -66,7 +66,7 @@ class Utils {
      * @param max
      * @return {number}
      */
-    random_number(min, max) {
+    random_number() {
         return (Math.floor(Math.random() * (20 - 10 + 1)) + 10);
     }
 
@@ -76,7 +76,7 @@ class Utils {
      * @return array
      */
     mix_array(arr) {
-        return arr.sort(function() { return 0.5 - Math.random() });
+        return arr.sort(function() { return 0.5 - Math.random(); });
     }
     /**
      * Sleep
@@ -85,7 +85,7 @@ class Utils {
      *
      */
     sleep(sec) {
-        let sleep = require('system-sleep');
+        let sleep = require("system-sleep");
         sleep(sec);
     }
 
@@ -93,7 +93,7 @@ class Utils {
      * Check is debug
      * @return {boolean}
      */
-    isDebug() {
+    is_debug() {
         return this.config.debug === true;
     }
 

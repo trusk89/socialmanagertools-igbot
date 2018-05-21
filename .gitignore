@@ -104,6 +104,7 @@ pids
 *.pid
 *.seed
 *.pid.lock
+*.eslintcache
 
 # NodeJS #
 ##########

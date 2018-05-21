@@ -1,4 +1,4 @@
-const MAP_COLORS = require('./../types').MAP_COLORS;
+const MAP_COLORS = require("./../types").MAP_COLORS;
 
 /**
  * Log in channel is console
@@ -14,6 +14,6 @@ class Console{
         let color = MAP_COLORS[type];
         console.log(`${type} ${func}: ${message}`[color]);
     }
-};
+}
 
 module.exports = () => { return new Console(); };
