@@ -1,11 +1,11 @@
-const LOG_NAME = 'like';
+const LOG_NAME = "like";
 
-const Manager_state = require('../modules/base/state').Manager_state;
-const STATE = require('../modules/base/state').STATE;
-const STATE_EVENTS = require('../modules/base/state').EVENTS;
+const Manager_state = require("../modules/base/state").Manager_state;
+const STATE = require("../modules/base/state").STATE;
+const STATE_EVENTS = require("../modules/base/state").EVENTS;
 
 // log
-const Log = require('./logger/Log');
+const Log = require("./logger/Log");
 
 /**
  * MODE: likemode_classic
@@ -35,7 +35,7 @@ class Likemode_classic extends Manager_state{
      * Get photo url from cache
      * @return {string} url
      */
-    getPhotoUrl(){
+    get_photo_url(){
         let photo_url = "";
         do {
             photo_url = this.cache_hash_tags.pop();
@@ -54,7 +54,7 @@ class Likemode_classic extends Manager_state{
         this.log.info(`current hashtag  ${hashtag_tag}`);
 
         try {
-            await this.bot.goto('https://www.instagram.com/explore/tags/' + hashtag_tag + '/');
+            await this.bot.goto("https://www.instagram.com/explore/tags/" + hashtag_tag + "/");
         } catch (err) {
             this.log.error(`goto ${err}`);
         }
@@ -71,26 +71,26 @@ class Likemode_classic extends Manager_state{
      *
      */
     async like_get_urlpic() {
-        this.log.info('like_get_urlpic');
+        this.log.info("like_get_urlpic");
 
         let photo_url = "";
 
         if (this.cache_hash_tags.length <= 0) {
             try {
-                this.cache_hash_tags = await this.bot.$$eval('article a', hrefs => hrefs.map((a) => {
+                this.cache_hash_tags = await this.bot.$$eval("article a", hrefs => hrefs.map((a) => {
                     return a.href;
                 }));
 
                 this.utils.sleep(this.utils.random_interval(10, 15));
 
-                if (this.utils.isDebug())
+                if (this.utils.is_debug())
                     this.log.debug(`array photos ${this.cache_hash_tags}`);
 
-                 photo_url = this.getPhotoUrl();
+                photo_url = this.get_photo_url();
 
                 this.log.info(`current photo url ${photo_url}`);
                 if (typeof photo_url === "undefined")
-                    this.log.warning('check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.');
+                    this.log.warning("check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
@@ -101,7 +101,7 @@ class Likemode_classic extends Manager_state{
                 await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
             }
         } else {
-            photo_url = this.getPhotoUrl();
+            photo_url = this.get_photo_url();
 
             this.log.info(`current photo url from cache ${photo_url}`);
             this.utils.sleep(this.utils.random_interval(4, 8));
@@ -122,11 +122,11 @@ class Likemode_classic extends Manager_state{
      *
      */
     async like_click_heart() {
-        this.log.info('try heart like');
+        this.log.info("try heart like");
 
         let heart = "";
         try {
-            heart = await this.bot.$('.coreSpriteHeartOpen');
+            heart = await this.bot.$(".coreSpriteHeartOpen");
             if (heart !== null) {
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
             } else {
@@ -134,17 +134,17 @@ class Likemode_classic extends Manager_state{
             }
 
             if (this.is_ok()) {
-                await this.bot.waitForSelector('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
-                let button = await this.bot.$('main article:nth-child(1) section:nth-child(1) a:nth-child(1)');
+                await this.bot.waitForSelector("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
+                let button = await this.bot.$("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
                 await button.click();
             } else {
-                this.log.info('bot like this photo in before loop, use hashtag with more new photos');
+                this.log.info("bot like this photo in before loop, use hashtag with more new photos");
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } catch (err) {
-            if (this.utils.isDebug())
+            if (this.utils.is_debug())
                 this.log.debug(err);
-            this.log.info('bot like this photo in before loop, use hashtag with more new photos');
+            this.log.info("bot like this photo in before loop, use hashtag with more new photos");
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
         }
 
@@ -160,7 +160,7 @@ class Likemode_classic extends Manager_state{
 
         if (this.is_ok()) {
             try {
-                heart = await this.bot.$('.coreSpriteHeartOpen');
+                heart = await this.bot.$(".coreSpriteHeartOpen");
 
                 if (heart === null) {
                     this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
@@ -168,22 +168,22 @@ class Likemode_classic extends Manager_state{
                     this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
                 }
 
-                if (this.isError()) {
-                    this.log.warning('</3');
-                    this.log.warning('error bot :( not like photo, now bot sleep 1-2h');
-                    this.log.warning('You are in possible soft ban... If this message appear all time stop bot for 24h...');
+                if (this.is_error()) {
+                    this.log.warning("</3");
+                    this.log.warning("error bot :( not like photo, now bot sleep 1-2h");
+                    this.log.warning("You are in possible soft ban... If this message appear all time stop bot for 24h...");
                     this.utils.sleep(this.utils.random_interval(3600, 3600*2));
                 } else if (this.is_ok()) {
-                    this.log.info('</3');
+                    this.log.info("</3");
                 }
             } catch (err) {
-                if (this.utils.isDebug())
+                if (this.utils.is_debug())
                     this.log.info(err);
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
             }
         } else {
-            this.log.warning('</3');
-            this.log.warning('You like this previously, change hashtag ig have few photos');
+            this.log.warning("</3");
+            this.log.warning("You like this previously, change hashtag ig have few photos");
         }
 
         this.utils.sleep(this.utils.random_interval(2, 5));
@@ -196,7 +196,7 @@ class Likemode_classic extends Manager_state{
      *
      */
     async start() {
-        this.log.info('classic');
+        this.log.info("classic");
 
         let today = "";
         let like_status;

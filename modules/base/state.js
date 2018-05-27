@@ -1,5 +1,5 @@
 // Export module
-const EventEmitter = require('events').EventEmitter;
+const event_emitter = require("events").EventEmitter;
 
 /**
  * Type statuses
@@ -14,23 +14,23 @@ const STATE = {
     START: null
 };
 const EVENTS = {
-    CHANGE_STATUS: 'change_status'
+    CHANGE_STATUS: "change_status"
 };
 /**
  *
  * @type {module.State}
  */
-class Manager_state extends EventEmitter {
+class Manager_state extends event_emitter {
     constructor(params) {
         super(params);
         this._status = STATE.START;
-        this.registerHandler();
+        this.register_handler();
     }
 
     /**
      * register handle events in EE
      */
-    registerHandler() {
+    register_handler() {
         this.on(EVENTS.CHANGE_STATUS, (status) => {
             this._status = status;
         });
@@ -40,7 +40,7 @@ class Manager_state extends EventEmitter {
      * Get current status
      * @return STATE
      */
-    getStatus() {
+    get_status() {
         return this._status;
     }
 
@@ -48,7 +48,7 @@ class Manager_state extends EventEmitter {
      * Check is ready status
      * @return {boolean}
      */
-    isReady() {
+    is_ready() {
         return this._status === STATE.READY;
     }
 
@@ -56,7 +56,7 @@ class Manager_state extends EventEmitter {
      * Check is not ready status
      * @return {boolean}
      */
-    isNotReady() {
+    is_not_ready() {
         return this._status !== STATE.READY;
     }
     /**
@@ -70,7 +70,7 @@ class Manager_state extends EventEmitter {
      * Check is 'error' status
      * @return {boolean}
      */
-    isError() {
+    is_error() {
         return this._status === STATE.ERROR;
     }
 
@@ -78,7 +78,7 @@ class Manager_state extends EventEmitter {
      * Check is 'stop bot' status
      * @return {boolean}
      */
-    isStopBot() {
+    is_stop_bot() {
         return this._status === STATE.STOP_BOT;
     }
 
@@ -93,7 +93,7 @@ class Manager_state extends EventEmitter {
      * Check is 'start' status
      * @return {boolean}
      */
-    isStart() {
+    is_start() {
         return this._status === STATE.START;
     }
 }

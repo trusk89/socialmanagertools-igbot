@@ -1,6 +1,6 @@
-const TYPE = require('./../types');
-const config = require('./../../../config');
-const request = require('request');
+const TYPE = require("./../types");
+const config = require("./../../../config");
+const request = require("request");
 
 /**
  * Log in channel is console
@@ -16,33 +16,33 @@ class Slack {
      * @param message
      */
     log(type, func, message) {
-        let body = '';
+        let body = "";
         switch (type) {
-            case TYPE.INFO:
-                body = this.info(type, func, message);
-                break;
-            case TYPE.WARNING:
-                body = this.warning(type, func, message);
-                break;
-            case TYPE.ERROR:
-                body = this.error(type, func, message);
-                break;
-            case TYPE.DEBUG:
-                body = this.debug(type, func, message);
-                break;
-            default:
-                console.error('[SLACK LOG] Type log not found!');
+        case TYPE.INFO:
+            body = this.info(type, func, message);
+            break;
+        case TYPE.WARNING:
+            body = this.warning(type, func, message);
+            break;
+        case TYPE.ERROR:
+            body = this.error(type, func, message);
+            break;
+        case TYPE.DEBUG:
+            body = this.debug(type, func, message);
+            break;
+        default:
+            console.error("[SLACK LOG] Type log not found!");
         }
         // push log
-        this.postLog(body);
+        this.post_log(body);
     }
-    postLog(body) {
+    post_log(body) {
         request.post(
             this.webhook,
             body,
-            function(error, response, body) {
+            function(error) {
                 if (error) {
-                    console.error(error)
+                    console.error(error);
                 }
             }
         );
@@ -52,7 +52,7 @@ class Slack {
             json: {
                 "attachments": [{
                     text: `${type} ${func}: ${message}`,
-                    color: 'good'
+                    color: "good"
                 }]
             },
         };
@@ -62,7 +62,7 @@ class Slack {
             json: {
                 "attachments": [{
                     text: `${type} ${func}: ${message}`,
-                    color: 'warning'
+                    color: "warning"
                 }]
             },
         };
@@ -72,7 +72,7 @@ class Slack {
             json: {
                 "attachments": [{
                     text: `${type} ${func}: ${message}`,
-                    color: 'danger'
+                    color: "danger"
                 }]
             },
         };
@@ -82,7 +82,7 @@ class Slack {
             json: {
                 "attachments": [{
                     text: `${type} ${func}: ${message}`,
-                    color: '#005dff'
+                    color: "#005dff"
                 }]
             },
         };

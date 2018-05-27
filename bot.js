@@ -32,9 +32,9 @@
  * 
  */
 var bot = null;
-const puppeteer = require('puppeteer');
-const config = require('./config');
-const LOG = require('./modules/logger/types');
+const puppeteer = require("puppeteer");
+const config = require("./config");
+const LOG = require("./modules/logger/types");
 
 async function start(bot, puppeteer, config, LOG) {
     let browser = null;
@@ -46,7 +46,7 @@ async function start(bot, puppeteer, config, LOG) {
      * If not exist rename config.js.tmpl to config.js and change strings
      *
      */
-    if (config.executablePath === "" || config.executablePath === false) {
+    if (config.executable_path === "" || config.executable_path === false) {
         browser = await puppeteer.launch({
             headless: config.chrome_headless,
             args: config.chrome_options
@@ -55,7 +55,7 @@ async function start(bot, puppeteer, config, LOG) {
         browser = await puppeteer.launch({
             headless: config.chrome_headless,
             args: config.chrome_options,
-            executablePath: config.executablePath
+            executable_path: config.executable_path
         });
     }
     bot = await browser.newPage();
@@ -66,11 +66,11 @@ async function start(bot, puppeteer, config, LOG) {
      * Modules of bot from folder ./modules
      *
      */
-    let routes = require('./routes/strategies');
-    let utils = require('./modules/utils')(bot, config);
-    let login = require('./modules/login.js')(bot, config, utils);
-    let twofa = require('./modules/2FA.js')(bot, config, utils);
-    let twofa_pin = require('./modules/Pin2FA.js')(bot, config, utils);
+    let routes = require("./routes/strategies");
+    let utils = require("./modules/utils")(bot, config);
+    let login = require("./modules/login.js")(bot, config, utils);
+    let twofa = require("./modules/2FA.js")(bot, config, utils);
+    let twofa_pin = require("./modules/Pin2FA.js")(bot, config, utils);
 
     /**
      * Switch Mode
@@ -98,7 +98,7 @@ async function start(bot, puppeteer, config, LOG) {
     if (login.is_ok()) {
         await twofa_pin.start_twofa_location_check();
 
-        if (twofa_pin.isError()) {
+        if (twofa_pin.is_error()) {
             await twofa_pin.start_twofa_check();
         }
 
@@ -108,12 +108,13 @@ async function start(bot, puppeteer, config, LOG) {
             await twofa.start();
         }
 
-        utils.logger(LOG.INFO, "twofa", "status " + twofa.getStatus());
+        utils.logger(LOG.INFO, "twofa", "status " + twofa.get_status());
 
         if (twofa.is_ok() || twofa.is_ok_nextverify()) {
             await switch_mode();
         }
 
+        stop();
     }
 
 }

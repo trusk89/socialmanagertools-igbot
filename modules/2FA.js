@@ -1,9 +1,9 @@
-const LOG = require('../modules/logger/types');
-const LOG_NAME = 'twofa';
+const LOG = require("../modules/logger/types");
+const LOG_NAME = "twofa";
 
-const Manager_state = require('../modules/base/state').Manager_state;
-const STATE = require('../modules/base/state').STATE;
-const STATE_EVENTS = require('../modules/base/state').EVENTS;
+const Manager_state = require("../modules/base/state").Manager_state;
+const STATE = require("../modules/base/state").STATE;
+const STATE_EVENTS = require("../modules/base/state").EVENTS;
 
 /**
  * Two Factor Authentication (2FA) Flow
@@ -37,7 +37,7 @@ class Twofa extends Manager_state {
     async requestpin() {
         this.utils.logger(LOG.WARNING, LOG_NAME, "please insert pin in loginpin.txt and wait 2-3 minutes... (tic... tac... tic... tac... tic...)");
 
-        let button = await this.bot.$('form button');
+        let button = await this.bot.$("form button");
         await button.click();
     }
 
@@ -50,7 +50,7 @@ class Twofa extends Manager_state {
     async choice_email() {
         this.utils.logger(LOG.INFO, LOG_NAME, "try switch to phone email");
 
-        let radio = await this.bot.$('section form label[for="choice_1"]');
+        let radio = await this.bot.$("section form label[for=\"choice_1\"]");
         await radio.click();
     }
 
@@ -63,7 +63,7 @@ class Twofa extends Manager_state {
     async choice_sms() {
         this.utils.logger(LOG.INFO, LOG_NAME, "try switch to phone sms (if possible)");
 
-        let radio = await this.bot.$('section form label[for="choice_0"]');
+        let radio = await this.bot.$("section form label[for=\"choice_0\"]");
         await radio.click();
     }
 
@@ -93,12 +93,12 @@ class Twofa extends Manager_state {
     async readpin(input) {
         this.utils.logger(LOG.INFO, LOG_NAME, "readpin");
 
-        const fs = require('fs');
+        const fs = require("fs");
         let data = fs.readFileSync(__dirname + "/../loginpin.txt", "utf8");
         let pin = data.toString();
 
-        await this.bot.waitForSelector('input[name="' + input + '"]');
-        await this.bot.type('input[name="' + input + '"]', pin, { delay: 100 });
+        await this.bot.waitForSelector("input[name=\"" + input + "\"]");
+        await this.bot.type("input[name=\"" + input + "\"]", pin, { delay: 100 });
         await this.utils.screenshot(LOG_NAME, "readpin");
 
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -113,11 +113,11 @@ class Twofa extends Manager_state {
     async submitform() {
         this.utils.logger(LOG.INFO, LOG_NAME, "submit");
         try {
-            await this.bot.waitForSelector('form button');
-            let button = await this.bot.$('form button');
+            await this.bot.waitForSelector("form button");
+            let button = await this.bot.$("form button");
             await button.click();
         } catch (err) {
-            if (this.utils.isDebug())
+            if (this.utils.is_debug())
                 this.utils.logger(LOG.DEBUG, LOG_NAME, err);
         }
     }
@@ -132,7 +132,7 @@ class Twofa extends Manager_state {
         let attr = "";
 
         try {
-            attr = await this.bot.$('input[name="' + selector + '"]');
+            attr = await this.bot.$("input[name=\"" + selector + "\"]");
             if (attr != null)
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.STOP_BOT);
             else
@@ -141,7 +141,7 @@ class Twofa extends Manager_state {
             this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
         }
 
-        if (this.isStopBot()) {
+        if (this.is_stop_bot()) {
             this.utils.logger(LOG.ERROR, LOG_NAME, "twofa: OMG! You are slow... Restart bot and retry... Idiot...");
             await this.utils.screenshot(LOG_NAME, "submitverify_error");
         } else if (this.is_ok()) {
@@ -153,7 +153,7 @@ class Twofa extends Manager_state {
 
         if (this.is_ok()) {
             try {
-                attr = await this.bot.$('input[name="username"]');
+                attr = await this.bot.$("input[name=\"username\"]");
                 if (attr !== null)
                     this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.STOP_BOT);
                 else
@@ -162,7 +162,7 @@ class Twofa extends Manager_state {
                 this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.STOP_BOT);
             }
 
-            if (this.isStopBot()) {
+            if (this.is_stop_bot()) {
                 this.utils.logger(LOG.ERROR, LOG_NAME, "instagram error... auto logout... restart bot...");
                 await this.utils.screenshot(LOG_NAME, "submitverify_error2");
             } else if (this.is_ok()) {
