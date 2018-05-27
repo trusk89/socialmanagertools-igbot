@@ -12,7 +12,7 @@
         "ecmaVersion": 2017
     },
     "plugins": [
-        "snakecase"
+        "snakecasejs"
     ],
     "rules":
     {
@@ -38,6 +38,6 @@
         "no-constant-condition": [
             "warn"
         ],
-        "snakecase/snakecase": "error"
+        "snakecasejs/snakecasejs": "error"
     }
 }

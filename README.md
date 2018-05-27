@@ -94,8 +94,8 @@ I love snake_case syntax sorry for this :sob: don't hate me.
 <a href="https://github.com/social-manager-tools/wordpress-telegram-bot.js">WordpressTelegramBot.js</a><br />
 <a href="https://github.com/social-manager-tools/medium-telegram-bot.js">MediumTelegramBot.js</a></p>
 
-<p align="center"><h1 align="center">License</h1></p>
+<h1>License</h1>
 
-<p align="center">GNU GENERAL PUBLIC LICENSE</p>
+GNU GENERAL PUBLIC LICENSE
 
-<p align="center">Copyright (c) 2018 Patryk Rzucidło (PTKDev)</p>
+Copyright (c) 2018 Patryk Rzucidło (PTKDev)
