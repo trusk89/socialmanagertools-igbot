@@ -36,7 +36,7 @@ This bot helps you increase the engagement of your Instagram profile through dif
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js` folder.
-4. Copy root file `config.js.tpl` to `config.js`, fill it properly.
+4. Rename `config.js.tpl` to `config.js`, fill it properly.
 5. Start the bot via `node bot.js`
 6. If work add star :star: at this project :heart:
 7. If you want help me: <b><a href="http://paypal.ptkdev.io">donate on paypal</a> or become a <a href="http://patreon.ptkdev.io">backer on patreon</a></b>.
