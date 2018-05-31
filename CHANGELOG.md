@@ -1,8 +1,11 @@
-# v0.7.0 (TBD, 2018)
+# v0.7.0 (31 May, 2018)
+* HotFix: instagram selectors changed, you need update to v0.7. InstagramBot.js <= v0.6.1 don't work.
 * Feature: [Raspberry PI 3 Support](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md)
-* Feature: fdfmode_classic     - follow user from random hashtag and defollow after 1h | 30 follow-defollow/hour.
 * Feature: commentmode_classic - select random comment and random hashtag and write comment under photo.
 * Refactor: removed useless comments, refactor switch, logger and constants.
+* Refactor: snake_code
+
+NOTE: This release don't respect full [roadmap v0.7](https://github.com/social-manager-tools/instagram-bot.js/projects/1), is a hot fix.
 
 
 # v0.6.1 (February 14, 2018)
