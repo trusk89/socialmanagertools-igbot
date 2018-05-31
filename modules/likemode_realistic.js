@@ -121,71 +121,20 @@ class Likemode_realistic extends Manager_state{
     async like_click_heart() {
         this.log.info("try heart like");
 
-        let heart = "";
-
         try {
-            heart = await this.bot.$(".coreSpriteHeartOpen");
-            if (heart !== null) {
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
-            } else {
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
-            }
-
-            if (this.is_ok()) {
-                await this.bot.waitForSelector("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
-                let button = await this.bot.$("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
-                await button.click();
-            } else {
-                this.log.info("bot like this photo in before loop, use hashtag with more new photos");
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
-            }
+            await this.bot.waitForSelector("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
+            let button = await this.bot.$("main article:nth-child(1) section:nth-child(1) a:nth-child(1)");
+            await button.click();
+            this.log.warning("<3");
         } catch (err) {
             if (this.utils.is_debug())
                 this.log.debug(err);
-            this.log.info("bot like this photo in before loop, use hashtag with more new photos");
-            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+            
+           this.log.warning("</3");
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        this.bot.reload();
-
-        this.utils.sleep(this.utils.random_interval(4, 8));
-
-        await this.utils.screenshot(LOG_NAME, "last_like");
-
-        this.utils.sleep(this.utils.random_interval(4, 8));
-
-        if (this.is_ok()) {
-            try {
-                heart = await this.bot.$(".coreSpriteHeartOpen");
-
-                if (heart === null) {
-                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
-                } else {
-                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
-                }
-
-                if (this.is_error()) {
-                    this.log.warning("</3");
-                    this.log.warning("error bot :( not like photo, now bot sleep 5-10min");
-                    this.log.warning("You are in possible soft ban... If this message appear all time stop bot for 24h...");
-                    this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
-                } else if (this.is_ok()) {
-                    this.log.info("</3");
-                }
-            } catch (err) {
-                if (this.utils.is_debug())
-                    this.log.debug(err);
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
-            }
-        } else {
-            this.log.warning("</3");
-            this.log.warning("You like this previously, change hashtag ig have few photos");
-            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.READY);
-        }
-
-        this.utils.sleep(this.utils.random_interval(2, 5));
         await this.utils.screenshot(LOG_NAME, "last_like_after");
     }
 
