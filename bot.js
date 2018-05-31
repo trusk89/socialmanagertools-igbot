@@ -55,7 +55,7 @@ async function start(bot, puppeteer, config, LOG) {
         browser = await puppeteer.launch({
             headless: config.chrome_headless,
             args: config.chrome_options,
-            executable_path: config.executable_path
+            executablePath: config.executable_path
         });
     }
     bot = await browser.newPage();
