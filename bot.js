@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.7.0
+ * @version:    0.7.1
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -67,10 +67,11 @@ async function start(bot, puppeteer, config, LOG) {
      *
      */
     let routes = require("./routes/strategies");
-    let utils = require("./modules/utils")(bot, config);
-    let login = require("./modules/login.js")(bot, config, utils);
-    let twofa = require("./modules/2FA.js")(bot, config, utils);
-    let twofa_pin = require("./modules/Pin2FA.js")(bot, config, utils);
+    let utils = require("./modules/common/utils")(bot, config);
+    let Log = require("./modules/logger/Log");
+    let log = new Log("switch_mode");
+    let login = require("./modules/mode/login.js")(bot, config, utils);
+    let twofa = require("./modules/mode/2fa.js")(bot, config, utils);
 
     /**
      * Switch Mode
@@ -83,7 +84,7 @@ async function start(bot, puppeteer, config, LOG) {
         if (strategy !== undefined) {
             await strategy(bot, config, utils).start();
         } else {
-            utils.logger(LOG.ERROR, "switch_mode", `mode ${strategy} not exist!`);
+            log(LOG.ERROR, "switch_mode", `mode ${strategy} not exist!`);
         }
     }
 
@@ -96,31 +97,26 @@ async function start(bot, puppeteer, config, LOG) {
     await login.start();
 
     if (login.is_ok()) {
-        await twofa_pin.start_twofa_location_check();
+        await twofa.start_twofa_location_check();
 
-        if (twofa_pin.is_error()) {
-            await twofa_pin.start_twofa_check();
+        if (twofa.is_error()) {
+            await twofa.start_twofa_check();
         }
 
-        if (twofa_pin.is_ok()) {
+        if (twofa.is_ok()) {
             await twofa.start_twofa_location();
-        } else if (twofa_pin.is_ok_nextverify()) {
+        } else if (twofa.is_ok_nextverify()) {
             await twofa.start();
-        }
-
-        utils.logger(LOG.INFO, "twofa", "status " + twofa.get_status());
-
-        if (twofa.is_ok() || twofa.is_ok_nextverify()) {
+            if (twofa.is_ok()) {
+                await switch_mode();
+            }
+        }else{
             await switch_mode();
         }
 
-        stop();
+        await bot.close();
     }
 
-}
-
-async function stop() {
-    await bot.close();
 }
 
 start(bot, puppeteer, config, LOG);

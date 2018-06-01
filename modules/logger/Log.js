@@ -1,9 +1,4 @@
-const TYPES_LOG = {
-    INFO:"[INFO]",
-    WARNING:"[WARNING]",
-    ERROR:"[ERROR]",
-    DEBUG:"[DEBUG]"
-};
+const TYPES_LOG = require("./types");
 
 const routes_log = require("./../../routes/log");
 const config = require("./../../config");
@@ -42,15 +37,19 @@ module.exports = class Log{
             channel.log(type, this.func, message);
         });
     }
+
     info(message){
         this.channels_log(TYPES_LOG.INFO, message);
     }
+
     warning(message){
         this.channels_log(TYPES_LOG.WARNING, message);
     }
+
     error(message){
         this.channels_log(TYPES_LOG.ERROR, message);
     }
+    
     debug(message){
         this.channels_log(TYPES_LOG.DEBUG, message);
     }

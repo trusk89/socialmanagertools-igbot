@@ -1,14 +1,22 @@
-const TYPE = require("./../types");
-const config = require("./../../../config");
-const request = require("request");
-
 /**
- * Log in channel is console
+ * Slack
+ * =====================
+ * Log in channel is slack
+ *
+ * @author:     Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
+ * @license:    This code and contributions have 'GNU General Public License v3'
+ * @version:    0.1
+ * @changelog:  0.1 initial release
+ * 
  */
 class Slack {
     constructor() {
-        this.webhook = config.log.channels.slack.webhook;
+        this.TYPE = require("./../types");
+        this.config = require("./../../../config");
+        this.request = require("request");
+        this.webhook = this.config.log.channels.slack.webhook;
     }
+
     /**
      * Run is log in output console
      * @param type
@@ -18,26 +26,27 @@ class Slack {
     log(type, func, message) {
         let body = "";
         switch (type) {
-        case TYPE.INFO:
-            body = this.info(type, func, message);
-            break;
-        case TYPE.WARNING:
-            body = this.warning(type, func, message);
-            break;
-        case TYPE.ERROR:
-            body = this.error(type, func, message);
-            break;
-        case TYPE.DEBUG:
-            body = this.debug(type, func, message);
-            break;
-        default:
-            console.error("[SLACK LOG] Type log not found!");
+            case this.TYPE.INFO:
+                body = this.info(type, func, message);
+                break;
+            case this.TYPE.WARNING:
+                body = this.warning(type, func, message);
+                break;
+            case this.TYPE.ERROR:
+                body = this.error(type, func, message);
+                break;
+            case this.TYPE.DEBUG:
+                body = this.debug(type, func, message);
+                break;
+            default:
+                console.error("[SLACK LOG] Type log not found!");
         }
         // push log
         this.post_log(body);
     }
+
     post_log(body) {
-        request.post(
+        this.request.post(
             this.webhook,
             body,
             function(error) {
@@ -47,6 +56,7 @@ class Slack {
             }
         );
     }
+
     info(type, func, message) {
         return {
             json: {
@@ -57,6 +67,7 @@ class Slack {
             },
         };
     }
+
     warning(type, func, message) {
         return {
             json: {
@@ -67,6 +78,7 @@ class Slack {
             },
         };
     }
+
     error(type, func, message) {
         return {
             json: {
@@ -77,6 +89,7 @@ class Slack {
             },
         };
     }
+
     debug(type, func, message) {
         return {
             json: {

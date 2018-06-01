@@ -1,7 +1,3 @@
-const LOG = require("../modules/logger/types");
-require("colors");
-const MAP_COLORS = require("./logger/types").MAP_COLORS;
-
 /**
  * Utils
  * =====================
@@ -15,24 +11,16 @@ const MAP_COLORS = require("./logger/types").MAP_COLORS;
  *              0.3 new sleep system
  *
  */
+require("colors");
 class Utils {
     constructor(bot, config) {
         this.bot = bot;
         this.config = config;
-    }
-
-    /**
-     * Logger
-     * =====================
-     * Better than console.log() 
-     * TODO So is very simple
-     * TODO Plan:
-     * TODO - Add various sources of output logs (example in out console, syslog ,slack, others messenger, file remote server ans others...)
-     * TODO - Save in cache, passed in function 'type' and 'func'. Function return object Log.
-     */
-    logger(type, func, text) {
-        let color = MAP_COLORS[type];
-        console.log(`${type} ${func}: ${text}` [color]);
+        this.LOG_NAME = "utils";
+        this.LOG = require("../logger/types");
+        this.MAP_COLORS = require("../logger/types").MAP_COLORS;
+        this.Log = require("../logger/Log");
+        this.log = new this.Log(this.LOG_NAME);
     }
 
     /**
@@ -42,12 +30,14 @@ class Utils {
      *
      */
     async screenshot(func, name) {
-        try {
-            await this.bot.screenshot({ path: "./logs/screenshot/" + this.config.instagram_username + "_" + func + "_" + name + ".jpg" });
-        } catch (err) {
-            this.logger(LOG.WARNING, "screenshot", "error " + err);
+        if (this.config.log.screenshot) {
+            try {
+                await this.bot.screenshot({ path: "./logs/screenshot/" + this.config.instagram_username + "_" + func + "_" + name + ".jpg" });
+                this.log.info("Cheese! Screenshot!");
+            } catch (err) {
+                this.log.error(this.LOG.WARNING, "screenshot", "error " + err);
+            }
         }
-
     }
 
     /**
@@ -78,6 +68,7 @@ class Utils {
     mix_array(arr) {
         return arr.sort(function() { return 0.5 - Math.random(); });
     }
+
     /**
      * Sleep
      * =====================
