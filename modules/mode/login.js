@@ -1,12 +1,3 @@
-const LOG_NAME = "login";
-
-const Manager_state = require("./base/state").Manager_state;
-const STATE = require("./base/state").STATE;
-const STATE_EVENTS = require("./base/state").EVENTS;
-
-// log
-const Log = require("./logger/Log");
-
 /**
  * Login Flow
  * =====================
@@ -20,14 +11,18 @@ const Log = require("./logger/Log");
  *              0.5 new pattern with puppeteer
  *
  */
+const Manager_state = require("../common/state").Manager_state;
 class Login extends Manager_state {
     constructor(bot, config, utils) {
         super();
         this.bot = bot;
         this.config = config;
         this.utils = utils;
-
-        this.log = new Log(LOG_NAME);
+        this.LOG_NAME = "login";
+        this.STATE = require("../common/state").STATE;
+        this.STATE_EVENTS = require("../common/state").EVENTS;
+        this.Log = require("../logger/Log");
+        this.log = new this.Log(this.LOG_NAME);
     }
 
     /**
@@ -78,7 +73,7 @@ class Login extends Manager_state {
         let button = await this.bot.$("form button");
         await button.click();
 
-        await this.utils.screenshot(LOG_NAME, "submit");
+        await this.utils.screenshot(this.LOG_NAME, "submit");
     }
 
     /**
@@ -95,11 +90,11 @@ class Login extends Manager_state {
         try {
             text = await this.bot.$("#slfErrorAlert");
             if (text !== null)
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+                this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
             else
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
+                this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
         } catch (err) {
-            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
+            this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
         }
 
         if (this.is_error()) {
@@ -107,10 +102,10 @@ class Login extends Manager_state {
             await text.dispose();
 
             this.log.error("Error: " + html_response + " (restart bot and retry...)");
-            await this.utils.screenshot(LOG_NAME, "checkerrors_error");
+            await this.utils.screenshot(this.LOG_NAME, "checkerrors_error");
         } else {
             this.log.info("password is correct");
-            await this.utils.screenshot(LOG_NAME, "checkerrors");
+            await this.utils.screenshot(this.LOG_NAME, "checkerrors");
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));

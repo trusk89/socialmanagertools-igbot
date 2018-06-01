@@ -9,11 +9,18 @@
  * @changelog:  0.1 initial release
  *
  */
-class Fdfmode_defollowall {
+const Manager_state = require("../common/state").Manager_state;
+class Fdfmode_defollowall extends Manager_state {
     constructor(bot, config, utils) {
+        super();
         this.bot = bot;
         this.config = config;
         this.utils = utils;
+        this.LOG_NAME = "like";
+        this.Manager_state = require("../common/state").Manager_state;
+        this.Log = require("../logger/Log");
+        this.cache_hash_tags = [];
+        this.log = new this.Log(this.LOG_NAME);
     }
 }
 

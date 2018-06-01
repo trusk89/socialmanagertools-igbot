@@ -1,6 +1,6 @@
 {
   "name": "instagrambotjs",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "main": "bot.js",
   "author": "Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)",
   "license": "GPL-3.0",

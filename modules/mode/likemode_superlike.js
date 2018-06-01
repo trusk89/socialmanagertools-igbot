@@ -1,10 +1,3 @@
-//Export
-const LOG_NAME = "like";
-const Manager_state = require("../modules/base/state").Manager_state;
-
-// log
-const Log = require("./logger/Log");
-
 /**
  * MODE: likemode_superlike
  * =====================
@@ -16,15 +9,17 @@ const Log = require("./logger/Log");
  * @changelog:  0.1 initial release
  *
  */
-class Likemode_superlike extends Manager_state{
+const Manager_state = require("../common/state").Manager_state;
+class Likemode_superlike extends Manager_state {
     constructor(bot, config, utils) {
         super();
         this.bot = bot;
         this.config = config;
-        this.utils  = utils;
-
+        this.utils = utils;
+        this.LOG_NAME = "like";
+        this.Log = require("../logger/Log");
         this.cache_hash_tags = [];
-        this.log = new Log(LOG_NAME);
+        this.log = new this.Log(this.LOG_NAME);
     }
 
 }

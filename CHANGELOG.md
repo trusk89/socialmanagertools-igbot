@@ -1,4 +1,19 @@
-# v0.7.0 (31 May, 2018)
+# v0.7.1 (02 June, 2018)
+##### NOTE: Update your `config.js` with new parameters from `config.js.tpl`.
+* New instagram limit: now the sms pin must be inserted within 50-60 seconds
+* Fix and Refactor: commentmode_classic
+* Fix and Refactor: competitor_users
+* Fix and Refactor: likemode_realistic
+* Fix and Refactor: likemode_classic
+* Fix and Refactor: login
+* Fix and Refactor: 2FA
+* Refactor: logger
+* Refactor: utils
+* Refactor: state
+* Bug: on macOS browser screenshot crash, in `config.js` set `screenshot` to `false`.
+
+
+# v0.7.0 HOTFIX (31 May, 2018)
 * HotFix: instagram selectors changed, you need update to v0.7. InstagramBot.js <= v0.6.1 don't work.
 * Feature: [Raspberry PI 3 Support](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md)
 * Feature: commentmode_classic - select random comment and random hashtag and write comment under photo.

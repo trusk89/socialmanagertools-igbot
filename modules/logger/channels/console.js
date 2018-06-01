@@ -1,9 +1,19 @@
-const MAP_COLORS = require("./../types").MAP_COLORS;
-
 /**
+ * Console
+ * =====================
  * Log in channel is console
+ *
+ * @author:     Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
+ * @license:    This code and contributions have 'GNU General Public License v3'
+ * @version:    0.1
+ * @changelog:  0.1 initial release
+ * 
  */
 class Console{
+    constructor() {
+        this.MAP_COLORS = require("./../types").MAP_COLORS;
+    }
+    
     /**
      * Run is log in output console
      * @param type
@@ -11,7 +21,7 @@ class Console{
      * @param message
      */
     log(type, func, message){
-        let color = MAP_COLORS[type];
+        let color = this.MAP_COLORS[type];
         console.log(`${type} ${func}: ${message}`[color]);
     }
 }

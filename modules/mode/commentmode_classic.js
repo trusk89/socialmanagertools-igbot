@@ -1,13 +1,3 @@
-// Export
-const LOG_NAME = "comment";
-
-const Manager_state = require("../base/state").Manager_state;
-const STATE = require("../base/state").STATE;
-const STATE_EVENTS = require("../base/state").EVENTS;
-
-// log
-const Log = require("./../logger/Log");
-
 /**
  * MODE: commentmode_classic
  * =====================
@@ -18,18 +8,27 @@ const Log = require("./../logger/Log");
  * @changelog:  0.1 initial release
  *
  */
+const Manager_state = require("../common/state").Manager_state;
 class commentmode_classic extends Manager_state {
     constructor(bot, config, utils) {
         super();
-
         this.bot = bot;
         this.config = config;
         this.utils = utils;
-
+        this.LOG_NAME = "comment";
+        this.STATE = require(".state").STATE;
+        this.STATE_EVENTS = require(".state").EVENTS;
+        this.Log = require("./.../logger/Log");
         this.cache_hash_tags = [];
-        this.log = new Log(LOG_NAME);
+        this.log = new this.Log(this.LOG_NAME);
+        this.source = this.config.comment_mode.comments.source;
     }
 
+    get_random_comment() {
+        // if array is empty
+        if (this.source.length === 0) return "";
+        return this.source[Math.floor(Math.random() * this.source.length)];
+    }
     /**
      * Get random comment from config file
      * @return string
@@ -37,11 +36,11 @@ class commentmode_classic extends Manager_state {
     get_comment() {
         this.log.info(`type source comments is ${this.config.comment_mode.comments.type}`);
         switch (this.config.comment_mode.comments.type) {
-        case "array":
-            return require("./comment_sources/array")().get_random_comment();
-        default:
-            this.log.error("source comments not found");
-            return "";
+            case "array":
+                return this.get_random_comment();
+            default:
+                this.log.error("source comments not found");
+                return "";
         }
     }
 
@@ -75,7 +74,7 @@ class commentmode_classic extends Manager_state {
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        await this.utils.screenshot(LOG_NAME, "last_hashtag");
+        await this.utils.screenshot(this.LOG_NAME, "last_hashtag");
     }
 
     /**
@@ -111,7 +110,7 @@ class commentmode_classic extends Manager_state {
             } catch (err) {
                 this.cache_hash_tags = [];
                 this.log.error(`like_get_urlpic error ${err}`);
-                await this.utils.screenshot(LOG_NAME, "like_get_urlpic_error");
+                await this.utils.screenshot(this.LOG_NAME, "like_get_urlpic_error");
             }
         } else {
             photo_url = this.get_photo_url();
@@ -140,9 +139,9 @@ class commentmode_classic extends Manager_state {
                 let nick = await this.bot.$(nick_under_photo);
 
                 if (nick !== null) {
-                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
+                    this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
                 } else {
-                    this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+                    this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
                 }
 
                 if (this.is_error()) {
@@ -156,12 +155,12 @@ class commentmode_classic extends Manager_state {
             } catch (err) {
                 if (this.utils.is_debug())
                     this.log.debug(err);
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+                this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
             }
         } else {
             this.log.warning("</3");
             this.log.warning("You like this previously, change hashtag ig have few photos");
-            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.READY);
+            this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.READY);
         }
     }
 
@@ -178,9 +177,9 @@ class commentmode_classic extends Manager_state {
         try {
             let textarea = await this.bot.$(comment_area_elem);
             if (textarea !== null) {
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.OK);
+                this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
             } else {
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+                this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
             }
 
             if (this.is_ok()) {
@@ -191,13 +190,13 @@ class commentmode_classic extends Manager_state {
                 await button.press("Enter");
             } else {
                 this.log.info("bot is unable to comment on this photo");
-                this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+                this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
             }
         } catch (err) {
             if (this.utils.is_debug())
                 this.log.debug(err);
             this.log.info("bot is unable to comment on this photo");
-            this.emit(STATE_EVENTS.CHANGE_STATUS, STATE.ERROR);
+            this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -206,13 +205,13 @@ class commentmode_classic extends Manager_state {
 
         this.utils.sleep(this.utils.random_interval(4, 8));
 
-        await this.utils.screenshot(LOG_NAME, "last_comment");
+        await this.utils.screenshot(this.LOG_NAME, "last_comment");
 
         this.utils.sleep(this.utils.random_interval(4, 8));
         await this.check_leave_comment();
 
         this.utils.sleep(this.utils.random_interval(2, 5));
-        await this.utils.screenshot(LOG_NAME, "last_comment_after");
+        await this.utils.screenshot(this.LOG_NAME, "last_comment_after");
     }
 
     /**

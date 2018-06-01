@@ -1,9 +1,15 @@
-// Export module
-const event_emitter = require("events").EventEmitter;
-
 /**
+ * MODE: types
+ * =====================
  * Type statuses
+ *
+ * @author:     Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
+ * @license:    This code and contributions have 'GNU General Public License v3'
+ * @version:    0.1
+ * @changelog:  0.1 initial release
+ *
  * @type {{OK: number, ERROR: number, READY: number, START: null}}
+ * 
  */
 const STATE = {
     OK: 1,
@@ -13,13 +19,23 @@ const STATE = {
     OK_NEXT_VERIFY: 2,
     START: null
 };
+
 const EVENTS = {
     CHANGE_STATUS: "change_status"
 };
+
 /**
+ * Manager of states
+ * =====================
+ * Handler of emit
  *
- * @type {module.State}
+ * @author:     Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
+ * @license:    This code and contributions have 'GNU General Public License v3'
+ * @version:    0.1
+ * @changelog:  0.1 initial release
+ * 
  */
+const event_emitter = require("events").EventEmitter;
 class Manager_state extends event_emitter {
     constructor(params) {
         super(params);
@@ -59,6 +75,7 @@ class Manager_state extends event_emitter {
     is_not_ready() {
         return this._status !== STATE.READY;
     }
+
     /**
      * Check is 'ok' status
      * @return {boolean}
@@ -66,6 +83,7 @@ class Manager_state extends event_emitter {
     is_ok() {
         return this._status === STATE.OK;
     }
+    
     /**
      * Check is 'error' status
      * @return {boolean}
@@ -89,6 +107,7 @@ class Manager_state extends event_emitter {
     is_ok_nextverify() {
         return this._status === STATE.OK_NEXT_VERIFY;
     }
+
     /**
      * Check is 'start' status
      * @return {boolean}
