@@ -1,5 +1,5 @@
 /**
- * MODE: types
+ * Types
  * =====================
  * Type of message
  *

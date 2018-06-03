@@ -1,5 +1,5 @@
 /**
- * MODE: types
+ * types
  * =====================
  * Type statuses
  *

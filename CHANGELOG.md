@@ -1,3 +1,10 @@
+# v0.7.2 (TBD)
+##### NOTE: Update your `config.js` with new parameters from `config.js.tpl`.
+* Feature: enable/disable sleep night
+* Feature: likemode_superlike
+* Bug: on macOS browser screenshot crash, in `config.js` set `screenshot` to `false`.
+
+
 # v0.7.1 (02 June, 2018)
 ##### NOTE: Update your `config.js` with new parameters from `config.js.tpl`.
 * New instagram limit: now the sms pin must be inserted within 50-60 seconds
