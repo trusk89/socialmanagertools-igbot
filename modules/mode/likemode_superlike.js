@@ -1,7 +1,7 @@
 /**
  * MODE: likemode_superlike
  * =====================
- * Select random hashtag from config list, like fast 10-12 photo and sleep 15-20min. Sleep at night | 400-600 like/day.
+ * Select random hashtag from config list and like 3 random photo of same user | 750-900 like/day.
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @license:    This code and contributions have 'GNU General Public License v3'
