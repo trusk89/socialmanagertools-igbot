@@ -4,7 +4,7 @@
 
 <p align="center"><a href="#" alt="License"><img src="https://img.shields.io/badge/license-GLPv3-brightgreen.svg"></a>
 <a href="https://github.com/GoogleChrome/puppeteer" alt="powered by puppeteer"><img src="https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg"></a>
-<a href="https://github.com/social-manager-tools/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.7.1-lightgrey.svg"></a>
+<a href="https://github.com/social-manager-tools/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.7.2%20BETA-lightgrey.svg"></a>
 <a href="https://slack.ptkdev.io" alt="Slack Chat"><img src="https://img.shields.io/badge/chat%20on-Slack-orange.svg"></a>
 <a href="http://blog.ptkdev.io" alt="Blog"><img src="https://img.shields.io/badge/blog-medium-2AE176.svg"></a>
 <a href="https://twitter.com/ptkdevio" alt="Twitter"><img src="https://img.shields.io/badge/twitter-ptkdevio-2AA3EF.svg"></a>   
@@ -27,9 +27,9 @@ This bot helps you increase the engagement of your Instagram profile through dif
 * [✓] Screenshot and Verbose logger
 * [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo and repeat this all time.
 * [✓] Like Mode Realistic: bot select random hashtag from config list and like fast 10-12 photos, sleep 15-20min and repeat this all time. Sleep at night.
-* [✓] Like Mode Competitor Users - select account, select random followers, like 10-12 photo and sleep 15-20min. Sleep at night.
+* [✓] Like Mode Competitor Users: select account, select random followers, like 10-12 photo and sleep 15-20min. Sleep at night.
+* [✓] Like Mode Superlike: select random hashtag from config list and like 3 random photo of same user.
 * [✓] Comment Mode Classic: select random comment and random hashtag and write comment under photo.
-* [✘] Like Mode Superlike: select random hashtag from config list and like 3 random photo of same user.
 * [✘] Follow/Defollow Classic: follow user from random hashtag and defollow after 1h.
 * [✘] Defollow All: defollow all your following (ignore users in whitelist).
 

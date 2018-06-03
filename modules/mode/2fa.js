@@ -270,13 +270,20 @@ class Twofa extends Manager_state{
     async start() {
         this.log.info("twofa (enabled)", "loading...");
 
-        this.log.info("please insert pin in loginpin.txt, you have 50-60 seconds for that.. (tic... tac... tic... tac... tic...)");
+        this.log.warning("please insert pin in loginpin.txt, you have 50-60 seconds for that.. (tic... tac... tic... tac... tic...)");
+
         this.utils.sleep(this.utils.random_interval(10, 15));
+
         await this.readpin("verificationCode");
+
         this.utils.sleep(this.utils.random_interval(4, 8));
+
         await this.submitform();
+
         this.utils.sleep(this.utils.random_interval(4, 8));
+
         await this.submitverify("verificationCode");
+        
         this.utils.sleep(this.utils.random_interval(4, 8));
     }
 
