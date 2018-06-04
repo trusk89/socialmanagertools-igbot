@@ -127,9 +127,12 @@ class Likemode_superlike extends Manager_state {
             await this.bot.waitForSelector("section:nth-child(1) main:nth-child(1) article:nth-child(1) header:nth-child(1) div:nth-child(2) a:nth-child(1)");
             let button = await this.bot.$("section:nth-child(1) main:nth-child(1) article:nth-child(1) header:nth-child(1) div:nth-child(2) a:nth-child(1)");
             await button.click();
+            this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
         } catch (err) {
             if (this.utils.is_debug())
                 this.log.debug(err);
+
+            this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
         }
 
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -243,10 +246,16 @@ class Likemode_superlike extends Manager_state {
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
-                for (let i = 0; i < 3; i++) {
-                    this.log.info("try like photo "+(i+1)+"/3");
+                for (let i = 0; i < this.config.bot_superlike_n; i++) {
+                    this.log.info("try like photo " + (i + 1) + "/" + this.config.bot_superlike_n);
 
                     await this.like_open_userpage();
+
+                    while (this.get_status() === 0) {
+                        this.log.info("photo not found, retry next...");
+                        await this.like_get_urlpic();
+                        await this.like_open_userpage();
+                    }
 
                     this.utils.sleep(this.utils.random_interval(4, 8));
 
@@ -270,7 +279,8 @@ class Likemode_superlike extends Manager_state {
                 this.log.info("is night, bot sleep");
                 this.utils.sleep(this.utils.random_interval(60 * 4, 60 * 5));
             }
-        } while (true);
+        }
+        while (true);
     }
 
 }

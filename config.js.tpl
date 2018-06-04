@@ -24,6 +24,7 @@ module.exports = {
     "bot_start_sleep": "7:00",   // sleep from 00:00 to 7:00 am, work in likemode_realistic, comment_mode, likemode_superlike and likemode_competitor_users
     "bot_fastlike_min": "15",    // min minutes of sleep after like 10-12 photo, work in likemode_realistic and likemode_superlike (superlike add 3 like/user, set 50min)
     "bot_fastlike_max": "20",    // max minutes of sleep after like 10-12 photo, work in likemode_realistic and likemode_superlike (superlike add 3 like/user, set 60min)
+    "bot_superlike_n": 3,        // superlike number of likes for user
     "bot_followday": 300,        // follow-defollow user/day, work in fdfmode_classic and fdfmode_defollowall
     "bot_userwhitelist": [""],   // usernames without @ | don't defollow this users on follow-defollow mode, work in fdfmode_classic and fdfmode_defollowall
     "comment_mode": {
