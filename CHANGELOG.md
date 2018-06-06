@@ -2,6 +2,8 @@
 ##### NOTE: Update your `config.js` with new parameters from `config.js.tpl`.
 * Feature: enable/disable sleep night
 * Feature: likemode_superlike
+* Feature: likemode_superlike, number of like/user from config.js
+* Fix: sms pin bad location ust be inserted within 50-60 seconds
 * Bug: on macOS browser screenshot crash, in `config.js` set `screenshot` to `false`.
 
 
