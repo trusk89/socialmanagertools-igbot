@@ -1,5 +1,6 @@
-# v0.7.2 (TBD)
+# v0.7.2 (07 June, 2018)
 ##### NOTE: Update your `config.js` with new parameters from `config.js.tpl`.
+* Fix: commentmode_classic `.state error`
 * Feature: enable/disable sleep night
 * Feature: likemode_superlike
 * Feature: likemode_superlike, number of like/user from config.js
