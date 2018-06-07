@@ -232,8 +232,8 @@ class Likemode_superlike extends Manager_state {
         do {
             today = new Date();
             this.log.info("time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? "0" : "") + today.getMinutes())));
-            
-            if(this.config.bot_sleep_night === false){
+
+            if (this.config.bot_sleep_night === false) {
                 this.config.bot_start_sleep = "00:00";
             }
             if ((parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? "0" : "") + today.getMinutes()) >= (this.config.bot_start_sleep).replace(":", ""))) {
