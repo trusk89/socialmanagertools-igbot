@@ -145,12 +145,12 @@ class commentmode_classic extends Manager_state {
                 }
 
                 if (this.is_error()) {
-                    this.log.warning("</3");
+                    this.log.warning("Failed...");
                     this.log.warning("error bot :( not comment under photo, now bot sleep 5-10min");
                     this.log.warning("You are in possible soft ban... If this message appear all time stop bot for 24h...");
                     this.utils.sleep(this.utils.random_interval(60 * 5, 60 * 10));
                 } else if (this.is_ok()) {
-                    this.log.info("</3");
+                    this.log.info("OK");
                 }
             } catch (err) {
                 if (this.utils.is_debug())
@@ -158,7 +158,7 @@ class commentmode_classic extends Manager_state {
                 this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
             }
         } else {
-            this.log.warning("</3");
+            this.log.warning("Failed...");
             this.log.warning("You like this previously, change hashtag ig have few photos");
             this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.READY);
         }
@@ -224,12 +224,12 @@ class commentmode_classic extends Manager_state {
 
         do {
             let today = new Date();
-            let hour = today.getHours() + "" + (today.getMinutes() < 10 ? "0" : "");
-            let minutes = today.getMinutes();
-
-            this.log.info(`time night: ${hour}:${minutes}`);
-
-            if (parseInt(hour + minutes) >= (this.config.bot_sleep_night).replace(":", "")) {
+            this.log.info("time night: " + (parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? "0" : "") + today.getMinutes())));
+            
+            if(this.config.bot_sleep_night === false){
+                this.config.bot_start_sleep = "00:00";
+            }
+            if ((parseInt(today.getHours() + "" + (today.getMinutes() < 10 ? "0" : "") + today.getMinutes()) >= (this.config.bot_start_sleep).replace(":", ""))) {
                 this.log.info("loading... " + new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes(), today.getSeconds()));
                 this.log.info(`cache array size ${this.cache_hash_tags.length}`);
 
