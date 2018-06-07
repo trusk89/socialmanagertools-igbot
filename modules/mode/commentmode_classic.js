@@ -16,11 +16,11 @@ class commentmode_classic extends Manager_state {
         this.config = config;
         this.utils = utils;
         this.LOG_NAME = "comment";
-        this.STATE = require(".state").STATE;
-        this.STATE_EVENTS = require(".state").EVENTS;
-        this.Log = require("./.../logger/Log");
-        this.cache_hash_tags = [];
+        this.STATE = require("../common/state").STATE;
+        this.STATE_EVENTS = require("../common/state").EVENTS;
+        this.Log = require("../logger/Log");
         this.log = new this.Log(this.LOG_NAME);
+        this.cache_hash_tags = [];
         this.source = this.config.comment_mode.comments.source;
     }
 
