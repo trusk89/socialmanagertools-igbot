@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.7.2
+ * @version:    0.7.3
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -114,7 +114,7 @@ async function start(bot, puppeteer, config, LOG) {
             await switch_mode();
         }
 
-        await bot.close();
+        //await bot.close();
     }
 
 }
