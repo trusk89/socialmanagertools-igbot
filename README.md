@@ -4,7 +4,7 @@
 
 <p align="center"><a href="#" alt="License"><img src="https://img.shields.io/badge/license-GLPv3-brightgreen.svg"></a>
 <a href="https://github.com/GoogleChrome/puppeteer" alt="powered by puppeteer"><img src="https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg"></a>
-<a href="https://github.com/social-manager-tools/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.7.2-lightgrey.svg"></a>
+<a href="https://github.com/social-manager-tools/instagram-bot.js/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.7.3-lightgrey.svg"></a>
 <a href="https://slack.ptkdev.io" alt="Slack Chat"><img src="https://img.shields.io/badge/chat%20on-Slack-orange.svg"></a>
 <a href="http://blog.ptkdev.io" alt="Blog"><img src="https://img.shields.io/badge/blog-medium-2AE176.svg"></a>
 <a href="https://twitter.com/ptkdevio" alt="Twitter"><img src="https://img.shields.io/badge/twitter-ptkdevio-2AA3EF.svg"></a>   
@@ -61,6 +61,10 @@ See images in ./logs/screenshot or disable `chrome_headless` flag.
 2. `Error: Protocol error (Page.captureScreenshot): Target closed.`
 * Why happen? macOS don't support correctly screenshot from puppeteer
 * Solution: set `screenshot` on `false` in `config.js`
+
+3. `This code is no longer valid. Please request a new one. (400) (/accounts/login/ajax/two_factor/)` 
+* Why happen? Instagram bug at login
+* Solution: disable at moment 2FA or try old version of chrome (edit `config.js` set `executable_path`)
 
 ## Desktop setup (GUI Version)
 1. Download <a href="https://socialmanagertools.ptkdev.io/">Social Manager Tools GUI</a> (Note: is alpha version).
