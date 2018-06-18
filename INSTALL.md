@@ -15,7 +15,8 @@
 - Edit `config.js` and set `chrome_headless` to `true`, is mandatory.
 
 #### 5. Run
-- `node bot.js`
+1. `npm install` in bot folder
+2. `node bot.js` in bot folder
 
 # Setup - Raspbian 8
 #### 1. Install chromium v60
@@ -49,7 +50,8 @@ sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 - Edit `config.js` and set `chrome_headless` to `true`, is mandatory.
 
 #### 7. Run
-- `node bot.js`
+1. `npm install` in bot folder
+2. `node bot.js` in bot folder
 
 # Setup - Debian Server
 #### 1. Install bot dependencies:
@@ -60,13 +62,13 @@ sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 2. `sudo bash nodesource_setup.sh`
 3. `rm nodesource_setup.sh`
 4. `sudo apt-get install nodejs`
-5. Run `npm install` in `instagram-bot.js` folder
 
 #### 3. You don't have monitor?
 - Edit `config.js` and set `chrome_headless` to `true`
 
 #### 4. Run Bot
-- `node bot.js`
+1. `npm install` in bot folder
+2. `node bot.js` in bot folder
 
 # Pin
 If you received sms or email pin edit `loginpin.txt` and insert it on first line. Wait 50-60 seconds...

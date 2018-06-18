@@ -87,14 +87,18 @@ class Likemode_superlike extends Manager_state {
                 photo_url = this.get_photo_url("hashtag");
 
                 this.log.info(`current photo url ${photo_url}`);
-                if (typeof photo_url === "undefined")
+                if (typeof photo_url === "undefined") {
                     this.log.warning("check if current hashtag have photos, you write it good in config.js? Bot go to next hashtag.");
+                    this.cache_hash_tags = [];
+                    this.cache_hash_tags_user = [];
+                }
 
                 this.utils.sleep(this.utils.random_interval(4, 8));
 
                 await this.bot.goto(photo_url);
             } catch (err) {
                 this.cache_hash_tags = [];
+                this.cache_hash_tags_user = [];
                 this.log.error(`like_get_urlpic error ${err}`);
                 await this.utils.screenshot(this.LOG_NAME, "like_get_urlpic_error");
             }
@@ -108,6 +112,8 @@ class Likemode_superlike extends Manager_state {
                 await this.bot.goto(photo_url);
             } catch (err) {
                 this.log.error(`goto ${err}`);
+                this.cache_hash_tags = [];
+                this.cache_hash_tags_user = [];
             }
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
@@ -173,6 +179,7 @@ class Likemode_superlike extends Manager_state {
                 await this.bot.goto(photo_url);
             } catch (err) {
                 this.cache_hash_tags = [];
+                this.cache_hash_tags_user = [];
                 this.log.error(`like_get_urlpic_user error ${err}`);
                 await this.utils.screenshot(this.LOG_NAME, "like_get_urlpic_error");
             }
@@ -186,6 +193,8 @@ class Likemode_superlike extends Manager_state {
                 await this.bot.goto(photo_url);
             } catch (err) {
                 this.log.error(`goto ${err}`);
+                this.cache_hash_tags = [];
+                this.cache_hash_tags_user = [];
             }
         }
         this.utils.sleep(this.utils.random_interval(4, 8));
