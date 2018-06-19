@@ -24,6 +24,18 @@ class Utils {
     }
 
     /**
+     * Donate
+     * =====================
+     * Patreon link
+     *
+     */
+    donate() {
+        this.log.warning("Bot work? Please donate for support this project!");
+        this.log.warning("Donate with patreon: http://patreon.ptkdev.io");
+        this.log.warning("Donate with paypal: http://paypal.ptkdev.io");
+    }
+
+    /**
      * Check updates
      * =====================
      * Bot is updated? Yes/no
