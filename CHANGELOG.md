@@ -2,7 +2,7 @@
 * Update: RaspBerry PI `INSTALL.md`
 * Fix: random stop of `likemode_superlike`
 * Feature: check updates of bot
-* Feature: default `config.js` value if don't exist
+* Feature: default `config.js` value if don't exist [Bug: #51]
 
 #### Known Bugs:
 * Bug: 2FA login failed `This code is no longer valid. Please request a new one. (400) (/accounts/login/ajax/two_factor/)`. Solution: disable at moment 2FA

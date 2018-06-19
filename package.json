@@ -1,10 +1,10 @@
 {
   "name": "instagrambotjs",
+  "description": "instagram bot made with love and nodejs",
   "version": "0.7.4",
   "main": "bot.js",
   "author": "Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)",
   "license": "GPL-3.0",
-  "description": "instagram bot made with love and nodejs",
   "homepage": "https://instagram.bot.ptkdev.io",
   "repository": {
     "type": "git",

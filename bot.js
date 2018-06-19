@@ -48,6 +48,7 @@ async function start(bot, version, puppeteer, config, LOG) {
      */
     let check = require("./modules/common/utils")(bot, config);
     config = check.default_config(config);
+    check.donate();
     check.check_updates(version.version);
     if (config.executable_path === "" || config.executable_path === false) {
         browser = await puppeteer.launch({
