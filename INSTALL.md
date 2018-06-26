@@ -8,13 +8,7 @@
 3. `rm nodesource_setup.sh`
 4. `sudo apt-get install nodejs`
 
-#### 3. Use raspbian chromium, not the node_modules version
-- Edit `config.js` and set `executable_path` to `/usr/bin/chromium-browser` in puppeteer section.
-
-#### 4. You don't have monitor?
-- Edit `config.js` and set `chrome_headless` to `true`, is mandatory.
-
-#### 5. Run
+#### 3. Run
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Run `npm install` in `instagram-bot.js` folder.
 3. Rename `config.js.tpl` to `config.js`, fill it properly.
@@ -22,7 +16,10 @@
 5. If work add star :star: at this project :heart:
 6. If you want help me: <b><a href="http://paypal.ptkdev.io"></b>donate on paypal</a> or become a <b><a href="http://patreon.ptkdev.io">backer on patreon</a></b>.
 
-#### 6. You don't have monitor?
+#### 4. Use raspbian chromium, not the node_modules version
+- Edit `config.js` and set `executable_path` to `/usr/bin/chromium-browser` in puppeteer section.
+
+#### 5. You don't have monitor?
 - Edit `config.js` and set `chrome_headless` to `true`, is mandatory.
 
 # Setup - Raspbian 8
@@ -46,20 +43,20 @@ sudo dpkg -i chromium-codecs-ffmpeg_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 ```
 
-#### 4. Use raspbian chromium, not the node_modules version
-- Edit `config.js` and set `executable_path` to `/usr/bin/chromium-browser` in puppeteer section:
-
-#### 5. If you have problem with libc dependieces you need update raspbian to testing:
+#### 4. If you have problem with libc dependieces you need update raspbian to testing:
 - Edit `sudo vi /etc/apt/source.list` and switch `stretch` to `testing`
 - Run `sudo apt-get update && sudo apt-get dist-upgrade`
 
-#### 6. Run
+#### 5. Run
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Run `npm install` in `instagram-bot.js` folder.
 3. Rename `config.js.tpl` to `config.js`, fill it properly.
 4. Start the bot via `node bot.js`
 5. If work add star :star: at this project :heart:
 6. If you want help me: <b><a href="http://paypal.ptkdev.io"></b>donate on paypal</a> or become a <b><a href="http://patreon.ptkdev.io">backer on patreon</a></b>.
+
+#### 6. Use raspbian chromium, not the node_modules version
+- Edit `config.js` and set `executable_path` to `/usr/bin/chromium-browser` in puppeteer section:
 
 #### 7. You don't have monitor?
 - Edit `config.js` and set `chrome_headless` to `true`, is mandatory.
