@@ -1,4 +1,4 @@
-# v0.7.4 (TBD, 2018)
+# v0.7.4 (28 June, 2018)
 * Update: RaspBerry PI `INSTALL.md`
 * Fix: random stop of `likemode_superlike`
 * Feature: check updates of bot
