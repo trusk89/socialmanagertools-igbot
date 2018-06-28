@@ -1,13 +1,8 @@
-# v0.7.4 (TBD, 2018)
+# v0.7.4 (28 June, 2018)
 * Update: RaspBerry PI `INSTALL.md`
 * Fix: random stop of `likemode_superlike`
 * Feature: check updates of bot
 * Feature: default `config.js` value if don't exist [Bug: #51]
-
-#### Known Bugs:
-* Bug: 2FA login failed `This code is no longer valid. Please request a new one. (400) (/accounts/login/ajax/two_factor/)`. Solution: disable at moment 2FA
-* Bug: on macOS browser screenshot crash, in `config.js` set `screenshot` to `false`.
-* Bug: login error: `The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)` Why happen? Instagram desktop is in overcapacity at 12-14 and 19-21 all days. Solution: login in other time or logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
 
 
 # v0.7.3 (11 June, 2018)
