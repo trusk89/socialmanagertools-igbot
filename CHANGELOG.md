@@ -6,6 +6,7 @@
 * Update: RaspBerry PI `INSTALL.md`
 * Fix: random stop of `likemode_superlike`
 * Feature: check updates of bot
+* Feature: donate message
 * Feature: default `config.js` value if don't exist [Bug: #51]
 
 
