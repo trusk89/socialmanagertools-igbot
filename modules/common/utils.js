@@ -20,7 +20,7 @@ class Utils {
         this.LOG = require("../logger/types");
         this.MAP_COLORS = require("../logger/types").MAP_COLORS;
         this.Log = require("../logger/Log");
-        this.log = new this.Log(this.LOG_NAME);
+        this.log = new this.Log(this.LOG_NAME, this.config);
     }
 
     /**
@@ -197,8 +197,7 @@ class Utils {
      *
      */
     sleep(sec) {
-        let sleep = require("system-sleep");
-        sleep(sec);
+        return new Promise(resolve => setTimeout(resolve, sec));
     }
 
     /**
