@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.7.4
+ * @version:    0.7.5
  *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ async function start(bot, version, puppeteer, config, LOG) {
     let routes = require("./routes/strategies");
     let utils = require("./modules/common/utils")(bot, config);
     let Log = require("./modules/logger/Log");
-    let log = new Log("switch_mode");
+    let log = new Log("switch_mode", config);
     let login = require("./modules/mode/login.js")(bot, config, utils);
     let twofa = require("./modules/mode/2fa.js")(bot, config, utils);
 

@@ -1,3 +1,7 @@
+# v0.7.5 (03 July, 2018)
+* Fix: instagram selectors css changed #55
+
+
 # v0.7.4 (28 June, 2018)
 * Update: RaspBerry PI `INSTALL.md`
 * Fix: random stop of `likemode_superlike`

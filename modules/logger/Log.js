@@ -1,11 +1,11 @@
 const TYPES_LOG = require("./types");
 
 const routes_log = require("./../../routes/log");
-const config = require("./../../config");
 
 module.exports = class Log{
-    constructor(func){
+    constructor(func, config){
         this.func = func;
+        this.config = config;
         this.channels = [];
 
         config.log.drivers.forEach((driver) => {
