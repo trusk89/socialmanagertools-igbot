@@ -1,4 +1,4 @@
-# v0.8.0 BETA (17 July, 2018)
+# v0.8.0 (17 July, 2018)
 * Fix: likemode_superlike don't like
 * Feature: core moved to [instagrambotlib](https://www.npmjs.com/package/instagrambotlib)
 
