@@ -1,7 +1,7 @@
 {
   "name": "instagrambotjs",
   "description": "instagram bot made with love and nodejs",
-  "version": "0.7.5",
+  "version": "0.8.0",
   "main": "bot.js",
   "author": "Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)",
   "license": "GPL-3.0",
@@ -21,6 +21,7 @@
     "stop": "killall node",
     "stop-forever": "forever stop bot.js",
     "stop-pm2": "pm2 stop bot.js",
+    "clean": "rm -r node_modules && rm package-lock.json && npm install",
     "lint": "eslint ./ --cache --ignore-pattern .gitignore --fix",
     "precommit-lint-check": "echo 'Pre-commit lint checks...' && exit 0"
   },
@@ -38,11 +39,8 @@
     "webdriverio"
   ],
   "dependencies": {
-    "colors": "^1.2.1",
-    "eslint": "^4.19.1",
-    "path": "^0.12.7",
-    "puppeteer": "1.4.0",
-    "request": "^2.85.0"
+    "instagrambotlib": "^0.8.0",
+    "eslint": "^4.19.1"
   },
   "engines": {
     "node": ">=7.6.0"

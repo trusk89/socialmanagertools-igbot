@@ -1,3 +1,10 @@
+# v0.8.0 BETA (17 July, 2018)
+* Fix: likemode_superlike don't like
+* Feature: core moved to [instagrambotlib](https://www.npmjs.com/package/instagrambotlib)
+
+NOTE: Run `npm update` after update. Update `config.js` from `config.js.tpl`
+
+
 # v0.7.5 (03 July, 2018)
 * Fix: instagram selectors css changed #55
 
