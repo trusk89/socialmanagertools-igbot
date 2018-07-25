@@ -1,5 +1,5 @@
 # v0.8.1 (25 July, 2018)
-#####NOTE: Run `npm run clean` after update.
+##### NOTE: Run `npm run clean` after update.
 * Fix: Unliking already liked pictures (all mode) [Bug: #59]
 * Fix: Comment already comment pictures
 * Update: `likemode_realistic` now is default mode in `config.js.tpl`
