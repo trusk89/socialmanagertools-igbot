@@ -1,12 +1,18 @@
+# v0.8.1 (25 July, 2018)
+#####NOTE: Run `npm run clean` after update.
+* Fix: Unliking already liked pictures (all mode) [Bug: #59]
+* Fix: Comment already comment pictures
+* Update: `likemode_realistic` now is default mode in `config.js.tpl`
+* Update: `900` now is default value of max like/day in `config.js.tpl`
+
+
 # v0.8.0 (17 July, 2018)
 * Fix: likemode_superlike don't like
 * Feature: core moved to [instagrambotlib](https://www.npmjs.com/package/instagrambotlib)
 
-NOTE: Run `npm update` after update. Update `config.js` from `config.js.tpl`
-
 
 # v0.7.5 (03 July, 2018)
-* Fix: instagram selectors css changed #55
+* Fix: instagram selectors css changed [Bug: #55]
 
 
 # v0.7.4 (28 June, 2018)

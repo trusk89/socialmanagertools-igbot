@@ -4,7 +4,7 @@
 
 <p align="center"><a href="#" alt="License"><img src="https://img.shields.io/badge/license-GLPv3-brightgreen.svg"></a>
 <a href="https://github.com/GoogleChrome/puppeteer" alt="powered by puppeteer"><img src="https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg"></a>
-<a href="https://github.com/social-manager-tools/instagram-bot-lib/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.8.0-lightgrey.svg"></a>
+<a href="https://github.com/social-manager-tools/instagram-bot-lib/releases" alt="Version"><img src="https://img.shields.io/badge/version-v0.8.1-lightgrey.svg"></a>
 <a href="https://slack.ptkdev.io" alt="Slack Chat"><img src="https://img.shields.io/badge/chat%20on-Slack-orange.svg"></a>
 <a href="http://blog.ptkdev.io" alt="Blog"><img src="https://img.shields.io/badge/blog-medium-2AE176.svg"></a>
 <a href="https://twitter.com/ptkdevio" alt="Twitter"><img src="https://img.shields.io/badge/twitter-ptkdevio-2AA3EF.svg"></a>   
@@ -71,7 +71,6 @@ See images in ./logs/screenshot or disable `chrome_headless` flag.
 2. Run application.
 
 ## Docker setup
-
 If you prefer to run this using Docker, an official container is available from the [Docker Hub](https://hub.docker.com/r/socialmanagertools/instagram-bot.js).
 
 In order to run it, copy the `config.js.tpl` file, configure it as you prefer, then use it through volume mapping,
@@ -93,7 +92,7 @@ See full roadmap (open task, todo and bugs) in [project page](https://github.com
 * ### [v0.9.X](https://github.com/social-manager-tools/instagram-bot.js/projects/3)
 
 ## Sorry for snake_case
-I love snake_case syntax sorry for this :sob: don't hate me.
+I love :snake: snake_case syntax sorry for this :sob: don't hate me.
 
 <a href="https://github.com/social-manager-tools" alt="Screenshot"><img src="https://socialmanagertools.ptkdev.io/img/socialmanagertools_logo.png"></a>
 <h1>Social Manager Tools</h1>
