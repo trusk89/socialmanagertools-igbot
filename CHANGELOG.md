@@ -1,7 +1,11 @@
+# v0.8.2 (26 July, 2018)
+#####NOTE: Run `npm run clean` or `npm update` after update.
+* Fix: default path of logs in `config.js.tpl`
+
+
 # v0.8.1 (25 July, 2018)
-#####NOTE: Run `npm run clean` after update.
 * Fix: Unliking already liked pictures (all mode) [Bug: #59]
-* Fix: Comment already comment pictures
+* Fix: Commenting already commented pictures
 * Update: `likemode_realistic` now is default mode in `config.js.tpl`
 * Update: `900` now is default value of max like/day in `config.js.tpl`
 

@@ -1,7 +1,7 @@
 {
   "name": "instagrambotjs",
-  "description": "instagram bot made with love and nodejs",
-  "version": "0.8.1",
+  "description": "Instagram Bot made with love and Node.js",
+  "version": "0.8.2",
   "main": "bot.js",
   "author": "Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)",
   "license": "GPL-3.0",
@@ -39,7 +39,7 @@
     "webdriverio"
   ],
   "dependencies": {
-    "instagrambotlib": "^0.8.1",
+    "instagrambotlib": "^0.8.2",
     "eslint": "^4.19.1"
   },
   "engines": {
