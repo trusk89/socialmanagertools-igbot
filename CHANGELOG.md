@@ -1,5 +1,5 @@
 # v0.8.2 (26 July, 2018)
-#####NOTE: Run `npm run clean` or `npm update` after update.
+##### NOTE: Run `npm run clean` or `npm update` after update.
 * Fix: default path of logs in `config.js.tpl`
 
 
