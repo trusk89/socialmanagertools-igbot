@@ -8,8 +8,11 @@
 
 [![](https://ptkdev.it/img/bot/ptkdev-instagram-bot.gif)](https://instagram.bot.ptkdev.io)
 
-## What does it do
-This bot helps you increase the engagement of your Instagram profile through different social algorithms. Increase the likes on your photos and followers.
+## What it does
+This bot helps you increase the engagement level of your Instagram profile through different social algorithms.
+
+Increase the likes on your photos and followers!
+
 
 ## Features
 * [✓] Easy to use
@@ -18,15 +21,15 @@ This bot helps you increase the engagement of your Instagram profile through dif
 * [✓] 2FA (sms pin enabled)
 * [✓] Multi-Session
 * [✓] Multi-Platform (Windows 10, Mac OSX, Linux, [Raspberry PI 3](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md))
-* [✓] Errors manager (bad pin, bad password)
+* [✓] Error management feature (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
-* [✓] Like Mode Classic: bot select random hashtag from config list and like 1 random photo and repeat this all time.
-* [✓] Like Mode Realistic: bot select random hashtag from config list and like fast 10-12 photos, sleep 15-20min and repeat this all time. Sleep at night.
-* [✓] Like Mode Competitor Users: select account, select random followers, like 10-12 photo and sleep 15-20min. Sleep at night.
-* [✓] Like Mode Superlike: select random hashtag from config list and like 3 random photo of same user.
-* [✓] Comment Mode Classic: select random comment and random hashtag and write comment under photo.
-* [✘] Follow/Defollow Classic: follow user from random hashtag and defollow after 1h.
-* [✘] Defollow All: defollow all your following (ignore users in whitelist).
+* [✓] Like Mode Classic: bot selects a random hashtag from a config list and likes 1 random photo, and can repeat this all time.
+* [✓] Like Mode Realistic: bot selects a random hashtag from a config list and likes fast 10-12 photos, it sleeps 15-20min and repeats this all time. Sleeps at night.
+* [✓] Like Mode Competitor Users: it selects an account, selects random followers, likes 10-12 photo and sleeps 15-20min. Sleeps at night.
+* [✓] Like Mode Superlike: it selects random hashtag from a config list and likes 3 random photos of the same user.
+* [✓] Comment Mode Classic: it selects random comments and random hashtags and writes comments under photos.
+* [✘] Follow/Defollow Classic: it follows user from random hashtags and defollows after 1h.
+* [✘] Defollow All: it defollows all your following (ignoring users in whitelist).
 
 ## Fast setup (CLI Version)
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
@@ -34,32 +37,32 @@ This bot helps you increase the engagement of your Instagram profile through dif
 3. Run `npm install` in `instagram-bot.js` folder.
 4. Rename `config.js.tpl` to `config.js`, fill it properly.
 5. Start the bot via `node bot.js`
-6. If work add star :star: at this project :heart:
-7. If you want help me: **[donate on paypal](http://paypal.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
+6. If it works add a star :star: at this project :heart:
+7. If you want to help me: **[donate on paypal](http://paypal.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
 
 For advanced configuration see [INSTALL.md](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md).
 
 #### 2FA: SMS Pin
-If you received sms or email pin edit `loginpin.txt` and insert it on first line. Wait 50-60 seconds...
+If you received an SMS or an email pin edit `loginpin.txt` and insert it on the first line. Wait 50-60 seconds...
 
 #### Tips: hide browser
 Edit `config.js` and switch `chrome_headless` option to `true`.
 
-#### Check if work:
-See images in ./logs/screenshot or disable `chrome_headless` flag.
+#### Check if it works:
+See images in `./logs/screenshot` or disable `chrome_headless` flag.
 
 ## Bugs
 1. `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
-* Why happen? Instagram desktop is in overcapacity. Happen at 12-14 and 19-21 all days. 
-* Solution: Login in other time or Logout from your instagram app, and login again. Reboot bot and retry... Try and retry, and retry, and retry... Or stop bot and wait 2-3h...
+* Why did it happen? Instagram desktop is in overcapacity. Happens at 12:00-14:00 and 19:00-21:00 every day. 
+* Solution: Try to Login at a different time or Logout from your instagram app, and Login again. Reboot the bot and retry... Try and retry, and retry, and retry... Or stop the bot and wait 2-3h.
 
 2. `Error: Protocol error (Page.captureScreenshot): Target closed.`
-* Why happen? macOS don't support correctly screenshot from puppeteer
-* Solution: set `screenshot` on `false` in `config.js`
+* Why did it happen? macOS doesn't properly support screenshots from puppeteer
+* Solution: set `screenshot` as `false` in `config.js`.
 
 3. `This code is no longer valid. Please request a new one. (400) (/accounts/login/ajax/two_factor/)` 
-* Why happen? Instagram bug at login
-* Solution: disable at moment 2FA or try old version of chrome (edit `config.js` set `executable_path`)
+* Why did it happen? It's an Instagram bug at Login.
+* Solution: disable momentarily the "2FA" or try an old version of chrome (edit `config.js` set `executable_path`)
 
 ## Desktop setup (GUI Version)
 1. Download [Social Manager Tools GUI](https://socialmanagertools.ptkdev.io/).
