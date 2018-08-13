@@ -35,7 +35,7 @@ Increase the likes on your photos and followers!
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js` folder.
-4. Rename `config.js.tpl` to `config.js`, fill it properly.
+4. Rename `config/config.js.tpl` to `config/config.js`, fill it properly.
 5. Start the bot via `node bot.js`
 6. If it works add a star :star: at this project :heart:
 7. If you want to help me: **[donate on paypal](http://paypal.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
@@ -51,16 +51,22 @@ Edit `config.js` and switch `chrome_headless` option to `true`.
 #### Check if it works:
 See images in `./logs/screenshot` or disable `chrome_headless` flag.
 
+#### Parameters
+
+| Name     | Type    | Default                | Description                                  |
+| ---      | ---     | ---                    | ---                                          |
+| config   | String  | ./config/config.js     | File path of the option file to run          |
+
 ## Bugs
 1. `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
-* Why did it happen? Instagram desktop is in overcapacity. Happens at 12:00-14:00 and 19:00-21:00 every day. 
+* Why did it happen? Instagram desktop is in overcapacity. Happens at 12:00-14:00 and 19:00-21:00 every day.
 * Solution: Try to Login at a different time or Logout from your instagram app, and Login again. Reboot the bot and retry... Try and retry, and retry, and retry... Or stop the bot and wait 2-3h.
 
 2. `Error: Protocol error (Page.captureScreenshot): Target closed.`
 * Why did it happen? macOS doesn't properly support screenshots from puppeteer
 * Solution: set `screenshot` as `false` in `config.js`.
 
-3. `This code is no longer valid. Please request a new one. (400) (/accounts/login/ajax/two_factor/)` 
+3. `This code is no longer valid. Please request a new one. (400) (/accounts/login/ajax/two_factor/)`
 * Why did it happen? It's an Instagram bug at Login.
 * Solution: disable momentarily the "2FA" or try an old version of chrome (edit `config.js` set `executable_path`)
 
@@ -96,12 +102,12 @@ I love :snake: snake_case syntax sorry for this :sob: don't hate me.
 
 # Social Manager Tools
 
-[Social Manager Tools GUI](https://github.com/social-manager-tools/social-manager-tools)  
-[InstagramBot.js](https://github.com/social-manager-tools/instagram-bot.js) ([LIB](https://github.com/social-manager-tools/instagram-bot-lib))  
-[TwitterBot.js](https://github.com/social-manager-tools/twitter-bot.js) ([LIB](https://github.com/social-manager-tools/twitter-bot-lib))  
-[FacebookBot.js](https://github.com/social-manager-tools/facebook-bot.js) ([LIB](https://github.com/social-manager-tools/facebook-bot-lib))  
-[WordpressTelegramBot.js](https://github.com/social-manager-tools/wordpress-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/wordpress-telegram-bot-lib))  
-[MediumTelegramBot.js](https://github.com/social-manager-tools/medium-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/medium-telegram-bot-lib))  
+[Social Manager Tools GUI](https://github.com/social-manager-tools/social-manager-tools)
+[InstagramBot.js](https://github.com/social-manager-tools/instagram-bot.js) ([LIB](https://github.com/social-manager-tools/instagram-bot-lib))
+[TwitterBot.js](https://github.com/social-manager-tools/twitter-bot.js) ([LIB](https://github.com/social-manager-tools/twitter-bot-lib))
+[FacebookBot.js](https://github.com/social-manager-tools/facebook-bot.js) ([LIB](https://github.com/social-manager-tools/facebook-bot-lib))
+[WordpressTelegramBot.js](https://github.com/social-manager-tools/wordpress-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/wordpress-telegram-bot-lib))
+[MediumTelegramBot.js](https://github.com/social-manager-tools/medium-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/medium-telegram-bot-lib))
 
 # License
 

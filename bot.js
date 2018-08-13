@@ -9,7 +9,7 @@
  *
  * @link: https://github.com/GoogleChrome/puppeteer
  * @link: https://www.npmjs.com/package/instagrambotlib
- * 
+ *
  * @license:    Code and contributions have 'GNU General Public License v3'
  *              This program is free software: you can redistribute it and/or modify
  *              it under the terms of the GNU General Public License as published by
@@ -25,7 +25,16 @@
  * @link        Homepage:     https://instagram.bot.ptkdev.io
  *              GitHub Repo:  https://github.com/social-manager-tools/instagram-bot.js
  */
-const config = require ("./config");
+
+const argv = require("yargs").argv;
+const fs = require("fs");
 const Bot = require("instagrambotlib");
-let bot = new Bot(config);
-bot.start();
+
+const config_file = (argv.config ? argv.config : "./config/config.js");
+
+if (fs.existsSync(config_file)) {
+    let bot = new Bot(require(config_file));
+    bot.start();
+} else {
+    throw new Error("Config file not found");
+}
