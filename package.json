@@ -16,14 +16,15 @@
   "scripts": {
     "start": "node bot.js",
     "start-forever": "forever -o ./logs/debug.log -e ./logs/errors.log start bot.js",
-    "start-pm2": "pm2 -o ./logs/debug.log -e ./logs/errors.log start bot.js",
-    "start-pm2-nolog": "pm2 -o /dev/null -e ./logs/errors.log start bot.js ",
+    "start-pm2": "PM2_HOME=./.pm2 pm2 -o ./logs/debug.log -e ./logs/errors.log start bot.js",
+    "start-pm2-nolog": "PM2_HOME=./.pm2 pm2 -o /dev/null -e ./logs/errors.log start bot.js ",
     "stop": "killall node",
     "stop-forever": "forever stop bot.js",
-    "stop-pm2": "pm2 stop bot.js",
+    "stop-pm2": "PM2_HOME=./pm2 pm2 stop bot.js",
     "clean": "rm -r node_modules && rm package-lock.json && npm install",
     "lint": "eslint ./ --cache --ignore-pattern .gitignore --fix",
-    "precommit-lint-check": "echo 'Pre-commit lint checks...' && exit 0"
+    "precommit-lint-check": "echo 'Pre-commit lint checks...' && exit 0",
+    "pm2": "PM2_HOME=./.pm2 pm2"
   },
   "pre-commit": [
     "precommit-lint-check",
@@ -40,7 +41,9 @@
   ],
   "dependencies": {
     "eslint": "^4.19.1",
+    "forever": "^0.15.3",
     "instagrambotlib": "^0.8.2b",
+    "pm2": "^3.0.3",
     "yargs": "^12.0.1"
   },
   "engines": {
