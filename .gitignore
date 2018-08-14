@@ -114,6 +114,10 @@ npm-debug.log
 /bower_components
 package-lock.json
 
+# PM2 #
+##########
+.pm2
+
 # NodePress.js #
 ################
 config/*
