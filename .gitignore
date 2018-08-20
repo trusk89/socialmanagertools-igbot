@@ -118,7 +118,7 @@ package-lock.json
 ##########
 .pm2
 
-# NodePress.js #
+# Social Manager Tools #
 ################
-config/*
-!config/config.js.tpl
+configs/*
+!configs/config.js.tpl

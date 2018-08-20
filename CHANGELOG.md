@@ -1,5 +1,9 @@
+# v0.8.3 (20 August, 2018)
+* Feature: better multi-account with `--config="./configs/config.js"` argv
+* Update: `config.js.tpl` moved to `configs` folder
+
+
 # v0.8.2 (26 July, 2018)
-##### NOTE: Run `npm run clean` or `npm update` after update.
 * Fix: default path of logs in `config.js.tpl`
 
 

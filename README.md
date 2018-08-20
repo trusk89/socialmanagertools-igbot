@@ -2,15 +2,14 @@
 
 # InstagramBot.js
 
-[![](https://img.shields.io/badge/license-GLPv3-brightgreen.svg)](#) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://img.shields.io/badge/version-v0.8.3-lightgrey.svg)](https://github.com/social-manager-tools/instagram-bot-lib/releases) [![](https://img.shields.io/badge/chat%20on-Slack-orange.svg)](https://slack.ptkdev.io) [![](https://img.shields.io/badge/blog-medium-2AE176.svg)](http://blog.ptkdev.io) [![](https://img.shields.io/badge/twitter-ptkdevio-2AA3EF.svg)](https://twitter.com/ptkdevio) [![](https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg)](mailto:support@ptkdev.io)
+[![](https://img.shields.io/badge/license-GLPv3-brightgreen.svg)](#) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://img.shields.io/badge/version-v0.8.3-lightgrey.svg)](https://github.com/social-manager-tools/instagram-bot-lib/releases) [![](https://img.shields.io/badge/chat%20on-slack-orange.svg)](https://slack.ptkdev.io) [![](https://img.shields.io/badge/chat%20on-discord-7289da.svg)](http://discord.ptkdev.io) [![](https://img.shields.io/badge/blog-medium-2AE176.svg)](http://blog.ptkdev.io) [![](https://img.shields.io/badge/twitter-ptkdevio-2AA3EF.svg)](https://twitter.com/ptkdevio)
 
-[![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-paypal-46AFE0.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io)
+[![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-paypal-46AFE0.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io) [![](https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg)](mailto:support@ptkdev.io)
 
 [![](https://ptkdev.it/img/bot/ptkdev-instagram-bot.gif)](https://instagram.bot.ptkdev.io)
 
 ## What it does
 This bot helps you increase the engagement level of your Instagram profile through different social algorithms.
-
 Increase the likes on your photos and followers!
 
 
@@ -35,7 +34,7 @@ Increase the likes on your photos and followers!
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js` folder.
-4. Rename `config/config.js.tpl` to `config/config.js`, fill it properly.
+4. Rename `configs/config.js.tpl` to `configs/config.js`, fill it properly.
 5. Start the bot via `node bot.js`
 6. If it works add a star :star: at this project :heart:
 7. If you want to help me: **[donate on paypal](http://paypal.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
@@ -46,16 +45,17 @@ For advanced configuration see [INSTALL.md](https://github.com/social-manager-to
 If you received an SMS or an email pin edit `loginpin.txt` and insert it on the first line. Wait 50-60 seconds...
 
 #### Tips: hide browser
-Edit `config.js` and switch `chrome_headless` option to `true`.
+Edit `configs/config.js` and switch `chrome_headless` option to `true`.
 
 #### Check if it works:
 See images in `./logs/screenshot` or disable `chrome_headless` flag.
 
 #### Parameters
+Run bot with different configs (multi account), use: `node bot.js --config="./configs/config.js"`
 
 | Name     | Type    | Default                | Description                                  |
 | ---      | ---     | ---                    | ---                                          |
-| config   | String  | ./config/config.js     | File path of the option file to run          |
+| config   | String  | ./configs/config.js    | File path of the option file to run          |
 
 ## Bugs
 1. `[ERROR] login: The username you entered doesn't belong to an account. Please check your username and try again. (restart bot and retry...)`
@@ -64,7 +64,7 @@ See images in `./logs/screenshot` or disable `chrome_headless` flag.
 
 2. `Error: Protocol error (Page.captureScreenshot): Target closed.`
 * Why did it happen? macOS doesn't properly support screenshots from puppeteer
-* Solution: set `screenshot` as `false` in `config.js`.
+* Solution: set `screenshot` as `false` in `configs/config.js`.
 
 3. `This code is no longer valid. Please request a new one. (400) (/accounts/login/ajax/two_factor/)`
 * Why did it happen? It's an Instagram bug at Login.
@@ -102,12 +102,12 @@ I love :snake: snake_case syntax sorry for this :sob: don't hate me.
 
 # Social Manager Tools
 
-[Social Manager Tools GUI](https://github.com/social-manager-tools/social-manager-tools)
-[InstagramBot.js](https://github.com/social-manager-tools/instagram-bot.js) ([LIB](https://github.com/social-manager-tools/instagram-bot-lib))
-[TwitterBot.js](https://github.com/social-manager-tools/twitter-bot.js) ([LIB](https://github.com/social-manager-tools/twitter-bot-lib))
-[FacebookBot.js](https://github.com/social-manager-tools/facebook-bot.js) ([LIB](https://github.com/social-manager-tools/facebook-bot-lib))
-[WordpressTelegramBot.js](https://github.com/social-manager-tools/wordpress-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/wordpress-telegram-bot-lib))
-[MediumTelegramBot.js](https://github.com/social-manager-tools/medium-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/medium-telegram-bot-lib))
+[Social Manager Tools GUI](https://github.com/social-manager-tools/social-manager-tools)  
+[InstagramBot.js](https://github.com/social-manager-tools/instagram-bot.js) ([LIB](https://github.com/social-manager-tools/instagram-bot-lib))  
+[TwitterBot.js](https://github.com/social-manager-tools/twitter-bot.js) ([LIB](https://github.com/social-manager-tools/twitter-bot-lib))  
+[FacebookBot.js](https://github.com/social-manager-tools/facebook-bot.js) ([LIB](https://github.com/social-manager-tools/facebook-bot-lib))  
+[WordpressTelegramBot.js](https://github.com/social-manager-tools/wordpress-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/wordpress-telegram-bot-lib))  
+[MediumTelegramBot.js](https://github.com/social-manager-tools/medium-telegram-bot.js) ([LIB](https://github.com/social-manager-tools/medium-telegram-bot-lib))  
 
 # License
 
