@@ -42,6 +42,7 @@ proguard/
 logs/*.log
 logs/screenshot/*.png
 logs/screenshot/*.jpg
+databases/*.db
 *.log
 *.sql
 *.sqlite
@@ -118,7 +119,7 @@ package-lock.json
 ##########
 .pm2
 
-# NodePress.js #
+# Social Manager Tools #
 ################
-config/*
-!config/config.js.tpl
+configs/*
+!configs/config.js.tpl

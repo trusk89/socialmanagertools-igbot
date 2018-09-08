@@ -11,7 +11,7 @@
 #### 3. Run
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Run `npm install` in `instagram-bot.js` folder.
-3. Rename `config/config.js.tpl` to `config/config.js`, fill it properly.
+3. Rename `configs/config.js.tpl` to `configs/config.js`, fill it properly.
 4. Start the bot via `node bot.js`
 5. If work add star :star: at this project :heart:
 6. If you want help me: <b><a href="http://paypal.ptkdev.io">donate on paypal</a></b> or become a <b><a href="http://patreon.ptkdev.io">backer on patreon</a></b>.
@@ -50,7 +50,7 @@ sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 #### 5. Run
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Run `npm install` in `instagram-bot.js` folder.
-3. Rename `config/config.js.tpl` to `config/config.js`, fill it properly.
+3. Rename `configs/config.js.tpl` to `configs/config.js`, fill it properly.
 4. Start the bot via `node bot.js`
 5. If work add star :star: at this project :heart:
 6. If you want help me: <b><a href="http://paypal.ptkdev.io">donate on paypal</a></b> or become a <b><a href="http://patreon.ptkdev.io">backer on patreon</a></b>.
@@ -74,7 +74,7 @@ sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 #### 3. Run
 1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
 2. Run `npm install` in `instagram-bot.js` folder.
-3. Rename `config/config.js.tpl` to `config/config.js`, fill it properly.
+3. Rename `configs/config.js.tpl` to `configs/config.js`, fill it properly.
 4. Start the bot via `node bot.js`
 5. If work add star :star: at this project :heart:
 6. If you want help me: <b><a href="http://paypal.ptkdev.io">donate on paypal</a></b> or become a <b><a href="http://patreon.ptkdev.io">backer on patreon</a></b>.

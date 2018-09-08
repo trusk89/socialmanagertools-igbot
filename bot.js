@@ -5,7 +5,7 @@
  *
  * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
  * @file:       bot.js
- * @version:    0.8.0
+ * @version:    0.9.0
  *
  * @link: https://github.com/GoogleChrome/puppeteer
  * @link: https://www.npmjs.com/package/instagrambotlib
@@ -25,12 +25,11 @@
  * @link        Homepage:     https://instagram.bot.ptkdev.io
  *              GitHub Repo:  https://github.com/social-manager-tools/instagram-bot.js
  */
-
 const argv = require("yargs").argv;
 const fs = require("fs");
 const Bot = require("instagrambotlib");
 
-const config_file = (argv.config ? argv.config : "./config/config.js");
+const config_file = (argv.config ? argv.config : "./configs/config.js");
 
 if (fs.existsSync(config_file)) {
     let bot = new Bot(require(config_file));
