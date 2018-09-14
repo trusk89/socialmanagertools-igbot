@@ -1,3 +1,11 @@
+# v0.9.1 (15 September, 2018)
+* Fix: Node is either not visible or not an HTMLElement (#82 #86 #84)
+* Fix: Random crash of Follow/Defollow Mode Classic
+* Refactor: 2FA flow
+* Update: New user-agent
+* Upgrade: puppeteer v1.8.0
+
+
 # v0.9.0b (09 September, 2018)
 * Fix: bad creation of folders `databases` and `logs` (#79)
 
@@ -13,7 +21,7 @@
 * Update: bot_fastlike_min and max from config.js now all mode use bot_likeday_min and max
 * Update: bot_sleep_night disabled at default
 * Update: `config.js.tpl` moved to `configs` folder
-* Upgrade: puppeteer v1.7.0.1
+* Upgrade: puppeteer v1.7.0
 
 
 # v0.8.2 (26 July, 2018)
