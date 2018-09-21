@@ -1,3 +1,9 @@
+# v0.9.3 (22 September, 2018)
+* Fix: Follow/Defollow Mode Classic stop working if photo or account are removed
+* Fix: Like Mode Realistic correct like/don't like message
+* Performance: all actions are now fastest than 1-2 seconds
+
+
 # v0.9.2 (15 September, 2018)
 * Downgrade: puppeteer v1.4.0 (#27)
 
