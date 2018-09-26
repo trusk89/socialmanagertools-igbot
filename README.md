@@ -84,7 +84,7 @@ $ docker run \
 WARNING: with docker is mandatory edit `config.js` and `chrome_headless` set on `true` and set `executable_path` to `/usr/bin/chromium-browser`. Without this fix docker don't work.
 
 ## Bugs
-See full known bugs (open task, todo and bugs) in [project page](https://github.com/social-manager-tools/instagram-bot-lib/projects?query=is%3Aopen+sort%3Aname-asc).
+See full known bugs (open task, todo and bugs) in [bugs readme](https://github.com/social-manager-tools/instagram-bot-lib/blob/master/BUGS.md).
 
 ## Roadmap
 See full roadmap (open task, todo and bugs) in [project page](https://github.com/social-manager-tools/instagram-bot-lib/projects?query=is%3Aopen+sort%3Aname-asc).
