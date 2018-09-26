@@ -1,3 +1,13 @@
+# Rolling Release (26 September, 2018)
+InstagramBot.js use npm library [instagrambotlib](https://www.npmjs.com/package/instagrambotlib), you need download this bot one time and if you want update use command: `npm run clean`
+
+* If you want desktop gui for linux/windows/mac see [social-manager-tools](https://socialmanagertools.ptkdev.io)
+* If you want configure Docker see [docker readme](https://github.com/social-manager-tools/instagram-bot.js#docker-setup)
+* If you want cli version see [cli readme](https://github.com/social-manager-tools/instagram-bot.js#fast-setup-cli-version)
+* If you want cli version on raspbian9 see [rpi readme](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md)
+* If you want use library in your app see [instagrambotlib readme](https://www.npmjs.com/package/instagrambotlib)
+
+
 # v0.9.3 (22 September, 2018)
 * Fix: Follow/Defollow Mode Classic stop working if photo or account are removed
 * Fix: Like Mode Realistic correct like/don't like message
