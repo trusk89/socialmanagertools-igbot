@@ -36,7 +36,7 @@ Increase the likes on your photos and followers!
 1. Download [latest bot version](https://github.com/social-manager-tools/instagram-bot.js/archive/master.zip) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
 3. Run `npm install` in `instagram-bot.js-master` folder.
-4. Get [config.js](https://github.com/social-manager-tools/instagram-bot-lib/blob/master/config.js.tpl) remove  `.tpl ` suffix and insert file into `configs` folder, fill it properly.
+4. Get [config.js](https://raw.githubusercontent.com/social-manager-tools/instagram-bot-lib/master/config.js.tpl) remove  `.tpl ` suffix and insert file into `configs` folder, fill it properly.
 5. Start the bot via `node bot.js --config="./configs/config.js"`
 6. If it works add a star :star: at this project :heart:
 7. If you want to help me: **[donate on paypal](http://paypal.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
