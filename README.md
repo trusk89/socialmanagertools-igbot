@@ -18,7 +18,7 @@ Increase the likes on your photos and followers!
 * [✓] 2FA (bad location)
 * [✓] 2FA (sms pin enabled)
 * [✓] Multi-Session
-* [✓] Multi-Platform (Windows 10, Mac OSX, Linux, [Raspberry PI 3](https://github.com/social-manager-tools/instagram-bot-lib/blob/master/INSTALL.md))
+* [✓] Multi-Platform (Windows 10, Mac OSX, Linux, [Raspberry PI 3](https://github.com/social-manager-tools/instagram-bot.js/blob/master/INSTALL.md))
 * [✓] Error management feature (bad pin, bad password)
 * [✓] Screenshot and Verbose logger
 * [✓] Like Mode Classic: bot selects a random hashtag from a config list and likes 1 random photo, and can repeat this all time.
