@@ -1,7 +1,7 @@
 {
   "name": "instagrambotjs",
   "description": "Instagram Bot made with love and Node.js",
-  "version": "roling-release",
+  "version": "1.0.0",
   "main": "bot.js",
   "author": "Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)",
   "license": "GPL-3.0",
