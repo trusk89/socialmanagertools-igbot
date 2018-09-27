@@ -15,6 +15,7 @@ wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406
 
 sudo dpkg -i chromium-codecs-ffmpeg_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
 sudp dpkg -i chromium-browser_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+sudo apt-get install -f
 ```
 
 #### 4. Run
@@ -48,6 +49,7 @@ wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406
 
 sudo dpkg -i chromium-codecs-ffmpeg_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
 sudp dpkg -i chromium-browser_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+sudo apt-get install -f
 ```
 
 #### 4. If you have problem with libc dependieces you need update raspbian to testing:
