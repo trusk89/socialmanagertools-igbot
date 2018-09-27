@@ -59,12 +59,13 @@ sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 - Run `sudo apt-get update && sudo apt-get dist-upgrade`
 
 #### 5. Run
-1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
-2. Run `npm install` in `instagram-bot.js` folder.
-3. Rename `configs/config.js.tpl` to `configs/config.js`, fill it properly.
-4. Start the bot via `node bot.js`
-5. If work add star :star: at this project :heart:
-6. If you want help me: <b><a href="http://paypal.ptkdev.io">donate on paypal</a></b> or become a <b><a href="http://patreon.ptkdev.io">backer on patreon</a></b>.
+1. Download [latest bot version](https://github.com/social-manager-tools/instagram-bot.js/archive/master.zip) and extract it.
+2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
+3. Run `npm install` in `instagram-bot.js-master` folder.
+4. Get [config.js](https://raw.githubusercontent.com/social-manager-tools/instagram-bot-lib/master/config.js.tpl) remove  `.tpl ` suffix and insert file into `configs` folder, fill it properly.
+5. Start the bot via `node bot.js --config="./configs/config.js"`
+6. If it works add a star :star: at this project :heart:
+7. If you want to help me: **[donate on paypal](http://paypal.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
 
 #### 6. Use raspbian chromium, not the node_modules version
 - Edit `config.js` and set `executable_path` to `/usr/bin/chromium-browser` in puppeteer section:
@@ -83,12 +84,13 @@ sudp dpkg -i chromium-browser_64.0.3282.167-0ubuntu0.17.10.1_armhf.deb
 4. `sudo apt-get install nodejs`
 
 #### 3. Run
-1. Download [stable bot version](https://github.com/social-manager-tools/instagram-bot.js/releases) and extract it.
-2. Run `npm install` in `instagram-bot.js` folder.
-3. Rename `configs/config.js.tpl` to `configs/config.js`, fill it properly.
-4. Start the bot via `node bot.js`
-5. If work add star :star: at this project :heart:
-6. If you want help me: <b><a href="http://paypal.ptkdev.io">donate on paypal</a></b> or become a <b><a href="http://patreon.ptkdev.io">backer on patreon</a></b>.
+1. Download [latest bot version](https://github.com/social-manager-tools/instagram-bot.js/archive/master.zip) and extract it.
+2. Download [Node.js](https://nodejs.org/it/) >= 7.6 and install it.
+3. Run `npm install` in `instagram-bot.js-master` folder.
+4. Get [config.js](https://raw.githubusercontent.com/social-manager-tools/instagram-bot-lib/master/config.js.tpl) remove  `.tpl ` suffix and insert file into `configs` folder, fill it properly.
+5. Start the bot via `node bot.js --config="./configs/config.js"`
+6. If it works add a star :star: at this project :heart:
+7. If you want to help me: **[donate on paypal](http://paypal.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
 
 #### 4. You don't have monitor?
 - Edit `config.js` and set `chrome_headless` to `true`, is mandatory.
