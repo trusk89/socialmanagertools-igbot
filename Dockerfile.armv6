@@ -21,8 +21,8 @@ RUN [ "cross-build-start" ]
 
 RUN apk --update add --no-cache \
     nodejs \
-    nodejs-npm \
-    chromium
+    npm \
+    chromium-browser
 
 # Install pm2
 RUN npm config set unsafe-perm true \
