@@ -19,10 +19,17 @@ RUN [ "cross-build-start" ]
 # Install required packages
 ##############################
 
-RUN apt install \
+RUN apt-get install \
     nodejs \
-    npm \
-    chromium-browser
+    wget 
+RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-codecs-ffmpeg-extra_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-codecs-ffmpeg_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-browser_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+
+RUN dpkg -i chromium-codecs-ffmpeg-extra_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+RUN dpkg -i chromium-codecs-ffmpeg_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+RUN dpkg -i chromium-browser_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
+RUN apt-get install -f
 
 # Install pm2
 RUN npm config set unsafe-perm true \
