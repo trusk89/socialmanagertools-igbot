@@ -19,9 +19,8 @@ RUN [ "cross-build-start" ]
 # Install required packages
 ##############################
 
-RUN apt install \
+RUN apt-get install \
     nodejs \
-    npm \
     chromium-browser
 
 # Install pm2
