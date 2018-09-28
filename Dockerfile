@@ -7,7 +7,7 @@ ADD . /app
 # Install required packages
 ##############################
 
-RUN apt install \
+RUN apt-get install \
     nodejs \
     chromium-browser
 
