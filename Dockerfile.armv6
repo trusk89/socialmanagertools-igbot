@@ -18,10 +18,14 @@ RUN [ "cross-build-start" ]
 
 # Install required packages
 ##############################
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
 
 RUN apt-get install \
     nodejs \
     wget 
+    
 RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-codecs-ffmpeg-extra_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
 RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-codecs-ffmpeg_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
 RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-browser_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
