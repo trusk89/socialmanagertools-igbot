@@ -9,7 +9,6 @@ ADD . /app
 
 RUN apt install \
     nodejs \
-    npm \
     chromium-browser
 
 # Install project dependencies
