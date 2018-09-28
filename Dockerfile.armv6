@@ -1,4 +1,4 @@
-FROM arm32v6/ubuntu:18.04
+FROM armhf/ubuntu:18.04
 
 ENV QEMU_EXECVE 1
 
