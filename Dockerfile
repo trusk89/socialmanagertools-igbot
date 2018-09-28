@@ -7,7 +7,7 @@ ADD . /app
 # Install required packages
 ##############################
 
-RUN apk --update add --no-cache \
+RUN apt install \
     nodejs \
     npm \
     chromium-browser
