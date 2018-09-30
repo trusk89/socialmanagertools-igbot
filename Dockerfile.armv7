@@ -6,8 +6,8 @@ ADD . /app
 
 # For cross compile on dockerhub
 ENV QEMU_EXECVE 1
-COPY docker/arm/qemu-arm-static /usr/bin/
-COPY docker/arm/resin-xbuild /usr/bin/
+COPY docker/armv7/qemu-arm-static /usr/bin/
+COPY docker/armv7/resin-xbuild /usr/bin/
 RUN [ "/usr/bin/qemu-arm-static", "/bin/sh", "-c", "ln -s resin-xbuild /usr/bin/cross-build-start; ln -s resin-xbuild /usr/bin/cross-build-end; ln /bin/sh /bin/sh.real" ]
 RUN [ "cross-build-start" ]
 
