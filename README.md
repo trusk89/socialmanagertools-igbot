@@ -78,10 +78,12 @@ $ docker run \
     --name=instagram-bot \
     -d \
     -v /path/to/config.js:/app/configs/config.js \
-    socialmanagertools/instagram-bot.js &>/dev/null
+    socialmanagertools/instagram-bot.js:amd64 &>/dev/null
 ```
 
-WARNING: with docker is mandatory edit `config.js` and `chrome_headless` set on `true` and set `executable_path` to `/usr/bin/chromium-browser`. Without this fix docker don't work.
+**AVAILABLE TAGS:** `amd64` (64bit), `i386` (32bit),`armv7` (Raspberry PI 2), `armv8` (Raspberry PI 3)
+
+**WARNING:** with docker is mandatory edit `config.js` and set `chrome_headless` on `true` and set `executable_path` to `/usr/bin/chromium-browser`. Without this fix docker don't work.
 
 ## Bugs
 See full known bugs (open task, todo and bugs) in [bugs readme](https://github.com/social-manager-tools/instagram-bot-lib/blob/master/BUGS.md).

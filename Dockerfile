@@ -1,22 +1,21 @@
-FROM keymetrics/pm2:latest-stretch
+FROM amd64/ubuntu:18.10
 
 WORKDIR /app
 
 ADD . /app
 
-# Install required packages
-##############################
+RUN apt-get update && apt-get install -y apt-transport-https --assume-yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y locales --assume-yes && rm -rf /var/lib/apt/lists/* && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+
+RUN apt-get update && apt-get install -y wgetRUN apt-get update && --assume-yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y npm --assume-yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y chromium-browser --assume-yes --no-install-recommends apt-utils
+
+# Install pm2
+RUN npm config set unsafe-perm true && npm install pm2 -g
 
 # Install project dependencies
 RUN npm install
-
-# Cleanup
-#########
-
-RUN find /usr/local \
-    \( -type d -a -name test -o -name tests \) \
-    -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
-    -exec rm -rf '{}' + \
-  && rm -rf /var/cache/apk/*
 
 CMD ["pm2-runtime", "bot.js"]
