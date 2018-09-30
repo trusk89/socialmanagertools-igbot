@@ -1,62 +1,21 @@
-FROM armhf/ubuntu:16.04
-
-ENV QEMU_EXECVE 1
+FROM arm32v7/ubuntu:18.10
 
 WORKDIR /app
 
 ADD . /app
 
-# For cross compile on dockerhub
-################################
-
-COPY armv6/qemu-arm-static /usr/bin/
-COPY armv6/resin-xbuild /usr/bin/
-
-RUN [ "/usr/bin/qemu-arm-static", "/bin/sh", "-c", "ln -s resin-xbuild /usr/bin/cross-build-start; ln -s resin-xbuild /usr/bin/cross-build-end; ln /bin/sh /bin/sh.real" ]
-
-RUN [ "cross-build-start" ]
-
-# Install required packages
-##############################
-RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+RUN apt-get update && apt-get install -y apt-transport-https --assume-yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y locales --assume-yes && rm -rf /var/lib/apt/lists/* && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
-RUN apt-get install \
-    nodejs \
-    wget 
-    
-RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-codecs-ffmpeg-extra_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
-RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-codecs-ffmpeg_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
-RUN wget https://launchpad.net/~chromium-team/+archive/ubuntu/stable/+build/15466406/+files/chromium-browser_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
-
-RUN dpkg -i chromium-codecs-ffmpeg-extra_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
-RUN dpkg -i chromium-codecs-ffmpeg_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
-RUN dpkg -i chromium-browser_69.0.3497.100-0ubuntu0.16.04.1_armhf.deb
-RUN apt-get install -f
+RUN apt-get update && apt-get install -y wgetRUN apt-get update && --assume-yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y npm --assume-yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y chromium-browser --assume-yes --no-install-recommends apt-utils
 
 # Install pm2
-RUN npm config set unsafe-perm true \
-    && npm install pm2 -g
+RUN npm config set unsafe-perm true && npm install pm2 -g
 
 # Install project dependencies
 RUN npm install
-
-# Cleanup
-#########
-
-RUN find /usr/local \
-      \( -type d -a -name test -o -name tests \) \
-      -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
-      -exec rm -rf '{}' + \
-    && rm -rf /var/cache/apk/*
-
-# For cross compile on dockerhub
-################################
-
-RUN [ "cross-build-end" ]
-
-# Set the entry point
-###########################################
 
 CMD ["pm2-runtime", "bot.js"]
