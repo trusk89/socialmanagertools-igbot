@@ -12,9 +12,10 @@ RUN apt-get update && apt-get install -y npm --assume-yes --no-install-recommend
 RUN apt-get update && apt-get install -y chromium-browser --assume-yes --no-install-recommends apt-utils
 
 # Install pm2
-RUN npm config set unsafe-perm true && npm install pm2 -g
+RUN npm config set unsafe-perm true && npm config set registry http://registry.npmjs.org/ && npm install pm2 -g
 
 # Install project dependencies
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
 RUN npm install
 
 CMD ["pm2-runtime", "bot.js"]
