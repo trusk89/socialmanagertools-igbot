@@ -73,12 +73,7 @@ In order to run it, copy the `config.js.tpl` file, configure it as you prefer, t
 like in this example:
 
 ```sh
-$ docker run \
-    --restart=always \
-    --name=instagram-bot \
-    -d \
-    -v /path/to/config.js:/app/configs/config.js \
-    socialmanagertools/instagram-bot.js:amd64 &>/dev/null
+docker run --restart=always --name=instagram-bot -d -v /path/to/config.js:/app/configs/config.js socialmanagertools/instagram-bot.js:amd64
 ```
 
 **AVAILABLE TAGS:** `amd64` (64bit), `i386` (32bit),`armv7` (Raspberry PI 2), `armv8` (Raspberry PI 3)
