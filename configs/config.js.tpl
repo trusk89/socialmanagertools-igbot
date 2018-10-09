@@ -7,7 +7,7 @@ module.exports = {
     // Instagram Account
     "instagram_username": "ptkdev", // without @
     "instagram_password": "password",
-    "instagram_hashtag": ["instagram", "muraleshunter", "hashtag"], //without #, raccomanded more than 20
+    "instagram_hashtag": ["instagram", "muraleshunter", "hashtag"], //without #, recommended more than 20
     "instagram_pin": "sms", //method to receive pin (email or sms)
 
     // BOT Configs
