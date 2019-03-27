@@ -20,7 +20,7 @@ module.exports = {
 	"bot_mode": "likemode_realistic",
 	"bot_likeday_min": 800,      // work in all likemode_*
 	"bot_likeday_max": 900,      // work in all likemode_*. In 2018 limit instagram is 1000/day
-	"bot_sleep_night": false,    // if you need stop bot in night
+	"bot_sleep_night": false,    // if you need stop bot in night 
 	"bot_start_sleep": "7:00",   // sleep from 00:00 to 7:00 am, work in likemode_realistic, comment_mode, likemode_superlike and likemode_competitor_users
 	"bot_superlike_n": 3,        // superlike number of likes for user
 	"bot_followday": 300,        // number of follow-defollow user/day, work in fdfmode_classic. In 2018 limit instagram is 500/day

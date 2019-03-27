@@ -3,10 +3,7 @@
  * =====================
  * Instagram Bot made with love and nodejs
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
- * @file:       bot.js
- * @version:    0.9.0
- *
+ * @author:     Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
  * @link: https://github.com/GoogleChrome/puppeteer
  * @link: https://www.npmjs.com/package/instagrambotlib
  *
@@ -22,18 +19,20 @@
  *              You should have received a copy of the GNU General Public License
  *              along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @link        Homepage:     https://instagram.bot.ptkdev.io
- *              GitHub Repo:  https://github.com/social-manager-tools/instagram-bot.js
+ * @link        Homepage:     https://socialmanager.tools
+ *              GitHub Repo:  https://github.com/social-manager-tools/socialmanagertools-igbot
  */
-const argv = require("yargs").argv;
-const fs = require("fs");
-const Bot = require("instagrambotlib");
+const config = require("./configs/config");
+const Bot = require("./lib");
+let bot = new Bot(config);
+bot.start();
 
-const config_file = (argv.config ? argv.config : "./configs/config.js");
-
-if (fs.existsSync(config_file)) {
-    let bot = new Bot(require(config_file));
-    bot.start();
-} else {
-    throw new Error("Config file not found");
-}
+/**
+ * stop()
+ * =====================
+ * if you want stop bot after 3 seconds (uncomment code)
+ *
+ */
+// setTimeout(function() {
+//	bot.stop();
+// }, 3000);

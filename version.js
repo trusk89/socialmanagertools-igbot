@@ -3,10 +3,10 @@
  * =====================
  * Bot version
  *
- * @author:     Patryk Rzucidlo [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)
+ * @author:     Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
  * @license:    This code and contributions have 'GNU General Public License v3'
- * @version:    0.7.4
+ * @version:    0.9.0
  * @changelog:  0.7.4 initial release
  *
  */
-module.exports = require("package.json")["version"];
+module.exports = require("./package.json");

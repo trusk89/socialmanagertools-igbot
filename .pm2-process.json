@@ -1,0 +1,11 @@
+{
+	"name": "socialmanagertools-igbot",
+    "script": "bot.js",
+    "watch": true,
+    "max_restarts": 999,
+    "max_memory_restart": "1024M",
+    "ignore_watch": [".git/","logs/","databases/","docker/","tests/","node_modules/","npm-debug.log"],
+    "watch_options": {
+        "followSymlinks": false
+    }
+}

@@ -1,0 +1,21 @@
+# App #
+#######
+config/*.js
+tests/
+docs/
+logs/
+plugins/
+docker/
+Dockerfile
+Dockerfile.*
+bot.js
+configs/loginpin.txt
+loginpin.txt
+./github
+.gitmodules
+.jshintrc
+.gitattributes
+.eslintrc.json
+.editorconfig
+.pm2-process.json
+.all-contributorsrc
