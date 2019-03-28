@@ -95,7 +95,7 @@ In order to run it, copy the `config.js.tpl` file (template of available in `con
 like in this example:
 
 ```sh
-docker run --restart=always --name=smt-igbot-api -d -v /path/to/configs/config.js:/app/configs/config.js social-manager-tools/socialmanagertools-igbot:amd64
+docker run --restart=always --name=socialmanagertools-igbot -d -v /path/to/configs/config.js:/app/configs/config.js socialmanagertools/igbot:amd64
 ```
 
 **AVAILABLE TAGS:** `amd64` (64bit), `i386` (32bit),`armv7` (Raspberry PI 2), `armv8` (Raspberry PI 3). All point to the master github repository (stable version).
