@@ -1,7 +1,7 @@
 {
 	"name": "@social-manager-tools/igbot",
 	"description": "Social Manager Tools: Instagram Bot API",
-	"version": "0.9.11",
+	"version": "0.9.12",
 	"main": "lib.js",
 	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
 	"license": "MIT",
@@ -15,6 +15,10 @@
 	},
 	"bugs": {
 		"url": "https://github.com/social-manager-tools/socialmanagertools-igbot/issues"
+	},
+	"collective": {
+		"type": "opencollective",
+		"url": "https://opencollective.com/social-manager-tools"
 	},
 	"scripts": {
 		"start": "node bot.js --config=\"./configs/config.js\"",
@@ -33,6 +37,7 @@
 		"git-pull": "git pull --recursive",
 		"git-ignore-reset": "git rm -r --cached . && git add . && git commit -m \"[Fix] Removing all files in .gitignore\"",
 		"git-postinstall": "npm run docs-init && npm run git-set-upstream && git-switch-nightly",
+		"docker-fix": "chmod +x docker/armv7/* && chmod +x docker/armv8/*",
 		"npm-publish-master-latest": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"latest\"' && npm publish",
 		"npm-publish-master-chromev68": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.4.0\"' && npm publish --tag chromev68",
 		"npm-publish-master-chromev69": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.6.2\"' && npm publish --tag chromev69",
@@ -43,14 +48,15 @@
 		"npm-publish-master-chromev74": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.13.0\"' && npm publish --tag chromev74",
 		"npm-publish-beta": "git checkout beta && npm publish --tag beta",
 		"npm-publish-nightly": "git checkout nightly && npm publish --tag nightly",
-		"docs-init": "git submodule add -f git@github.com:social-manager-tools/socialmanagertools-docs.git docs",
+		"docs-init": "git submodule add -f https://github.com/social-manager-tools/socialmanagertools-docs.git docs",
 		"docs": "git submodule update --recursive && markserv ./docs/README.md",
 		"test": "jest",
-		"contributors-generate": "all-contributors generate"
+		"contributors-generate": "all-contributors generate",
+		"devpostinstall": "npm run docs-init && npm run contributors-generate && npm run docker-fix && opencollective-postinstall"
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run lint-fix && npm run contributors-generate"
+			"pre-commit": "npm run lint && npm run contributors-generate"
 		}
 	},
 	"keywords": [
@@ -94,6 +100,8 @@
 		"eslint-plugin-standard": "latest",
 		"eslint-plugin-html": "latest",
 		"all-contributors-cli": "latest",
+		"opencollective": "latest",
+		"opencollective-postinstall": "latest",
 		"pm2": "latest",
 		"json": "latest",
 		"chai": "latest",

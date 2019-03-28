@@ -12,6 +12,11 @@
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io) [![](https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg)](mailto:support@ptkdev.io)
 
 
+# v0.9.12 (28 March, 2019)
+* Fix: docker permissions
+* Fix: README.md misprint
+
+
 # v0.9.11 (27 March, 2019)
 * New: `instagrambotlib` and `instagram-bot.js` now is `socialmanagertools-igbot`
 * New: npm package org: `npm install @social-manager-tools/igbot`

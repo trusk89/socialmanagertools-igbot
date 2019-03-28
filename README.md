@@ -1,24 +1,24 @@
-[![Social Manager Tools: IG BOT](.github/assets/smt_igbot_logo.png)](https://socialmanager.tools)
+[![Social Manager Tools: IG BOT](https://github.com/social-manager-tools/socialmanagertools-igbot/blob/master/.github/assets/smt_igbot_logo.png)](https://socialmanager.tools)
 
 # 🤖 Social Manager Tools: Instagram Bot API
 
-[![](https://img.shields.io/badge/version-v0.9.11-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
+[![](https://img.shields.io/badge/version-v0.9.12-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
 
-> This library (include bot and api) helps you increase the engagement level of your Instagram profile through different social algorithms and provides api for include custom bot functions in your application. Increase the likes on your photos and followers!
+> This library (includes bot and API methods) allows you to increase visits, likes and followers on your social profile through different algorithms and offers API for developers to include custom bot functionality in their application. You will increase the likes on your photos and increase your followers!
 
-> ⛔ **DISCLAIMER**: This is **unofficial** library without warranty! Assumes no responsibility in the event of account ban or any problem with your profile. Using bot on instagram does not respect the terms of service: use this software at your own risk. A "bot" is legal software but using a bot continuously violates the regulation of your instagram account and you risks: __soft ban__ (like and follow restrictions daily) or __ban__ with suspension for a few days (or for life). All trademarks and logos belong to their respective owners.
+> ⛔ **DISCLAIMER**: This is an **unofficial** library and offers no warranty! The developers and contributors of the project do not assume any responsibility in case of ban of your account. Use of instagram bots does not comply with the terms of the service: use this software at your own risk. A "bot" is legal software, but the use of a bot continuously violates the terms of use of Instagram and you risk a: __soft ban__ (such as limited actions or follow-up) or you risk __ban__ with suspension for a few days (or permanent). All trademarks and logos belong to their respective owners.
 
 ## 🎁 Support: Donate
-> This project is **free**, **open source** and I try to provide excellent support. Why donate? I work on this project 10 hours a week and in my spare time, I try to keep it up-to-date and working. I'm not going to charge the basic features but this can not be done without financial support. There are professional bots __closed source__ on the Internet and save your password on the cloud at a cost of 14€ per month and I not want you pay monthly the same amount but with a much smaller donation I can guarantee you systematic and continuous updates as well as offering all the assistance I can via email and in the "github issues". **THANK YOU!**
+> This project is **free**, **open source** and I try to provide excellent **free support**. Why donate? I work on this project several hours a week or in my spare time and try to keep it up to date and working. I do not intend to charge the basic features, but this cannot be done without your financial support, even small. There are professional bots with closed source on the Internet that save the password on the cloud for €14/month: we want to protect your password and offer you a better product than theirs. A lower donation would allow continuous development, ever better quality and the realization of this dream. **THANK YOU!**
 
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io)
 
 ## 🔖 Screenshot
-[![](.github/assets/screenshot/smt_igbot_screenshot.gif)](https://socialmanager.tools)
+[![](https://github.com/social-manager-tools/socialmanagertools-igbot/blob/master/.github/assets/screenshot/smt_igbot_screenshot.gif)](https://socialmanager.tools)
 
 ## 📎 Menu
 - 💾 Installation:
-  - 🔨 [Fast install](http://docs.socialmanager.tools/igbot/installation/cli/README.md) (CLI / NPM Package)
+  - 🔨 [Fast install](http://docs.socialmanager.tools/igbot/installation/source/README.md) (CLI / NPM Package)
   - 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
   - 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
   - 🐳 [Docker](http://docs.socialmanager.tools/igbot/installation/docker/README.md)
@@ -108,11 +108,15 @@ docker run --restart=always --name=socialmanagertools-igbot -d -v /path/to/confi
 
 If you want are available online [here](http://docs.socialmanager.tools/README.md).
 
-### 🐍 Sorry for snake_case
-I love snake_case syntax sorry for this 😭 don't hate me.
+## 👑 Sponsors (max 10 available)
+Support this project by becoming a sponsor. 🙏 Become a sponsor on [patreon](http://patreon.ptkdev.io) or [opencollective](https://opencollective.com/social-manager-tools#sponsor). Your logo will show up here with a link to your website.
 
-### 🍻 Community
-[![](https://img.shields.io/badge/chat%20on-discord-7289da.svg)](http://discord.ptkdev.io) [![](https://img.shields.io/badge/chat%20on-slack-orange.svg)](http://slack.ptkdev.io)  [![](https://img.shields.io/badge/blog-medium-2AE176.svg)](http://blog.ptkdev.io) [![](https://img.shields.io/badge/twitter-socialmanagertools-2AA3EF.svg)](https://twitter.com/socialmanagertools)
+[![](https://opencollective.com/social-manager-tools/sponsor/0/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/0/website) [![](https://opencollective.com/social-manager-tools/sponsor/1/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/1/website) [![](https://opencollective.com/social-manager-tools/sponsor/2/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/2/website) [![](https://opencollective.com/social-manager-tools/sponsor/3/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/3/website) [![](https://opencollective.com/social-manager-tools/sponsor/4/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/4/website) [![](https://opencollective.com/social-manager-tools/sponsor/5/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/5/website) [![](https://opencollective.com/social-manager-tools/sponsor/6/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/6/website) [![](https://opencollective.com/social-manager-tools/sponsor/7/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/7/website) [![](https://opencollective.com/social-manager-tools/sponsor/8/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/8/website) [![](https://opencollective.com/social-manager-tools/sponsor/9/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/9/website)
+
+## 🦄 Backers
+Thank you to all our backers! 🙏 Become a backer on [patreon](http://patreon.ptkdev.io) or [opencollective](https://opencollective.com/social-manager-tools#sponsor)
+
+[![](https://opencollective.com/social-manager-tools/backers.svg?width=890)](https://opencollective.com/social-manager-tools#backers)
 
 ### ❤️ Contributing
 I 💟 contributions! I will happily accept your pull request! Translations, grammatical corrections (GrammarNazi you are welcome! Yes my English is bad, sorry), new modes, best css selectors, fix and new feature! Read [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) for best practices. Do not be afraid, if the code is not perfect we will work together 👯 and remember to insert your name in `.all-contributorsrc` and `package.json` file.
@@ -127,10 +131,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 > 💰 In the future, if the donations allow it, I would like to share some of the success with those who helped me the most. For me open source is share of code, share development knowledges and share donations!
 
-### 👑 Sponsor
-You want your logo here? See sponsor tier on [on patreon](http://patreon.ptkdev.io) (max 10 sponsors available)
+## 🍻 Community
+[![](https://img.shields.io/badge/chat%20on-discord-7289da.svg)](http://discord.ptkdev.io) [![](https://img.shields.io/badge/chat%20on-slack-orange.svg)](http://slack.ptkdev.io)  [![](https://img.shields.io/badge/blog-medium-2AE176.svg)](http://blog.ptkdev.io) [![](https://img.shields.io/badge/twitter-socialmanagertools-2AA3EF.svg)](https://twitter.com/socialmanagertools)
 
-### 📲 Tools
+## 📲 Tools
 [![](https://img.shields.io/badge/app-social%20manager%20tools-ff7f19.svg)](http://socialmanager.tools/)
 [![](https://img.shields.io/badge/api-instagram%20bot-895a4d.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot)
 [![](https://img.shields.io/badge/api-twitter%20bot-21B7F4.svg)](https://github.com/social-manager-tools/socialmanagertools-twbot)
@@ -140,7 +144,10 @@ You want your logo here? See sponsor tier on [on patreon](http://patreon.ptkdev.
 [![](https://img.shields.io/badge/app-meingifs-E1215B.svg)](https://meingifs.pics/)
 [![](https://img.shields.io/badge/stickers-ptkdev-128C7E.svg)](https://stickers.ptkdev.io/)
 
-### 💫 License
+### 🐍 Sorry for snake_case
+I love snake_case syntax sorry for this 😭 don't hate me.
+
+## 💫 License
 * Code and Contributions have **MIT License**
 * Images and logos have **CC BY-NC 4.0 License**
 * Documentations and Translations have **CC BY 4.0 License**
