@@ -30,4 +30,4 @@ RUN npm config set unsafe-perm true && npm config set registry http://registry.n
 # For cross compile on dockerhub
 RUN [ "cross-build-end" ]
 
-CMD ["pm2-runtime", "bot.js"]
+CMD ["pm2-runtime", ".pm2-process.json"]

@@ -4,7 +4,7 @@
     "watch": true,
     "max_restarts": 999,
     "max_memory_restart": "1024M",
-    "ignore_watch": [".git/","logs/","databases/","docker/","tests/","node_modules/","npm-debug.log"],
+    "ignore_watch": [".git","logs","databases","node_modules","npm-debug.log", "loginpin.txt"],
     "watch_options": {
         "followSymlinks": false
     }

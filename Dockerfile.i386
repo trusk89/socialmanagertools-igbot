@@ -19,4 +19,4 @@ RUN npm config set unsafe-perm true && npm config set registry http://registry.n
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
 RUN npm config set unsafe-perm true && npm config set registry http://registry.npmjs.org/ && npm install
 
-CMD ["pm2-runtime", "bot.js"]
+CMD ["pm2-runtime", ".pm2-process.json"]
