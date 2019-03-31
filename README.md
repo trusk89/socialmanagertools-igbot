@@ -118,7 +118,7 @@ Thank you to all our backers! 🙏 Become a backer on [patreon](http://patreon.p
 
 [![Twitch: prattquellolive](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/patreon/prattquello.png)](https://www.twitch.tv/prattquellolive) [![](https://opencollective.com/social-manager-tools/backers.svg?width=890)](https://opencollective.com/social-manager-tools#backers)
 
-### ❤️ Contributing
+## ❤️ Contributing
 I 💟 contributions! I will happily accept your pull request! Translations, grammatical corrections (GrammarNazi you are welcome! Yes my English is bad, sorry), new modes, best css selectors, fix and new feature! Read [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) for best practices. Do not be afraid, if the code is not perfect we will work together 👯 and remember to insert your name in `.all-contributorsrc` and `package.json` file.
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -144,7 +144,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 [![](https://img.shields.io/badge/app-meingifs-E1215B.svg)](https://meingifs.pics/)
 [![](https://img.shields.io/badge/stickers-ptkdev-128C7E.svg)](https://stickers.ptkdev.io/)
 
-### 🐍 Sorry for snake_case
+## 🐍 Sorry for snake_case
 I love snake_case syntax sorry for this 😭 don't hate me.
 
 ## 💫 License
