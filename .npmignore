@@ -1,17 +1,18 @@
 # App #
 #######
 config/*.js
+configs/*.js
+configs/loginpin.txt
+.github
+databases/
 tests/
 docs/
 logs/
-plugins/
 docker/
 Dockerfile
 Dockerfile.*
 bot.js
-configs/loginpin.txt
 loginpin.txt
-./github
 .gitmodules
 .jshintrc
 .gitattributes
@@ -19,3 +20,4 @@ loginpin.txt
 .editorconfig
 .pm2-process.json
 .all-contributorsrc
+.eslintcache
