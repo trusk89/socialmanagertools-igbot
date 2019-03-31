@@ -198,7 +198,7 @@ class Commentmode_classic extends Manager_state {
 			}
 
 			if (this.is_ok()) {
-				await this.bot.waitForSelector(comment_area_elem);
+				await this.bot.waitForSelector(comment_area_elem, {timeout: 5000});
 				let button = await this.bot.$(comment_area_elem);
 				if (this.photo_commented[this.photo_current] > 1) {
 					this.log.warning("</3 commented previously");

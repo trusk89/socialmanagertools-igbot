@@ -2,7 +2,7 @@
 
 # 🤖 Social Manager Tools: Instagram Bot API
 
-[![](https://img.shields.io/badge/version-v0.9.12-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
+[![](https://img.shields.io/badge/version-v0.9.13-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
 
 > This library (includes bot and API methods) allows you to increase visits, likes and followers on your social profile through different algorithms and offers API for developers to include custom bot functionality in their application. You will increase the likes on your photos and increase your followers!
 
@@ -13,18 +13,29 @@
 
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io)
 
-## 🔖 Screenshot
-[![](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/screenshot/smt_igbot_screenshot.gif)](https://socialmanager.tools)
-
 ## 📎 Menu
 - 💾 Installation:
+  - 💡 [Features](#-features)
   - 🔨 [Fast install](http://docs.socialmanager.tools/igbot/installation/source/README.md) (CLI / NPM Package)
   - 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
   - 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
+  - 🐧 [Linux Server](http://docs.socialmanager.tools/igbot/installation/linux/README.md) (Debian 9 Server)
   - 🐳 [Docker](http://docs.socialmanager.tools/igbot/installation/docker/README.md)
+- 🔑 Configs:
+  - 💿 [List of Mode](http://docs.socialmanager.tools/igbot/configs/modes/README.md)
+  - 📀 [How set Multi-account](http://docs.socialmanager.tools/igbot/configs/multiaccount/README.md)
 - 📚 [API Documentation](http://docs.socialmanager.tools/igbot/api/README.md) (How create your personal bot or mode)
 - 💻 [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) (If you want contributing)
-- 🐛 [Bugs](https://github.com/social-manager-tools/socialmanagertools-igbot/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- 🐛 [Known Bugs](https://github.com/social-manager-tools/socialmanagertools-igbot/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- 🍻 Community:
+  - 🐦 [Telegram group](http://telegram.ptkdev.io)
+  - 🐔 [Discord](http://discord.ptkdev.io)
+  - 🐓 [Slack](http://slack.ptkdev.io)
+  - 🕊 [Medium](http://blog.ptkdev.io)
+  - 🐤 [Twitter](http://twitter.ptkdev.io)
+
+## 🔖 Screenshot
+[![](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/screenshot/smt_igbot_screenshot.gif)](#)
 
 ## 💡 Features
 * [✔️] Easy to use
@@ -98,7 +109,7 @@ like in this example:
 docker run --restart=always --name=socialmanagertools-igbot -d -v /path/to/configs/config.js:/app/configs/config.js socialmanagertools/igbot:amd64
 ```
 
-**AVAILABLE TAGS:** `amd64` (64bit), `i386` (32bit),`armv7` (Raspberry PI 2), `armv8` (Raspberry PI 3). All point to the master github repository (stable version).
+**AVAILABLE TAGS:** `amd64` (64bit), `i386` (32bit),`armv7` (Raspberry PI 2 and Raspberry PI 2 ), `armv8` (Raspberry PI ARMv8). All point to the master github repository (stable version).
 
 **WARNING:** with docker is mandatory edit `config.js` and set `chrome_headless` on `true` and set `chrome_executable_path` to `/usr/bin/chromium-browser`. Without this manual fix docker don't work.
 
@@ -130,9 +141,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 > 💰 In the future, if the donations allow it, I would like to share some of the success with those who helped me the most. For me open source is share of code, share development knowledges and share donations!
-
-## 🍻 Community
-[![](https://img.shields.io/badge/chat%20on-discord-7289da.svg)](http://discord.ptkdev.io) [![](https://img.shields.io/badge/chat%20on-slack-orange.svg)](http://slack.ptkdev.io)  [![](https://img.shields.io/badge/blog-medium-2AE176.svg)](http://blog.ptkdev.io) [![](https://img.shields.io/badge/twitter-socialmanagertools-2AA3EF.svg)](https://twitter.com/socialmanagertools)
 
 ## 📲 Tools
 [![](https://img.shields.io/badge/app-social%20manager%20tools-ff7f19.svg)](http://socialmanager.tools/)

@@ -130,7 +130,7 @@ class Likemode_superlike extends Manager_state {
 		this.log.info("try open userpage");
 
 		try {
-			await this.bot.waitForSelector("article:nth-child(1) header:nth-child(1) div:nth-child(2) a:nth-child(1)");
+			await this.bot.waitForSelector("article:nth-child(1) header:nth-child(1) div:nth-child(2) a:nth-child(1)", {timeout: 5000});
 			let button = await this.bot.$("article:nth-child(1) header:nth-child(1) div:nth-child(2) a:nth-child(1)");
 			await button.click();
 			this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
@@ -223,7 +223,7 @@ class Likemode_superlike extends Manager_state {
 		this.log.info("try heart like");
 
 		try {
-			await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)");
+			await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
 			let button = await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)");
 			if (this.photo_liked[this.photo_current] > 1) {
 				this.log.warning("</3 liked previously");

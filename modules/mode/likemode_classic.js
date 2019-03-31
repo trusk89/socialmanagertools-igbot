@@ -175,15 +175,15 @@ class Likemode_classic extends Manager_state {
 		this.log.info("try heart like");
 		let username = "";
 		try {
-			await this.bot.waitForSelector("article div a:nth-child(1)");
-			username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article div a:nth-child(1)"));
+			await this.bot.waitForSelector("article h2 a", {timeout: 3000});
+			username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article h2 a"));
 			this.log.info(`username ${username}`);
 		} catch (err) {
 			this.log.warning(`get username: ${err}`);
 		}
 
 		try {
-			await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)");
+			await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
 			let button = await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)");
 			let button_before_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)"));
 			this.log.info(`button text before click: ${button_before_click}`);
@@ -195,7 +195,7 @@ class Likemode_classic extends Manager_state {
 				await button.click();
 				await this.utils.sleep(this.utils.random_interval(2, 3));
 
-				await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)");
+				await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
 				let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)"));
 				this.log.info(`button text after click: ${button_after_click}`);
 

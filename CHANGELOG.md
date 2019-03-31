@@ -12,6 +12,11 @@
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io) [![](https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg)](mailto:support@ptkdev.io)
 
 
+# v0.9.13 (31 March, 2019)
+* Fix: `waiting for selector "article div a:nth-child(1)" failed: timeout 30000ms exceeded` happen when photo don't exist or are removed, now skip faster (3sec)
+* Fix: docker curl package missing
+
+
 # v0.9.12 (28 March, 2019)
 * Fix: docker permissions
 * Fix: README.md misprint
