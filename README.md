@@ -16,12 +16,14 @@
 ## 📎 Menu
 - 💡 [Features](#-features)
 - 💾 Installation:
-  - 🔨 [Fast install](http://docs.socialmanager.tools/igbot/installation/source/README.md) (CLI / NPM Package)
+  - 🔨 [Install From Source](http://docs.socialmanager.tools/igbot/installation/source/README.md)
+  - 🔨 [Install From NPM](http://docs.socialmanager.tools/igbot/installation/cli/README.md)
   - 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
   - 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
   - 🐧 [Linux Server](http://docs.socialmanager.tools/igbot/installation/linux/README.md) (Debian 9 Server)
   - 🐳 [Docker](http://docs.socialmanager.tools/igbot/installation/docker/README.md)
 - 🔑 Configs:
+  - 🔌 [VPN/Proxy](http://docs.socialmanager.tools/igbot/configs/vpn-proxy/README.md)
   - 💿 [List of Mode](http://docs.socialmanager.tools/igbot/configs/modes/README.md)
   - 📀 [How set Multi-account](http://docs.socialmanager.tools/igbot/configs/multiaccount/README.md)
 - 📚 [API Documentation](http://docs.socialmanager.tools/igbot/api/README.md) (How create your personal bot or mode)
@@ -59,7 +61,7 @@
 3. If it works add a star 🌟 at this project ❤️
 4. If you want to help me: **donate on [paypal](http://paypal.ptkdev.io)/[ko-fi](http://coffee.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
 
-## 🔨 Fast usage (CLI)
+## 🔨 Fast usage (Source Code)
 1. Download [stable](https://github.com/social-manager-tools/socialmanagertools-igbot/archive/master.zip), [beta](https://github.com/social-manager-tools/socialmanagertools-igbot/archive/beta.zip) or [nightly](https://github.com/social-manager-tools/socialmanagertools-igbot/archive/nightly.zip) and extract it.
 2. Download [Node.js](https://nodejs.org/it/) (LTS release) and install it.
 3. Run `npm install` in `socialmanagertools-igbot` folder.
