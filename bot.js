@@ -1,38 +1,56 @@
 /**
- * InstagramBot.js
+ * Social Manager Tools: Instagram Bot API
  * =====================
- * Instagram Bot made with love and nodejs
+ * Scraping instagram website with love and nodejs
  *
- * @author:     Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
- * @link: https://github.com/GoogleChrome/puppeteer
- * @link: https://www.npmjs.com/package/instagrambotlib
+ * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
  *
- * @license:    Code and contributions have 'GNU General Public License v3'
- *              This program is free software: you can redistribute it and/or modify
- *              it under the terms of the GNU General Public License as published by
- *              the Free Software Foundation, either version 3 of the License, or
- *              (at your option) any later version.
- *              This program is distributed in the hope that it will be useful,
- *              but WITHOUT ANY WARRANTY; without even the implied warranty of
- *              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *              GNU General Public License for more details.
- *              You should have received a copy of the GNU General Public License
- *              along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @license: This code and contributions have 'MIT License'
+ *           Permission is hereby granted, free of charge, to any person obtaining a copy
+ *           of this software and associated documentation files (the "Software"), to deal
+ *           in the Software without restriction, including without limitation the rights
+ *           to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *           copies of the Software, and to permit persons to whom the Software is
+ *           furnished to do so, subject to the following conditions:
  *
- * @link        Homepage:     https://socialmanager.tools
- *              GitHub Repo:  https://github.com/social-manager-tools/socialmanagertools-igbot
+ *           The above copyright notice and this permission notice shall be included in all
+ *           copies or substantial portions of the Software.
+ *
+ *           THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *           IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *           FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *           AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *           LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *           OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *           SOFTWARE.
+ *
+ * @link:    Homepage: https://socialmanager.tools
+ *           Docs:     https://docs.socialmanager.tools
+ *           NPM:      https://www.npmjs.com/package/socialmanagertools-igbot
+ *           GitHub:   https://github.com/social-manager-tools/socialmanagertools-igbot
+ *
  */
-const config = require("./configs/config");
-const Bot = require("./lib");
-let bot = new Bot(config);
-bot.start();
 
-/**
- * stop()
- * =====================
- * if you want stop bot after 3 seconds (uncomment code)
- *
- */
-// setTimeout(function() {
-//	bot.stop();
-// }, 3000);
+const argv = require("yargs").argv;
+const config = (argv.config ? require(argv.config) : require("./configs/config.js"));
+
+const Bot = require("./modules/core/lib");
+let bot = new Bot(config);
+
+(async () => {
+	await bot.start();
+
+	let api = await bot.api();
+
+	let response = await api.login.flow();
+
+	if (response.status) {
+		response = await api.twofa.flow();
+	}
+
+	if (response.status) {
+		response = await api.mode.flow();
+	}
+
+	// await bot.stop();
+})();

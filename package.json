@@ -1,8 +1,8 @@
 {
 	"name": "@social-manager-tools/igbot",
 	"description": "Social Manager Tools: Instagram Bot API",
-	"version": "0.9.15",
-	"main": "lib.js",
+	"version": "0.10.0-nightly.20190404",
+	"main": "modules/core/lib.js",
 	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
 	"license": "MIT",
 	"license-docs": "CC BY 4.0",
@@ -52,6 +52,7 @@
 		"docs": "git submodule update --recursive && markserv ./docs/README.md",
 		"test": "jest",
 		"contributors-generate": "all-contributors generate",
+		"postinstall": "opencollective-postinstall",
 		"devpostinstall": "npm run docs-init && npm run contributors-generate && npm run docker-fix && opencollective-postinstall"
 	},
 	"husky": {
@@ -81,12 +82,13 @@
 		"node": ">=10.0.0"
 	},
 	"dependencies": {
-		"puppeteer": "1.11.0",
-		"compare-versions": "latest",
-		"colors": "latest",
-		"path": "latest",
+		"puppeteer": "latest",
+		"chalk": "latest",
+		"fs-extra": "latest",
+		"lowdb": "latest",
 		"request": "latest",
-		"sqlite3": "4.0.2"
+		"uuid": "latest",
+		"strip-ansi": "latest"
 	},
 	"devDependencies": {
 		"eslint": "latest",
