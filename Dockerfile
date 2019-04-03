@@ -4,7 +4,7 @@ WORKDIR /app
 
 ADD . /app
 
-RUN apt-get update && apt-get install -y apt-transport-https --assume-yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y apt-transport-https ca-certificates --assume-yes --no-install-recommends apt-utils
 RUN apt-get update && apt-get install -y locales --assume-yes && rm -rf /var/lib/apt/lists/* && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 

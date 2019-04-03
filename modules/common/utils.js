@@ -57,10 +57,10 @@ class Utils {
 		let request = require("request");
 		let log = this.log;
 		request.get("https://api.socialmanager.tools/v2/bot/instagram/version/", function (err, res, last_release) {
-			let json = JSON.parse(last_release);
 			if (err) {
-				log.error("Is impossible contact api.socialmanager.tools server, wifi is on?");
+				log.error(`${err}, Is impossible contact api.socialmanager.tools server, wifi is on?`);
 			} else {
+				let json = JSON.parse(last_release);
 				if (version !== json.master.version) {
 					log.warning(`Bot release v${json.master.version} available! Current version: v${version}`);
 				} else {
