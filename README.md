@@ -17,7 +17,7 @@
 - 💡 [Features](#-features)
 - 💾 Installation:
   - 🔨 [Install From Source](http://docs.socialmanager.tools/igbot/installation/source/README.md)
-  - 🔨 [Install From NPM](http://docs.socialmanager.tools/igbot/installation/cli/README.md)
+  - 🔨 [Install From NPM](http://docs.socialmanager.tools/igbot/installation/npm/README.md)
   - 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
   - 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
   - 🐧 [Linux Server](http://docs.socialmanager.tools/igbot/installation/linux/README.md) (Debian 9 Server)
@@ -111,9 +111,9 @@ like in this example:
 docker run --restart=always --name=socialmanagertools-igbot -d -v /path/to/configs/config.js:/app/configs/config.js socialmanagertools/igbot:amd64
 ```
 
-**AVAILABLE TAGS:** `amd64` (64bit), `i386` (32bit),`armv7` (Raspberry PI 2 and Raspberry PI 2 ), `armv8` (Raspberry PI ARMv8). All point to the master github repository (stable version).
+**AVAILABLE TAGS:** `amd64` (64bit), `i386` (32bit),`armv7` (Raspberry PI 2 and Raspberry PI 3), `armv8` (Raspberry PI ARMv8). All point to the master github repository (stable version) but is available `-nightly` suffix, example: `armv7-bightly`.
 
-**WARNING:** with docker is mandatory edit `config.js` and set `chrome_headless` on `true` and set `chrome_executable_path` to `/usr/bin/chromium-browser`. Without this manual fix docker don't work.
+**WARNING:** with docker is mandatory edit `config.js` and set `chrome_headless` on `enabled` (or to true if you use `v0.9.X` version) and set `chrome_executable_path` to `/usr/bin/chromium-browser`. Without this manual fix docker don't work.
 
 ## 📚 Documentation
 1. Run `npm run docs-init`
