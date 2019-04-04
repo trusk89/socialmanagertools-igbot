@@ -22,7 +22,9 @@
  * @link        Homepage:     https://socialmanager.tools
  *              GitHub Repo:  https://github.com/social-manager-tools/socialmanagertools-igbot
  */
-const config = require("./configs/config");
+const argv = require("yargs").argv;
+const config = (argv.config ? require(argv.config) : require("./configs/config.js"));
+
 const Bot = require("./lib");
 let bot = new Bot(config);
 bot.start();

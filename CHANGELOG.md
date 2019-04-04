@@ -11,7 +11,12 @@
 
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io) [![](https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg)](mailto:support@ptkdev.io)
 
-# v0.9.15 (01 April, 2019)
+
+# v0.9.16 (04 April, 2019)
+* Fix: argv restored, now multi account with `node bot.js --config="XXXXX"` work.
+
+
+# v0.9.15 (03 April, 2019)
 * Fix: missing ssl certificates docker
 * Fix: if `api.socialmanager.tools` are offline, bot don't crash
 
