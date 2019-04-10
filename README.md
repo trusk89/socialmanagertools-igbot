@@ -4,12 +4,12 @@
 
 [![](https://img.shields.io/badge/version-v0.10.0--nightly.20190404-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
 
-> This library (includes bot and API methods) allows you to increase visits, likes and followers on your social profile through different algorithms and offers API for developers to include custom bot functionality in their application. You will increase the likes on your photos and increase your followers!
+> This library (including bot and API methods) allow you to increase visits, likes and followers on your social profile through different algorithms and offers API for developers to include custom bot functionality in their  own applications. You will increase likes on your photos and your followers!
 
 > ⛔ **DISCLAIMER**: This is an **unofficial** library and offers no warranty! The developers and contributors of the project do not assume any responsibility in case of ban of your account. Use of instagram bots does not comply with the terms of the service: use this software at your own risk. A "bot" is legal software, but the use of a bot continuously violates the terms of use of Instagram and you risk a: __soft ban__ (such as limited actions or follow-up) or you risk __ban__ with suspension for a few days (or permanent). All trademarks and logos belong to their respective owners.
 
 ## 🎁 Support: Donate
-> This project is **free**, **open source** and I try to provide excellent **free support**. Why donate? I work on this project several hours a week or in my spare time and try to keep it up to date and working. I do not intend to charge the basic features, but this cannot be done without your financial support, even small. There are professional bots with closed source on the Internet that save the password on the cloud for €14/month: we want to protect your password and offer you a better product than theirs. A lower donation would allow continuous development, ever better quality and the realization of this dream. **THANK YOU!**
+> This project is **free**, **open source** and I try to provide excellent **free support**. Why donate? I work on this project several hours a week or in my spare time and try to keep it up to date and working. I do not intend to charge the basic features, but this cannot be done without your financial support, even small. There are professional bots with closed source on the Internet that save passwords on the cloud for €14/month: we want to protect your passwords and offer you a better product than others. A lower donation would allow continuous development, ever better quality and the realization of this dream. **THANK YOU!**
 
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io)
 
@@ -26,9 +26,9 @@
   - 🔌 [VPN/Proxy](http://docs.socialmanager.tools/igbot/configs/vpn-proxy/README.md)
   - 💿 [List of Mode](http://docs.socialmanager.tools/igbot/configs/modes/README.md)
   - 📀 [How set Multi-account](http://docs.socialmanager.tools/igbot/configs/multiaccount/README.md)
-- 🚽 [Documentation](https://github.com/social-manager-tools/socialmanagertools-docs/blob/master/README.md) (I hate writing it so please read it)
-- 📚 [API Documentation](http://docs.socialmanager.tools/igbot/api/README.md) (How create your personal bot or mode)
-- 💻 [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) (If you want contributing)
+- 🚽 [Documentation](https://github.com/social-manager-tools/socialmanagertools-docs/blob/master/README.md) (I hate writing it so, please, read it)
+- 📚 [API Documentation](http://docs.socialmanager.tools/igbot/api/README.md) (How to create your personal bot or mode)
+- 💻 [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) (If you want to contribute)
 - 🐛 [Known Bugs](https://github.com/social-manager-tools/socialmanagertools-igbot/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 - 🍻 Community:
   - 🐦 [Telegram group](http://telegram.ptkdev.io)
@@ -54,11 +54,11 @@
 * [✔️] Like Mode Competitor Users: it selects an account, selects random followers, likes 10-12 photo and sleeps 15-20min. Sleeps at night.
 * [✔️] Like Mode Super like: it selects random hashtag from a config list and likes 3 random photos of the same user.
 * [✔️] Comment Mode Classic: it selects random comments and random hashtags and writes comments under photos.
-* [✔️] Follow/Defollow Classic: follow 30 users, defollow first and rotate (in loop). This method is not detect from socialblade. 300 follow-defollow/day.
+* [✔️] Follow/Defollow Classic: follow 30 users, defollow first and rotate (in loop). This method is not detected from socialblade. 300 follow-defollow/day.
 
 ## 👨‍💻 Desktop setup (GUI)
 1. Download [Social Manager Tools](https://github.com/social-manager-tools/social-manager-tools/releases) GUI.
-2. Run application.
+2. Run the application.
 3. If it works add a star 🌟 at this project ❤️
 4. If you want to help me: **donate on [paypal](http://paypal.ptkdev.io)/[ko-fi](http://coffee.ptkdev.io)** or become a **[backer on patreon](http://patreon.ptkdev.io)**.
 
@@ -128,12 +128,12 @@ Support this project by becoming a sponsor. 🙏 Become a sponsor on [patreon](h
 [![](https://opencollective.com/social-manager-tools/sponsor/0/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/0/website) [![](https://opencollective.com/social-manager-tools/sponsor/1/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/1/website) [![](https://opencollective.com/social-manager-tools/sponsor/2/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/2/website) [![](https://opencollective.com/social-manager-tools/sponsor/3/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/3/website) [![](https://opencollective.com/social-manager-tools/sponsor/4/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/4/website) [![](https://opencollective.com/social-manager-tools/sponsor/5/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/5/website) [![](https://opencollective.com/social-manager-tools/sponsor/6/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/6/website) [![](https://opencollective.com/social-manager-tools/sponsor/7/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/7/website) [![](https://opencollective.com/social-manager-tools/sponsor/8/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/8/website) [![](https://opencollective.com/social-manager-tools/sponsor/9/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/9/website)
 
 ## 🦄 Backers
-Thank you to all our backers! 🙏 Become a backer on [patreon](http://patreon.ptkdev.io) or [opencollective](https://opencollective.com/social-manager-tools#sponsor)
+Thanks to all our backers! 🙏 Become a backer on [patreon](http://patreon.ptkdev.io) or [opencollective](https://opencollective.com/social-manager-tools#sponsor)
 
 [![Twitch: prattquellolive](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/patreon/prattquello.png)](https://www.twitch.tv/prattquellolive) [![](https://opencollective.com/social-manager-tools/backers.svg?width=890)](https://opencollective.com/social-manager-tools#backers)
 
 ## ❤️ Contributing
-I 💟 contributions! I will happily accept your pull request! Translations, grammatical corrections (GrammarNazi you are welcome! Yes my English is bad, sorry), new modes, best css selectors, fix and new feature! Read [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) for best practices. Do not be afraid, if the code is not perfect we will work together 👯 and remember to insert your name in `.all-contributorsrc` and `package.json` file.
+I 💟 contributions! I will happily accept your pull request! Translations, grammatical corrections (GrammarNazi you are welcome! Yes my English is horrible, sorry), new modes, best css selectors, fix and new feature! Read [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) for best practices. Do not be afraid, if the code is not perfect we will work together 👯 and remember to insert your name in `.all-contributorsrc` and `package.json` file.
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
