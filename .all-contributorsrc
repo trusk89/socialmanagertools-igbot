@@ -15,7 +15,7 @@
 			"avatar_url": "https://avatars1.githubusercontent.com/u/442844?v=4",
 			"profile": "https://ptk.dev",
 			"contributions": [
-				"code"
+				"code", "translation", "doc", "bug"
 			]
 		},
 		{
@@ -78,7 +78,16 @@
 			"avatar_url": "https://avatars1.githubusercontent.com/u/849194?v=4",
 			"profile": "https://github.com/roNn23",
 			"contributions": [
-				"code"
+				"bug"
+			]
+		},
+		{
+			"login": "MoltenKH0R",
+			"name": "MoltenKH0R",
+			"avatar_url": "https://avatars1.githubusercontent.com/u/6023575?v=4",
+			"profile": "https://github.com/MoltenKH0R",
+			"contributions": [
+				"translation"
 			]
 		}
 	],
