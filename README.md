@@ -16,26 +16,26 @@
 ## 📎 Menu
 - 💡 [Features](#-features)
 - 💾 Installation:
-  - 🔨 [Install From Source](http://docs.socialmanager.tools/igbot/installation/source/README.md)
-  - 🔨 [Install From NPM](http://docs.socialmanager.tools/igbot/installation/npm/README.md)
-  - 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
-  - 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
-  - 🐧 [Linux Server](http://docs.socialmanager.tools/igbot/installation/linux/README.md) (Debian 9 Server)
-  - 🐳 [Docker](http://docs.socialmanager.tools/igbot/installation/docker/README.md)
+	- 🔨 [Install From Source](http://docs.socialmanager.tools/igbot/installation/source/README.md)
+	- 🔨 [Install From NPM](http://docs.socialmanager.tools/igbot/installation/npm/README.md)
+	- 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
+	- 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
+	- 🐧 [Linux Server](http://docs.socialmanager.tools/igbot/installation/linux/README.md) (Debian 9 Server)
+	- 🐳 [Docker](http://docs.socialmanager.tools/igbot/installation/docker/README.md)
 - 🔑 Configs:
-  - 🔌 [VPN/Proxy](http://docs.socialmanager.tools/igbot/configs/vpn-proxy/README.md)
-  - 💿 [List of Mode](http://docs.socialmanager.tools/igbot/configs/modes/README.md)
-  - 📀 [How set Multi-account](http://docs.socialmanager.tools/igbot/configs/multiaccount/README.md)
+	- 🔌 [VPN/Proxy](http://docs.socialmanager.tools/igbot/configs/vpn-proxy/README.md)
+	- 💿 [List of Mode](http://docs.socialmanager.tools/igbot/configs/modes/README.md)
+	- 📀 [How set Multi-account](http://docs.socialmanager.tools/igbot/configs/multiaccount/README.md)
 - 🚽 [Documentation](https://github.com/social-manager-tools/socialmanagertools-docs/blob/master/README.md) (I hate writing it so, please, read it)
 - 📚 [API Documentation](http://docs.socialmanager.tools/igbot/api/README.md) (How to create your personal bot or mode)
 - 💻 [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) (If you want to contribute)
 - 🐛 [Known Bugs](https://github.com/social-manager-tools/socialmanagertools-igbot/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 - 🍻 Community:
-  - 🐦 [Telegram group](http://telegram.ptkdev.io)
-  - 🐔 [Discord](http://discord.ptkdev.io)
-  - 🐓 [Slack](http://slack.ptkdev.io)
-  - 🕊 [Medium](http://blog.ptkdev.io)
-  - 🐤 [Twitter](http://twitter.ptkdev.io)
+	- 🐦 [Telegram group](http://telegram.ptkdev.io)
+	- 🐔 [Discord](http://discord.ptkdev.io)
+	- 🐓 [Slack](http://slack.ptkdev.io)
+	- 🕊 [Medium](http://blog.ptkdev.io)
+	- 🐤 [Twitter](http://twitter.ptkdev.io)
 
 ## 🔖 Screenshot
 [![](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/screenshot/smt_igbot_screenshot.gif)](#)
@@ -130,7 +130,7 @@ Support this project by becoming a sponsor. 🙏 Become a sponsor on [patreon](h
 ## 🦄 Backers
 Thanks to all our backers! 🙏 Become a backer on [patreon](http://patreon.ptkdev.io) or [opencollective](https://opencollective.com/social-manager-tools#sponsor)
 
-[![Twitch: prattquellolive](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/patreon/prattquello.png)](https://www.twitch.tv/prattquellolive) [![](https://opencollective.com/social-manager-tools/backers.svg?width=890)](https://opencollective.com/social-manager-tools#backers)
+[![Twitch: prattquellolive](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/patreon/prattquello.png)](https://www.twitch.tv/prattquellolive) [![JavaScript Room](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/patreon/jsroom.png)]() [![](https://opencollective.com/social-manager-tools/backers.svg?width=890)](https://opencollective.com/social-manager-tools#backers)
 
 ## ❤️ Contributing
 I 💟 contributions! I will happily accept your pull request! Translations, grammatical corrections (GrammarNazi you are welcome! Yes my English is horrible, sorry), new modes, best css selectors, fix and new feature! Read [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) for best practices. Do not be afraid, if the code is not perfect we will work together 👯 and remember to insert your name in `.all-contributorsrc` and `package.json` file.
