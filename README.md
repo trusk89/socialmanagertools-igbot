@@ -130,7 +130,7 @@ Support this project by becoming a sponsor. 🙏 Become a sponsor on [patreon](h
 ## 🦄 Backers
 Thanks to all our backers! 🙏 Become a backer on [patreon](http://patreon.ptkdev.io) or [opencollective](https://opencollective.com/social-manager-tools#sponsor)
 
-[![Twitch: prattquellolive](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/nightly/.github/assets/patreon/prattquello.png)](https://www.twitch.tv/prattquellolive) [![JavaScript Room](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/nightly/.github/assets/patreon/jsroom.png)]() [![](https://opencollective.com/social-manager-tools/backers.svg?width=890)](https://opencollective.com/social-manager-tools#backers)
+[![Twitch: prattquellolive](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/nightly/.github/assets/patreon/prattquello.png)](https://www.twitch.tv/prattquellolive) [![JavaScript Room](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/nightly/.github/assets/patreon/jsroom.png)](https://www.instagram.com/room_js/) [![](https://opencollective.com/social-manager-tools/backers.svg?width=890)](https://opencollective.com/social-manager-tools#backers)
 
 ## ❤️ Contributing
 I 💟 contributions! I will happily accept your pull request! Translations, grammatical corrections (GrammarNazi you are welcome! Yes my English is horrible, sorry), new modes, best css selectors, fix and new feature! Read [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) for best practices. Do not be afraid, if the code is not perfect we will work together 👯 and remember to insert your name in `.all-contributorsrc` and `package.json` file.
