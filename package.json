@@ -1,7 +1,7 @@
 {
 	"name": "@social-manager-tools/igbot",
 	"description": "Social Manager Tools: Instagram Bot API",
-	"version": "0.9.16",
+	"version": "0.9.17",
 	"main": "lib.js",
 	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
 	"license": "MIT",
@@ -81,7 +81,7 @@
 		"node": ">=10.0.0"
 	},
 	"dependencies": {
-		"puppeteer": "1.11.0",
+		"puppeteer": "1.13.0",
 		"compare-versions": "latest",
 		"colors": "latest",
 		"path": "latest",
