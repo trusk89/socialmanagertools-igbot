@@ -27,7 +27,7 @@
 	},
 	"rules": {
 		"no-multi-spaces": ["error", { "ignoreEOLComments": true, "exceptions": { "VariableDeclarator": true } }],
-		"block-spacing": ["error", "never"],
+		"block-spacing": ["error", "always"],
 		"array-bracket-spacing": ["error", "never"],
 		"space-in-parens": ["error", "never"],
 		"comma-spacing": ["error", { "before": false, "after": true }],
@@ -44,7 +44,7 @@
 		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
 		"spaced-comment": [2, "always"],
 		"space-before-blocks": ["error", "always"],
-		"space-before-function-paren": ["error", "always"],
+		"space-before-function-paren": ["error", "never"],
 		"prefer-template": "error",
 		"no-useless-concat": "error",
 		"linebreak-style": ["error", "unix"],

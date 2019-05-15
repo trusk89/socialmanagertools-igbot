@@ -3,7 +3,8 @@
  * =====================
  * Flow for pin request after login
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -17,7 +18,7 @@ const STATE_EVENTS = require("./../logger/state").STATE_EVENTS;
 const core = require("./../core/core");
 
 class Twofa extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 		this.LOG_NAME = "login";
@@ -42,7 +43,7 @@ class Twofa extends Status {
      * =====================
      *
      */
-	async flow () {
+	async flow() {
 		let tag = "twofa::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
 

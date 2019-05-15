@@ -3,7 +3,8 @@
  * =====================
  * Scraping instagram website with love and nodejs
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  *
  * @license: This code and contributions have 'MIT License'
  *           Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,7 +38,7 @@ const config = (argv.config ? require(argv.config) : require("./configs/config.j
 const Bot = require("./modules/core/lib");
 let bot = new Bot(config);
 
-(async () => {
+(async() => {
 	await bot.start();
 
 	let api = await bot.api();

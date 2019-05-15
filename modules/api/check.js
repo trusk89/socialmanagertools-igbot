@@ -3,7 +3,8 @@
  * =====================
  * is_logged, is_liked, etc...
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  *
@@ -14,7 +15,7 @@ const Utils = require("./../commons/utils");
 const core = require("./../core/core");
 
 class Check {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 		this.log = new Log(this.LOG_NAME);
@@ -34,7 +35,7 @@ class Check {
      * @since: v0.10
      *
      */
-	async login_status () {
+	async login_status() {
 		let tag = "check::login_status()";
 		this.log.info(tag, `${this.lang.translate("try_check_login_status")}`);
 
@@ -86,7 +87,7 @@ class Check {
      * @since: v0.10
      *
      */
-	async login_crash_status () {
+	async login_crash_status() {
 		let tag = "check::login_crash_status()";
 		this.log.info(tag, `${this.lang.translate("try_check_crash_login_status")}`);
 
@@ -129,7 +130,7 @@ class Check {
      * @since: v0.10
      *
      */
-	async twofa_crash_status () {
+	async twofa_crash_status() {
 		let tag = "check::twofa_crash_status()";
 		this.log.info(tag, `${this.lang.translate("try_check_twofa_crash_status")}`);
 
@@ -182,7 +183,7 @@ class Check {
      * @since: v0.10
      *
      */
-	async twofa_required () {
+	async twofa_required() {
 		let tag = "check::twofa_required()";
 		this.log.info(tag, `${this.lang.translate("try_check_twofa_login_status")}`);
 
@@ -234,7 +235,7 @@ class Check {
      * @since: v0.10
      *
      */
-	async comment_exist (username = this.core.config.account.username) {
+	async comment_exist(username = this.core.config.account.username) {
 		let tag = "check::comment_exist()";
 		this.log.info(tag, `${this.lang.translate("check_comment_exist")}`);
 

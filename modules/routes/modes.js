@@ -3,9 +3,9 @@
  * =====================
  * Possible strategy / modes
  *
- * @author:     Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
- * @maintainer: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
- * @license:    MIT License
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *                Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
+ * @license: MIT License
  *
  */
 module.exports = {

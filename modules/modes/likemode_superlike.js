@@ -3,7 +3,8 @@
  * =====================
  * Goto random hashtag from config list, go to first photo, go to user profile, like fast 3 photo all time in loop.
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -18,7 +19,7 @@ const core = require("./../core/core");
 const ansi = require("strip-ansi");
 
 class Likemode_superlike extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 		this.LOG_NAME = "likemode_superlike";
@@ -55,7 +56,7 @@ class Likemode_superlike extends Status {
 	 * Run this flow
 	 *
 	 */
-	async flow () {
+	async flow() {
 		let tag = "likemode_superlike::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
 

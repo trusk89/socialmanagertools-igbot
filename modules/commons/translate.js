@@ -3,7 +3,8 @@
  * =====================
  * Localization of text and logs, from /translations folder
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -12,7 +13,7 @@ const Log = require("./../logger/log");
 const core = require("./../core/core");
 
 class Translate {
-	constructor () {
+	constructor() {
 		this.core = core;
 
 		this.LOG_NAME = "translate";
@@ -33,7 +34,7 @@ class Translate {
      * @return {string} text - text with replaced token
      *
      */
-	replace_params (text, language_params) {
+	replace_params(text, language_params) {
 		for (let [key, value] of Object.entries(language_params)) {
 			text = text.replace(`##${key}##`, value);
 		}
@@ -51,7 +52,7 @@ class Translate {
      * @return {string} text - text of available translation
      *
      */
-	check (language_id) {
+	check(language_id) {
 		let text = "";
 		if (this.lang !== "en" && typeof languages[this.lang][language_id] === "undefined") {
 			text = languages["en"][language_id];
@@ -73,7 +74,7 @@ class Translate {
      * @return {string} text - text of available translation
      *
      */
-	translate (language_id, language_params = null) {
+	translate(language_id, language_params = null) {
 		let text = "";
 		text = this.check(language_id);
 		if (language_params != null) {

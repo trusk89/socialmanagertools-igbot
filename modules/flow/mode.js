@@ -3,7 +3,8 @@
  * =====================
  * Go to mode from config
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -17,7 +18,7 @@ const Modes = require("./../routes/modes");
 const core = require("./../core/core");
 
 class Mode extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 		this.LOG_NAME = "login";
@@ -35,7 +36,7 @@ class Mode extends Status {
      *         {string}  response.error - if status is false return error details
      *
      */
-	async flow () {
+	async flow() {
 		let tag = "mode::flow()";
 		this.log.info(tag, `${this.lang.translate("try_start_mode")}`);
 

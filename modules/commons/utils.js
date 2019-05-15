@@ -3,7 +3,8 @@
  * =====================
  * Logger and other functions...
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -14,7 +15,7 @@ const Translate = require("./../commons/translate");
 const core = require("./../core/core");
 
 class Utils {
-	constructor () {
+	constructor() {
 		this.core = core;
 
 		this.LOG_NAME = "utils";
@@ -28,7 +29,7 @@ class Utils {
      * Patreon, ko-fi, paypal and sponsors links
      *
      */
-	donate () {
+	donate() {
 		let tag = "utils::donate()";
 		this.log.sponsor(tag, `${this.lang.translate("bot_work_support")}`);
 		this.log.sponsor(tag, `${this.lang.translate("bot_work_support_details_1")}`);
@@ -50,10 +51,10 @@ class Utils {
      * Download alerts
      *
      */
-	async check_alerts () {
+	async check_alerts() {
 		let tag = "utils::check_alerts()";
 
-		request.get("https://api.socialmanager.tools/v2/bot/instagram/alert/", function (err, res, json_alert) {
+		request.get("https://api.socialmanager.tools/v2/bot/instagram/alert/", function(err, res, json_alert) {
 			if (err || res.statusCode !== 200) {
 				this.log.error(tag, `${this.lang.translate("api_connection_error")}`);
 				this.log.error(tag, `${err}`);
@@ -72,10 +73,10 @@ class Utils {
      * Download sponsors ads
      *
      */
-	async check_sponsors () {
+	async check_sponsors() {
 		let tag = "utils::check_sponsors()";
 
-		request.get("https://api.socialmanager.tools/v2/bot/instagram/sponsors/", function (err, res, json_sponsors) {
+		request.get("https://api.socialmanager.tools/v2/bot/instagram/sponsors/", function(err, res, json_sponsors) {
 			if (err || res.statusCode !== 200) {
 				this.log.error(tag, `${this.lang.translate("api_connection_error")}`);
 				this.log.error(tag, `${err}`);
@@ -96,10 +97,10 @@ class Utils {
      * @param {string} version - version id from package.json (mandatory)
      *
      */
-	async check_updates (version) {
+	async check_updates(version) {
 		let tag = "utils::check_updates()";
 
-		request.get("https://api.socialmanager.tools/v2/bot/instagram/version/", function (err, res, last_release) {
+		request.get("https://api.socialmanager.tools/v2/bot/instagram/version/", function(err, res, last_release) {
 			if (err || res.statusCode !== 200) {
 				this.log.error(tag, `${this.lang.translate("api_connection_error")}`);
 				this.log.error(tag, err);
@@ -121,7 +122,7 @@ class Utils {
      * This fix file system errors at boot
      *
      */
-	create_files () {
+	create_files() {
 		let tag = "utils::create_files()";
 
 		if (!fse.existsSync(this.core.config.log.path.pin)) {
@@ -164,7 +165,7 @@ class Utils {
      * @return {int} sec - seconds so as not to exceed the limits
      *
      */
-	compute_interval_between_run_in_seconds (n_action_daily, delta) {
+	compute_interval_between_run_in_seconds(n_action_daily, delta) {
 		return parseFloat((1440 * delta / n_action_daily) * 60);
 	}
 
@@ -179,7 +180,7 @@ class Utils {
      * @return {int} number - middle random number from input min/max interval
      *
      */
-	random_interval (min, max) {
+	random_interval(min, max) {
 		return (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
 	}
 
@@ -193,7 +194,7 @@ class Utils {
      * @return {string} number - result is 3:30
      *
      */
-	decimal_to_minutes (decimal) {
+	decimal_to_minutes(decimal) {
 		var sign = decimal < 0 ? "-" : "";
 		var min = Math.floor(Math.abs(decimal));
 		var sec = Math.floor((Math.abs(decimal) * 60) % 60);
@@ -211,7 +212,7 @@ class Utils {
      * @return {Array} arr - mixed array
      *
      */
-	mix_array (arr) {
+	mix_array(arr) {
 		return arr.sort(() => Math.random() - 0.5);
 	}
 
@@ -225,7 +226,7 @@ class Utils {
      * @return {Promise<Promise>} - async wait
      *
      */
-	sleep (sec) {
+	sleep(sec) {
 		return new Promise(resolve => setTimeout(resolve, sec));
 	}
 
@@ -239,7 +240,7 @@ class Utils {
      * @return {string} - clean name without symbols: className_functionName
      *
      */
-	clean_tag (tag) {
+	clean_tag(tag) {
 		tag = tag.replace(/::/g, "_");
 		tag = tag.replace(/()/g, "");
 		tag = tag.replace(/ /g, "_");
@@ -257,7 +258,7 @@ class Utils {
      * @return {Object} config - fixed
      *
      */
-	fix_config (config) {
+	fix_config(config) {
 		let tag = "utils::fix_config()";
 
 		if (typeof config.system === "undefined") {

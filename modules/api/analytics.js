@@ -3,7 +3,8 @@
  * =====================
  * Get stats of like, follow defollow, etc...
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -13,7 +14,7 @@ const Utils = require("./../commons/utils");
 const core = require("./../core/core");
 
 class Analytics {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 

@@ -3,7 +3,8 @@
  * =====================
  * Leave a comment, send message, write reaction, etc...
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -13,7 +14,7 @@ const Utils = require("./../commons/utils");
 const core = require("./../core/core");
 
 class Write {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 
@@ -40,7 +41,7 @@ class Write {
      * @since: v0.10
      *
      */
-	async comment (text, delay = 100, username = this.core.config.account.username) {
+	async comment(text, delay = 100, username = this.core.config.account.username) {
 		let tag = "write::comment()";
 		this.log.info(tag, `${this.lang.translate("try_write_comment")}`);
 
@@ -99,7 +100,7 @@ class Write {
      * @since: v0.10
      *
      */
-	async login_username (delay = 100, username = this.core.config.account.username) {
+	async login_username(delay = 100, username = this.core.config.account.username) {
 		let tag = "write::login_username()";
 		this.log.info(tag, `${this.lang.translate("try_set_login_username")}`);
 
@@ -146,7 +147,7 @@ class Write {
      * @since: v0.10
      *
      */
-	async login_password (delay = 100, password = this.core.config.account.password) {
+	async login_password(delay = 100, password = this.core.config.account.password) {
 		let tag = "write::login_password()";
 		this.log.info(tag, `${this.lang.translate("try_set_login_password")}`);
 
@@ -193,7 +194,7 @@ class Write {
      * @since: v0.10
      *
      */
-	async twofa_pin (pin, delay = 100) {
+	async twofa_pin(pin, delay = 100) {
 		let tag = "write::twofa_pin()";
 		this.log.info(tag, `${this.lang.translate("try_set_twofa_pin")}`);
 

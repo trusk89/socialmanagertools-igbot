@@ -12,7 +12,7 @@
  *
  * @link: https://docs.socialmanager.tools/translate/README.md
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
  * @license: CC BY 4.0 License
  *
  */

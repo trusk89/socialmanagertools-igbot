@@ -3,7 +3,8 @@
  * =====================
  * Follow 30 users, and defollow the first followed at 31 follow (in loop). This method is not detected from socialblade or similar software.
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -18,7 +19,7 @@ const core = require("./../core/core");
 // const ansi = require("strip-ansi");
 
 class Fdfmode_realistic extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 		this.LOG_NAME = "commentmode_realistic";
@@ -53,7 +54,7 @@ class Fdfmode_realistic extends Status {
 	 * Run this flow
 	 *
 	 */
-	async flow () {
+	async flow() {
 		let tag = "fdfmode_realistic::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
 

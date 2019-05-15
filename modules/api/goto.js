@@ -3,7 +3,8 @@
  * =====================
  * Go to profile page, go to photo, go to url... etc...
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -13,7 +14,7 @@ const Utils = require("./../commons/utils");
 const core = require("./../core/core");
 
 class Goto {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 
@@ -35,7 +36,7 @@ class Goto {
      * @since: v0.10
      *
      */
-	async photo (id_hash) {
+	async photo(id_hash) {
 		let tag = "goto::photo()";
 		this.log.info(tag, `${this.lang.translate("try_goto_photo_page")}`);
 
@@ -75,7 +76,7 @@ class Goto {
      * @since: v0.10
      *
      */
-	async hashtag (hashtag) {
+	async hashtag(hashtag) {
 		let tag = "goto::hashtag()";
 		this.log.info(tag, `${this.lang.translate("try_goto_hashtag_page")}`);
 
@@ -117,7 +118,7 @@ class Goto {
      * @since: v0.10
      *
      */
-	async location (gps) {
+	async location(gps) {
 		let tag = "goto::location()";
 		this.log.info(tag, `${this.lang.translate("try_goto_gps_page")}`);
 
@@ -157,7 +158,7 @@ class Goto {
      * @since: v0.10
      *
      */
-	async profile (nickname) {
+	async profile(nickname) {
 		let tag = "goto::profile()";
 		this.log.info(tag, `${this.lang.translate("try_goto_profile_page")}`);
 
@@ -197,7 +198,7 @@ class Goto {
      * @since: v0.10
      *
      */
-	async login () {
+	async login() {
 		let tag = "goto::login()";
 		this.log.info(tag, `${this.lang.translate("try_goto_login_page")}`);
 

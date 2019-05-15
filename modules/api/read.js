@@ -3,7 +3,8 @@
  * =====================
  * Read username, get url of photo, get description, etc...
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -14,7 +15,7 @@ const core = require("./../core/core");
 const fse = require("fs-extra");
 
 class Read {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 
@@ -42,33 +43,39 @@ class Read {
      * @since: v0.10
      *
      */
-	async user_username (where = "profile", prefix = "") {
+	async user_username(where = "profile", prefix = "") {
 		let tag = "read::user_username()";
 		this.log.info(tag, `${this.lang.translate("try_get_user_username")}`);
 
-		let response = {"status": false, username: ""};
-		let selector = "";
-		let selector_profile = "header section div:nth-child(1) h1";
-		let selector_picture = "article div:nth-child(2) h2 a:nth-child(1)";
+		let response = {
+			"status": false,
+			"username": ""
+		};
+
+		let selector = {
+			"profile": "header section div:nth-child(1) h1",
+			"picture": "article div:nth-child(2) h2 a:nth-child(1)",
+			"current": "",
+		};
 
 		switch (where) {
 		  case "picture":
-		    selector = selector_picture;
+		    selector.current = selector.picture;
 		    break;
 		  case "profile":
-		    selector = selector_profile;
+		    selector.current = selector.profile;
 		    break;
 		  default:
-		    return response;
+		    selector.current = selector.profile;
 		}
 
 		if (typeof this.core.config.selectors[this.utils.clean_tag(tag)] !== "undefined") {
-			selector = this.core.config.selectors[this.utils.clean_tag(tag)];
+			selector.current = this.core.config.selectors[this.utils.clean_tag(tag)];
 		}
 
 		try {
-			await this.core.bot.waitForSelector(selector, {timeout: 5000});
-			response.username = await this.core.bot.evaluate(el => el.innerHTML, await this.core.bot.$(selector));
+			await this.core.bot.waitForSelector(selector.current, {timeout: 5000});
+			response.username = await this.core.bot.evaluate(el => el.innerHTML, await this.core.bot.$(selector.current));
 
 			this.log.info(tag, `${response.username}`);
 			response.status = true;
@@ -80,6 +87,7 @@ class Read {
 
 		if (response.status) {
 			this.log.info(tag, `${this.lang.translate("done")}`);
+			response.selector = selector;
 		} else {
 			this.log.error(tag, `${response.error}`);
 			this.log.docs("api", tag);
@@ -108,7 +116,7 @@ class Read {
      * @since: v0.10
      *
      */
-	async user_description () {
+	async user_description() {
 		let tag = "read::user_description()";
 		this.log.info(tag, `${this.lang.translate("try_get_user_description")}`);
 
@@ -157,7 +165,7 @@ class Read {
      * @since: v0.10
      *
      */
-	async user_name () {
+	async user_name() {
 		let tag = "read::user_name()";
 		this.log.info(tag, `${this.lang.translate("try_get_user_name")}`);
 
@@ -204,7 +212,7 @@ class Read {
      * @since: v0.10
      *
      */
-	async user_website () {
+	async user_website() {
 		let tag = "read::user_website()";
 		this.log.info(tag, `${this.lang.translate("try_get_user_website")}`);
 
@@ -252,7 +260,7 @@ class Read {
      * @since: v0.10
      *
      */
-	async photo_hash_id (photo_url) {
+	async photo_hash_id(photo_url) {
 		let tag = "read::photo_hash_id()";
 		this.log.info(tag, `${this.lang.translate("try_get_photo_hash_id")}`);
 
@@ -297,7 +305,7 @@ class Read {
      * @since: v0.10
      *
      */
-	async photos_list (where = "profile") {
+	async photos_list(where = "profile") {
 		let tag ="read::photos_list()";
 		this.log.info(tag, `${this.lang.translate("try_get_photo_array")}`);
 
@@ -369,7 +377,7 @@ class Read {
      * @since: v0.10
      *
      */
-	async twofa_pin () {
+	async twofa_pin() {
 		let tag = "read::twofa_pin()";
 		this.log.info(tag, `${this.lang.translate("try_get_twofa_pin")}`);
 
@@ -417,7 +425,7 @@ class Read {
      * @since: v0.10
      *
      */
-	async is_following (/* where = "profile" */) {
+	async is_following(/* where = "profile" */) {
 		let tag = "read::is_following()";
 		this.log.info(tag, `${this.lang.translate("try_check_is_following")}`);
 

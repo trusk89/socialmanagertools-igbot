@@ -3,9 +3,10 @@
  * =====================
  * Handler of emit
  *
- * @author:     Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
- * @maintainer: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
- * @license:    MIT License
+ * @contributors: Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
+ *                Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
+ * @license: MIT License
  *
  */
 const EventEmitter = require("events").EventEmitter;
@@ -21,7 +22,7 @@ const STATE_EVENTS = {
 };
 
 class Status extends EventEmitter {
-	constructor () {
+	constructor() {
 		super();
 
 		this._status = STATE.START;
@@ -34,7 +35,7 @@ class Status extends EventEmitter {
 	* Set emit() handle events in EE
 	*
 	*/
-	register_handler () {
+	register_handler() {
 		this.on(STATE_EVENTS.CHANGE_STATUS, (status) => {
 			this._status = status;
 		});
@@ -47,7 +48,7 @@ class Status extends EventEmitter {
 	* @return {boolean} status - current status of emit()
 	*
 	*/
-	status () {
+	status() {
 		return this._status;
 	}
 
@@ -59,7 +60,7 @@ class Status extends EventEmitter {
 	* @return {boolean} status - switch status
 	*
 	*/
-	is_ready () {
+	is_ready() {
 		return this._status === STATE.READY;
 	}
 
@@ -71,7 +72,7 @@ class Status extends EventEmitter {
 	* @return {boolean} status - switch status
 	*
 	*/
-	is_not_ready () {
+	is_not_ready() {
 		return this._status !== STATE.READY;
 	}
 
@@ -83,7 +84,7 @@ class Status extends EventEmitter {
 	* @return {boolean} status - switch status
 	*
 	*/
-	is_ok () {
+	is_ok() {
 		return this._status === STATE.OK;
 	}
 
@@ -95,7 +96,7 @@ class Status extends EventEmitter {
 	* @return {boolean} status - switch status
 	*
 	*/
-	is_error () {
+	is_error() {
 		return this._status === STATE.ERROR;
 	}
 
@@ -107,7 +108,7 @@ class Status extends EventEmitter {
 	* @return {boolean} status - switch status
 	*
 	*/
-	is_stop () {
+	is_stop() {
 		return this._status === STATE.STOP;
 	}
 
@@ -119,7 +120,7 @@ class Status extends EventEmitter {
 	* @return {boolean} status - switch status
 	*
 	*/
-	is_start () {
+	is_start() {
 		return this._status === STATE.START;
 	}
 }

@@ -3,7 +3,8 @@
  * =====================
  * Scroll page, resize page, etc...
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -13,7 +14,7 @@ const Utils = require("./../commons/utils");
 const core = require("./../core/core");
 
 class Page {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 
@@ -38,7 +39,7 @@ class Page {
      * @since: v0.10
      *
      */
-	async scroll (selector = "window", counter = 5, height = 5000) {
+	async scroll(selector = "window", counter = 5, height = 5000) {
 		let tag = "page::scroll()";
 		this.log.info(tag, `${this.lang.translate("try_scroll")}`);
 
@@ -79,7 +80,7 @@ class Page {
      * @since: v0.10
      *
      */
-	async keep_alive () {
+	async keep_alive() {
 		let tag = "page::keep_alive()";
 		this.log.info(tag, `${this.lang.translate("try_keep_alive")}`);
 		let response = {"status": false};
@@ -128,7 +129,7 @@ class Page {
      * @since: v0.10
      *
      */
-	async screenshot (func, name, path = this.core.config.log.path.screenshots, username = this.core.config.account.username) {
+	async screenshot(func, name, path = this.core.config.log.path.screenshots, username = this.core.config.account.username) {
 		let tag = "page::screenshot()";
 		this.log.info(tag, `${this.lang.translate("try_get_screenshot")}`);
 		let response = {"status": false};

@@ -3,7 +3,8 @@
  * =====================
  * Open browser, set user/pass and try login
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -17,7 +18,7 @@ const STATE_EVENTS = require("./../logger/state").STATE_EVENTS;
 const core = require("./../core/core");
 
 class Login extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 		this.LOG_NAME = "login";
@@ -42,7 +43,7 @@ class Login extends Status {
      * =====================
      *
      */
-	async flow () {
+	async flow() {
 		let tag = "login::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
 

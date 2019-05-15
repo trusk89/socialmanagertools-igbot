@@ -3,8 +3,9 @@
  * =====================
  * Select account, get random 20 followers, like 20 photo and sleep 15-20min.
  *
- * @author:     Ilua Chubarov [@agoalofalife] <agoalofalife@gmail.com>
- * @maintainer: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Ilya Chubarov [@agoalofalife] <agoalofalife@gmail.com>
+ *                Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license:    This code and contributions have 'MIT License'
  *
  */
@@ -19,7 +20,7 @@ const core = require("./../core/core");
 // const ansi = require("strip-ansi");
 
 class Likemode_competitor_users extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 

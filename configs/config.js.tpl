@@ -162,7 +162,7 @@ module.exports = {
 	},
 
 	// Force overwrite css selectors if not work, example: {"click_heart":"button#heart"}
-	// Syntax is apiName_functionName, example: write::comment() => {"write_comment":"article > textarea.comment"}
+	// Syntax is apiName_functionName_selectorName, example: write::comment() => {"write_comment_textarea":"article > textarea.comment"}
 	"selectors": {},
 
 	// Puppeteer Configs

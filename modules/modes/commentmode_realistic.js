@@ -3,7 +3,8 @@
  * =====================
  * Goto random hashtag from config list, go to random photo, leave comment, all time in loop.
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -18,7 +19,7 @@ const core = require("./../core/core");
 const ansi = require("strip-ansi");
 
 class Commentmode_realistic extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 		this.LOG_NAME = "commentmode_realistic";
@@ -54,7 +55,7 @@ class Commentmode_realistic extends Status {
 	 * Run this flow
 	 *
 	 */
-	async flow () {
+	async flow() {
 		let tag = "commentmode_realistic::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
 

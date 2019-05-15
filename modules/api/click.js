@@ -3,7 +3,8 @@
  * =====================
  * Bot click heart, submit form, click in buttons and inputs
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -13,7 +14,7 @@ const Utils = require("./../commons/utils");
 const core = require("./../core/core");
 
 class Click {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 
@@ -36,7 +37,7 @@ class Click {
      * @since: v0.10
      *
      */
-	async heart (reload = false) {
+	async heart(reload = false) {
 		let tag = "click::heart()";
 		this.log.info(tag, `${this.lang.translate("try_click_heart")}`);
 
@@ -117,7 +118,7 @@ class Click {
      * @since: v0.10
      *
      */
-	async follow (where = "profile", reload = false) {
+	async follow(where = "profile", reload = false) {
 		let tag = "click::follow()";
 		this.log.info(tag, `${this.lang.translate("try_click_heart")}`);
 
@@ -193,7 +194,7 @@ class Click {
      * @since: v0.10
      *
      */
-	async defollow (where = "profile", reload = false) {
+	async defollow(where = "profile", reload = false) {
 		let tag = "click::defollow()";
 		this.log.info(tag, `${this.lang.translate("try_click_heart")}`);
 
@@ -268,7 +269,7 @@ class Click {
      * @since: v0.10
      *
      */
-	async login_form_submit () {
+	async login_form_submit() {
 		let tag = "click::login_form_submit()";
 		this.log.info(tag, `${this.lang.translate("try_click_submitlogin")}`);
 
@@ -317,7 +318,7 @@ class Click {
      * @since: v0.10
      *
      */
-	async twofa_form_submit () {
+	async twofa_form_submit() {
 		let tag = "click::twofa_form_submit()";
 		this.log.info(tag, `${this.lang.translate("try_click_submit2fa")}`);
 
@@ -366,7 +367,7 @@ class Click {
      * @since: v0.10
      *
      */
-	async generic_submit_form () {
+	async generic_submit_form() {
 		let tag = "click::generic_submit_form()";
 		this.log.info(tag, `${this.lang.translate("try_click_submitgeneric")}`);
 

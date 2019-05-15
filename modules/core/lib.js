@@ -3,7 +3,8 @@
  * =====================
  * Scraping instagram website with love and nodejs
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  *
  * @license: This code and contributions have 'MIT License'
  *
@@ -24,7 +25,7 @@ const Log = require("./../logger/log");
 const core = require("./../core/core");
 
 class Bot {
-	constructor (config) {
+	constructor(config) {
 		this.core = core;
 		this.core.config = config;
 
@@ -45,7 +46,7 @@ class Bot {
 	 * @return {Object} api - create your bot
 	 *
 	 */
-	async api () {
+	async api() {
 		this.api_manager.click = new Api.Click();
 		this.api_manager.check = new Api.Check();
 		this.api_manager.goto = new Api.Goto();
@@ -68,7 +69,7 @@ class Bot {
 	 * Set config options, check updates and integrity of bot
 	 *
 	 */
-	async start () {
+	async start() {
 		this.core.config = await this.utils.fix_config(this.core.config);
 		this.utils.donate();
 		this.utils.check_updates(VERSION);
@@ -107,7 +108,7 @@ class Bot {
 	 * if you want stop bot, this method add new tab and utils check if tabs are more than > 2 and kill chrome
 	 *
 	 */
-	async stop () {
+	async stop() {
 		await this.core.browser.newPage();
 		await this.core.browser.close();
 	}

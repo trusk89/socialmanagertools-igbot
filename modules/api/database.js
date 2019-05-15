@@ -3,7 +3,8 @@
  * =====================
  * Database manager of logs (sqlite3)
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -16,7 +17,7 @@ const Utils = require("./../commons/utils");
 const core = require("./../core/core");
 
 class Database {
-	constructor (LOG_NAME = "api") {
+	constructor(LOG_NAME = "api") {
 		this.core = core;
 		this.LOG_NAME = LOG_NAME;
 
@@ -44,7 +45,7 @@ class Database {
      * @since: v0.10
      *
      */
-	async init (db_name, database = null) {
+	async init(db_name, database = null) {
 		this.local.db_name = db_name;
 		if (database === null) {
 			database = this.core.config.bot_mode_options[this.local.db_name].database.default;
@@ -93,7 +94,7 @@ class Database {
      * @since: v0.10
      *
      */
-	async insert (json) {
+	async insert(json) {
 		let tag = "database::insert()";
 		this.log.info(tag, `${this.lang.translate("try_database_insert")}`);
 
@@ -135,7 +136,7 @@ class Database {
      * @since: v0.10
      *
      */
-	async update (search, json) {
+	async update(search, json) {
 		let tag = "database::insert()";
 		this.log.info(tag, `${this.lang.translate("try_database_insert")}`);
 
@@ -175,7 +176,7 @@ class Database {
      * @since: v0.10
      *
      */
-	async exist (search) {
+	async exist(search) {
 		let tag = "database::exist()";
 		this.log.info(tag, `${this.lang.translate("try_database_check_exist")}`);
 

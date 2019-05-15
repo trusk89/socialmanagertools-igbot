@@ -3,7 +3,8 @@
  * =====================
  * Goto random location from config list, like fast 12 photo and sleep X min in night.
  *
- * @author:  Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
+ *
  * @license: This code and contributions have 'MIT License'
  *
  */
@@ -18,7 +19,7 @@ const core = require("./../core/core");
 const ansi = require("strip-ansi");
 
 class Likemode_realistic_location extends Status {
-	constructor () {
+	constructor() {
 		super();
 		this.core = core;
 		this.LOG_NAME = "likemode_realistic_location";
@@ -51,7 +52,7 @@ class Likemode_realistic_location extends Status {
 	 * Run this flow
 	 *
 	 */
-	async flow () {
+	async flow() {
 		let tag = "likemode_realistic_location::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
 
