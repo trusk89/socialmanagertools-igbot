@@ -89,6 +89,15 @@
 			"contributions": [
 				"translation"
 			]
+		},
+		{
+			"login": "m0s4ik",
+			"name": "Andrea",
+			"avatar_url": "https://avatars1.githubusercontent.com/u/26578395?v=4",
+			"profile": "https://github.com/m0s4ik",
+			"contributions": [
+				"code", "bug"
+			]
 		}
 	],
 	"contributorsPerLine": 6
