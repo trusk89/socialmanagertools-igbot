@@ -8,28 +8,28 @@
  * @license: This code and contributions have 'MIT License'
  *
  */
-const Log = require("./../logger/log");
-const Translate = require("./../commons/translate");
-const Api = require("./../routes/api");
-const Utils = require("./../commons/utils");
-const Status = require("./../logger/state").Status;
-const STATE = require("./../logger/state").STATE;
-const STATE_EVENTS = require("./../logger/state").STATE_EVENTS;
-const core = require("./../core/core");
+const Log = require("../logger/log");
+const Translate = require("../commons/translate");
+const Api = require("../routes/api");
+const Utils = require("../commons/utils");
+const Status = require("../logger/state").Status;
+const STATE = require("../logger/state").STATE;
+const STATE_EVENTS = require("../logger/state").STATE_EVENTS;
+const core = require("../core/core");
 // const ansi = require("strip-ansi");
 
-class Fdfmode_realistic extends Status {
+class Fdfmode_realistic_location extends Status {
 	constructor() {
 		super();
 		this.core = core;
-		this.LOG_NAME = "fdfmode_realistic";
+		this.LOG_NAME = "fdfmode_realistic_location";
 		this.log = new Log(this.LOG_NAME);
 		this.lang = new Translate();
 		this.utils = new Utils();
 
 		this.local = {};
-		this.local.cache_hashtags = [];
-		this.local.current_hashtag = [];
+		this.local.cache_locations = [];
+		this.local.current_location = [];
 		this.local.cache_photos_ids = [];
 		this.local.current_photo_id = "";
 		this.local.cache_photos_ids_profile = [];
@@ -55,7 +55,7 @@ class Fdfmode_realistic extends Status {
 	 *
 	 */
 	async flow() {
-		let tag = "fdfmode_realistic::flow()";
+		let tag = "fdfmode_realistic_location::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
 
 		let alive = {"status": true};
@@ -73,23 +73,23 @@ class Fdfmode_realistic extends Status {
 			let is_day = (parseInt(`${today.getHours()}${today.getMinutes() < 10 ? "0" : ""}${today.getMinutes()}`) >= (this.core.config.bot_mode_options[this.core.config.bot_mode].sleep_end).replace(":", ""));
 
 			if (!is_sleep_night_flag_enabled || is_day) {
-				this.log.info(tag, `${this.lang.translate("cache_size")}: ${this.local.cache_hashtags.length}`);
+				this.log.info(tag, `${this.lang.translate("cache_size")}: ${this.local.cache_locations.length}`);
 
-				if (this.local.cache_hashtags.length <= 0) {
-					this.local.cache_hashtags = this.core.config.bot_mode_options[this.core.config.bot_mode].instagram_hashtag.slice();
+				if (this.local.cache_locations.length <= 0) {
+					this.local.cache_locations = this.core.config.bot_mode_options[this.core.config.bot_mode].instagram_location.slice();
 				}
 
-				this.local.cache_hashtags = this.utils.mix_array(this.local.cache_hashtags);
-				this.local.current_hashtag = this.local.cache_hashtags.pop();
+				this.local.cache_locations = this.utils.mix_array(this.local.cache_locations);
+				this.local.current_location = this.local.cache_locations.pop();
 
-				await this.api.goto.hashtag(this.local.current_hashtag);
+				await this.api.goto.location(this.local.current_location);
 
 				await this.utils.sleep(this.utils.random_interval(1, 3));
 
-				let response_read_photos_list = await this.api.read.photos_list("hashtag");
+				let response_read_photos_list = await this.api.read.photos_list("location");
 				this.local.cache_photos_ids = this.utils.mix_array(response_read_photos_list.photos_ids);
 
-				this.log.debug(tag, `${this.lang.translate("hashtag_id")}: #${this.local.current_hashtag}`);
+				this.log.debug(tag, `${this.lang.translate("location_id")}: #${this.local.current_location}`);
 
 				this.local.current_photo_id = this.local.cache_photos_ids.pop();
 				await this.api.goto.photo(this.local.current_photo_id);
@@ -113,7 +113,7 @@ class Fdfmode_realistic extends Status {
 							"account": this.core.config.account.username,
 							"photo_id": this.local.current_photo_id,
 							"username": `@${response_read_user_username.username}`,
-							"hashtag": `#${this.local.current_hashtag}`,
+							"location": `#${this.local.current_location}`,
 							"type": "follow",
 						};
 						await this.api.database.insert(json);
@@ -163,4 +163,4 @@ class Fdfmode_realistic extends Status {
 
 }
 
-module.exports = Fdfmode_realistic;
+module.exports = Fdfmode_realistic_location;

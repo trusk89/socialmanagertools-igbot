@@ -8,14 +8,14 @@
  * @license: This code and contributions have 'MIT License'
  *
  */
-const Log = require("./../logger/log");
-const Translate = require("./../commons/translate");
-const Api = require("./../routes/api");
-const Utils = require("./../commons/utils");
-const Status = require("./../logger/state").Status;
-const STATE = require("./../logger/state").STATE;
-const STATE_EVENTS = require("./../logger/state").STATE_EVENTS;
-const core = require("./../core/core");
+const Log = require("../logger/log");
+const Translate = require("../commons/translate");
+const Api = require("../routes/api");
+const Utils = require("../commons/utils");
+const Status = require("../logger/state").Status;
+const STATE = require("../logger/state").STATE;
+const STATE_EVENTS = require("../logger/state").STATE_EVENTS;
+const core = require("../core/core");
 const ansi = require("strip-ansi");
 
 class Likemode_classic extends Status {

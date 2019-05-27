@@ -18,5 +18,6 @@ module.exports = {
 	"Commentmode_realistic": require("../modes/commentmode_realistic"),
 	"Commentmode_realistic_location": require("../modes/commentmode_realistic_location"),
 	"Fdfmode_realistic": require("../modes/fdfmode_realistic"),
+	"Fdfmode_realistic_location": require("../modes/fdfmode_realistic_location"),
 	"Likemode_competitor_users": require("../modes/likemode_competitor_users")
 };
