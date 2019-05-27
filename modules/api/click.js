@@ -120,7 +120,7 @@ class Click {
      */
 	async follow(where = "profile", reload = false) {
 		let tag = "click::follow()";
-		this.log.info(tag, `${this.lang.translate("try_click_heart")}`);
+		this.log.info(tag, `${this.lang.translate("try_click_follow")}`);
 
 		let dialog = null;
 		let selector = "";
@@ -196,7 +196,7 @@ class Click {
      */
 	async defollow(where = "profile", reload = false) {
 		let tag = "click::defollow()";
-		this.log.info(tag, `${this.lang.translate("try_click_heart")}`);
+		this.log.info(tag, `${this.lang.translate("try_click_defollow")}`);
 
 		let dialog = null;
 		let selector = "";
