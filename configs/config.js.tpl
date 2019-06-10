@@ -35,7 +35,7 @@ module.exports = {
 	// Edit options of current bot_mode you use.
 	"bot_mode_options": {
 		"likemode_realistic": {
-			"instagram_hashtag": ["rome", "italy", "muraleshunter"], // recommended more than 20
+			"hashtags": ["rome", "italy", "muraleshunter"], // recommended more than 20
 			"likeday_min": "800",      // min like daily.
 			"likeday_max": "900",      // max like daily. In 2018 limit instagram is 1000/day
 			"sleep_night": "disabled", // if you need stop bot in night
@@ -64,7 +64,7 @@ module.exports = {
 			},
 		},
 		"likemode_classic": {
-			"instagram_hashtag": ["rome", "italy", "muraleshunter"], // recommended more than 20
+			"hashtags": ["rome", "italy", "muraleshunter"], // recommended more than 20
 			"likeday_min": "800",      // min like daily.
 			"likeday_max": "900",      // max like daily. In 2018 limit instagram is 1000/day
 			"sleep_night": "disabled", // if you need stop bot in night
@@ -84,7 +84,7 @@ module.exports = {
 			},
 		},
 		"likemode_superlike": {
-			"instagram_hashtag": ["rome", "italy", "muraleshunter"], // recommended more than 20
+			"hashtags": ["rome", "italy", "muraleshunter"], // recommended more than 20
 			"superlike_n": "3",        // number of likes for user (max 12)
 			"likeday_min": "800",      // min like daily.
 			"likeday_max": "900",      // max like daily. In 2018 limit instagram is 1000/day
@@ -106,7 +106,7 @@ module.exports = {
 			},
 		},
 		"commentmode_realistic": {
-			"instagram_hashtag": ["rome", "italy", "muraleshunter"], // recommended more than 20
+			"hashtags": ["rome", "italy", "muraleshunter"], // recommended more than 20
 			"comments_list": ["⭐⭐⭐", "🔥", "Nice pic!"], // recommended more than 10 (emoij supported)
 			"comments_min": "300",      // min comments daily.
 			"comments_max": "400",      // max comments daily. In 2018 limit instagram is 500/day
@@ -128,7 +128,7 @@ module.exports = {
 			},
 		},
 		"fdfmode_realistic": {
-			"instagram_hashtag": ["rome", "italy", "muraleshunter"], // recommended more than 20
+			"hashtags": ["rome", "italy", "muraleshunter"], // recommended more than 20
 			"followday": "300",   // number of follow-defollow user/day, work in fdfmode_classic. In 2018 limit instagram is 500/day
 			"followrotate": "30", // follow 30 users, and defollow the first followed at 31 follow (in loop). If is 0 defollow all followed users previously by bot
 			"userwhitelist": ["user1", "user2", "user3"], // don't defollow this users

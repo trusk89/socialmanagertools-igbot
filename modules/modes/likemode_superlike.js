@@ -78,7 +78,7 @@ class Likemode_superlike extends Status {
 				this.log.info(tag, `${this.lang.translate("cache_size")}: ${this.local.cache_hashtags.length}`);
 
 				if (this.local.cache_hashtags.length <= 0) {
-					this.local.cache_hashtags = this.core.config.bot_mode_options[this.core.config.bot_mode].instagram_hashtag.slice();
+					this.local.cache_hashtags = this.core.config.bot_mode_options[this.core.config.bot_mode].hashtags.slice();
 				}
 
 				this.local.cache_hashtags = this.utils.mix_array(this.local.cache_hashtags);

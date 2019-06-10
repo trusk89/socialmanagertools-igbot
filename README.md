@@ -1,4 +1,4 @@
-[![Social Manager Tools: IG BOT](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/smt_igbot_logo.png)](https://socialmanager.tools)
+[![Social Manager Tools: IG BOT](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/nightly/.github/assets/smt_igbot_logo.png)](https://socialmanager.tools)
 
 # 🤖 Social Manager Tools: 📷 Instagram Bot API
 
