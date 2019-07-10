@@ -2,7 +2,7 @@
 
 # 🤖 Social Manager Tools: Instagram Bot API
 
-[![](https://img.shields.io/badge/version-v0.9.17-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
+[![](https://img.shields.io/badge/version-v0.9.18-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
 
 > This library (includes bot and API methods) allows you to increase visits, likes and followers on your social profile through different algorithms and offers API for developers to include custom bot functionality in their application. You will increase the likes on your photos and increase your followers!
 
@@ -16,25 +16,25 @@
 ## 📎 Menu
 - 💡 [Features](#-features)
 - 💾 Installation:
-  - 🔨 [Install From Source](http://docs.socialmanager.tools/igbot/installation/source/README.md)
-  - 🔨 [Install From NPM](http://docs.socialmanager.tools/igbot/installation/cli/README.md)
-  - 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
-  - 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
-  - 🐧 [Linux Server](http://docs.socialmanager.tools/igbot/installation/linux/README.md) (Debian 9 Server)
-  - 🐳 [Docker](http://docs.socialmanager.tools/igbot/installation/docker/README.md)
+	- 🔨 [Install From Source](http://docs.socialmanager.tools/igbot/installation/source/README.md)
+	- 🔨 [Install From NPM](http://docs.socialmanager.tools/igbot/installation/cli/README.md)
+	- 👨‍💻 [Desktop App](http://docs.socialmanager.tools/gui/installation/README.md) (Windows, Linux, Mac)
+	- 🦀 [Raspberry PI](http://docs.socialmanager.tools/igbot/installation/raspberry/README.md) (Raspbian 9)
+	- 🐧 [Linux Server](http://docs.socialmanager.tools/igbot/installation/linux/README.md) (Debian 9 Server)
+	- 🐳 [Docker](http://docs.socialmanager.tools/igbot/installation/docker/README.md)
 - 🔑 Configs:
-  - 🔌 [VPN/Proxy](http://docs.socialmanager.tools/igbot/configs/vpn-proxy/README.md)
-  - 💿 [List of Mode](http://docs.socialmanager.tools/igbot/configs/modes/README.md)
-  - 📀 [How set Multi-account](http://docs.socialmanager.tools/igbot/configs/multiaccount/README.md)
+	- 🔌 [VPN/Proxy](http://docs.socialmanager.tools/igbot/configs/vpn-proxy/README.md)
+	- 💿 [List of Mode](http://docs.socialmanager.tools/igbot/configs/modes/README.md)
+	- 📀 [How set Multi-account](http://docs.socialmanager.tools/igbot/configs/multiaccount/README.md)
 - 📚 [API Documentation](http://docs.socialmanager.tools/igbot/api/README.md) (How create your personal bot or mode)
 - 💻 [Developers Guidelines](http://docs.socialmanager.tools/developers/guidesline/README.md) (If you want contributing)
 - 🐛 [Known Bugs](https://github.com/social-manager-tools/socialmanagertools-igbot/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 - 🍻 Community:
-  - 🐦 [Telegram group](http://telegram.ptkdev.io)
-  - 🐔 [Discord](http://discord.ptkdev.io)
-  - 🐓 [Slack](http://slack.ptkdev.io)
-  - 🕊 [Medium](http://blog.ptkdev.io)
-  - 🐤 [Twitter](http://twitter.ptkdev.io)
+	- 🐦 [Telegram group](http://telegram.ptkdev.io)
+	- 🐔 [Discord](http://discord.ptkdev.io)
+	- 🐓 [Slack](http://slack.ptkdev.io)
+	- 🕊 [Medium](http://blog.ptkdev.io)
+	- 🐤 [Twitter](http://twitter.ptkdev.io)
 
 ## 🔖 Screenshot
 [![](https://raw.githubusercontent.com/social-manager-tools/socialmanagertools-igbot/master/.github/assets/screenshot/smt_igbot_screenshot.gif)](#)

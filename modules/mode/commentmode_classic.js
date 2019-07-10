@@ -55,7 +55,7 @@ class Commentmode_classic extends Manager_state {
 		let photo_url = "";
 		do {
 			photo_url = this.cache_hash_tags.pop();
-		} while ((typeof photo_url === "undefined" || photo_url.indexOf("tagged") === -1) && this.cache_hash_tags.length > 0);
+		} while (typeof photo_url === "undefined" && this.cache_hash_tags.length > 0);
 		return photo_url;
 	}
 
@@ -271,7 +271,7 @@ class Commentmode_classic extends Manager_state {
 
 				await this.comment();
 
-				if (this.cache_hash_tags.length < 9 || this.is_ready()) { // remove popular photos
+				if (this.cache_hash_tags.length < 9) { // remove popular photos
 					this.cache_hash_tags = [];
 				}
 
@@ -280,7 +280,7 @@ class Commentmode_classic extends Manager_state {
 					break;
 				}
 
-				if (this.cache_hash_tags.length <= 0 && this.is_not_ready()) {
+				if (this.cache_hash_tags.length <= 0) {
 					this.log.info(`finish fast comment, bot sleep ${this.config.bot_fastlike_min} - ${this.config.bot_fastlike_max} minutes`);
 					this.cache_hash_tags = [];
 					await this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlike_min, 60 * this.config.bot_fastlike_max));

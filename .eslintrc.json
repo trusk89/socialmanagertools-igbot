@@ -22,6 +22,7 @@
 				"returns": "return"
 			}
 		},
+		"snakecasejs/whitelist": ["defaultViewport", "executablePath", "userAgent", "setUserAgent", "setViewport", "newPage","encodeURIComponent", "EventEmitter"],
         "html/html-extensions": [".html", ".twig", ".vue"],
         "html/indent": "tab"
 	},
@@ -46,6 +47,7 @@
 		"space-before-blocks": ["error", "always"],
 		"space-before-function-paren": ["error", "always"],
 		"prefer-template": "error",
+		"require-atomic-updates": "warn",
 		"no-useless-concat": "error",
 		"linebreak-style": ["error", "unix"],
 		"template-curly-spacing": ["error", "never"],
@@ -56,7 +58,6 @@
 	    "jest/prefer-to-have-length": "warn",
 	    "jest/valid-expect": "error",
 		"snakecasejs/snakecasejs": "warn",
-		"snakecasejs/whitelist": ["defaultViewport", "executablePath", "userAgent", "setUserAgent", "setViewport", "newPage","encodeURIComponent", "EventEmitter"],
 		"jsdoc/require-param": 1,
 		"jsdoc/require-param-description": 1,
 		"jsdoc/require-param-name": 1,

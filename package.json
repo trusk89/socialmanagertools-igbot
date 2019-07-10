@@ -1,7 +1,7 @@
 {
 	"name": "@social-manager-tools/igbot",
 	"description": "Social Manager Tools: Instagram Bot API",
-	"version": "0.9.17",
+	"version": "0.9.18",
 	"main": "lib.js",
 	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
 	"license": "MIT",
@@ -86,7 +86,7 @@
 		"colors": "latest",
 		"path": "latest",
 		"request": "latest",
-		"sqlite3": "4.0.2"
+		"sqlite3": "latest"
 	},
 	"devDependencies": {
 		"eslint": "latest",
