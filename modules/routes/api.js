@@ -17,5 +17,6 @@ module.exports = {
 	"Page": require("../api/page"),
 	"Stories": require("../api/stories"),
 	"Database": require("../api/database"),
-	"Analytics": require("../api/analytics")
+	"Analytics": require("../api/analytics"),
+	"Posting": require("../api/posting")
 };

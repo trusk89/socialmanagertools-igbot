@@ -56,6 +56,7 @@ class Bot {
 		this.api_manager.stories = new Api.Stories();
 		this.api_manager.database = new Api.Database();
 		this.api_manager.analytics = new Api.Analytics();
+		this.api_manager.posting = new Api.Posting();
 		this.api_manager.mode = new Flow.Mode();
 		this.api_manager.login = new Auth.Login();
 		this.api_manager.twofa = new Auth.Twofa();
