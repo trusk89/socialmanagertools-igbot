@@ -105,7 +105,9 @@ class Posting {
 		this.log.info(tag, `${this.lang.translate("try_get_story")}`);
 		let response = {"status": false};
 		await this.core.bot.emulate(iPhone);
+		
 		try {
+
 			let selector = "header div.b5itu div button";
 			await this.core.bot.waitForSelector(selector, {timeout: 5000});
 			let path_assets = `assets/${uri}`;
@@ -115,10 +117,12 @@ class Posting {
 				this.core.bot.click(selector),
 		    ]);
 			await fileChooser.accept([filePath]);
+
 			await this.utils.sleep(this.utils.random_interval(3, 4));
 			let select = "span.cQjQD";
 			let button = await this.core.bot.$(select);
 			await button.click();
+
 			response.status = true;
 		} catch (err) {
 			response.status = false;
