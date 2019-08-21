@@ -57,7 +57,7 @@ class Posting {
 		    await fileChooser.accept([filePath]);
 			await this.utils.sleep(this.utils.random_interval(3, 4));
 			
-			let selector_next = "#react-root section div header div div.mXkkY.KDuQp button.UP43G";
+			let selector_next = "header div div.mXkkY.KDuQp button";
 			
 			await this.core.bot.waitForSelector(selector_next, {timeout: 5000});
 		    let button_next = await this.core.bot.$(selector_next);
@@ -79,6 +79,60 @@ class Posting {
 			this.log.info(tag, `${this.lang.translate("done")}`);
 		} else if (typeof response.error !== "undefined") {
 			this.log.error(tag, `${this.lang.translate("post_ok")}`);
+			this.log.error(tag, `${response.error}`);
+			this.log.docs("api", tag);
+			this.log.stackoverflow(tag, "puppeteer", response.error);
+		}
+
+		return response;
+	}
+
+	/**
+     * Story
+     * =====================
+     * Create an Instagram Story
+     *
+     * @param {string}  uri - Path to the image, relative to the assets directory
+     *
+     * @return {boolean} status         - true: successful / false: fail
+     *         {string}  response.error - if status is false return error details
+     *
+     *
+     */
+
+	async story(uri = "example.jpeg") {
+		let tag = "Posting::story()";
+		this.log.info(tag, `${this.lang.translate("try_get_story")}`);
+		let response = {"status": false};
+		await this.core.bot.emulate(iPhone);
+		
+		try {
+
+			let selector = "header div.b5itu div button";
+			await this.core.bot.waitForSelector(selector, {timeout: 5000});
+			let path_assets = `assets/${uri}`;
+			var filePath = path.relative(process.cwd(), path_assets);
+		    const [fileChooser] = await Promise.all([
+				this.core.bot.waitForFileChooser(),
+				this.core.bot.click(selector),
+		    ]);
+			await fileChooser.accept([filePath]);
+
+			await this.utils.sleep(this.utils.random_interval(3, 4));
+			let select = "span.cQjQD";
+			let button = await this.core.bot.$(select);
+			await button.click();
+
+			response.status = true;
+		} catch (err) {
+			response.status = false;
+			response.error = err;
+		}
+		if (response.status) {
+			this.log.info(tag, `${this.lang.translate("story_ok")}`);
+			this.log.info(tag, `${this.lang.translate("done")}`);
+		} else if (typeof response.error !== "undefined") {
+			this.log.error(tag, `${this.lang.translate("story_ok")}`);
 			this.log.error(tag, `${response.error}`);
 			this.log.docs("api", tag);
 			this.log.stackoverflow(tag, "puppeteer", response.error);
