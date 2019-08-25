@@ -46,7 +46,7 @@ class Posting {
 		await this.core.bot.emulate(iPhone);
 		try {
 
-			let selector = "span[aria-label=\"New Post\"]";
+			let selector = "nav div div:nth-child(2) div:nth-child(3) span";
 			await this.core.bot.waitForSelector(selector, {timeout: 5000});
 			let path_assets = `assets/${uri}`;
 			var filePath = path.relative(process.cwd(), path_assets);
@@ -57,7 +57,7 @@ class Posting {
 		    await fileChooser.accept([filePath]);
 			await this.utils.sleep(this.utils.random_interval(3, 4));
 			
-			let selector_next = "header div div.mXkkY.KDuQp button";
+			let selector_next = "header div:nth-child(3) button";
 			
 			await this.core.bot.waitForSelector(selector_next, {timeout: 5000});
 		    let button_next = await this.core.bot.$(selector_next);
@@ -108,7 +108,7 @@ class Posting {
 		
 		try {
 
-			let selector = "header div.b5itu div button";
+			let selector = "header div:nth-child(1) button";
 			await this.core.bot.waitForSelector(selector, {timeout: 5000});
 			let path_assets = `assets/${uri}`;
 			var filePath = path.relative(process.cwd(), path_assets);
@@ -119,10 +119,11 @@ class Posting {
 			await fileChooser.accept([filePath]);
 
 			await this.utils.sleep(this.utils.random_interval(3, 4));
-			let select = "span.cQjQD";
+			let select = "footer div:nth-child(1) button";
 			let button = await this.core.bot.$(select);
 			await button.click();
 
+			await this.utils.sleep(this.utils.random_interval(3, 4));
 			response.status = true;
 		} catch (err) {
 			response.status = false;
