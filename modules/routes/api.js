@@ -18,5 +18,6 @@ module.exports = {
 	"Stories": require("../api/stories"),
 	"Database": require("../api/database"),
 	"Analytics": require("../api/analytics"),
-	"Posting": require("../api/posting")
+	"Posting": require("../api/posting"),
+	"React": require("../api/react")
 };
