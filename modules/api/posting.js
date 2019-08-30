@@ -39,11 +39,12 @@ class Posting {
      *
      */
 
-	async post(uri = "example.jpeg", caption ="words") {
+	async post(uri = "example.jpeg", caption = "words") {
 		let tag = "Posting::post()";
 		this.log.info(tag, `${this.lang.translate("try_get_post")}`);
 		let response = {"status": false};
 		await this.core.bot.emulate(iPhone);
+		await this.core.bot.goto("https://www.instagram.com");
 		try {
 
 			let selector = "nav div div:nth-child(2) div:nth-child(3) span";
@@ -52,8 +53,8 @@ class Posting {
 			let filePath = path.relative(process.cwd(), path_assets);
 		    const [fileChooser] = await Promise.all([
 				this.core.bot.waitForFileChooser(),
-				this.core.bot.click(selector),
-		    ]);
+				this.core.bot.click(selector)
+			]);
 		    await fileChooser.accept([filePath]);
 			await this.utils.sleep(this.utils.random_interval(3, 4));
 			
@@ -73,6 +74,9 @@ class Posting {
 			await button_share.click();
 			await this.utils.sleep(this.utils.random_interval(3, 4));
 
+			let selector_done = "span[aria-label=\"Instagram\"]";
+			await this.core.bot.waitForSelector(selector_done, {timeout: 30000});
+			
 			response.status = true;
 		} catch (err) {
 			response.status = false;
@@ -109,7 +113,7 @@ class Posting {
 		this.log.info(tag, `${this.lang.translate("try_get_story")}`);
 		let response = {"status": false};
 		await this.core.bot.emulate(iPhone);
-		
+		await this.core.bot.goto("https://www.instagram.com");
 		try {
 
 			let selector = "header div:nth-child(1) button";
