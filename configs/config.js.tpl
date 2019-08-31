@@ -192,6 +192,8 @@ module.exports = {
 	"proxy": {
 		"server": "",
 		"port": "",
+		"username": "",
+		"password": ""
 	},
 
 	// LOGS
