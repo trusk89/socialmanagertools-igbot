@@ -52,9 +52,8 @@ class Postingmode_classic extends Status {
 	async flow() {
 		let tag = "postingmode_classic::flow()";
 		this.log.info(tag, `${this.lang.translate("loading")}`);
-
+		let list_filter_post = [];
 		let alive = {"status": true};
-
 		await this.api.database.init(this.LOG_NAME);
 
 		do {
@@ -65,28 +64,64 @@ class Postingmode_classic extends Status {
 			let is_day = (parseInt(`${today.getHours()}${today.getMinutes() < 10 ? "0" : ""}${today.getMinutes()}`) >= (this.core.config.bot_mode_options[this.core.config.bot_mode].sleep_end).replace(":", ""));
 
 			if (!is_sleep_night_flag_enabled || is_day) {
-				this.log.info(tag, `${this.lang.translate("photo_cache_size")}: ${this.local.cache_post.length}`);
+				this.log.info(tag, `${this.lang.translate("photo_cache_size")}: ${list_filter_post.length}`);
 
 				if (this.local.cache_post.length <= 0) {
 					this.local.cache_post = this.core.config.bot_mode_options[this.core.config.bot_mode].post_list.slice();
+
+					this.local.cache_post.map((item) => {
+						if (!item.date.length) {
+							item.date = new Date();
+						} else {		
+							item.date = new Date(item.date);
+						}
+						return item;
+					});
+
+					list_filter_post = this.local.cache_post.filter((item) => {
+						return item.date >= today;
+					});
+
+					list_filter_post.sort((prev, next) => {
+						if (next.date < prev.date) {
+							return 1;
+						}
+						if (next.date > prev.date) {
+							return -1;
+						}
+						return 0;
+					});
+
+					if (list_filter_post.length === 0) {
+						this.log.error(tag, `${this.lang.translate("empty_list_post")}`);
+						alive.status = false;
+						break;
+					}
+
 				}
 
-				this.local.current_post = this.local.cache_post.pop();
+				let interval = list_filter_post[0].date - today;
+				if (interval < 60000) {
+					this.local.current_post = list_filter_post.shift();
+					await this.utils.sleep(this.utils.random_interval(1, 3));
+					this.log.debug(tag, `${this.lang.translate("post_info")} ${this.local.current_post.uri} with caption ${this.local.current_post.caption}`);
+					await this.api.posting.post(this.local.current_post.uri, this.local.current_post.caption);
 
-				await this.utils.sleep(this.utils.random_interval(1, 3));
+					let json = {
+						"account": this.core.config.account.username,
+						"post_photo": this.local.current_post.uri,
+						"caption": this.local.current_post.caption,
+						"date": this.local.current_post.date
+					};
 
-				this.log.debug(tag, `${this.lang.translate("post_info")} ${this.local.current_post.uri} with caption ${this.local.current_post.caption}`);
-
-		        await this.api.posting.post(this.local.current_post.uri, this.local.current_post.caption);
-
-				let json = {
-					"account": this.core.config.account.username,
-					"post_photo": this.local.current_post.uri,
-					"caption": this.local.current_post.caption
-				};
-				await this.api.database.insert(json);
-
-				if (this.local.cache_post.length == 0) {
+					await this.api.database.insert(json);
+				} else {
+					this.log.debug(tag, `${this.lang.translate("sleep_to_publish")} ${(interval - 60000) / 1000}`);
+					await this.utils.sleep(interval - 60000);
+				}
+				
+				if (list_filter_post.length === 0) {
+					this.log.debug(tag, `${this.lang.translate("end_list_post")}`);
 					alive.status = false;
 					break;
 				}
