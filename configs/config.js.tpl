@@ -159,6 +159,18 @@ module.exports = {
 				"default": "./databases/likemode_competitor_users.json" // json databases with modes info for better report
 			},
 		},
+		"postingmode_classic": {
+			"post_list": [
+				{uri: "example.jpeg", caption: "Hmmm..."}, 
+				{uri: "original.jpg", caption: "Nice!"}, 
+				{uri: "image.jpg", caption: "Words..."}
+			],
+			"sleep_night": "disabled",  // if you need stop bot in night
+			"sleep_end": "7:00",        // sleep from 00:00 to 7:00 am
+			"database": {
+				"default": "./databases/postingmode_classic.json" // json databases with modes info for better report
+			}
+		}
 	},
 
 	// Force overwrite css selectors if not work, example: {"click_heart":"button#heart"}
