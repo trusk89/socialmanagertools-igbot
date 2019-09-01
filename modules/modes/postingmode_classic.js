@@ -3,7 +3,7 @@
  * =====================
  * Publish an array of photos with minimal delay.
  *
- * NOTE: Experimental mode.
+ * NOTE: Experimental mode. There may be errors in chrome. Use the appropriate version of chromium. See https://github.com/GoogleChrome/puppeteer/issues/4783#issuecomment-524580333
  * 
  * @license: This code and contributions have 'MIT License'
  *
@@ -70,7 +70,7 @@ class Postingmode_classic extends Status {
 					this.local.cache_post = this.core.config.bot_mode_options[this.core.config.bot_mode].post_list.slice();
 
 					this.local.cache_post.map((item) => {
-						if (!item.date.length) {
+						if (item.date.length === 0) {
 							item.date = new Date();
 						} else {		
 							item.date = new Date(item.date);
