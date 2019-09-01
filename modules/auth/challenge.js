@@ -62,7 +62,7 @@ class Challenge extends Status {
 				this.log.warning(tag, `${this.lang.translate("try_check_suspicious_login_attempt_challenge_required_login_status_twofa_enabled_cli", {"pin_path": this.core.config.log.path.pin})}`);
 			}
 			response = await this.api.read.twofa_pin();
-			response = await this.api.write.twofa_pin(response.pin);
+			response = await this.api.write.security_code(response.pin);
 			response = await this.api.click.twofa_form_submit();
 			response = await this.api.check.twofa_crash_status();
 		} else { 
@@ -80,7 +80,7 @@ class Challenge extends Status {
 				this.log.warning(tag, `${this.lang.translate("try_check_add_phone_number_challenge_required_login_status_twofa_enabled_cli", {"pin_path": this.core.config.log.path.pin})}`);
 			}
 			response = await this.api.read.twofa_pin();
-			response = await this.api.write.twofa_pin(response.pin);
+			response = await this.api.write.security_code(response.pin);
 			response = await this.api.click.twofa_form_submit();
 			response = await this.api.check.twofa_crash_status();
 		} else { 

@@ -117,4 +117,5 @@ module.exports = {
 	"challenge_required_not_work": chalk`Please check the pin sent to your email or phone. Make sure your login in same region or use proxy for multi account. Instagram detected an unusual login attempt on your account...`,
 	"challenge_required_skip": chalk`SKIPPED... Challenge required is disappear on your account ;)...`,
 	"try_click_send_security_code": chalk`try click on Send Security Code button on Challenge form`,
+	"try_set_security_code": chalk`try write security code`,
 };
