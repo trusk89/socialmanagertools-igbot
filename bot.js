@@ -50,6 +50,10 @@ let bot = new Bot(config);
 	}
 
 	if (response.status) {
+		response = await api.challenge.flow();
+	}
+
+	if (response.status) {
 		response = await api.mode.flow();
 	}
 

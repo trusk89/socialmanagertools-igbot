@@ -398,6 +398,107 @@ class Click {
 
 		return response;
 	}
+
+	/**
+   * Click send security code form (challenge required)
+   * =====================
+   * Click button for send security code form
+	 * 
+   * @return {Object}  response        - {}
+   *         {boolean} response.status - true: successful / false: fail
+   *         {string}  response.error  - return error detail if status is false
+   *
+   * @since: v0.10
+   *
+   */
+	async challenge_send_code_form_submit() {
+		let tag = "click::challenge_send_code_form_submit()";
+		this.log.info(tag, `${this.lang.translate("try_click_send_security_code")}`);
+
+		let response = {"status": false};
+		let selector = "form button";
+
+		if (typeof this.core.config.selectors[this.utils.clean_tag(tag)] !== "undefined") {
+			selector = this.core.config.selectors[this.utils.clean_tag(tag)];
+		}
+
+		try {
+			if (selector === null) {
+				await this.core.bot.keyboard.press("Enter");
+			} else {
+				await this.core.bot.waitForSelector(selector, {timeout: 5000});
+				let button = await this.core.bot.$(selector);
+				await button.click();
+			}
+
+			response.status = true;
+		} catch (err) {
+			response.status = false;
+			response.error = err;
+		}
+
+		if (response.status) {
+			this.log.info(tag, `${this.lang.translate("done")}`);
+		} else {
+			this.log.error(tag, `${response.error}`);
+			this.log.docs("api", tag);
+			this.log.stackoverflow(tag, "puppeteer", response.error);
+		}
+
+		return response;
+	}
+
+	/**
+   * Click choice method send security code form (challenge required)
+   * =====================
+   * Click option send security code for send security code form
+	 * Depends on what you add those methods on your account
+	 * 
+	 * @param {string} choice - 0: SMS, 1: Email (optional: default 1: Email)
+	 * 
+   * @return {Object}  response        - {}
+   *         {boolean} response.status - true: successful / false: fail
+   *         {string}  response.error  - return error detail if status is false
+   *
+   * @since: v0.10
+   *
+   */
+	async challenge_choice_method_send_code_form_submit(choice = 1) {
+		let tag = "click::challenge_send_code_form_submit()";
+		this.log.info(tag, `${this.lang.translate("try_click_send_security_code")}`);
+
+		let response = {"status": false};
+		let selector = "form label[for='choice_" + choice + "'] div";
+
+		if (typeof this.core.config.selectors[this.utils.clean_tag(tag)] !== "undefined") {
+			selector = this.core.config.selectors[this.utils.clean_tag(tag)];
+		}
+
+		try {
+			if (selector === null) {
+				await this.core.bot.keyboard.press("Enter");
+			} else {
+				await this.core.bot.waitForSelector(selector, {timeout: 5000});
+				let button = await this.core.bot.$(selector);
+				await button.click();
+			}
+
+			response.status = true;
+		} catch (err) {
+			response.status = false;
+			response.error = err;
+		}
+
+		if (response.status) {
+			this.log.info(tag, `${this.lang.translate("done")}`);
+		} else {
+			this.log.error(tag, `${response.error}`);
+			this.log.docs("api", tag);
+			this.log.stackoverflow(tag, "puppeteer", response.error);
+		}
+
+		return response;
+	}
 }
 
 module.exports = Click;
