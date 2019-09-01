@@ -98,6 +98,15 @@
 			"contributions": [
 				"code", "bug"
 			]
+		},
+		{
+			"login": "trungpv1601",
+			"name": "trungpv1601",
+			"avatar_url": "https://avatars1.githubusercontent.com/u/25415217?v=4",
+			"profile": "https://github.com/trungpv1601",
+			"contributions": [
+				"code"
+			]
 		}
 	],
 	"contributorsPerLine": 6
