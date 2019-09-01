@@ -10,5 +10,6 @@
  */
 module.exports = {
 	"Login": require("../auth/login"),
-	"Twofa": require("../auth/2fa")
+	"Twofa": require("../auth/2fa"),
+	"Challenge": require("../auth/challenge")
 };

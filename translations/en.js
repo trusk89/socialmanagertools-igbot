@@ -109,5 +109,16 @@ module.exports = {
 	"twofa_not_work": chalk`If the two authentication does not work, we recommend disabling it. Once the bot is running you can activate it. This is an instagram (random) problem, if you try to login on the website you will receive the same error...`,
 	"update_manual": chalk`you need check updates manually, go to: {italic.underline.rgb(255,140,0) http://socialmanager.tools} or {italic.underline.rgb(105,105,105) http://github.com/social-manager-tools}`,
 	"update_ok": chalk`Bot is updated! :D`,
-	"update_available": chalk`Bot release v##new_version## available! Current version: v##current_version##`
+	"update_available": chalk`Bot release v##new_version## available! Current version: v##current_version##`,
+	"try_check_suspicious_login_attempt_challenge_required_login_status": chalk`check if suspicious login attempt challenge is required...`,
+	"try_check_suspicious_login_attempt_challenge_required_login_status_twofa_enabled_cli": chalk`You need insert pin of challenge required sent to your email or phone, write it in ##pin_path## file and wait 2-3minutes...`,
+	"try_check_suspicious_login_attempt_challenge_required_login_status_twofa_enabled_ui": chalk`You need insert pin of challenge required, write it in 2FA PIN input box and wait 2-3minutes...`,
+	"try_check_add_phone_number_challenge_required_login_status": chalk`check if add phone number challenge is required...`,
+	"try_check_add_phone_number_challenge_required_login_status_twofa_enabled_cli": chalk`You need insert pin of challenge required sent to your phone, write it in ##pin_path## file and wait 2-3minutes...`,
+	"try_check_add_phone_number_challenge_required_login_status_twofa_enabled_ui": chalk`You need insert pin of challenge required, write it in 2FA PIN input box and wait 2-3minutes...`,
+	"challenge_required_done_action_required": chalk`{italic.bold.rgb(243, 156, 18) |> DONE }, wait... manual action required..`,
+	"challenge_required_not_work": chalk`Please check the pin sent to your email or phone. Make sure your login in same region or use proxy for multi account. Instagram detected an unusual login attempt on your account...`,
+	"challenge_required_skip": chalk`SKIPPED... Challenge required is disappear on your account ;)...`,
+	"try_click_send_security_code": chalk`try click on Send Security Code button on Challenge form`,
+	"try_set_security_code": chalk`try write security code`,
 };

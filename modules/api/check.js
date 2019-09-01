@@ -274,6 +274,91 @@ class Check {
 
 		return response;
 	}
+
+	/**
+   * Check if suspicious login attempt challenge required
+   * =====================
+   * Get status of suspicious login attempt challenge required after login: true = enabled/false = disabled
+   *
+   * @return {Object}  response        - {}
+   *         {boolean} response.status - true: required challenge / false: challenge disabled
+   *         {string}  response.error  - return error detail if status is false
+   *
+   * @since: v0.10
+   *
+   */
+	async suspicious_login_attempt_challenge_required() {
+		let tag = "check::suspicious_login_attempt_challenge_required()";
+		this.log.info(tag, `${this.lang.translate("try_check_suspicious_login_attempt_challenge_required_login_status")}`);
+	
+		let response = {"status": false};
+		let selector = "//p[text()='Suspicious Login Attempt']";
+	
+		if (typeof this.core.config.selectors[this.utils.clean_tag(tag)] !== "undefined") {
+			selector = this.core.config.selectors[this.utils.clean_tag(tag)];
+		}
+	
+		try {
+			await this.core.bot.waitFor(selector, {timeout: 5000});
+	
+			response.status = true;
+		} catch (err) { 
+			console.log(err);
+			response.status = false;
+			response.error = err;
+	
+		}
+	
+		if (response.status) {
+			this.log.warning(tag, `${this.lang.translate("challenge_required_done_action_required")}`);
+		} else {
+			this.log.info(tag, `${this.lang.translate("challenge_required_skip")}`);
+		}
+	
+		return response;
+	}
+
+	/**
+   * Check if add phone number challenge required is enabled
+   * =====================
+   * Get status of add phone number challenge required after login: true = enabled/false = disabled
+   *
+   * @return {Object}  response        - {}
+   *         {boolean} response.status - true: required challenge / false: challenge disabled
+   *         {string}  response.error  - return error detail if status is false
+   *
+   * @since: v0.10
+   *
+   */
+	async add_phone_number_challenge_required() {
+		let tag = "check::add_phone_number_challenge_required()";
+		this.log.info(tag, `${this.lang.translate("try_check_add_phone_number_challenge_required_login_status")}`);
+	
+		let response = {"status": false};
+		let selector = "//h2[text()='Add Your Phone Number']";
+	
+		if (typeof this.core.config.selectors[this.utils.clean_tag(tag)] !== "undefined") {
+			selector = this.core.config.selectors[this.utils.clean_tag(tag)];
+		}
+	
+		try {
+			await this.core.bot.waitFor(selector, {timeout: 5000});
+	
+			response.status = true;
+		} catch (err) { 
+			response.status = false;
+			response.error = err;
+	
+		}
+	
+		if (response.status) {
+			this.log.warning(tag, `${this.lang.translate("challenge_required_done_action_required")}`);
+		} else {
+			this.log.info(tag, `${this.lang.translate("challenge_required_skip")}`);
+		}
+	
+		return response;
+	}
 }
 
 module.exports = Check;
