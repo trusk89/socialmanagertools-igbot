@@ -226,6 +226,53 @@ class Write {
 		return response;
 	}
 
+	/**
+   * Set code in security code box
+   * =====================
+   * Write code into input box
+   *
+   * @param {string} pin   - your security code for challenge required (mandatory)
+   * @param {int}    delay - speed of write (optional: default 100)
+   *
+   * @return {Object}  response        - {}
+   *         {boolean} response.status - true: successful / false: fail
+   *         {string}  response.error  - return error detail if status is false
+   *
+   * @since: v0.10
+   *
+   */
+	async security_code(pin, delay = 100) {
+		let tag = "write::security_code()";
+		this.log.info(tag, `${this.lang.translate("try_set_security_code")}`);
+
+		let response = {"status": false};
+		let selector = "form input[name=\"security_code\"]";
+
+		if (typeof this.core.config.selectors[this.utils.clean_tag(tag)] !== "undefined") {
+			selector = this.core.config.selectors[this.utils.clean_tag(tag)];
+		}
+
+		try {
+			await this.core.bot.waitForSelector(selector, {timeout: 5000});
+			await this.core.bot.type(selector, pin, {delay: delay});
+
+			response.status = true;
+		} catch (err) {
+			response.status = false;
+			response.error = err;
+		}
+
+		if (response.status) {
+			this.log.info(tag, `${this.lang.translate("done")}`);
+		} else {
+			this.log.error(tag, `${response.error}`);
+			this.log.docs("api", tag);
+			this.log.stackoverflow(tag, "puppeteer", response.error);
+		}
+
+		return response;
+	}
+
 }
 
 module.exports = Write;

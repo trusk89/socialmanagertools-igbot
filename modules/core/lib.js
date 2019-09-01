@@ -61,6 +61,7 @@ class Bot {
 		this.api_manager.mode = new Flow.Mode();
 		this.api_manager.login = new Auth.Login();
 		this.api_manager.twofa = new Auth.Twofa();
+		this.api_manager.challenge = new Auth.Challenge();
 
 		return this.api_manager;
 	}

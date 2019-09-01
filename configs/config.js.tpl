@@ -161,9 +161,9 @@ module.exports = {
 		},
 		"postingmode_classic": {
 			"post_list": [
-				{uri: "example.jpeg", caption: "Hmmm..."}, 
-				{uri: "original.jpg", caption: "Nice!"}, 
-				{uri: "image.jpg", caption: "Words..."}
+				{uri: "example.jpeg", caption: "Hmmm...", date: "September 1, 2019 20:24:00"}, // One of the available options
+				{uri: "original.jpg", caption: "Nice!", date: "2019-09-01T20:24:00"}, // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+				{uri: "image.jpg", caption: "Words...", date: ""} // publish now
 			],
 			"sleep_night": "disabled",  // if you need stop bot in night
 			"sleep_end": "7:00",        // sleep from 00:00 to 7:00 am
