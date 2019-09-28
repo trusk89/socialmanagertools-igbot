@@ -80,6 +80,42 @@
 			"contributions": [
 				"code"
 			]
+		},
+		{
+			"login": "MoltenKH0R",
+			"name": "MoltenKH0R",
+			"avatar_url": "https://avatars1.githubusercontent.com/u/6023575?v=4",
+			"profile": "https://github.com/MoltenKH0R",
+			"contributions": [
+				"translation"
+			]
+		},
+		{
+			"login": "m0s4ik",
+			"name": "Andrea",
+			"avatar_url": "https://avatars1.githubusercontent.com/u/26578395?v=4",
+			"profile": "https://github.com/m0s4ik",
+			"contributions": [
+				"code", "bug"
+			]
+		},
+		{
+			"login": "trungpv1601",
+			"name": "trungpv1601",
+			"avatar_url": "https://avatars1.githubusercontent.com/u/25415217?v=4",
+			"profile": "https://github.com/trungpv1601",
+			"contributions": [
+				"code"
+			]
+		},
+		{
+			"login": "Ermolaev-Nikolay",
+			"name": "Ermolaev-Nikolay",
+			"avatar_url": "https://avatars1.githubusercontent.com/u/44134625?v=4",
+			"profile": "https://github.com/Ermolaev-Nikolay",
+			"contributions": [
+				"code"
+			]
 		}
 	],
 	"contributorsPerLine": 6

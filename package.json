@@ -1,7 +1,7 @@
 {
 	"name": "@social-manager-tools/igbot",
 	"description": "Social Manager Tools: Instagram Bot API",
-	"version": "0.9.18",
+	"version": "0.9.19",
 	"main": "lib.js",
 	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
 	"license": "MIT",
@@ -45,7 +45,11 @@
 		"npm-publish-master-chromev71": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.9.0\"' && npm publish --tag chromev71",
 		"npm-publish-master-chromev72": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.11.0\"' && npm publish --tag chromev72",
 		"npm-publish-master-chromev73": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.12.2\"' && npm publish --tag chromev73",
-		"npm-publish-master-chromev74": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.13.0\"' && npm publish --tag chromev74",
+		"npm-publish-master-chromev74": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.13.0\"' && npm publish --tag chromev75",
+		"npm-publish-master-chromev75": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.15.0\"' && npm publish --tag chromev76",
+		"npm-publish-master-chromev76": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.17.0\"' && npm publish --tag chromev77",
+		"npm-publish-master-chromev77": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.19.0\"' && npm publish --tag chromev78",
+		"npm-publish-master-chromev78": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.20.0\"' && npm publish --tag chromev79",
 		"npm-publish-beta": "git checkout beta && npm publish --tag beta",
 		"npm-publish-nightly": "git checkout nightly && npm publish --tag nightly",
 		"docs-init": "git submodule add -f https://github.com/social-manager-tools/socialmanagertools-docs.git docs",
@@ -81,7 +85,7 @@
 		"node": ">=10.0.0"
 	},
 	"dependencies": {
-		"puppeteer": "1.13.0",
+		"puppeteer": "1.19.0",
 		"compare-versions": "latest",
 		"colors": "latest",
 		"path": "latest",
@@ -117,6 +121,9 @@
 		"Julian Xhokaxhiu [@julianxhokaxhiu] (https://github.com/julianxhokaxhiu)",
 		"lecoueyl [@lecoueyl] (https://github.com/lecoueyl)",
 		"Lollymouth [@lollymouth] (https://github.com/lollymouth)",
-		"roNn23 [@roNn23] (https://github.com/roNn23)"
+		"roNn23 [@roNn23] (https://github.com/roNn23)",
+		"Andrea [@m0s4ik] (https://github.com/m0s4ik)",
+		"trungpv1601 [@_trungpv] (https://github.com/trungpv1601)",
+		"Ermolaev-Nikolay [@Ermolaev-Nikolay] (https://github.com/Ermolaev-Nikolay)"
 	]
 }

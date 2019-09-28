@@ -2,7 +2,7 @@
 
 # 🤖 Social Manager Tools: Instagram Bot API
 
-[![](https://img.shields.io/badge/version-v0.9.18-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
+[![](https://img.shields.io/badge/version-v0.9.19-lightgrey.svg)](https://github.com/social-manager-tools/socialmanagertools-igbot/releases) [![](https://img.shields.io/npm/v/@social-manager-tools/igbot.svg)](https://www.npmjs.com/package/@social-manager-tools/igbot) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#) [![](https://img.shields.io/badge/ES-9-F7DF1E.svg)](https://wikipedia.org/wiki/ECMAScript) [![](https://img.shields.io/badge/powered%20by-puppeteer-46aef7.svg)](https://github.com/GoogleChrome/puppeteer) [![](https://snyk.io/test/npm/@social-manager-tools/igbot/badge.svg)](https://snyk.io/test/github/social-manager-tools/socialmanagertools-igbot)
 
 > This library (includes bot and API methods) allows you to increase visits, likes and followers on your social profile through different algorithms and offers API for developers to include custom bot functionality in their application. You will increase the likes on your photos and increase your followers!
 
@@ -121,7 +121,7 @@ docker run --restart=always --name=socialmanagertools-igbot -d -v /path/to/confi
 
 If you want are available online [here](http://docs.socialmanager.tools/README.md).
 
-## 👑 Sponsors (max 10 available)
+## 👑 Sponsors
 Support this project by becoming a sponsor. 🙏 Become a sponsor on [patreon](http://patreon.ptkdev.io) or [opencollective](https://opencollective.com/social-manager-tools#sponsor). Your logo will show up here with a link to your website.
 
 [![](https://opencollective.com/social-manager-tools/sponsor/0/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/0/website) [![](https://opencollective.com/social-manager-tools/sponsor/1/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/1/website) [![](https://opencollective.com/social-manager-tools/sponsor/2/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/2/website) [![](https://opencollective.com/social-manager-tools/sponsor/3/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/3/website) [![](https://opencollective.com/social-manager-tools/sponsor/4/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/4/website) [![](https://opencollective.com/social-manager-tools/sponsor/5/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/5/website) [![](https://opencollective.com/social-manager-tools/sponsor/6/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/6/website) [![](https://opencollective.com/social-manager-tools/sponsor/7/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/7/website) [![](https://opencollective.com/social-manager-tools/sponsor/8/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/8/website) [![](https://opencollective.com/social-manager-tools/sponsor/9/avatar.svg)](https://opencollective.com/social-manager-tools/sponsor/9/website)
@@ -137,7 +137,8 @@ I 💟 contributions! I will happily accept your pull request! Translations, gra
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
     <td align="center"><a href="https://ptk.dev"><img src="https://avatars1.githubusercontent.com/u/442844?v=4" width="100px;" alt="Patryk Rzucidło"/><br /><sub><b>Patryk Rzucidło</b></sub></a><br /><a href="https://github.com/ptkdev/socialmanagertools-igbot/commits?author=ptkdev" title="Code">💻</a></td>
@@ -150,9 +151,15 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/lollymouth"><img src="https://avatars1.githubusercontent.com/u/43947950?v=4" width="100px;" alt="Lollymouth"/><br /><sub><b>Lollymouth</b></sub></a><br /><a href="https://github.com/ptkdev/socialmanagertools-igbot/commits?author=lollymouth" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/roNn23"><img src="https://avatars1.githubusercontent.com/u/849194?v=4" width="100px;" alt="roNn23"/><br /><sub><b>roNn23</b></sub></a><br /><a href="https://github.com/ptkdev/socialmanagertools-igbot/commits?author=roNn23" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/MoltenKH0R"><img src="https://avatars1.githubusercontent.com/u/6023575?v=4" width="100px;" alt="MoltenKH0R"/><br /><sub><b>MoltenKH0R</b></sub></a><br /><a href="#translation-MoltenKH0R" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/m0s4ik"><img src="https://avatars1.githubusercontent.com/u/26578395?v=4" width="100px;" alt="Andrea"/><br /><sub><b>Andrea</b></sub></a><br /><a href="https://github.com/ptkdev/socialmanagertools-igbot/commits?author=m0s4ik" title="Code">💻</a> <a href="https://github.com/ptkdev/socialmanagertools-igbot/issues?q=author%3Am0s4ik" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/trungpv1601"><img src="https://avatars1.githubusercontent.com/u/25415217?v=4" width="100px;" alt="trungpv1601"/><br /><sub><b>trungpv1601</b></sub></a><br /><a href="https://github.com/ptkdev/socialmanagertools-igbot/commits?author=trungpv1601" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Ermolaev-Nikolay"><img src="https://avatars1.githubusercontent.com/u/44134625?v=4" width="100px;" alt="Ermolaev-Nikolay"/><br /><sub><b>Ermolaev-Nikolay</b></sub></a><br /><a href="https://github.com/ptkdev/socialmanagertools-igbot/commits?author=Ermolaev-Nikolay" title="Code">💻</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 > 💰 In the future, if the donations allow it, I would like to share some of the success with those who helped me the most. For me open source is share of code, share development knowledges and share donations!

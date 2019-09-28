@@ -12,6 +12,10 @@
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io) [![](https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg)](mailto:support@ptkdev.io)
 
 
+# v0.9.19 (28 September, 2019)
+* Upgrade: puppeteer v1.19.0 (chrome v77)
+
+
 # v0.9.18 (10 July, 2019)
 * Fix: commentmode
 * Fix: fdfmode

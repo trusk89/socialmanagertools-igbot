@@ -371,7 +371,7 @@ class Fdfmode_classic extends Manager_state {
 				this.log.debug(err);
 			}
 
-			this.log.warning("defollow error");
+			this.log.warning("defollow fail (skip account, probably followed previously)");
 			this.db.run("INSERT INTO users (account, mode, username, photo_url, hashtag, type_action) VALUES (?, ?, ?, ?, ?, ?)", this.config.instagram_username, this.LOG_NAME, username, this.photo_current, this.hashtag_tag, "defollow error");
 			this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE account = ? AND username = ?", "defollow error, photo removed", this.config.instagram_username, this.username_current);
 			this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.ERROR);
