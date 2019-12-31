@@ -28,7 +28,7 @@ class Translate {
      * If translation text is: hi {name} how are you?
      * This function replace {name} token with correct value
      *
-     * @param {string} text            - text of current phrase to translate (mandatory)
+     * @param {string} text -            - text of current phrase to translate (mandatory)
      * @param {Object} language_params - object with token to replace, example: {name:"alex"} (mandatory)
      *
      * @return {string} text - text with replaced token
@@ -68,7 +68,7 @@ class Translate {
      * =====================
      * Get correct translation
      *
-     * @param {string} language_id     - key of translation phrase from /translation/*.js (mandatory)
+     * @param {string} language_id -     - key of translation phrase from /translation/*.js (mandatory)
      * @param {Object} language_params - object with token to replace, example: {name:"alex"} (optional)
      *
      * @return {string} text - text of available translation

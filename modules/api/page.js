@@ -31,8 +31,8 @@ class Page {
      * @todo: auto mode for <where> param: detect correct page automatically
      *
      * @param {string}  selector - what you want scroll, available params: window, string of selector (optional: default window)
-     * @param {int}     counter  - number of times when the scrolling occurs (optional: default 5)
-     * @param {pixel}   height   - pixel you want scroll (optional: default 5000)
+     * @param {int}     counter -  - number of times when the scrolling occurs (optional: default 5)
+     * @param {pixel}   height -   - pixel you want scroll (optional: default 5000)
      *
      * @return {Promise<Promise>} - async wait
      *
@@ -113,22 +113,20 @@ class Page {
 	}
 
 	/**
-     * Screenshot
-     * =====================
-     * Save screenshot from chrome
-     *
-     * @param {string} func - name of function when screenshot happen (mandatory)
-     * @param {string} name - name of screenshot, auto replace space with underscore (mandatory)
-     * @param {string} path - screenshot file path (optional: default from config)
-     * @param {string} name - username (optional: default from config)
-     *
-     * @return {Object}  response        - {}
-     *         {boolean} response.status - true: successful / false: fail
-     *         {string}  response.error  - return error detail if status is false
-     *
-     * @since: v0.10
-     *
-     */
+ * Screenshot
+* =====================
+* Save screenshot from chrome
+ *
+ * @param {string} func - name of function when screenshot happen (mandatory)
+ * @param {string} name - name of screenshot, auto replace space with underscore (mandatory)
+ * @param {string} path - screenshot file path (optional: default from config)
+ * @param username
+ * @param {string} name - username (optional: default from config)
+ * @return {Object}  response        - {}
+ * {boolean} response.status - true: successful / false: fail
+ * {string}  response.error  - return error detail if status is false
+ * @since: v0.10
+ */
 	async screenshot(func, name, path = this.core.config.log.path.screenshots, username = this.core.config.account.username) {
 		let tag = "page::screenshot()";
 		this.log.info(tag, `${this.lang.translate("try_get_screenshot")}`);

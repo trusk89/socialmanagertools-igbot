@@ -30,8 +30,8 @@ class Write {
      *
      * @todo: auto mode for <where> param: detect correct page automatically
      *
-     * @param {string} text     - text you want write (mandatory)
-     * @param {int}    delay    - speed of write (optional: default 100)
+     * @param {string} text -     - text you want write (mandatory)
+     * @param {int}    delay -    - speed of write (optional: default 100)
      * @param {string} username - your instagram account (optional: default from config)
      *
      * @return {Object}  response        - {}
@@ -90,7 +90,7 @@ class Write {
      * =====================
      * Write config username into form login
      *
-     * @param {int}    delay    - speed of write (optional: default 100)
+     * @param {int}    delay -    - speed of write (optional: default 100)
      * @param {string} username - your instagram account (optional: default from config)
      *
      * @return {Object}  response        - {}
@@ -137,7 +137,7 @@ class Write {
      * =====================
      * Write config password into form login
      *
-     * @param {boolean} delay    - speed of write (optional: default 100)
+     * @param {boolean} delay -    - speed of write (optional: default 100)
      * @param {string}  password - your instagram account password (optional: default from config)
      *
      * @return {Object}  response        - {}
@@ -184,7 +184,7 @@ class Write {
      * =====================
      * Write sms pin into input box
      *
-     * @param {string} pin   - your sms pin for 2FA (mandatory)
+     * @param {string} pin -   - your sms pin for 2FA (mandatory)
      * @param {int}    delay - speed of write (optional: default 100)
      *
      * @return {Object}  response        - {}
@@ -231,7 +231,7 @@ class Write {
    * =====================
    * Write code into input box
    *
-   * @param {string} pin   - your security code for challenge required (mandatory)
+   * @param {string} pin -   - your security code for challenge required (mandatory)
    * @param {int}    delay - speed of write (optional: default 100)
    *
    * @return {Object}  response        - {}
