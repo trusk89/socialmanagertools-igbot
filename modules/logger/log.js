@@ -35,15 +35,15 @@ class Log {
 	}
 
 	/**
-	* Output console log to file
-	* =====================
-	* Write in debug.log and error.log in /logs folder
-	*
-	* @param {string} type    - example: INFO/WARNING/ERROR/DEBUG or other valid type string (see ./types.js) (mandatory)
-	* @param {string} func    - function name, class or similar when this log appear (mandatory)
-	* @param {string} message - error, warning or info description (mandatory)
-	*
-	*/
+ * Output console log to file
+* =====================
+* Write in debug.log and error.log in /logs folder
+ *
+ * @param {string} type -    - example: INFO/WARNING/ERROR/DEBUG or other valid type string (see ./types.js) (mandatory)
+ * @param {string} func -    - function name, class or similar when this log appear (mandatory)
+ * @param tag
+ * @param {string} message - error, warning or info description (mandatory)
+ */
 	append_file(type, tag, message) {
 		let log_text = `[${this.current_time()}] [${type.id}] ${tag}: ${message}\n`;
 
@@ -68,8 +68,8 @@ class Log {
 	* =====================
 	* Log manager - don't use this directly. Use info() error() debug() warning()
 	*
-	* @param {string} type    - example: INFO/WARNING/ERROR/DEBUG or other valid type string (see ./types.js) (mandatory)
-	* @param {string} func    - function name, class or similar when this log appear (mandatory)
+	* @param {string} type -    - example: INFO/WARNING/ERROR/DEBUG or other valid type string (see ./types.js) (mandatory)
+	* @param {string} func -    - function name, class or similar when this log appear (mandatory)
 	* @param {string} message - error, warning or info description (mandatory)
 	*
 	*/
@@ -87,7 +87,7 @@ class Log {
 	* =====================
 	* Write log on console and file
 	*
-	* @param {string} tag     - func unique tag (mandatory)
+	* @param {string} tag -     - func unique tag (mandatory)
 	* @param {string} message - description of issue (mandatory)
 	*
 	*/
@@ -103,7 +103,7 @@ class Log {
 	* =====================
 	* Write log on console and file
 	*
-	* @param {string} tag     - func unique tag (mandatory)
+	* @param {string} tag -     - func unique tag (mandatory)
 	* @param {string} message - description of issue (mandatory)
 	*
 	*/
@@ -119,7 +119,7 @@ class Log {
 	* =====================
 	* Write log on console and file
 	*
-	* @param {string} tag     - func unique tag (mandatory)
+	* @param {string} tag -     - func unique tag (mandatory)
 	* @param {string} message - description of issue (mandatory)
 	*
 	*/
@@ -135,7 +135,7 @@ class Log {
 	* =====================
 	* Write log on console and file
 	*
-	* @param {string} tag     - func unique tag (mandatory)
+	* @param {string} tag -     - func unique tag (mandatory)
 	* @param {string} message - description of issue (mandatory)
 	*
 	*/
@@ -152,7 +152,7 @@ class Log {
 	* Write log on console and file
 	*
 	* @param {string} section - documentation section (mandatory)
-	* @param {string} tag     - h1 paragraph anchor (mandatory)
+	* @param {string} tag -     - h1 paragraph anchor (mandatory)
 	*
 	*/
 	docs(section, tag) {
@@ -167,8 +167,8 @@ class Log {
 	* =====================
 	* Write log on console and file
 	*
-	* @param {string} tag           - stackoverflow tag / error tag (mandatory)
-	* @param {string} api           - prefix of issue (mandatory)
+	* @param {string} tag -           - stackoverflow tag / error tag (mandatory)
+	* @param {string} api -           - prefix of issue (mandatory)
 	* @param {string} error_message - description of error message (mandatory)
 	*
 	*/
@@ -183,7 +183,7 @@ class Log {
 	* =====================
 	* Write log on console and file
 	*
-	* @param {string} tag     - func unique tag (mandatory)
+	* @param {string} tag -     - func unique tag (mandatory)
 	* @param {string} message - description of issue (mandatory)
 	*
 	*/

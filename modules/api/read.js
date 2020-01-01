@@ -32,7 +32,7 @@ class Read {
      *
      * @todo: auto mode for <where> param: detect correct page automatically
      *
-     * @param {string}  where  - get username from profile page or single picture page, available values: profile, picture (optional: default profile)
+     * @param {string}  where -  - get username from profile page or single picture page, available values: profile, picture (optional: default profile)
      * @param {string}  prefix - prefix before username, example: pass @ string if you need username with @ on return (optional: default empty)
      *
      * @return {Object}  response          - {}
@@ -250,7 +250,7 @@ class Read {
      * =====================
      * Get hash of ig photo url
      *
-     * @param {string}  photo_url  - ig photo url (mandatory)
+     * @param {string}  photo_url -  - ig photo url (mandatory)
      *
      * @return {Object}  response          - {}
      *         {boolean} response.status   - true: successful / false: fail
@@ -294,7 +294,7 @@ class Read {
      *
      * @todo: auto mode for <where> param: detect correct page automatically
      *
-     * @param {string}  where  - get urls of user photos from profile page or hashtag page, available values: profile, hashtag, location (optional: default profile)
+     * @param {string}  where -  - get urls of user photos from profile page or hashtag page, available values: profile, hashtag, location (optional: default profile)
      *
      * @return {Object}  response             - {}
      *         {boolean} response.status      - true: successful / false: fail
@@ -417,7 +417,7 @@ class Read {
      *
      * @todo: add more where position or auto mode for <where> param: detect correct page automatically
      *
-     * @param {string}  where  - check status of follow from profile page, available values: profile (optional: default profile)
+     * @param {string}  where -  - check status of follow from profile page, available values: profile (optional: default profile)
      *
      * @return {boolean} status         - true is <3 / false is </3
      *         {string}  response.error - if status is false return error details

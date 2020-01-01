@@ -146,18 +146,16 @@ class Goto {
 	}
 
 	/**
-     * Profile
-     * =====================
-     * Goto profile of user
-     *
-     * @param {string}  profile - string of nickname, work with @ or without @ prefix (mandatory)
-     *
-     * @return {boolean} status         - true: successful / false: fail
-     *         {string}  response.error - if status is false return error details
-     *
-     * @since: v0.10
-     *
-     */
+ * Profile
+* =====================
+* Goto profile of user
+ *
+ * @param nickname
+ * @param {string} profile - string of nickname, work with @ or without @ prefix (mandatory)
+ * @return {boolean} status         - true: successful / false: fail
+ * {string}  response.error - if status is false return error details
+ * @since: v0.10
+ */
 	async profile(nickname) {
 		let tag = "goto::profile()";
 		this.log.info(tag, `${this.lang.translate("try_goto_profile_page")}`);

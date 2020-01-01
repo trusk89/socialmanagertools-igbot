@@ -35,7 +35,7 @@ class Database {
      * =====================
      * Create database schema if not exist and return adapter
      *
-     * @param {Object} db_name  - string of database name, if use api mode::flow() set mode name (mandatory)
+     * @param {Object} db_name -  - string of database name, if use api mode::flow() set mode name (mandatory)
      * @param {Object} database - path of database (optional, default from config of current mode)
      *
      * @return {Object}  response        - {}
@@ -85,7 +85,7 @@ class Database {
      * =====================
      * Insert json to database
      *
-     * @param {Object} json    - insert json object into json database (mandatory)
+     * @param {Object} json -    - insert json object into json database (mandatory)
      *
      * @return {Object}  response        - {}
      *         {boolean} response.status - true: successful / false: fail
@@ -127,7 +127,7 @@ class Database {
      * Update values from json database
      *
      * @param {Object} search - json object with keys to find (mandatory)
-     * @param {Object} json   - json with values for replace (mandatory)
+     * @param {Object} json -   - json with values for replace (mandatory)
      *
      * @return {Object}  response        - {}
      *         {boolean} response.status - true: successful / false: fail

@@ -101,7 +101,7 @@ class Bot {
 		this.core.bot = await this.core.browser.newPage();
 
 		if (this.core.config.proxy.username !== "" && this.core.config.proxy.password !== "") {
-			await this.core.bot.authenticate({ username: this.core.config.proxy.username, password: this.core.config.proxy.password  });
+			await this.core.bot.authenticate({username: this.core.config.proxy.username, password: this.core.config.proxy.password});
 		}
 
 		await this.core.bot.setExtraHTTPHeaders({"Accept-Language": this.core.config.system.language});

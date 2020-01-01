@@ -160,7 +160,7 @@ class Utils {
      * Calculate the waiting seconds so as not to exceed the limits of like/comments/follow/defollow in 24 hours
      *
      * @param {int} n_action_daily - example: 900 like, 500 comments, etc... (mandatory)
-     * @param {int} delta          - likes or comments consecutively (mandatory)
+     * @param {int} delta -          - likes or comments consecutively (mandatory)
      *
      * @return {int} sec - seconds so as not to exceed the limits
      *

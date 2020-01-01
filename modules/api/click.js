@@ -108,7 +108,7 @@ class Click {
      *
      * @todo: add more where position or auto mode for <where> param: detect correct page automatically
      *
-     * @param {string}  where  - follow user from profile page, available values: profile (optional: default profile)
+     * @param {string}  where -  - follow user from profile page, available values: profile (optional: default profile)
      * @param {boolean} reload - refresh page after click, more accurate check (optional)
      *
      * @return {Object}  response        - {}
@@ -184,7 +184,7 @@ class Click {
      *
      * @todo: add more where position or auto mode for <where> param: detect correct page automatically
      *
-     * @param {string}  where  - follow user from profile page, available values: profile (optional: default profile)
+     * @param {string}  where -  - follow user from profile page, available values: profile (optional: default profile)
      * @param {boolean} reload - refresh page after click, more accurate check (optional)
      *
      * @return {Object}  response        - {}
@@ -468,7 +468,7 @@ class Click {
 		this.log.info(tag, `${this.lang.translate("try_click_send_security_code")}`);
 
 		let response = {"status": false};
-		let selector = "form label[for='choice_" + choice + "'] div";
+		let selector = `form label[for='choice_${choice}'] div`;
 
 		if (typeof this.core.config.selectors[this.utils.clean_tag(tag)] !== "undefined") {
 			selector = this.core.config.selectors[this.utils.clean_tag(tag)];
