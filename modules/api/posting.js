@@ -50,12 +50,12 @@ class Posting {
 			let selector = "nav div div:nth-child(2) div:nth-child(3) span";
 			await this.core.bot.waitForSelector(selector, {timeout: 5000});
 			let path_assets = `assets/${uri}`;
-			let filePath = path.relative(process.cwd(), path_assets);
-		    const [fileChooser] = await Promise.all([
+			let file_path = path.relative(process.cwd(), path_assets);
+		    const [file_chooser] = await Promise.all([
 				this.core.bot.waitForFileChooser(),
 				this.core.bot.click(selector)
 			]);
-		    await fileChooser.accept([filePath]);
+		    await file_chooser.accept([file_path]);
 			await this.utils.sleep(this.utils.random_interval(3, 4));
 			
 			let selector_next = "header div:nth-child(3) button";
@@ -119,12 +119,12 @@ class Posting {
 			let selector = "header div:nth-child(1) button";
 			await this.core.bot.waitForSelector(selector, {timeout: 5000});
 			let path_assets = `assets/${uri}`;
-			let filePath = path.relative(process.cwd(), path_assets);
-		    const [fileChooser] = await Promise.all([
+			let file_path = path.relative(process.cwd(), path_assets);
+		    const [file_chooser] = await Promise.all([
 				this.core.bot.waitForFileChooser(),
 				this.core.bot.click(selector),
 		    ]);
-			await fileChooser.accept([filePath]);
+			await file_chooser.accept([file_path]);
 
 			await this.utils.sleep(this.utils.random_interval(3, 4));
 			let select = "footer div:nth-child(1) button";

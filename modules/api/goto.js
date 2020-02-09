@@ -28,9 +28,9 @@ class Goto {
      * =====================
      * Goto photo page
      *
-     * @param {string}  id_hash - string of id hash of photo (mandatory)
+     * @param {string} id_hash - string of id hash of photo (mandatory)
      *
-     * @return {boolean} status         - true: successful / false: fail
+     * @return {boolean} status - true: successful / false: fail
      *         {string}  response.error - if status is false return error details
      *
      * @since: v0.10
@@ -68,10 +68,10 @@ class Goto {
      * =====================
      * Goto hashtag page
      *
-     * @param {string}  hashtag - string of hashtag, work with # or without # prefix (mandatory)
+     * @param {string} hashtag - string of hashtag, work with # or without # prefix (mandatory)
      *
-     * @return {boolean} status         - true: successful / false: fail
-     *         {string}  response.error - if status is false return error details
+     * @return {boolean} status - true: successful / false: fail
+     *         {string} response.error - if status is false return error details
      *
      * @since: v0.10
      *

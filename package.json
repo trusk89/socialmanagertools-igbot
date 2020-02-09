@@ -1,7 +1,7 @@
 {
 	"name": "@social-manager-tools/igbot",
 	"description": "Social Manager Tools: Instagram Bot API",
-	"version": "0.10.0-nightly.20190810",
+	"version": "0.10.0-nightly.20200208",
 	"main": "modules/core/lib.js",
 	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
 	"license": "MIT",
@@ -15,10 +15,6 @@
 	},
 	"bugs": {
 		"url": "https://github.com/social-manager-tools/socialmanagertools-igbot/issues"
-	},
-	"collective": {
-		"type": "opencollective",
-		"url": "https://opencollective.com/social-manager-tools"
 	},
 	"scripts": {
 		"start": "node bot.js --config=\"./configs/config.js\"",
@@ -39,21 +35,14 @@
 		"git-postinstall": "npm run docs-init && npm run git-set-upstream && git-switch-nightly",
 		"docker-fix": "chmod +x docker/armv7/* && chmod +x docker/armv8/*",
 		"npm-publish-master-latest": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"latest\"' && npm publish",
-		"npm-publish-master-chromev68": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.4.0\"' && npm publish --tag chromev68",
-		"npm-publish-master-chromev69": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.6.2\"' && npm publish --tag chromev69",
-		"npm-publish-master-chromev70": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.7.0\"' && npm publish --tag chromev70",
-		"npm-publish-master-chromev71": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.9.0\"' && npm publish --tag chromev71",
-		"npm-publish-master-chromev72": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.11.0\"' && npm publish --tag chromev72",
-		"npm-publish-master-chromev73": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.12.2\"' && npm publish --tag chromev73",
-		"npm-publish-master-chromev74": "git checkout master && json -I -f package.json -e 'this.dependencies.puppeteer=\"1.13.0\"' && npm publish --tag chromev74",
+		"npm-publish-master": "git checkout master && npm publish",
 		"npm-publish-beta": "git checkout beta && npm publish --tag beta",
 		"npm-publish-nightly": "git checkout nightly && npm publish --tag nightly",
 		"docs-init": "git submodule add -f https://github.com/social-manager-tools/socialmanagertools-docs.git docs",
 		"docs": "git submodule update --recursive && markserv ./docs/README.md",
 		"test": "jest",
 		"contributors-generate": "all-contributors generate",
-		"postinstall": "opencollective-postinstall",
-		"devpostinstall": "npm run docs-init && npm run contributors-generate && npm run docker-fix && opencollective-postinstall"
+		"devpostinstall": "npm run docs-init && npm run contributors-generate && npm run docker-fix"
 	},
 	"husky": {
 		"hooks": {
@@ -102,8 +91,6 @@
 		"eslint-plugin-standard": "latest",
 		"eslint-plugin-html": "latest",
 		"all-contributors-cli": "latest",
-		"opencollective": "latest",
-		"opencollective-postinstall": "latest",
 		"pm2": "latest",
 		"json": "latest",
 		"chai": "latest",

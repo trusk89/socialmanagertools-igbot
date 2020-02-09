@@ -5,7 +5,6 @@
  *
  * @contributors: Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)
  *
- *
  * @license: This code and contributions have 'MIT License'
  *           Permission is hereby granted, free of charge, to any person obtaining a copy
  *           of this software and associated documentation files (the "Software"), to deal
@@ -57,5 +56,5 @@ let bot = new Bot(config);
 		response = await api.mode.flow();
 	}
 
-	// await bot.stop();
+	await bot.stop();
 })();
