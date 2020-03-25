@@ -22,7 +22,7 @@
 				"returns": "return"
 			}
 		},
-		"snakecasejs/whitelist": ["defaultViewport", "executablePath", "userAgent", "setUserAgent", "setViewport", "newPage","encodeURIComponent", "EventEmitter", "appendFile", "waitForSelector", "readFileSync", "writeFile"],
+		"snakecasejs/whitelist": ["defaultViewport", "executablePath", "userAgent", "setUserAgent", "setViewport", "newPage","encodeURIComponent", "EventEmitter", "appendFile", "waitForSelector", "readFileSync", "writeFile", "existsSync", "mkdirSync"],
         "html/html-extensions": [".html", ".twig", ".vue"],
         "html/indent": "tab"
 	},

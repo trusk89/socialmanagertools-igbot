@@ -58,12 +58,12 @@ module.exports = function (config) {
          */
 		let check = require("./modules/common/utils")(bot, null, config);
 		if (config.ui !== true) {
-			if (!fs.exists_sync("./databases")) {
-				fs.mkdir_sync("./databases");
+			if (!fs.existsSync("./databases")) {
+				fs.mkdirSync("./databases");
 			}
 
-			if (!fs.exists_sync("./logs")) {
-				fs.mkdir_sync("./logs");
+			if (!fs.existsSync("./logs")) {
+				fs.mkdirSync("./logs");
 			}
 		}
 		db["logs"] = new sqlite3.Database(config.logdb_path);
