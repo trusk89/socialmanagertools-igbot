@@ -12,6 +12,15 @@
 [![](https://img.shields.io/badge/donate-paypal-005EA6.svg)](http://paypal.ptkdev.io) [![](https://img.shields.io/badge/donate-patreon-F87668.svg)](http://patreon.ptkdev.io) [![](https://img.shields.io/badge/donate-opencollective-5DA4F9.svg)](http://opencollective.ptkdev.io) [![](https://img.shields.io/badge/buy%20me-coffee-4B788C.svg)](http://coffee.ptkdev.io) [![](https://img.shields.io/badge/help-support@ptkdev.io-fbbc05.svg)](mailto:support@ptkdev.io)
 
 
+# v0.9.19 (25 MArch, 2020)
+* Upgrade: puppeteer v2.1.1 (chrome v80)
+* Fix: likemode_realistic
+* Fix: likemode_classic
+* Fix: likemode_superlike
+* Fix: commentmode_classic
+* Fix: fdfmode_classic
+
+
 # v0.9.19 (28 September, 2019)
 * Upgrade: puppeteer v1.19.0 (chrome v77)
 

@@ -147,10 +147,10 @@ class Commentmode_classic extends Manager_state {
      * @return {Promise<void>}
      */
 	async check_leave_comment () {
-		let nick_under_photo = `article div div a[title="${this.config.instagram_username}"]`;
+		let nick_under_photo = `article div div a[href="/${this.config.instagram_username}/"]`;
 		if (this.is_ok()) {
 			try {
-				let nick = await this.bot.$(nick_under_photo);
+				let nick = await this.bot.$(nick_under_photo)[1];
 
 				if (nick !== null) {
 					this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
