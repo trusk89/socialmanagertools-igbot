@@ -83,7 +83,7 @@ class Utils {
 	async create_write_file (name, path, content) {
 		let self = this;
 		return new Promise(function (resolve_write, reject_write) {
-			self.fs.write_file(path, content, function (err) {
+			self.fs.writeFile(path, content, function (err) {
 				if (err) {
 					self.log.error(`${name} don't created: ${err}`);
 					reject_write(err);

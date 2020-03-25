@@ -193,7 +193,7 @@ class Fdfmode_classic extends Manager_state {
 		this.log.info("try follow");
 		let username = "";
 		try {
-			await this.bot.wait_for_selector("article h2 a", {timeout: 3000});
+			await this.bot.waitForSelector("article h2 a", {timeout: 3000});
 			username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article h2 a"));
 			this.log.info(`username ${username}`);
 		} catch (err) {
@@ -211,7 +211,7 @@ class Fdfmode_classic extends Manager_state {
 			this.log.warning(`${username}: is in whitelist, ignored by follow.`);
 		} else {
 			try {
-				await this.bot.wait_for_selector("article header div button", {timeout: 5000});
+				await this.bot.waitForSelector("article header div button", {timeout: 5000});
 				let button = await this.bot.$("article header div button");
 				let button_before_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article header div button"));
 				this.log.info(`button text before click: ${button_before_click}`);
@@ -223,7 +223,7 @@ class Fdfmode_classic extends Manager_state {
 
 					await this.utils.sleep(this.utils.random_interval(2, 3));
 
-					await this.bot.wait_for_selector("article header div button", {timeout: 5000});
+					await this.bot.waitForSelector("article header div button", {timeout: 5000});
 					let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article header div button"));
 					this.log.info(`button text after click: ${button_after_click}`);
 
@@ -320,7 +320,7 @@ class Fdfmode_classic extends Manager_state {
 		let retry = 0;
 		do {
 			try {
-				await this.bot.wait_for_selector("header section h1", {timeout: 5000});
+				await this.bot.waitForSelector("header section h1", {timeout: 5000});
 				username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section h1"));
 				this.log.info(`username ${username}`);
 				retry = 0;
@@ -333,7 +333,7 @@ class Fdfmode_classic extends Manager_state {
 		} while (retry == 1);
 
 		try {
-			await this.bot.wait_for_selector("header section div:nth-child(1) button", {timeout: 5000});
+			await this.bot.waitForSelector("header section div:nth-child(1) button", {timeout: 5000});
 			let button = await this.bot.$("header section div:nth-child(1) button");
 			let button_before_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(1) button"));
 			this.log.info(`button text before click: ${button_before_click}`);
@@ -346,14 +346,14 @@ class Fdfmode_classic extends Manager_state {
 
 				await this.utils.sleep(this.utils.random_interval(2, 3));
 
-				await this.bot.wait_for_selector("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)", {timeout: 5000});
+				await this.bot.waitForSelector("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)", {timeout: 5000});
 				let button_confirm = await this.bot.$("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)");
 
 				await button_confirm.click();
 
 				await this.utils.sleep(this.utils.random_interval(1, 2));
 
-				await this.bot.wait_for_selector("header section div:nth-child(1) button", {timeout: 5000});
+				await this.bot.waitForSelector("header section div:nth-child(1) button", {timeout: 5000});
 				let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(1) button"));
 				this.log.info(`button text after click: ${button_after_click}`);
 
