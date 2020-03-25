@@ -43,13 +43,13 @@ module.exports = class Log {
 		const local_iso_time = (new Date(Date.now() - tz_offset)).toISOString().slice(0, -5).replace("T", " ");
 		const log = `${local_iso_time} [${type}] ${message}\n`;
 
-		fs.appendFile(this.config.log_path, log, function (err) {
+		fs.append_file(this.config.log_path, log, function (err) {
 			if (err) {
 				console.log(err);
 			}
 		});
 		if (type === "ERROR") {
-			fs.appendFile(this.config.logerr_path, log, function (err) {
+			fs.append_file(this.config.logerr_path, log, function (err) {
 				if (err) {
 					console.log(err);
 				}

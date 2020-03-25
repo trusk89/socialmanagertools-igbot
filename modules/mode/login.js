@@ -41,7 +41,7 @@ class Login extends Manager_state {
 	 */
 	async set_username () {
 		this.log.info("set_username");
-		await this.bot.waitForSelector("input[name=\"username\"]", {timeout: 5000});
+		await this.bot.wait_for_selector("input[name=\"username\"]", {timeout: 5000});
 		await this.bot.type("input[name=\"username\"]", this.config.instagram_username, {delay: 100});
 	}
 
@@ -53,7 +53,7 @@ class Login extends Manager_state {
 	 */
 	async set_password () {
 		this.log.info("set_password");
-		await this.bot.waitForSelector("input[name=\"password\"]", {timeout: 5000});
+		await this.bot.wait_for_selector("input[name=\"password\"]", {timeout: 5000});
 		await this.bot.type("input[name=\"password\"]", this.config.instagram_password, {delay: 100});
 	}
 
@@ -68,7 +68,7 @@ class Login extends Manager_state {
 		try {
 			await this.bot.keyboard.press("Enter");
 		} catch (err) {
-			await this.bot.waitForSelector("form button", {timeout: 5000});
+			await this.bot.wait_for_selector("form button", {timeout: 5000});
 			let button = await this.bot.$("form button");
 			await button.click();
 		}

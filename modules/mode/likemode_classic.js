@@ -43,13 +43,13 @@ class Likemode_classic extends Manager_state {
 
 			self.db.run("ALTER TABLE users ADD COLUMN hashtag TEXT", function (err) {
 				if (err) {
-					//self.log.info(`init_db users ADD COLUMN hashtag: ${err}`);
+					// self.log.info(`init_db users ADD COLUMN hashtag: ${err}`);
 				}
 			});
 
 			self.db.run("ALTER TABLE users ADD COLUMN inserted_at DATETIME DEFAULT NULL", function (err) {
 				if (err) {
-					//self.log.info(`init_db users ADD COLUMN inserted_at: ${err}`);
+					// self.log.info(`init_db users ADD COLUMN inserted_at: ${err}`);
 				}
 			});
 		});
@@ -175,7 +175,7 @@ class Likemode_classic extends Manager_state {
 		this.log.info("try heart like");
 		let username = "";
 		try {
-			await this.bot.waitForSelector("article h2 a", {timeout: 3000});
+			await this.bot.wait_for_selector("article h2 a", {timeout: 3000});
 			username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article h2 a"));
 			this.log.info(`username ${username}`);
 		} catch (err) {
@@ -183,7 +183,7 @@ class Likemode_classic extends Manager_state {
 		}
 
 		try {
-			await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
+			await this.bot.wait_for_selector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
 			let button = await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)");
 			let button_before_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)"));
 			this.log.info(`button text before click: ${button_before_click}`);
@@ -195,7 +195,7 @@ class Likemode_classic extends Manager_state {
 				await button.click();
 				await this.utils.sleep(this.utils.random_interval(2, 3));
 
-				await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
+				await this.bot.wait_for_selector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
 				let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)"));
 				this.log.info(`button text after click: ${button_after_click}`);
 

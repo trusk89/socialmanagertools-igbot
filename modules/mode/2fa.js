@@ -92,19 +92,20 @@ class Twofa extends Manager_state {
 	}
 
 	/**
-	 * Login PIN: Read pint
-	 * =====================
-	 * Open loginpin.txt and insert in security-code input
-	 *
-	 */
+ * Login PIN: Read pint
+* =====================
+* Open loginpin.txt and insert in security-code input
+ *
+ * @param input
+ */
 	async readpin (input) {
 		this.log.info("readpin");
 
 		const fs = require("fs");
-		let data = fs.readFileSync(this.config.pin_path, "utf8");
+		let data = fs.read_file_sync(this.config.pin_path, "utf8");
 		let pin = data.toString();
 
-		await this.bot.waitForSelector(`input[name="${input}"]`, {timeout: 5000});
+		await this.bot.wait_for_selector(`input[name="${input}"]`, {timeout: 5000});
 		await this.bot.type(`input[name="${input}"]`, pin, {delay: 100});
 		await this.utils.screenshot(this.LOG_NAME, "readpin");
 	}
@@ -127,11 +128,12 @@ class Twofa extends Manager_state {
 	}
 
 	/**
-	 * Login PIN: check errors
-	 * =====================
-	 * Check if submit not have errors
-	 *
-	 */
+ * Login PIN: check errors
+* =====================
+* Check if submit not have errors
+ *
+ * @param selector
+ */
 	async submitverify (selector) {
 		let attr = "";
 

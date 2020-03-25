@@ -48,11 +48,12 @@ class Utils {
 	}
 
 	/**
-	 * Check updates
-	 * =====================
-	 * Bot is updated? Yes/no
-	 *
-	 */
+ * Check updates
+* =====================
+* Bot is updated? Yes/no
+ *
+ * @param version
+ */
 	check_updates (version) {
 		let request = require("request");
 		let log = this.log;
@@ -71,15 +72,18 @@ class Utils {
 	}
 
 	/**
-	 * Create empty files: loginpin.txt, logs amd db
-	 * =====================
-	 * This fix errors at boot
-	 *
-	 */
+ * Create empty files: loginpin.txt, logs amd db
+* =====================
+* This fix errors at boot
+ *
+ * @param name
+ * @param path
+ * @param content
+ */
 	async create_write_file (name, path, content) {
 		let self = this;
 		return new Promise(function (resolve_write, reject_write) {
-			self.fs.writeFile(path, content, function (err) {
+			self.fs.write_file(path, content, function (err) {
 				if (err) {
 					self.log.error(`${name} don't created: ${err}`);
 					reject_write(err);
@@ -135,11 +139,13 @@ class Utils {
 	}
 
 	/**
-	 * Screenshot
-	 * =====================
-	 * Save screenshot from chrome
-	 *
-	 */
+ * Screenshot
+* =====================
+* Save screenshot from chrome
+ *
+ * @param func
+ * @param name
+ */
 	async screenshot (func, name) {
 		if (this.config.log.screenshot) {
 			try {
@@ -152,11 +158,13 @@ class Utils {
 	}
 
 	/**
-	 * Random
-	 * =====================
-	 * Random number between two numbers
-	 *
-	 */
+ * Random
+* =====================
+* Random number between two numbers
+ *
+ * @param min
+ * @param max
+ */
 	random_interval (min, max) {
 		return (Math.floor(Math.random() * (max - min + 1)) + min) * 1000;
 	}
@@ -209,11 +217,12 @@ class Utils {
 	}
 
 	/**
-	 * Sleep
-	 * =====================
-	 * Zzz
-	 *
-	 */
+ * Sleep
+* =====================
+* Zzz
+ *
+ * @param sec
+ */
 	sleep (sec) {
 		return new Promise(resolve => setTimeout(resolve, sec));
 	}
@@ -235,11 +244,12 @@ class Utils {
 	}
 
 	/**
-	 * Fix ui configs params
-	 * =====================
-	 * String aparms to booleans from social-manager-tools
-	 *
-	 */
+ * Fix ui configs params
+* =====================
+* String aparms to booleans from social-manager-tools
+ *
+ * @param config
+ */
 	fixui (config) {
 		config.bot_likeday_min = parseInt(config.bot_likeday_min);
 		config.bot_likeday_max = parseInt(config.bot_likeday_max);
@@ -254,11 +264,12 @@ class Utils {
 	}
 
 	/**
-	 * Default config.js
-	 * =====================
-	 * Get default value if config.js is not updated from config.js.tpl
-	 *
-	 */
+ * Default config.js
+* =====================
+* Get default value if config.js is not updated from config.js.tpl
+ *
+ * @param config
+ */
 	fixconfig (config) {
 		if (typeof config.debug === "undefined") {
 			config.debug = true;

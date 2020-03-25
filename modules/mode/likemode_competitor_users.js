@@ -124,7 +124,7 @@ class Likemode_competitor_users extends Manager_state {
 
 		if (this.cache_hash_tags.length <= 0) {
 			let selector_followers_count = "main header section ul li:nth-child(2) a";
-			await this.bot.waitForSelector(selector_followers_count, {timeout: 5000});
+			await this.bot.wait_for_selector(selector_followers_count, {timeout: 5000});
 			let area_count_followers = await this.bot.$(selector_followers_count);
 			await area_count_followers.click();
 
@@ -174,7 +174,7 @@ class Likemode_competitor_users extends Manager_state {
 		this.log.info("try heart like");
 
 		try {
-			await this.bot.waitForSelector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
+			await this.bot.wait_for_selector("article:nth-child(1) section:nth-child(1) button:nth-child(1)", {timeout: 5000});
 			let button = await this.bot.$("article:nth-child(1) section:nth-child(1) button:nth-child(1)");
 			await button.click();
 			this.log.info("<3");
