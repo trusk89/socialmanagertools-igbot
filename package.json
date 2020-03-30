@@ -1,7 +1,7 @@
 {
 	"name": "@social-manager-tools/igbot",
 	"description": "Social Manager Tools: Instagram Bot API",
-	"version": "0.9.22",
+	"version": "0.9.23",
 	"main": "lib.js",
 	"author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptk.dev)",
 	"license": "MIT",
