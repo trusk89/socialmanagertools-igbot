@@ -320,8 +320,8 @@ class Fdfmode_classic extends Manager_state {
 		let retry = 0;
 		do {
 			try {
-				await this.bot.waitForSelector("header section h1", {timeout: 5000});
-				username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section h1"));
+				await this.bot.waitForSelector("header section h2", {timeout: 5000});
+				username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section h2"));
 				this.log.info(`username ${username}`);
 				retry = 0;
 			} catch (err) {
@@ -396,6 +396,10 @@ class Fdfmode_classic extends Manager_state {
 		await this.init_db();
 
 		let alive = true;
+		if (this.config.bot_followrotate === "0") {
+			this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE 1=1", "defollow");
+		}
+
 		do {
 			alive = await this.utils.keep_alive();
 			if (alive == false) {
