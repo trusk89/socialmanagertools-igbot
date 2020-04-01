@@ -347,29 +347,37 @@ class Fdfmode_classic extends Manager_state {
 				this.log.warning("followed previously");
 				this.db.run("INSERT INTO users (account, mode, username, photo_url, hashtag, type_action) VALUES (?, ?, ?, ?, ?, ?)", this.config.instagram_username, this.LOG_NAME, username, this.photo_current, this.hashtag_tag, "defollowed previously");
 			} else {
-				await button.click();
 				await button2.click();
-
 				await this.utils.sleep(this.utils.random_interval(2, 3));
-
-				await this.bot.waitForSelector("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)", {timeout: 3000});
-				let button_confirm = await this.bot.$("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)");
-
-				await button_confirm.click();
-
-				await this.utils.sleep(this.utils.random_interval(1, 2));
 
 				await this.bot.waitForSelector("header section div:nth-child(1) button", {timeout: 5000});
 				let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(1) button"));
 				this.log.info(`button text after click: ${button_after_click}`);
 
-				if (button_after_click != button_before_click || button_after_click != button_before_click2) {
-					this.log.info("defollow");
-					this.db.run("INSERT INTO users (account, mode, username, photo_url, hashtag, type_action) VALUES (?, ?, ?, ?, ?, ?)", this.config.instagram_username, this.LOG_NAME, username, this.photo_current, this.hashtag_tag, "defollow");
-					this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE account = ? AND username = ?", "defollow", this.config.instagram_username, username);
-				} else {
-					this.log.warning("not defollow, removed from defollow list");
-					this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE account = ? AND username = ?", "defollow error, photo removed", this.config.instagram_username, this.username_current);
+				if (button_after_click == button_before_click2) {
+					await button.click();
+
+					await this.utils.sleep(this.utils.random_interval(2, 3));
+
+					await this.bot.waitForSelector("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)", {timeout: 3000});
+					let button_confirm = await this.bot.$("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)");
+
+					await button_confirm.click();
+
+					await this.utils.sleep(this.utils.random_interval(1, 2));
+
+					await this.bot.waitForSelector("header section div:nth-child(1) button", {timeout: 5000});
+					button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(1) button"));
+					this.log.info(`button text after click: ${button_after_click}`);
+
+					if (button_after_click != button_before_click) {
+						this.log.info("defollow");
+						this.db.run("INSERT INTO users (account, mode, username, photo_url, hashtag, type_action) VALUES (?, ?, ?, ?, ?, ?)", this.config.instagram_username, this.LOG_NAME, username, this.photo_current, this.hashtag_tag, "defollow");
+						this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE account = ? AND username = ?", "defollow", this.config.instagram_username, username);
+					} else {
+						this.log.warning("not defollow, removed from defollow list");
+						this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE account = ? AND username = ?", "defollow error, photo removed", this.config.instagram_username, this.username_current);
+					}
 				}
 			}
 			this.emit(this.STATE_EVENTS.CHANGE_STATUS, this.STATE.OK);
