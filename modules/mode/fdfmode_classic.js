@@ -296,9 +296,9 @@ class Fdfmode_classic extends Manager_state {
  *
  * @param username
  */
-	async goto_user_for_defollow (username) {
-		this.username_current = username;
-		this.photo_current = `https://www.instagram.com/${username}`;
+	async goto_user_for_defollow (user) {
+		this.username_current = user.username;
+		this.photo_current = user.photo_url;
 		this.log.info("go to url for try defollow");
 
 		try {
@@ -320,8 +320,8 @@ class Fdfmode_classic extends Manager_state {
 		let retry = 0;
 		do {
 			try {
-				await this.bot.waitForSelector("header section h2", {timeout: 5000});
-				username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section h2"));
+				await this.bot.waitForSelector("article h2 a", {timeout: 5000});
+				username = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article h2 a"));
 				this.log.info(`username ${username}`);
 				retry = 0;
 			} catch (err) {
@@ -353,8 +353,8 @@ class Fdfmode_classic extends Manager_state {
 
 				await this.utils.sleep(this.utils.random_interval(1, 2));
 
-				await this.bot.waitForSelector("header section div:nth-child(1) button", {timeout: 5000});
-				let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(1) button"));
+				await this.bot.waitForSelector("article header div button", {timeout: 5000});
+				let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("article header div button"));
 				this.log.info(`button text after click: ${button_after_click}`);
 
 				if (button_after_click != button_before_click) {
@@ -423,7 +423,7 @@ class Fdfmode_classic extends Manager_state {
 					for (let ir = 0; ir < rotate; ir++) {
 						this.log.info(`defollow rotate n: ${rotate}`);
 						this.log.info(`defollow user ${users[ir].username} from photo: ${users[ir].photo_url}`);
-						await this.goto_user_for_defollow(users[ir].photo_current);
+						await this.goto_user_for_defollow(users[ir]);
 						await this.utils.sleep(this.utils.random_interval(3, 6));
 						await this.fdf_click_defollow();
 					}
