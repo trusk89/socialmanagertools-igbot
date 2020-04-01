@@ -333,20 +333,26 @@ class Fdfmode_classic extends Manager_state {
 		} while (retry == 1);
 
 		try {
-			await this.bot.waitForSelector("header section div:nth-child(1) button", {timeout: 5000});
+			await this.bot.waitForSelector("header section div:nth-child(1) button", {timeout: 2000});
 			let button = await this.bot.$("header section div:nth-child(1) button");
 			let button_before_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(1) button"));
-			this.log.info(`button text before click: ${button_before_click}`);
+			this.log.info(`button 1 text before click: ${button_before_click}`);
+
+			await this.bot.waitForSelector("header section div:nth-child(2) button", {timeout: 2000});
+			let button2 = await this.bot.$("header section div:nth-child(2) button");
+			let button_before_click2 = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(2) button"));
+			this.log.info(`button 2 text before click: ${button_before_click2}`);
 
 			if (this.photo_liked[this.photo_current] > 1) {
 				this.log.warning("followed previously");
 				this.db.run("INSERT INTO users (account, mode, username, photo_url, hashtag, type_action) VALUES (?, ?, ?, ?, ?, ?)", this.config.instagram_username, this.LOG_NAME, username, this.photo_current, this.hashtag_tag, "defollowed previously");
 			} else {
 				await button.click();
+				await button2.click();
 
 				await this.utils.sleep(this.utils.random_interval(2, 3));
 
-				await this.bot.waitForSelector("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)", {timeout: 5000});
+				await this.bot.waitForSelector("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)", {timeout: 3000});
 				let button_confirm = await this.bot.$("div[role=\"dialog\"] div > div:nth-child(3) button:nth-child(1)");
 
 				await button_confirm.click();
@@ -357,7 +363,7 @@ class Fdfmode_classic extends Manager_state {
 				let button_after_click = await this.bot.evaluate(el => el.innerHTML, await this.bot.$("header section div:nth-child(1) button"));
 				this.log.info(`button text after click: ${button_after_click}`);
 
-				if (button_after_click != button_before_click) {
+				if (button_after_click != button_before_click || button_after_click != button_before_click2) {
 					this.log.info("defollow");
 					this.db.run("INSERT INTO users (account, mode, username, photo_url, hashtag, type_action) VALUES (?, ?, ?, ?, ?, ?)", this.config.instagram_username, this.LOG_NAME, username, this.photo_current, this.hashtag_tag, "defollow");
 					this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE account = ? AND username = ?", "defollow", this.config.instagram_username, username);
@@ -396,9 +402,6 @@ class Fdfmode_classic extends Manager_state {
 		await this.init_db();
 
 		let alive = true;
-		if (this.config.bot_followrotate === "0") {
-			this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE 1=1", "defollow");
-		}
 
 		do {
 			alive = await this.utils.keep_alive();
@@ -464,6 +467,10 @@ class Fdfmode_classic extends Manager_state {
 				}
 
 				if (this.cache_hash_tags.length <= 0) {
+					if (this.config.bot_followrotate === "0") {
+						this.db_fdf.run("UPDATE fdf SET type_fdf = ? WHERE 1=1", "defollow");
+					}
+
 					this.log.info(`finish follow, bot sleep ${this.config.bot_fastlikefdf_min}-${this.config.bot_fastlikefdf_max} minutes`);
 					this.cache_hash_tags = [];
 					await this.utils.sleep(this.utils.random_interval(60 * this.config.bot_fastlikefdf_min, 60 * this.config.bot_fastlikefdf_max));
