@@ -13,15 +13,15 @@
 
 
 
-# v0.9.24 (25 March, 2020)
+# v0.9.25 (01 April, 2020)
 * Fix: fdfmode_classic with dm button in page
 
 
-# v0.9.23 (25 March, 2020)
+# v0.9.23 (30 March, 2020)
 * Fix: fdfmode_classic
 
 
-# v0.9.21 (30 March, 2020)
+# v0.9.21 (25 March, 2020)
 * Upgrade: puppeteer v2.1.1 (chrome v80)
 * Fix: likemode_realistic
 * Fix: likemode_classic
