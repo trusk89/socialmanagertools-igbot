@@ -8,6 +8,7 @@
  * 
  */
 module.exports = {
+	"direct_new_followers": require("../modules/mode/direct_new_followers"),
 	"likemode_classic": require("../modules/mode/likemode_classic"),
 	"likemode_realistic": require("../modules/mode/likemode_realistic"),
 	"likemode_superlike": require("../modules/mode/likemode_superlike"),

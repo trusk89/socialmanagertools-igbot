@@ -17,6 +17,7 @@ module.exports = {
 	// [WORK] likemode_competitor_users - select account, select random followers, like 10-12 photo and sleep 15-20min.
 	// [WORK] comment_mode              - leave a comment under the photo via hashtag.
 	// [WORK] fdfmode_classic           - follow 30 users, and defollow the first followed at 31 follow (in loop). This method is not detected from socialblade. ~1h | 300/300 follow-defollow/day.
+	// [WORK] direct_new_followers      - send direct message to new followers
 	"bot_mode": "likemode_realistic",
 	"bot_likeday_min": 700,      // work in all likemode_*
 	"bot_likeday_max": 800,      // work in all likemode_*. In 2018 limit instagram is 1000/day
@@ -35,14 +36,20 @@ module.exports = {
 	"likemode_competitor_users": {
 		"account": "user_nickname" // without @
 	},
+	// direct config
+	"bot_direct_pause": 300, // in seconds
+	"bot_direct_follower_from": 24, // how many hours follow you
+	"bot_direct_message": `Thanks for follower!`,
 
 	// Puppeteer Configs
 	"chrome_headless": true,
+	"chrome_devtools": false,
 	"chrome_options": ["--disable-gpu", "--no-sandbox", "--window-size=1024x768"],
 	"executable_path": "", // example for Mac OS: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 
 	// DATABASES
 	"fdfdatabase_path": "./databases/fdf.db", // databases with username of followed users with follodefollow mode
+	"followersdb_path": "./databases/followers.db", // databases with username of followers
 	"logdb_path": "./databases/logs.db",      // logs in sqllite database for better report
 
 	// LOG
