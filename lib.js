@@ -68,6 +68,8 @@ module.exports = function (config) {
 		}
 		db["logs"] = new sqlite3.Database(config.logdb_path);
 		db["fdf"] = new sqlite3.Database(config.fdfdatabase_path);
+		db["followers"] = new sqlite3.Database(config.followersdb_path);
+
 		if (config.ui !== true) {
 			await check.init_empty();
 		} else if (config.ui === true) {
@@ -80,6 +82,7 @@ module.exports = function (config) {
 			this.browser = await puppeteer.launch({
 				headless: config.chrome_headless,
 				args: config.chrome_options,
+				devtools: config.chrome_devtools,
 				defaultViewport: {"width": 1024, "height": 768}
 			});
 		} else {
